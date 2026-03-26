@@ -1,7 +1,7 @@
 CREATE TABLE Tickets (
 ticket_id INT PRIMARY KEY IDENTITY(1,1),
-user_id INT FOREIGN KEY REFERENCES Users(user_id),
-flight_id INT NOT NULL, --Foreign Key will be added after Paul's team provides us the Flight script
+user_id INT NOT NULL FOREIGN KEY REFERENCES Users(user_id),
+flight_id INT NOT NULL FOREIGN KEY REFERENCES Flights(id),
 seat NVARCHAR(10),
 price DECIMAL(10, 2) NOT NULL,
 status NVARCHAR(20) DEFAULT 'Active',
