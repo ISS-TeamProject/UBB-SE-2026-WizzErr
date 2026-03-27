@@ -5,7 +5,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="mAOWJk_QioRpI4HOuR1K-74" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
-          <mxGeometry height="560" width="680" x="1560" y="40" as="geometry" />
+          <mxGeometry height="560" width="880" x="1560" y="40" as="geometry" />
         </mxCell>
         <mxCell id="dlj0GdM-PSQ2Tzy0Ghna-588" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=31.11111111111111;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="User" vertex="1">
           <mxGeometry height="287.1111111111111" width="240" x="-440" y="80" as="geometry" />
@@ -178,6 +178,14 @@
         </mxCell>
         <mxCell id="dlj0GdM-PSQ2Tzy0Ghna-641" parent="dlj0GdM-PSQ2Tzy0Ghna-638" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1">
           <mxGeometry height="19" width="160" y="116.85714285714286" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-10" edge="1" parent="1" source="dlj0GdM-PSQ2Tzy0Ghna-642" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.262;entryDx=0;entryDy=0;entryPerimeter=0;" target="NY34-oaN3d3qC95Rzodd-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2030" y="240" />
+              <mxPoint x="2120" y="240" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="dlj0GdM-PSQ2Tzy0Ghna-642" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30.11764705882353;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Route" vertex="1">
           <mxGeometry height="255.11764705882354" width="200" x="1880" y="320" as="geometry" />
@@ -972,6 +980,36 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1120" y="910" as="sourcePoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=33.14955139160156;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);" value="Airport" vertex="1">
+          <mxGeometry height="239.14955139160156" width="270" x="2120" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-2" parent="NY34-oaN3d3qC95Rzodd-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="-int AirportId" vertex="1">
+          <mxGeometry height="33" width="270" y="33.14955139160156" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-3" parent="NY34-oaN3d3qC95Rzodd-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="-string AirportCode" vertex="1">
+          <mxGeometry height="33" width="270" y="66.14955139160156" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-4" parent="NY34-oaN3d3qC95Rzodd-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="-string City" vertex="1">
+          <mxGeometry height="33" width="270" y="99.14955139160156" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-5" parent="NY34-oaN3d3qC95Rzodd-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1">
+          <mxGeometry height="8" width="270" y="132.14955139160156" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-6" parent="NY34-oaN3d3qC95Rzodd-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+Airport()" vertex="1">
+          <mxGeometry height="33" width="270" y="140.14955139160156" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-7" parent="NY34-oaN3d3qC95Rzodd-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+Airport(string airportCode, string city)" vertex="1">
+          <mxGeometry height="33" width="270" y="173.14955139160156" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-8" parent="NY34-oaN3d3qC95Rzodd-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+Airport(int airportId, string airportCode, string city)" vertex="1">
+          <mxGeometry height="33" width="270" y="206.14955139160156" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;0..*&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="1970" y="297.67" as="geometry" />
+        </mxCell>
+        <mxCell id="NY34-oaN3d3qC95Rzodd-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontSize=16;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="2050" y="215.86" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
