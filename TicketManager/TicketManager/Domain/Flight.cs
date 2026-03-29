@@ -1,6 +1,6 @@
 using System;
 
-namespace WizzErr.Domain.Models
+namespace TicketManager.Domain
 {
     public class Flight
     {
@@ -27,6 +27,17 @@ namespace WizzErr.Domain.Models
             Gate = gate;
             Date = date;
             FlightNr = flightNr;
+        }
+
+        public float GetBasePrice()
+        {
+            if (Route == null)
+                return 0f;
+
+            TimeSpan duration = Route.ArrivalTime - Route.DepartureTime;
+            float pricePerMinute = 1.25f; // can be adjusted if needed
+            float calculatedPrice = (float)duration.TotalMinutes * pricePerMinute;
+            return Math.Max(calculatedPrice, 40f); // ensure a minimum price of 40
         }
     }
 }

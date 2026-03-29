@@ -1,4 +1,4 @@
-namespace WizzErr.Domain.Models
+namespace TicketManager.Domain
 {
     public class AddOn
     {

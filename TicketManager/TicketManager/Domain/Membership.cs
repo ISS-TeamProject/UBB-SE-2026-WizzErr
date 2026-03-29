@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WizzErr.Domain.Models
+namespace TicketManager.Domain
 {
     public class Membership
     {

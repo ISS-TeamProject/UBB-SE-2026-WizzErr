@@ -1,6 +1,6 @@
 using System;
 
-namespace WizzErr.Domain.Models
+namespace TicketManager.Domain
 {
     public class Route
     {
