@@ -1,0 +1,141 @@
+using System;
+using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
+using TicketManager.Domain;
+
+namespace TicketManager.Repository
+{
+    public class FlightRepository : IFlightRepository
+    {
+        private readonly DatabaseConnectionFactory _dbFactory;
+
+        public FlightRepository(DatabaseConnectionFactory dbFactory)
+        {
+            _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+        }
+
+        public Flight GetFlightById(int id)
+        {
+            Flight flight = null;
+            using (var connection = _dbFactory.GetConnection())
+            {
+                connection.Open();
+                string query = @"
+                    SELECT f.id as flight_id, f.date, f.flight_number,
+                           r.id as route_id, r.route_type, r.departure_time, r.arrival_time, r.capacity,
+                           a.id as airport_id, a.city, a.code as airport_code,
+                           c.id as company_id, c.name as company_name,
+                           g.id as gate_id, g.name as gate_name
+                    FROM Flights f
+                    INNER JOIN Routes r ON f.route_id = r.id
+                    INNER JOIN Airports a ON r.airport_id = a.id
+                    INNER JOIN Companies c ON r.company_id = c.id
+                    LEFT JOIN Gates g ON f.gate_id = g.id
+                    WHERE f.id = @FlightId";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@FlightId", id);
+                    
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            flight = MapFlight(reader);
+                        }
+                    }
+                }
+            }
+            return flight;
+        }
+
+        public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime date)
+        {
+            var flights = new List<Flight>();
+            using (var connection = _dbFactory.GetConnection())
+            {
+                connection.Open();
+                // Basic implementation for flight searching based on Airport city/code matching.
+                // In a Central Hub system, flights either depart from the hub to the location (DEP)
+                // or arrive at the hub from the location (ARR).
+
+                string query = @"
+                    SELECT f.id as flight_id, f.date, f.flight_number,
+                           r.id as route_id, r.route_type, r.departure_time, r.arrival_time, r.capacity,
+                           a.id as airport_id, a.city, a.code as airport_code,
+                           c.id as company_id, c.name as company_name,
+                           g.id as gate_id, g.name as gate_name
+                    FROM Flights f
+                    INNER JOIN Routes r ON f.route_id = r.id
+                    INNER JOIN Airports a ON r.airport_id = a.id
+                    INNER JOIN Companies c ON r.company_id = c.id
+                    LEFT JOIN Gates g ON f.gate_id = g.id
+                    WHERE CAST(f.date AS DATE) = CAST(@Date AS DATE)
+                      AND r.route_type = @RouteType
+                      AND (a.city = @Location OR a.code = @Location)";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Location", location);
+                    command.Parameters.AddWithValue("@RouteType", routeType);
+                    command.Parameters.AddWithValue("@Date", date);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            flights.Add(MapFlight(reader));
+                        }
+                    }
+                }
+            }
+            return flights;
+        }
+
+        private Flight MapFlight(SqlDataReader reader)
+        {
+            var company = new Company
+            {
+                CompanyId = reader.GetInt32(reader.GetOrdinal("company_id")),
+                Name = reader.GetString(reader.GetOrdinal("company_name"))
+            };
+
+            var airport = new Airport
+            {
+                AirportId = reader.GetInt32(reader.GetOrdinal("airport_id")),
+                City = reader.IsDBNull(reader.GetOrdinal("city")) ? null : reader.GetString(reader.GetOrdinal("city")),
+                AirportCode = reader.IsDBNull(reader.GetOrdinal("airport_code")) ? null : reader.GetString(reader.GetOrdinal("airport_code"))
+            };
+
+            var route = new Route
+            {
+                RouteId = reader.GetInt32(reader.GetOrdinal("route_id")),
+                Company = company,
+                Airport = airport,
+                RouteType = reader.IsDBNull(reader.GetOrdinal("route_type")) ? null : reader.GetString(reader.GetOrdinal("route_type")),
+                DepartureTime = reader.GetDateTime(reader.GetOrdinal("departure_time")),
+                ArrivalTime = reader.GetDateTime(reader.GetOrdinal("arrival_time")),
+                Capacity = reader.IsDBNull(reader.GetOrdinal("capacity")) ? 0 : reader.GetInt32(reader.GetOrdinal("capacity"))
+            };
+
+            Gate gate = null;
+            if (!reader.IsDBNull(reader.GetOrdinal("gate_id")))
+            {
+                gate = new Gate
+                {
+                    GateId = reader.GetInt32(reader.GetOrdinal("gate_id")),
+                    GateName = reader.IsDBNull(reader.GetOrdinal("gate_name")) ? null : reader.GetString(reader.GetOrdinal("gate_name"))
+                };
+            }
+
+            return new Flight
+            {
+                FlightId = reader.GetInt32(reader.GetOrdinal("flight_id")),
+                Route = route,
+                Gate = gate,
+                Date = reader.GetDateTime(reader.GetOrdinal("date")),
+                FlightNr = reader.IsDBNull(reader.GetOrdinal("flight_number")) ? null : reader.GetString(reader.GetOrdinal("flight_number"))
+            };
+        }
+    }
+}

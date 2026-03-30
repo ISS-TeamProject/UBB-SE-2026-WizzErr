@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using TicketManager.Domain;
 
-namespace TicketManager.Domain.Repositories
+namespace TicketManager.Repository
 {
     public interface IFlightRepository
     {
-        IEnumerable<Flight> GetFlightsByRoute(string departure, string destination, DateTime date);
+        IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime date);
         Flight GetFlightById(int id);
     }
 }
