@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using System.IO;
+using System;
 
 namespace TicketManager.Repository
 {
@@ -10,17 +10,14 @@ namespace TicketManager.Repository
 
         public DatabaseConnectionFactory()
         {
-            // Build the configuration to read from appsettings.json
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                // optional: false strictly requires the file to exist. The app will crash early if it is missing.
+                .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             IConfiguration configuration = builder.Build();
 
-            // Fetch the connection string named "DefaultConnection"
             _connectionString = configuration.GetConnectionString("DefaultConnection")
-                                ?? throw new System.InvalidOperationException("Connection string 'DefaultConnection' not found.");
+                                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
         }
 
         public SqlConnection GetConnection()
