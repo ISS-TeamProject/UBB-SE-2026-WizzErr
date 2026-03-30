@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TicketManager.Domain;
 
-namespace TicketManager.Domain.Repositories
+namespace TicketManager.Repository
 {
     public interface IMembershipRepository
     {
