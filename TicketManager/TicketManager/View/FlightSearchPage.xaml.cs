@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TicketManager.Repository;
+using TicketManager.Service;
+using TicketManager.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -18,14 +21,22 @@ using Windows.Foundation.Collections;
 
 namespace TicketManager.View
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class FlightSearchPage : Page
     {
+        // Această proprietate va fi expusă către XAML
+        public FlightSearchViewModel ViewModel { get; }
+
         public FlightSearchPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            // Instanțiem "lanțul" de dependențe manual:
+            var dbFactory = new DatabaseConnectionFactory();
+            var repository = new FlightRepository(dbFactory);
+            var service = new FlightSearchService(repository);
+
+            // Creăm ViewModel-ul dându-i serviciul
+            ViewModel = new FlightSearchViewModel(service);
         }
 
         private void PassengersInput_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
