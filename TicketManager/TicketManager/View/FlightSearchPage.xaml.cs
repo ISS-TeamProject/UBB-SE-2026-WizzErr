@@ -13,6 +13,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TicketManager.Repository;
 using TicketManager.Service;
 using TicketManager.ViewModel;
+using TicketManager.Domain;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -57,9 +58,52 @@ namespace TicketManager.View
             }
         }
 
+        private void ClearDateButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.FlightDate = null;
+        }
+
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BookingPage));
+            if (sender is not Button button || button.Tag is not FlightDisplayModel selectedFlightDisplay || selectedFlightDisplay.Flight == null)
+            {
+                return;
+            }
+
+            int passengerCount = 0;
+            if (!string.IsNullOrWhiteSpace(ViewModel.Passengers))
+            {
+                if (int.TryParse(ViewModel.Passengers, out var parsedPassengers) && parsedPassengers > 0)
+                {
+                    passengerCount = parsedPassengers;
+                }
+                else
+                {
+                    ViewModel.Passengers = "1";
+                    passengerCount = 1;
+                }
+            }
+
+            var bookingParameters = new object[] { selectedFlightDisplay.Flight, passengerCount };
+
+            if (UserSession.CurrentUser == null)
+            {
+                UserSession.PendingBookingParameters = bookingParameters;
+                this.Frame.Navigate(typeof(AuthPage));
+                return;
+            }
+
+            this.Frame.Navigate(typeof(BookingPage), bookingParameters);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (e.Parameter is User user)
+            {
+                UserSession.CurrentUser = user;
+            }
         }
     }
 }

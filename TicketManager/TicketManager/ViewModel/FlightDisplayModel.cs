@@ -9,6 +9,8 @@ namespace TicketManager.ViewModel
 {
     public class FlightDisplayModel
     {
+        public Flight Flight { get; }
+
         // Acestea sunt proprietățile pe care le va citi XAML-ul
         public string FlightNr { get; set; }
         public string RouteCity { get; set; }
@@ -18,10 +20,11 @@ namespace TicketManager.ViewModel
         // Constructorul care preia un Flight din baza de date și îl formatează
         public FlightDisplayModel(Flight flight)
         {
+            Flight = flight;
             FlightNr = flight.FlightNr;
             RouteCity = flight.Route?.Airport?.City ?? "Unknown";
             DisplayDate = flight.Date.ToString("g"); // Aici facem formatarea datei
-            DisplayPrice = $"{flight.GetBasePrice():0.00} €"; // Aici adăugăm simbolul Euro
+            DisplayPrice = $"{flight.GetBasePrice():0.00} € / person";
         }
     }
 }

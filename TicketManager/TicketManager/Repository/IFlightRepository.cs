@@ -6,7 +6,7 @@ namespace TicketManager.Repository
 {
     public interface IFlightRepository
     {
-        IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime date);
+        IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime? date, int? passengers);
         Flight GetFlightById(int id);
     }
 }

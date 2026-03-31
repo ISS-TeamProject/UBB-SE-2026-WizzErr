@@ -17,6 +17,7 @@
 
 		<NavigationView x:Name="TopNav"
 						PaneDisplayMode="Top"
+                       IsSettingsVisible="False"
 						IsBackButtonVisible="Visible"
 						ItemInvoked="TopNav_ItemInvoked"
 						BackRequested="TopNav_BackRequested">
@@ -35,6 +36,14 @@
 				<NavigationViewItem Content="Services" Tag="TicketManager.View.ServicesPage" />
 				<NavigationViewItem Content="Support" Tag="TicketManager.View.SupportPage" />
 			</NavigationView.MenuItems>
+
+            <NavigationView.FooterMenuItems>
+				<NavigationViewItem x:Name="AccountMenuItem" Content="Account" Tag="Account">
+					<NavigationViewItem.Icon>
+						<SymbolIcon Symbol="Contact" />
+					</NavigationViewItem.Icon>
+				</NavigationViewItem>
+			</NavigationView.FooterMenuItems>
 
 			<Frame x:Name="ContentFrame" />
 

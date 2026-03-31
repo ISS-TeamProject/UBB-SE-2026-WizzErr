@@ -33,7 +33,18 @@ namespace TicketManager.View
 
                 if (_viewModel.IsAuthenticated)
                 {
-                    this.Frame.Navigate(typeof(FlightSearchPage));
+                    UserSession.CurrentUser = _viewModel.AuthenticatedUser;
+
+                    if (UserSession.PendingBookingParameters != null)
+                    {
+                        var pendingParameters = UserSession.PendingBookingParameters;
+                        UserSession.PendingBookingParameters = null;
+                        this.Frame.Navigate(typeof(BookingPage), pendingParameters);
+                    }
+                    else
+                    {
+                        this.Frame.Navigate(typeof(FlightSearchPage));
+                    }
                 }
             }
             else

@@ -9,6 +9,6 @@ namespace TicketManager.Service
 {
     public interface IFlightSearchService
     {
-        IEnumerable<Flight> SearchFlights(string location, string flightType, DateTime date);
+        IEnumerable<Flight> SearchFlights(string location, string flightType, DateTime? date, int? passengers);
     }
 }

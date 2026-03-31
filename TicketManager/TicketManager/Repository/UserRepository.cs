@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 using TicketManager.Domain;
 
@@ -7,10 +8,12 @@ namespace TicketManager.Repository
     public class UserRepository : IUserRepository
     {
         private readonly DatabaseConnectionFactory _dbFactory;
+        private readonly IMembershipRepository _membershipRepository;
 
         public UserRepository(DatabaseConnectionFactory dbFactory)
         {
             _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            _membershipRepository = new MembershipRepository(dbFactory);
         }
 
         public User GetById(int id)
@@ -126,6 +129,8 @@ namespace TicketManager.Repository
                     Name = reader.GetString(reader.GetOrdinal("membership_name")),
                     FlightDiscountPercentage = (float)reader.GetByte(reader.GetOrdinal("flight_discount_percentage"))
                 };
+
+                membership.AddonDiscounts = _membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();
             }
 
             return new User(

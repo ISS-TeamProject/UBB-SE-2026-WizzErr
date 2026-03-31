@@ -49,7 +49,7 @@ namespace TicketManager.Repository
             return flight;
         }
 
-        public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime date)
+        public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime? date, int? passengers)
         {
             var flights = new List<Flight>();
             using (var connection = _dbFactory.GetConnection())
@@ -70,15 +70,22 @@ namespace TicketManager.Repository
                     INNER JOIN Airports a ON r.airport_id = a.id
                     INNER JOIN Companies c ON r.company_id = c.id
                     LEFT JOIN Gates g ON f.gate_id = g.id
-                    WHERE CAST(f.date AS DATE) = CAST(@Date AS DATE)
+                    WHERE (@Date IS NULL OR CAST(f.date AS DATE) = CAST(@Date AS DATE))
                       AND r.route_type = @RouteType
-                      AND (a.city = @Location OR a.code = @Location)";
+                      AND (a.city = @Location OR a.code = @Location)
+                      AND (@Passengers IS NULL OR (r.capacity - ISNULL((
+                            SELECT COUNT(*)
+                            FROM Tickets t
+                            WHERE t.flight_id = f.id
+                              AND t.status <> 'Cancelled'
+                          ), 0)) >= @Passengers)";
 
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Location", location);
                     command.Parameters.AddWithValue("@RouteType", routeType);
-                    command.Parameters.AddWithValue("@Date", date);
+                    command.Parameters.AddWithValue("@Date", (object?)date ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Passengers", passengers.HasValue ? passengers.Value : DBNull.Value);
 
                     using (var reader = command.ExecuteReader())
                     {

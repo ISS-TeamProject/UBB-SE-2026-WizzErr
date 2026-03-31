@@ -44,6 +44,13 @@ namespace TicketManager.ViewModel
             set { _passengers = value; OnPropertyChanged(); }
         }
 
+        private string _searchResultMessage;
+        public string SearchResultMessage
+        {
+            get => _searchResultMessage;
+            set { _searchResultMessage = value; OnPropertyChanged(); }
+        }
+
         // Lista de zboruri care va fi afișată automat în DataGrid/ListView
         public ObservableCollection<FlightDisplayModel> AvailableFlights { get; set; }
 
@@ -63,22 +70,44 @@ namespace TicketManager.ViewModel
         {
             // Curățăm rezultatele vechi
             AvailableFlights.Clear();
+            SearchResultMessage = string.Empty;
 
             // Validări minime
-            if (string.IsNullOrWhiteSpace(Location) || FlightDate == null)
+            if (string.IsNullOrWhiteSpace(Location))
                 return;
 
             // Conform comentariilor din FlightRepository, tipul rutei este "DEP" sau "ARR"
             string routeType = IsDeparture ? "DEP" : "ARR";
-            DateTime date = FlightDate.Value.DateTime;
+            DateTime? date = FlightDate?.Date;
+
+            int? requestedPassengers = null;
+            if (!string.IsNullOrWhiteSpace(Passengers))
+            {
+                if (int.TryParse(Passengers, out var parsedPassengers) && parsedPassengers > 0)
+                {
+                    requestedPassengers = parsedPassengers;
+                }
+                else
+                {
+                    Passengers = "1";
+                    requestedPassengers = 1;
+                }
+            }
 
             // Apelăm Serviciul creat la Task-ul 1
-            var results = _searchService.SearchFlights(Location, routeType, date);
+            var results = _searchService.SearchFlights(Location, routeType, date, requestedPassengers);
+            bool hasResults = false;
 
             foreach (var flight in results)
             {
                 // Împachetăm zborul brut în modelul de afișare (formatat)
                 AvailableFlights.Add(new FlightDisplayModel(flight));
+                hasResults = true;
+            }
+
+            if (!hasResults)
+            {
+                SearchResultMessage = "No flights found for the selected criteria.";
             }
         }
     }
