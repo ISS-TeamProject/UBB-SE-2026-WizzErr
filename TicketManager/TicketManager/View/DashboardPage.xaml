@@ -81,14 +81,24 @@
                                     </StackPanel>
                                 </StackPanel>
 
-                                <!-- Buton Cancel -->
-                                <Button Grid.Column="1" 
-                                        Content="Cancel" 
-                                        VerticalAlignment="Center" 
-                                        Background="#FF4444" 
-                                        Foreground="White"
-                                        Command="{Binding ElementName=RootPage, Path=DataContext.CancelTicketCommand}"
-                                        CommandParameter="{Binding}" />
+                                <!-- Butoane Actiune -->
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="10">
+                                    <!-- Buton Download PDF -->
+                                    <Button Content="Download PDF" 
+                                            Background="{ThemeResource SystemControlBackgroundAccentBrush}" 
+                                            Foreground="White"
+                                            Command="{Binding ElementName=RootPage, Path=DataContext.DownloadPdfCommand}"
+                                            CommandParameter="{Binding}" 
+                                            HorizontalAlignment="Stretch" />
+
+                                    <!-- Buton Cancel -->
+                                    <Button Content="Cancel" 
+                                            Background="#FF4444" 
+                                            Foreground="White"
+                                            Command="{Binding ElementName=RootPage, Path=DataContext.CancelTicketCommand}"
+                                            CommandParameter="{Binding}" 
+                                            HorizontalAlignment="Stretch" />
+                                </StackPanel>
                             </Grid>
                         </Border>
                     </DataTemplate>

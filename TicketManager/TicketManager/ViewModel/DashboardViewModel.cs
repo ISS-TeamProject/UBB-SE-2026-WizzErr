@@ -15,14 +15,15 @@ namespace TicketManager.ViewModel
         public ObservableCollection<Ticket> MyTickets { get; set; }
 
         public ICommand CancelTicketCommand { get; }
+        public ICommand DownloadPdfCommand { get; }
 
         public DashboardViewModel(DashboardService dashboardService)
         {
             _dashboardService = dashboardService;
             MyTickets = new ObservableCollection<Ticket>();
 
-            // Setăm comanda de Cancel
             CancelTicketCommand = new RelayCommand(ExecuteCancelTicket);
+            DownloadPdfCommand = new RelayCommand(ExecuteDownloadPdf);
 
             LoadUserTickets();
         }
@@ -30,33 +31,44 @@ namespace TicketManager.ViewModel
         private void LoadUserTickets()
         {
             MyTickets.Clear();
-
-            // Preluăm ID-ul logat (folosim 1 ca fallback dacă nu e logat)
             int currentUserId = UserSession.CurrentUser?.UserId ?? 1;
-
             var userTickets = _dashboardService.GetUserTickets(currentUserId);
-
-            foreach (var ticket in userTickets)
-            {
-                MyTickets.Add(ticket);
-            }
+            foreach (var ticket in userTickets) MyTickets.Add(ticket);
         }
 
         private void ExecuteCancelTicket(object parameter)
         {
-            // Verificăm dacă paramaterul este un Ticket valid
             if (parameter is Ticket ticket && ticket.Status != "Cancelled")
             {
-                // Apelăm baza de date pentru a face update-ul
                 _dashboardService.CancelUserTicket(ticket.TicketId);
-
-                // Reîncărcăm lista ca să vedem status-ul actualizat
                 LoadUserTickets();
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        private void ExecuteDownloadPdf(object parameter)
+        {
+            if (parameter is Ticket ticket)
+            {
+                try
+                {
+                    // Apelăm serviciul (Separation of Concerns)
+                    string generatedFilePath = _dashboardService.GenerateTicketPdf(ticket);
 
+                    // Interacțiunea cu sistemul (deschiderea fișierului pe ecran) rămâne în ViewModel
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                    {
+                        FileName = generatedFilePath,
+                        UseShellExecute = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Failed to generate PDF: {ex.Message}");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
