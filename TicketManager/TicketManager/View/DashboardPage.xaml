@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:TicketManager.View"
     xmlns:viewmodel="using:TicketManager.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -30,7 +31,21 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="My Tickets" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,15"/>
+            <Grid Grid.Row="0" Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="My Tickets" FontSize="24" FontWeight="SemiBold"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <TextBlock Text="Show:" VerticalAlignment="Center"/>
+                    <ComboBox Width="150"
+                              ItemsSource="{Binding TicketFilters}"
+                              SelectedItem="{Binding SelectedTicketFilter, Mode=TwoWay}"/>
+                </StackPanel>
+            </Grid>
 
             <!-- Lista de bilete extinsă pe tot ecranul -->
             <ListView Grid.Row="1" 
@@ -95,8 +110,8 @@
                                     <Button Content="Cancel" 
                                             Background="#FF4444" 
                                             Foreground="White"
-                                            Command="{Binding ElementName=RootPage, Path=DataContext.CancelTicketCommand}"
-                                            CommandParameter="{Binding}" 
+                                            Click="CancelButton_Click"
+                                            Tag="{Binding}"
                                             HorizontalAlignment="Stretch" />
                                 </StackPanel>
                             </Grid>

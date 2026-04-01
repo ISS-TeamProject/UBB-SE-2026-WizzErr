@@ -6,6 +6,7 @@ using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using TicketManager.Domain;
 using TicketManager.Repository;
+using System.Linq;
 
 namespace TicketManager.Service
 {
@@ -21,9 +22,15 @@ namespace TicketManager.Service
             QuestPDF.Settings.License = LicenseType.Community;
         }
 
-        public IEnumerable<Ticket> GetUserTickets(int userId)
+        public IEnumerable<Ticket> GetUserTickets(int userId, string ticketFilter)
         {
-            return _ticketRepository.GetTicketsByUserId(userId);
+            var now = DateTime.Now;
+            var tickets = _ticketRepository.GetTicketsByUserId(userId)
+                .Where(ticket => ticket.Flight != null);
+
+            return string.Equals(ticketFilter, "Past", StringComparison.OrdinalIgnoreCase)
+                ? tickets.Where(ticket => ticket.Flight.Date < now).OrderByDescending(ticket => ticket.Flight.Date)
+                : tickets.Where(ticket => ticket.Flight.Date >= now).OrderBy(ticket => ticket.Flight.Date);
         }
 
         public void CancelUserTicket(int ticketId)
@@ -35,7 +42,7 @@ namespace TicketManager.Service
         public string GenerateTicketPdf(Ticket ticket)
         {
             string downloadsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            string filePath = Path.Combine(downloadsFolder, $"WizzErr_Ticket_{ticket.TicketId}.pdf");
+            string filePath = Path.Combine(downloadsFolder, $"WizzErr_Ticket_{ticket.TicketId}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf");
 
             Document.Create(container =>
             {
@@ -68,6 +75,21 @@ namespace TicketManager.Service
                         col.Item().Text($"Name: {ticket.PassengerFirstName} {ticket.PassengerLastName}");
                         col.Item().Text($"Email: {ticket.PassengerEmail}");
                         col.Item().Text($"Phone: {ticket.PassengerPhone}");
+
+                        col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
+
+                        col.Item().PaddingTop(10).Text("Selected Add-Ons").FontSize(16).SemiBold();
+                        if (ticket.SelectedAddOns != null && ticket.SelectedAddOns.Count > 0)
+                        {
+                            foreach (var addOn in ticket.SelectedAddOns)
+                            {
+                                col.Item().Text($"• {addOn.Name}");
+                            }
+                        }
+                        else
+                        {
+                            col.Item().Text("No add-ons selected");
+                        }
 
                         col.Item().PaddingTop(15).Text($"Total Price: {ticket.Price} EUR").FontSize(16).SemiBold();
                     });

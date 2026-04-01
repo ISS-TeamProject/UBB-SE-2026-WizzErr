@@ -13,6 +13,20 @@ namespace TicketManager.ViewModel
         private readonly DashboardService _dashboardService;
 
         public ObservableCollection<Ticket> MyTickets { get; set; }
+        public ObservableCollection<string> TicketFilters { get; }
+
+        private string _selectedTicketFilter;
+        public string SelectedTicketFilter
+        {
+            get => _selectedTicketFilter;
+            set
+            {
+                if (_selectedTicketFilter == value) return;
+                _selectedTicketFilter = value;
+                OnPropertyChanged();
+                LoadUserTickets();
+            }
+        }
 
         public ICommand CancelTicketCommand { get; }
         public ICommand DownloadPdfCommand { get; }
@@ -21,6 +35,8 @@ namespace TicketManager.ViewModel
         {
             _dashboardService = dashboardService;
             MyTickets = new ObservableCollection<Ticket>();
+            TicketFilters = new ObservableCollection<string> { "Upcoming", "Past" };
+            _selectedTicketFilter = "Upcoming";
 
             CancelTicketCommand = new RelayCommand(ExecuteCancelTicket);
             DownloadPdfCommand = new RelayCommand(ExecuteDownloadPdf);
@@ -28,20 +44,47 @@ namespace TicketManager.ViewModel
             LoadUserTickets();
         }
 
-        private void LoadUserTickets()
+        public void LoadUserTickets()
         {
             MyTickets.Clear();
-            int currentUserId = UserSession.CurrentUser?.UserId ?? 1;
-            var userTickets = _dashboardService.GetUserTickets(currentUserId);
-            foreach (var ticket in userTickets) MyTickets.Add(ticket);
+            int? currentUserId = UserSession.CurrentUser?.UserId;
+            if (!currentUserId.HasValue)
+            {
+                return;
+            }
+
+            var filteredTickets = _dashboardService.GetUserTickets(currentUserId.Value, SelectedTicketFilter);
+
+            foreach (var ticket in filteredTickets)
+            {
+                MyTickets.Add(ticket);
+            }
+        }
+
+        public void CancelTicket(Ticket ticket)
+        {
+            if (ticket == null)
+            {
+                return;
+            }
+
+            bool isCancelled = string.Equals(ticket.Status, "Cancelled", StringComparison.OrdinalIgnoreCase);
+            bool isPastFlight = ticket.Flight != null && ticket.Flight.Date < DateTime.Now;
+
+            if (isCancelled || isPastFlight)
+            {
+                return;
+            }
+
+            _dashboardService.CancelUserTicket(ticket.TicketId);
+            LoadUserTickets();
         }
 
         private void ExecuteCancelTicket(object parameter)
         {
-            if (parameter is Ticket ticket && ticket.Status != "Cancelled")
+            if (parameter is Ticket ticket)
             {
-                _dashboardService.CancelUserTicket(ticket.TicketId);
-                LoadUserTickets();
+                CancelTicket(ticket);
             }
         }
 

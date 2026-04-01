@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 using TicketManager.Domain;
 
@@ -17,6 +18,7 @@ namespace TicketManager.Repository
         public IEnumerable<Ticket> GetTicketsByUserId(int userId)
         {
             var tickets = new List<Ticket>();
+            var ticketById = new Dictionary<int, Ticket>();
             using (var connection = _dbFactory.GetConnection())
             {
                 connection.Open();
@@ -60,6 +62,48 @@ namespace TicketManager.Repository
                             };
 
                             tickets.Add(ticket);
+                            ticketById[ticket.TicketId] = ticket;
+                        }
+                    }
+                }
+
+                if (ticketById.Count > 0)
+                {
+                    var parameters = ticketById.Keys
+                        .Select((id, index) => new { ParameterName = $"@TicketId{index}", Value = id })
+                        .ToList();
+
+                    string inClause = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    string addOnQuery = $@"
+                        SELECT ta.ticket_id, a.addon_id, a.name, a.base_price
+                        FROM Tickets_AddOns ta
+                        INNER JOIN AddOns a ON ta.addon_id = a.addon_id
+                        WHERE ta.ticket_id IN ({inClause})";
+
+                    using (var addOnCommand = new SqlCommand(addOnQuery, connection))
+                    {
+                        foreach (var param in parameters)
+                        {
+                            addOnCommand.Parameters.AddWithValue(param.ParameterName, param.Value);
+                        }
+
+                        using (var addOnReader = addOnCommand.ExecuteReader())
+                        {
+                            while (addOnReader.Read())
+                            {
+                                int ticketId = addOnReader.GetInt32(addOnReader.GetOrdinal("ticket_id"));
+                                if (!ticketById.TryGetValue(ticketId, out var ticket))
+                                {
+                                    continue;
+                                }
+
+                                ticket.SelectedAddOns.Add(new AddOn
+                                {
+                                    AddOnId = addOnReader.GetInt32(addOnReader.GetOrdinal("addon_id")),
+                                    Name = addOnReader.GetString(addOnReader.GetOrdinal("name")),
+                                    BasePrice = (float)addOnReader.GetDecimal(addOnReader.GetOrdinal("base_price"))
+                                });
+                            }
                         }
                     }
                 }
