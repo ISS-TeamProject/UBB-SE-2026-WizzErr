@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Net.Mail;
 using Microsoft.AspNetCore.Identity;
 using TicketManager.Domain;
 using TicketManager.Repository;
@@ -40,24 +42,11 @@ namespace TicketManager.Service
 
         public void Register(string email, string phone, string username, string password)
         {
-            if (string.IsNullOrWhiteSpace(email))
-                throw new ArgumentException("Email is required.");
+            string normalizedEmail = email?.Trim();
+            string normalizedUsername = username?.Trim();
+            string normalizedPhone = phone?.Trim();
 
-            if (string.IsNullOrWhiteSpace(username))
-                throw new ArgumentException("Username is required.");
-
-            if (string.IsNullOrWhiteSpace(phone))
-                throw new ArgumentException("Phone is required.");
-
-            if (string.IsNullOrWhiteSpace(password))
-                throw new ArgumentException("Password is required.");
-
-            if (password.Length < 6)
-                throw new ArgumentException("Password must be at least 6 characters long.");
-
-            string normalizedEmail = email.Trim();
-            string normalizedUsername = username.Trim();
-            string normalizedPhone = phone.Trim();
+            ValidateRegistrationData(normalizedEmail, normalizedPhone, normalizedUsername, password);
 
             User existingUser = _userRepo.GetByEmail(normalizedEmail);
             if (existingUser != null)
@@ -75,6 +64,54 @@ namespace TicketManager.Service
             newUser.PasswordHash = hashedPassword;
 
             _userRepo.AddUser(newUser);
+        }
+
+        private void ValidateRegistrationData(string email, string phone, string username, string password)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email is required.");
+
+            if (!IsValidEmail(email))
+                throw new ArgumentException("Email format is invalid.");
+
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException("Username is required.");
+
+            if (username.Length < 3)
+                throw new ArgumentException("Username must have at least 3 characters.");
+
+            if (!username.All(c => char.IsLetter(c) || char.IsDigit(c) || c == '_' || c == ' '))
+                throw new ArgumentException("Username contains invalid characters.");
+
+            if (string.IsNullOrWhiteSpace(phone))
+                throw new ArgumentException("Phone is required.");
+
+            if (!IsValidPhone(phone))
+                throw new ArgumentException("Phone number must contain only digits and have 10 to 15 digits.");
+
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password is required.");
+
+            if (password.Length < 6)
+                throw new ArgumentException("Password must be at least 6 characters long.");
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var mail = new MailAddress(email);
+                return mail.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsValidPhone(string phone)
+        {
+            return phone.All(char.IsDigit) && phone.Length >= 10 && phone.Length <= 15;
         }
     }
 }
