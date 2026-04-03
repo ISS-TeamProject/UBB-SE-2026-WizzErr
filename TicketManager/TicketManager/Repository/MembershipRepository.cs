@@ -40,7 +40,33 @@ namespace TicketManager.Repository
                     }
                 }
             }
+
             return membership;
+        }
+
+        public IEnumerable<Membership> GetAllMemberships()
+        {
+            var memberships = new List<Membership>();
+            using (var connection = _dbFactory.GetConnection())
+            {
+                connection.Open();
+                string query = "SELECT membership_id, name, flight_discount_percentage FROM Memberships";
+
+                using (var command = new SqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        memberships.Add(new Membership
+                        {
+                            MembershipId = reader.GetInt32(reader.GetOrdinal("membership_id")),
+                            Name = reader.GetString(reader.GetOrdinal("name")),
+                            FlightDiscountPercentage = (float)reader.GetByte(reader.GetOrdinal("flight_discount_percentage"))
+                        });
+                    }
+                }
+            }
+            return memberships;
         }
 
         public IEnumerable<MembershipAddonDiscount> GetAddonDiscounts(int membershipId)

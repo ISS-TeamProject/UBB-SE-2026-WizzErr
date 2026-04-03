@@ -7,5 +7,6 @@ namespace TicketManager.Repository
     {
         Membership GetMembershipById(int id);
         IEnumerable<MembershipAddonDiscount> GetAddonDiscounts(int membershipId);
+        IEnumerable<Membership> GetAllMemberships();
     }
 }

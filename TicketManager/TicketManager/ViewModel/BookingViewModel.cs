@@ -313,9 +313,10 @@ namespace TicketManager.ViewModel
 
             var tickets = _bookingService.CreateTickets(CurrentFlight, CurrentUser, Passengers.ToList(), basePrice);
 
-            float totalWithoutMembership = tickets.Sum(t => t.Price + t.SelectedAddOns.Sum(a => a.GetBasePrice()));
+            float addOnsWithoutMembership = tickets.Sum(t => t.SelectedAddOns.Sum(a => a.GetBasePrice()));
+            float totalWithoutMembership = BasePriceTotal + addOnsWithoutMembership;
             FinalTotalPrice = _bookingService.CalculateFinalPrice(tickets, CurrentUser);
-            AddOnsTotal = Math.Max(0, FinalTotalPrice - BasePriceTotal);
+            AddOnsTotal = addOnsWithoutMembership;
             MembershipSavings = Math.Max(0, totalWithoutMembership - FinalTotalPrice);
 
             OnPropertyChanged(nameof(BasePricePerPersonDisplay));
