@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TicketManager.Domain;
 
 namespace TicketManager.Repository
@@ -10,5 +11,6 @@ namespace TicketManager.Repository
         void UpdateTicketStatus(int ticketId, string status);
         void AddTicketAddOns(int ticketId, IEnumerable<int> addOnIds);
         IEnumerable<string> GetOccupiedSeats(int flightId);
+        Task<bool> SaveTicketsWithAddOnsAsync(List<Ticket> tickets);
     }
 }
