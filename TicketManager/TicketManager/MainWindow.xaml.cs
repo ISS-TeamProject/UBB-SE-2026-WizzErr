@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TicketManager.Domain;
+using TicketManager.Repository;
 using TicketManager.Service;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -19,12 +21,17 @@ namespace TicketManager
     public sealed partial class MainWindow : Window
     {
         private const string AccountNavTag = "Account";
+        private readonly IAuthService _authService;
 
         public MainWindow()
         {
             this.InitializeComponent();
 
-            // 1. Abonăm Frame-ul la evenimentul de navigare
+            var dbFactory = new DatabaseConnectionFactory();
+            var membershipRepository = new MembershipRepository(dbFactory);
+            var userRepository = new UserRepository(dbFactory, membershipRepository);
+            _authService = new AuthService(userRepository);
+
             ContentFrame.Navigated += ContentFrame_Navigated;
 
             NavigateToSearch();
@@ -137,8 +144,7 @@ namespace TicketManager
                 var result = await dialog.ShowAsync();
                 if (result == ContentDialogResult.Primary)
                 {
-                    UserSession.CurrentUser = null;
-                    UserSession.PendingBookingParameters = null;
+                    _authService.Logout();
                     UpdateNavigationAvailability();
                     NavigateToSearch();
                 }

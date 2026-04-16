@@ -1,4 +1,4 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System;
@@ -22,7 +22,9 @@ namespace TicketManager.View
             var dbFactory = new DatabaseConnectionFactory();
             var ticketRepository = new TicketRepository(dbFactory);
             var dashboardService = new DashboardService(ticketRepository);
-            _viewModel = new DashboardViewModel(dashboardService);
+            var cancellationService = new CancellationService(ticketRepository);
+
+            _viewModel = new DashboardViewModel(dashboardService, cancellationService);
 
             this.DataContext = _viewModel;
         }
@@ -46,17 +48,19 @@ namespace TicketManager.View
                 string.Equals(ticket.Status, CancelledStatus, StringComparison.OrdinalIgnoreCase))
                 return;
 
-            if (ticket.Flight != null && ticket.Flight.Date < DateTime.Now)
+            // Delegate cancellation eligibility check to ViewModel/Service
+            var (canCancel, reason) = _viewModel.CanCancelTicket(ticket);
+            if (!canCancel)
             {
-                var pastFlightDialog = new ContentDialog
+                var errorDialog = new ContentDialog
                 {
                     Title = "Cannot cancel",
-                    Content = "This flight is already in the past and cannot be cancelled.",
+                    Content = reason,
                     CloseButtonText = "OK",
                     XamlRoot = this.XamlRoot
                 };
 
-                await pastFlightDialog.ShowAsync();
+                await errorDialog.ShowAsync();
                 return;
             }
 

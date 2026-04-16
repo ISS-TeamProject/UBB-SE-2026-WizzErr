@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -9,7 +9,7 @@ namespace TicketManager.ViewModel
 {
     public class AuthViewModel : INotifyPropertyChanged
     {
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
 
         private string _emailText;
         private string _passwordText;
@@ -23,7 +23,7 @@ namespace TicketManager.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public AuthViewModel(AuthService authService)
+        public AuthViewModel(IAuthService authService)
         {
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
 

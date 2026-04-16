@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +10,7 @@ using TicketManager.Repository;
 
 namespace TicketManager.Service
 {
-    public class DashboardService
+    public class DashboardService : IDashboardService
     {
         private const string CancelledStatus = "Cancelled";
 
@@ -33,10 +33,6 @@ namespace TicketManager.Service
                 : tickets.Where(ticket => ticket.Flight.Date >= now).OrderBy(ticket => ticket.Flight.Date);
         }
 
-        public void CancelUserTicket(int ticketId)
-        {
-            _ticketRepository.UpdateTicketStatus(ticketId, CancelledStatus);
-        }
 
         public string GenerateTicketPdf(Ticket ticket)
         {

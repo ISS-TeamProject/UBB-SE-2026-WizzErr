@@ -14,6 +14,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
 using TicketManager.ViewModel;

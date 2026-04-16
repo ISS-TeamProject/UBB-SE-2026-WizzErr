@@ -7,7 +7,7 @@ using TicketManager.Repository;
 
 namespace TicketManager.Service
 {
-    public class BookingService
+    public class BookingService : IBookingService
     {
         private const string CancelledStatus = "Cancelled";
         private const string ActiveStatus = "Active";
@@ -21,18 +21,7 @@ namespace TicketManager.Service
             _addOnRepository = addOnRepository ?? throw new ArgumentNullException(nameof(addOnRepository));
         }
 
-        public float CalculateFinalPrice(List<Ticket> tickets, User bookingUser)
-        {
-            float total = 0f;
-            foreach (var ticket in tickets)
-            {
-                ticket.User = bookingUser;
-                total += ticket.CalculateTotalPrice();
-            }
-            return total;
-        }
-
-        public List<Ticket> CreateTickets(Flight flight, User user, List<ViewModel.PassengerFormViewModel> passengers, float basePrice)
+        public List<Ticket> CreateTickets(Flight flight, User user, List<PassengerData> passengers, float basePrice)
         {
             var tickets = new List<Ticket>();
 
@@ -57,6 +46,54 @@ namespace TicketManager.Service
             return tickets;
         }
 
+        public string ValidatePassengers(List<PassengerData> passengers)
+        {
+            if (passengers == null || passengers.Count == 0)
+            {
+                return "At least one passenger is required.";
+            }
+
+            for (int i = 0; i < passengers.Count; i++)
+            {
+                var passenger = passengers[i];
+                int passengerNumber = i + 1;
+
+                if (string.IsNullOrWhiteSpace(passenger.FirstName))
+                {
+                    return $"Passenger {passengerNumber}: first name is required.";
+                }
+
+                if (string.IsNullOrWhiteSpace(passenger.LastName))
+                {
+                    return $"Passenger {passengerNumber}: last name is required.";
+                }
+
+                if (!string.IsNullOrWhiteSpace(passenger.Email) && !ValidationHelper.IsValidEmail(passenger.Email))
+                {
+                    return $"Passenger {passengerNumber}: email format is invalid.";
+                }
+
+                if (string.IsNullOrWhiteSpace(passenger.SelectedSeat))
+                {
+                    return $"Passenger {passengerNumber}: please select a seat.";
+                }
+            }
+
+            return string.Empty;
+        }
+
+        public int CalculateMaxPassengers(int routeCapacity, int occupiedSeatCount, int requestedPassengerCount)
+        {
+            int remainingCapacity = routeCapacity - occupiedSeatCount;
+
+            if (requestedPassengerCount > 0)
+            {
+                return Math.Min(requestedPassengerCount, remainingCapacity);
+            }
+
+            return remainingCapacity;
+        }
+
         public async Task<bool> SaveTicketsAsync(List<Ticket> tickets)
         {
             if (tickets == null || tickets.Count == 0)
@@ -73,19 +110,6 @@ namespace TicketManager.Service
             return await _ticketRepository.SaveTicketsWithAddOnsAsync(tickets);
         }
 
-        public async Task<bool> CancelTicketAsync(int ticketId)
-        {
-            try
-            {
-                _ticketRepository.UpdateTicketStatus(ticketId, CancelledStatus);
-                return await Task.FromResult(true);
-            }
-            catch
-            {
-                return await Task.FromResult(false);
-            }
-        }
-
         public async Task<List<AddOn>> GetAvailableAddOnsAsync()
         {
             return await Task.FromResult(_addOnRepository.GetAllAddOns().ToList());
@@ -95,5 +119,6 @@ namespace TicketManager.Service
         {
             return await Task.FromResult(_ticketRepository.GetOccupiedSeats(flightId).ToList());
         }
+
     }
 }

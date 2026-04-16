@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
 using TicketManager.ViewModel;
