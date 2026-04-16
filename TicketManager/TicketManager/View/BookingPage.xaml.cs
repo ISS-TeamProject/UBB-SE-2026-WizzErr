@@ -26,7 +26,9 @@ namespace TicketManager.View
             this.InitializeComponent();
 
             var dbFactory = new DatabaseConnectionFactory();
-            var bookingService = new BookingService(dbFactory);
+            var ticketRepository = new TicketRepository(dbFactory);
+            var addOnRepository = new AddOnRepository(dbFactory);
+            var bookingService = new BookingService(dbFactory, ticketRepository, addOnRepository);
             ViewModel = new BookingViewModel(bookingService);
             ViewModel.Passengers.CollectionChanged += Passengers_CollectionChanged;
             ViewModel.BookingConfirmed += ViewModel_BookingConfirmed;
@@ -75,9 +77,7 @@ namespace TicketManager.View
             currentUser ??= UserSession.CurrentUser;
 
             if (selectedFlight == null)
-            {
                 return;
-            }
 
             if (currentUser == null)
             {
@@ -98,10 +98,9 @@ namespace TicketManager.View
             seatMapGrid.RowDefinitions.Clear();
             seatMapGrid.ColumnDefinitions.Clear();
 
-            for (int i = 0; i < 6; i++) 
-            {
+            for (int i = 0; i < 6; i++)
                 seatMapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(58) });
-            }
+
             seatMapGrid.ColumnDefinitions.Insert(3, new ColumnDefinition() { Width = new GridLength(24) });
 
             int capacity = ViewModel.CurrentFlight?.Route?.Capacity ?? 40;
@@ -157,9 +156,7 @@ namespace TicketManager.View
             {
                 EnsureSeatTargetPassenger();
                 if (_seatTargetPassenger == null)
-                {
                     return;
-                }
 
                 var currentHolder = ViewModel.Passengers.FirstOrDefault(p => p.SelectedSeat == seat);
                 if (currentHolder == _seatTargetPassenger)
@@ -169,9 +166,7 @@ namespace TicketManager.View
                 else
                 {
                     if (currentHolder != null)
-                    {
                         currentHolder.SelectedSeat = string.Empty;
-                    }
 
                     _seatTargetPassenger.SelectedSeat = seat;
                     RefreshSeatMapVisuals();
@@ -196,9 +191,7 @@ namespace TicketManager.View
         private void EnsureSeatTargetPassenger()
         {
             if (_seatTargetPassenger != null && ViewModel.Passengers.Contains(_seatTargetPassenger))
-            {
                 return;
-            }
 
             _seatTargetPassenger = ViewModel.Passengers.FirstOrDefault();
             seatPassengerSelector.SelectedItem = _seatTargetPassenger;
@@ -209,9 +202,7 @@ namespace TicketManager.View
             foreach (var btn in seatMapGrid.Children.OfType<Button>())
             {
                 if (btn.Content is not string seatNumber)
-                {
                     continue;
-                }
 
                 if (ViewModel.OccupiedSeats.Contains(seatNumber))
                 {

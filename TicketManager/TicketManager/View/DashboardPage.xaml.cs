@@ -11,21 +11,19 @@ namespace TicketManager.View
 {
     public sealed partial class DashboardPage : Page
     {
+        private const string CancelledStatus = "Cancelled";
+
         private readonly DashboardViewModel _viewModel;
 
         public DashboardPage()
         {
             this.InitializeComponent();
 
-            // 1. Inițializăm baza de date și serviciul
             var dbFactory = new DatabaseConnectionFactory();
             var ticketRepository = new TicketRepository(dbFactory);
             var dashboardService = new DashboardService(ticketRepository);
-
-            // 2. Creăm ViewModel-ul
             _viewModel = new DashboardViewModel(dashboardService);
 
-            // 3. CRITIC: Spunem interfeței (XAML) să folosească acest ViewModel pentru {Binding}
             this.DataContext = _viewModel;
         }
 
@@ -44,10 +42,9 @@ namespace TicketManager.View
 
         private async void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is not Button button || button.Tag is not Ticket ticket || ticket.Status == "Cancelled")
-            {
+            if (sender is not Button button || button.Tag is not Ticket ticket ||
+                string.Equals(ticket.Status, CancelledStatus, StringComparison.OrdinalIgnoreCase))
                 return;
-            }
 
             if (ticket.Flight != null && ticket.Flight.Date < DateTime.Now)
             {
