@@ -28,7 +28,7 @@ namespace TicketManager.View
             var dbFactory = new DatabaseConnectionFactory();
             var ticketRepository = new TicketRepository(dbFactory);
             var addOnRepository = new AddOnRepository(dbFactory);
-            var bookingService = new BookingService(dbFactory, ticketRepository, addOnRepository);
+            var bookingService = new BookingService(ticketRepository, addOnRepository);
             var pricingService = new PricingService();
             ViewModel = new BookingViewModel(bookingService, pricingService);
             ViewModel.Passengers.CollectionChanged += Passengers_CollectionChanged;

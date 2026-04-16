@@ -11,6 +11,7 @@ namespace TicketManager.ViewModel
     public partial class DashboardViewModel : INotifyPropertyChanged
     {
         private readonly IDashboardService _dashboardService;
+
         private readonly ICancellationService _cancellationService;
 
         public ObservableCollection<Ticket> MyTickets { get; set; }
@@ -65,10 +66,12 @@ namespace TicketManager.ViewModel
 
         public void CancelTicket(Ticket ticket)
         {
-            var (canCancel, _) = _cancellationService.CanCancelTicket(ticket);
-            if (!canCancel)
+            if (ticket == null)
             {
                 return;
+            }
+
+            
 
             _cancellationService.CancelTicket(ticket.TicketId);
             LoadUserTickets();
@@ -87,6 +90,8 @@ namespace TicketManager.ViewModel
                 try
                 {
                     string generatedFilePath = _dashboardService.GenerateTicketPdf(ticket);
+
+                    // Interac?iunea cu sistemul (deschiderea fi?ierului pe ecran) r?m�ne �n ViewModel
                     System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                     {
                         FileName = generatedFilePath,

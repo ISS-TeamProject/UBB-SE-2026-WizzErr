@@ -110,19 +110,6 @@ namespace TicketManager.Service
             return await _ticketRepository.SaveTicketsWithAddOnsAsync(tickets);
         }
 
-        public async Task<bool> CancelTicketAsync(int ticketId)
-        {
-            try
-            {
-                _ticketRepository.UpdateTicketStatus(ticketId, CancelledStatus);
-                return await Task.FromResult(true);
-            }
-            catch
-            {
-                return await Task.FromResult(false);
-            }
-        }
-
         public async Task<List<AddOn>> GetAvailableAddOnsAsync()
         {
             return await Task.FromResult(_addOnRepository.GetAllAddOns().ToList());

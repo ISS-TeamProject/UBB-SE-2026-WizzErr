@@ -28,7 +28,8 @@ namespace TicketManager
             this.InitializeComponent();
 
             var dbFactory = new DatabaseConnectionFactory();
-            var userRepository = new UserRepository(dbFactory);
+            var membershipRepository = new MembershipRepository(dbFactory);
+            var userRepository = new UserRepository(dbFactory, membershipRepository);
             _authService = new AuthService(userRepository);
 
             ContentFrame.Navigated += ContentFrame_Navigated;
