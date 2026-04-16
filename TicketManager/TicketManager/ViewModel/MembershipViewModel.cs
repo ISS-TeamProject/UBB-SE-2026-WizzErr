@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,10 +68,10 @@ namespace TicketManager.ViewModel
 
         public void ExecutePurchase(int membershipId)
         {
-            // Verificăm folosind clasa voastră
             if (UserSession.CurrentUser == null) return;
 
-            _membershipService.UpgradeUserMembership(UserSession.CurrentUser.UserId, membershipId);
+            var updatedMembership = _membershipService.UpgradeUserMembership(UserSession.CurrentUser.UserId, membershipId);
+            UserSession.CurrentUser.Membership = updatedMembership;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -10,7 +10,8 @@ namespace TicketManager.ViewModel
 {
     public partial class DashboardViewModel : INotifyPropertyChanged
     {
-        private readonly DashboardService _dashboardService;
+        private readonly IDashboardService _dashboardService;
+        private readonly ICancellationService _cancellationService;
 
         public ObservableCollection<Ticket> MyTickets { get; set; }
         public ObservableCollection<string> TicketFilters { get; }
@@ -31,9 +32,10 @@ namespace TicketManager.ViewModel
         public ICommand CancelTicketCommand { get; }
         public ICommand DownloadPdfCommand { get; }
 
-        public DashboardViewModel(DashboardService dashboardService)
+        public DashboardViewModel(IDashboardService dashboardService, ICancellationService cancellationService)
         {
             _dashboardService = dashboardService;
+            _cancellationService = cancellationService;
             MyTickets = new ObservableCollection<Ticket>();
             TicketFilters = new ObservableCollection<string> { "Upcoming", "Past" };
             _selectedTicketFilter = "Upcoming";
@@ -61,22 +63,20 @@ namespace TicketManager.ViewModel
             }
         }
 
+        public (bool CanCancel, string Reason) CanCancelTicket(Ticket ticket)
+        {
+            return _cancellationService.CanCancelTicket(ticket);
+        }
+
         public void CancelTicket(Ticket ticket)
         {
-            if (ticket == null)
+            var (canCancel, _) = _cancellationService.CanCancelTicket(ticket);
+            if (!canCancel)
             {
                 return;
             }
 
-            bool isCancelled = string.Equals(ticket.Status, "Cancelled", StringComparison.OrdinalIgnoreCase);
-            bool isPastFlight = ticket.Flight != null && ticket.Flight.Date < DateTime.Now;
-
-            if (isCancelled || isPastFlight)
-            {
-                return;
-            }
-
-            _dashboardService.CancelUserTicket(ticket.TicketId);
+            _cancellationService.CancelTicket(ticket.TicketId);
             LoadUserTickets();
         }
 
@@ -94,10 +94,8 @@ namespace TicketManager.ViewModel
             {
                 try
                 {
-                    // Apelăm serviciul (Separation of Concerns)
                     string generatedFilePath = _dashboardService.GenerateTicketPdf(ticket);
 
-                    // Interacțiunea cu sistemul (deschiderea fișierului pe ecran) rămâne în ViewModel
                     System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                     {
                         FileName = generatedFilePath,

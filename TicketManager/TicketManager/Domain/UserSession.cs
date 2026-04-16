@@ -1,6 +1,4 @@
-using TicketManager.Domain;
-
-namespace TicketManager.Service
+namespace TicketManager.Domain
 {
     public static class UserSession
     {

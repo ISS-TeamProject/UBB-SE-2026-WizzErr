@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using QuestPDF.Fluent;
@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace TicketManager.Service
 {
-    public class DashboardService
+    public class DashboardService : IDashboardService
     {
         private readonly ITicketRepository _ticketRepository;
 
@@ -33,10 +33,7 @@ namespace TicketManager.Service
                 : tickets.Where(ticket => ticket.Flight.Date >= now).OrderBy(ticket => ticket.Flight.Date);
         }
 
-        public void CancelUserTicket(int ticketId)
-        {
-            _ticketRepository.UpdateTicketStatus(ticketId, "Cancelled");
-        }
+
 
         // Funcția nouă care se ocupă exclusiv de PDF
         public string GenerateTicketPdf(Ticket ticket)

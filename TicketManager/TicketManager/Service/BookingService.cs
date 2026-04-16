@@ -1,43 +1,30 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using TicketManager.Domain;
 using TicketManager.Repository;
-using System.Linq;
-using System.Threading.Tasks;
-using System;
 
 namespace TicketManager.Service
 {
-    public class BookingService
+    public class BookingService : IBookingService
     {
         private readonly DatabaseConnectionFactory _connectionFactory;
         private readonly ITicketRepository _ticketRepository;
         private readonly IAddOnRepository _addOnRepository;
 
-        public BookingService(DatabaseConnectionFactory connectionFactory)
+        public BookingService(DatabaseConnectionFactory connectionFactory, ITicketRepository ticketRepository, IAddOnRepository addOnRepository)
         {
-            _connectionFactory = connectionFactory;
-            _ticketRepository = new TicketRepository(connectionFactory);
-            _addOnRepository = new AddOnRepository(connectionFactory);
+            _connectionFactory = connectionFactory ?? throw new ArgumentNullException(nameof(connectionFactory));
+            _ticketRepository = ticketRepository ?? throw new ArgumentNullException(nameof(ticketRepository));
+            _addOnRepository = addOnRepository ?? throw new ArgumentNullException(nameof(addOnRepository));
         }
 
-        // CalculateFinalPrice looping through multiple passengers and applying membership discounts
-        public float CalculateFinalPrice(List<Ticket> tickets, User bookingUser)
-        {
-            float total = 0f;
-            foreach (var ticket in tickets)
-            {
-                ticket.User = bookingUser;
-                total += ticket.CalculateTotalPrice();
-            }
-            return total;
-        }
-
-        // CreateTickets mapping the Dictionary of AddOns to Tickets 
-        public List<Ticket> CreateTickets(Flight flight, User user, List<ViewModel.PassengerFormViewModel> passengers, float basePrice)
+        public List<Ticket> CreateTickets(Flight flight, User user, List<PassengerData> passengers, float basePrice)
         {
             var tickets = new List<Ticket>();
-            
+
             foreach (var pass in passengers)
             {
                 var ticket = new Ticket
@@ -59,7 +46,54 @@ namespace TicketManager.Service
             return tickets;
         }
 
-        // Save tickets to DB
+        public string ValidatePassengers(List<PassengerData> passengers)
+        {
+            if (passengers == null || passengers.Count == 0)
+            {
+                return "At least one passenger is required.";
+            }
+
+            for (int i = 0; i < passengers.Count; i++)
+            {
+                var passenger = passengers[i];
+                int passengerNumber = i + 1;
+
+                if (string.IsNullOrWhiteSpace(passenger.FirstName))
+                {
+                    return $"Passenger {passengerNumber}: first name is required.";
+                }
+
+                if (string.IsNullOrWhiteSpace(passenger.LastName))
+                {
+                    return $"Passenger {passengerNumber}: last name is required.";
+                }
+
+                if (!string.IsNullOrWhiteSpace(passenger.Email) && !ValidationHelper.IsValidEmail(passenger.Email))
+                {
+                    return $"Passenger {passengerNumber}: email format is invalid.";
+                }
+
+                if (string.IsNullOrWhiteSpace(passenger.SelectedSeat))
+                {
+                    return $"Passenger {passengerNumber}: please select a seat.";
+                }
+            }
+
+            return string.Empty;
+        }
+
+        public int CalculateMaxPassengers(int routeCapacity, int occupiedSeatCount, int requestedPassengerCount)
+        {
+            int remainingCapacity = routeCapacity - occupiedSeatCount;
+
+            if (requestedPassengerCount > 0)
+            {
+                return Math.Min(requestedPassengerCount, remainingCapacity);
+            }
+
+            return remainingCapacity;
+        }
+
         public async Task<bool> SaveTicketsAsync(List<Ticket> tickets)
         {
             if (tickets == null || tickets.Count == 0)
@@ -116,18 +150,17 @@ namespace TicketManager.Service
                     float persistedPrice = ticket.CalculateTotalPrice();
                     cmd.Parameters.AddWithValue("@userId", ticket.User.UserId);
                     cmd.Parameters.AddWithValue("@flightId", ticket.Flight.FlightId);
-                    cmd.Parameters.AddWithValue("@seat", ticket.Seat ?? (object)System.DBNull.Value);
+                    cmd.Parameters.AddWithValue("@seat", ticket.Seat ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@price", (decimal)persistedPrice);
                     cmd.Parameters.AddWithValue("@status", ticket.Status);
                     cmd.Parameters.AddWithValue("@fName", ticket.PassengerFirstName);
                     cmd.Parameters.AddWithValue("@lName", ticket.PassengerLastName);
-                    cmd.Parameters.AddWithValue("@email", ticket.PassengerEmail ?? (object)System.DBNull.Value);
-                    cmd.Parameters.AddWithValue("@phone", ticket.PassengerPhone ?? (object)System.DBNull.Value);
+                    cmd.Parameters.AddWithValue("@email", ticket.PassengerEmail ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@phone", ticket.PassengerPhone ?? (object)DBNull.Value);
 
                     var newTicketId = (int)await cmd.ExecuteScalarAsync();
                     ticket.TicketId = newTicketId;
 
-                    // Addons
                     if (ticket.SelectedAddOns != null && ticket.SelectedAddOns.Any())
                     {
                         string insertAddonQuery = @"
@@ -154,20 +187,6 @@ namespace TicketManager.Service
             }
         }
 
-        // CancelTicket database update logic for partial cancellations
-        public async Task<bool> CancelTicketAsync(int ticketId)
-        {
-            try
-            {
-                _ticketRepository.UpdateTicketStatus(ticketId, "Cancelled");
-                return await Task.FromResult(true);
-            }
-            catch
-            {
-                return await Task.FromResult(false);
-            }
-        }
-        
         public async Task<List<AddOn>> GetAvailableAddOnsAsync()
         {
             return await Task.FromResult(_addOnRepository.GetAllAddOns().ToList());
@@ -177,5 +196,6 @@ namespace TicketManager.Service
         {
             return await Task.FromResult(_ticketRepository.GetOccupiedSeats(flightId).ToList());
         }
+
     }
 }

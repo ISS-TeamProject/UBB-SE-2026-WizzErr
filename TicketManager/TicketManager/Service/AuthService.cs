@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net.Mail;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +7,7 @@ using TicketManager.Repository;
 
 namespace TicketManager.Service
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepo;
         private readonly PasswordHasher<User> _passwordHasher;
@@ -71,7 +71,7 @@ namespace TicketManager.Service
             if (string.IsNullOrWhiteSpace(email))
                 throw new ArgumentException("Email is required.");
 
-            if (!IsValidEmail(email))
+            if (!ValidationHelper.IsValidEmail(email))
                 throw new ArgumentException("Email format is invalid.");
 
             if (string.IsNullOrWhiteSpace(username))
@@ -86,7 +86,7 @@ namespace TicketManager.Service
             if (string.IsNullOrWhiteSpace(phone))
                 throw new ArgumentException("Phone is required.");
 
-            if (!IsValidPhone(phone))
+            if (!ValidationHelper.IsValidPhone(phone))
                 throw new ArgumentException("Phone number must contain only digits and have 10 to 15 digits.");
 
             if (string.IsNullOrWhiteSpace(password))
@@ -96,22 +96,10 @@ namespace TicketManager.Service
                 throw new ArgumentException("Password must be at least 6 characters long.");
         }
 
-        private bool IsValidEmail(string email)
+        public void Logout()
         {
-            try
-            {
-                var mail = new MailAddress(email);
-                return mail.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        private bool IsValidPhone(string phone)
-        {
-            return phone.All(char.IsDigit) && phone.Length >= 10 && phone.Length <= 15;
+            UserSession.CurrentUser = null;
+            UserSession.PendingBookingParameters = null;
         }
     }
 }

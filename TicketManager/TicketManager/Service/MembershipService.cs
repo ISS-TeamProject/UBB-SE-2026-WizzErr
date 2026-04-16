@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TicketManager.Domain;
@@ -31,21 +31,17 @@ namespace TicketManager.Service
             return memberships;
         }
 
-        public void UpgradeUserMembership(int userId, int newMembershipId)
+        public Membership UpgradeUserMembership(int userId, int newMembershipId)
         {
             _userRepository.UpdateUserMembership(userId, newMembershipId);
 
-            // Folosim clasa voastră existentă: UserSession
-            if (UserSession.CurrentUser != null && UserSession.CurrentUser.UserId == userId)
+            var membership = _membershipRepository.GetMembershipById(newMembershipId);
+            if (membership != null)
             {
-                var membership = _membershipRepository.GetMembershipById(newMembershipId);
-                if (membership != null)
-                {
-                    membership.AddonDiscounts = _membershipRepository.GetAddonDiscounts(newMembershipId).ToList();
-                }
-
-                UserSession.CurrentUser.Membership = membership;
+                membership.AddonDiscounts = _membershipRepository.GetAddonDiscounts(newMembershipId).ToList();
             }
+
+            return membership;
         }
     }
 }

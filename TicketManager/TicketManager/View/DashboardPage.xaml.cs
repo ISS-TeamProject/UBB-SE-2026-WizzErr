@@ -1,4 +1,4 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System;
@@ -17,15 +17,13 @@ namespace TicketManager.View
         {
             this.InitializeComponent();
 
-            // 1. Inițializăm baza de date și serviciul
             var dbFactory = new DatabaseConnectionFactory();
             var ticketRepository = new TicketRepository(dbFactory);
             var dashboardService = new DashboardService(ticketRepository);
+            var cancellationService = new CancellationService(ticketRepository);
 
-            // 2. Creăm ViewModel-ul
-            _viewModel = new DashboardViewModel(dashboardService);
+            _viewModel = new DashboardViewModel(dashboardService, cancellationService);
 
-            // 3. CRITIC: Spunem interfeței (XAML) să folosească acest ViewModel pentru {Binding}
             this.DataContext = _viewModel;
         }
 
@@ -44,22 +42,24 @@ namespace TicketManager.View
 
         private async void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is not Button button || button.Tag is not Ticket ticket || ticket.Status == "Cancelled")
+            if (sender is not Button button || button.Tag is not Ticket ticket)
             {
                 return;
             }
 
-            if (ticket.Flight != null && ticket.Flight.Date < DateTime.Now)
+            // Delegate cancellation eligibility check to ViewModel/Service
+            var (canCancel, reason) = _viewModel.CanCancelTicket(ticket);
+            if (!canCancel)
             {
-                var pastFlightDialog = new ContentDialog
+                var errorDialog = new ContentDialog
                 {
                     Title = "Cannot cancel",
-                    Content = "This flight is already in the past and cannot be cancelled.",
+                    Content = reason,
                     CloseButtonText = "OK",
                     XamlRoot = this.XamlRoot
                 };
 
-                await pastFlightDialog.ShowAsync();
+                await errorDialog.ShowAsync();
                 return;
             }
 

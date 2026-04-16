@@ -13,9 +13,11 @@ namespace TicketManager.ViewModel
 {
     public class BookingViewModel : INotifyPropertyChanged
     {
-        private readonly BookingService _bookingService;
+        private readonly IBookingService _bookingService;
+        private readonly IPricingService _pricingService;
         private readonly RelayCommand _confirmBookingCommand;
         private bool _isSaving;
+        private bool _passengersValid;
 
         private Flight _currentFlight;
         public Flight CurrentFlight
@@ -114,17 +116,14 @@ namespace TicketManager.ViewModel
             CurrentUser != null &&
             CurrentFlight != null &&
             Passengers.Count > 0 &&
-            Passengers.All(p =>
-                !string.IsNullOrWhiteSpace(p.FirstName) &&
-                !string.IsNullOrWhiteSpace(p.LastName) &&
-                !string.IsNullOrWhiteSpace(p.SelectedSeat) &&
-                IsValidEmail(p.Email));
+            _passengersValid;
 
         public event EventHandler BookingConfirmed;
 
-        public BookingViewModel(BookingService bookingService)
+        public BookingViewModel(IBookingService bookingService, IPricingService pricingService)
         {
             _bookingService = bookingService;
+            _pricingService = pricingService;
             AddPassengerCommand = new RelayCommand(_ => AddPassenger());
             RemovePassengerCommand = new RelayCommand(param => RemovePassenger(param as PassengerFormViewModel));
             _confirmBookingCommand = new RelayCommand(async _ => await ConfirmBookingAsync(), _ => CanConfirmBooking);
@@ -163,11 +162,9 @@ namespace TicketManager.ViewModel
                 OccupiedSeats.Add(seat);
             }
 
+            // Delegate capacity calculation to service
             int capacity = flight?.Route?.Capacity ?? 180;
-            int remainingCapacity = capacity - OccupiedSeats.Count;
-
-            int allowedMax = requestedPassengerCount > 0 ? requestedPassengerCount : remainingCapacity;
-            MaxPassengers = allowedMax > remainingCapacity ? remainingCapacity : allowedMax;
+            MaxPassengers = _bookingService.CalculateMaxPassengers(capacity, OccupiedSeats.Count, requestedPassengerCount);
 
             Passengers.Clear();
             int initialCount = requestedPassengerCount > 0 ? requestedPassengerCount : 1;
@@ -245,6 +242,19 @@ namespace TicketManager.ViewModel
             };
         }
 
+        private System.Collections.Generic.List<PassengerData> MapPassengersToData()
+        {
+            return Passengers.Select(p => new PassengerData
+            {
+                FirstName = p.FirstName,
+                LastName = p.LastName,
+                Email = p.Email,
+                Phone = p.Phone,
+                SelectedSeat = p.SelectedSeat,
+                SelectedAddOns = p.SelectedAddOns.ToList()
+            }).ToList();
+        }
+
         private void RefreshBookingState()
         {
             ValidationMessage = string.Empty;
@@ -252,54 +262,18 @@ namespace TicketManager.ViewModel
             if (CurrentUser == null)
             {
                 ValidationMessage = "Please sign in to continue.";
+                _passengersValid = false;
             }
             else
             {
-                for (int i = 0; i < Passengers.Count; i++)
-                {
-                    var passenger = Passengers[i];
-                    int passengerNumber = i + 1;
-
-                    if (string.IsNullOrWhiteSpace(passenger.FirstName))
-                    {
-                        ValidationMessage = $"Passenger {passengerNumber}: first name is required.";
-                        break;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(passenger.LastName))
-                    {
-                        ValidationMessage = $"Passenger {passengerNumber}: last name is required.";
-                        break;
-                    }
-
-                    if (!IsValidEmail(passenger.Email))
-                    {
-                        ValidationMessage = $"Passenger {passengerNumber}: email format is invalid.";
-                        break;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(passenger.SelectedSeat))
-                    {
-                        ValidationMessage = $"Passenger {passengerNumber}: please select a seat.";
-                        break;
-                    }
-                }
+                // Delegate validation to service
+                var passengerData = MapPassengersToData();
+                ValidationMessage = _bookingService.ValidatePassengers(passengerData);
+                _passengersValid = string.IsNullOrEmpty(ValidationMessage);
             }
 
             OnPropertyChanged(nameof(CanConfirmBooking));
             _confirmBookingCommand.RaiseCanExecuteChanged();
-        }
-
-        private static bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                return true;
-            }
-
-            int atIndex = email.IndexOf('@');
-            int dotIndex = email.LastIndexOf('.');
-            return atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.Length - 1;
         }
 
         public void UpdatePrices()
@@ -307,17 +281,17 @@ namespace TicketManager.ViewModel
             if (CurrentFlight == null) return;
 
             float basePrice = CurrentFlight.GetBasePrice();
-            BasePricePerPerson = basePrice;
+            var passengerData = MapPassengersToData();
+            var tickets = _bookingService.CreateTickets(CurrentFlight, CurrentUser, passengerData, basePrice);
 
-            BasePriceTotal = basePrice * Passengers.Count;
+            // Delegate price calculation to PricingService
+            var breakdown = _pricingService.CalculatePriceBreakdown(CurrentFlight, CurrentUser, tickets);
 
-            var tickets = _bookingService.CreateTickets(CurrentFlight, CurrentUser, Passengers.ToList(), basePrice);
-
-            float addOnsWithoutMembership = tickets.Sum(t => t.SelectedAddOns.Sum(a => a.GetBasePrice()));
-            float totalWithoutMembership = BasePriceTotal + addOnsWithoutMembership;
-            FinalTotalPrice = _bookingService.CalculateFinalPrice(tickets, CurrentUser);
-            AddOnsTotal = addOnsWithoutMembership;
-            MembershipSavings = Math.Max(0, totalWithoutMembership - FinalTotalPrice);
+            BasePricePerPerson = breakdown.BasePricePerPerson;
+            BasePriceTotal = breakdown.BasePriceTotal;
+            AddOnsTotal = breakdown.AddOnsTotal;
+            MembershipSavings = breakdown.MembershipSavings;
+            FinalTotalPrice = breakdown.FinalTotal;
 
             OnPropertyChanged(nameof(BasePricePerPersonDisplay));
             OnPropertyChanged(nameof(BasePriceTotalDisplay));
@@ -333,7 +307,8 @@ namespace TicketManager.ViewModel
             if (!CanConfirmBooking) return;
 
             float basePrice = CurrentFlight.GetBasePrice();
-            var tickets = _bookingService.CreateTickets(CurrentFlight, CurrentUser, Passengers.ToList(), basePrice);
+            var passengerData = MapPassengersToData();
+            var tickets = _bookingService.CreateTickets(CurrentFlight, CurrentUser, passengerData, basePrice);
 
             _isSaving = true;
             OnPropertyChanged(nameof(CanConfirmBooking));
