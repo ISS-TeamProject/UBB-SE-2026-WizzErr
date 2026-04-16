@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using TicketManager.Domain;
 
@@ -8,6 +9,8 @@ namespace TicketManager.Repository
 {
     public class TicketRepository : ITicketRepository
     {
+        private const string CancelledStatus = "Cancelled";
+
         private readonly DatabaseConnectionFactory _dbFactory;
 
         public TicketRepository(DatabaseConnectionFactory dbFactory)
@@ -23,28 +26,59 @@ namespace TicketManager.Repository
             {
                 connection.Open();
                 string query = @"
-                    SELECT t.ticket_id, t.user_id, t.flight_id, t.seat, t.price, t.status, 
+                    SELECT t.ticket_id, t.user_id, t.flight_id, t.seat, t.price, t.status,
                            t.passenger_first_name, t.passenger_last_name, t.passenger_email, t.passenger_phone,
-                           f.flight_number, f.date as flight_date
+                           f.flight_number, f.date as flight_date,
+                           r.route_type, r.departure_time, r.arrival_time,
+                           a.city, a.code as airport_code,
+                           g.name as gate_name
                     FROM Tickets t
                     INNER JOIN Flights f ON t.flight_id = f.id
+                    INNER JOIN Routes r ON f.route_id = r.id
+                    INNER JOIN Airports a ON r.airport_id = a.id
+                    LEFT JOIN Gates g ON f.gate_id = g.id
                     WHERE t.user_id = @UserId";
 
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId", userId);
-                    
+
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             var user = new User { UserId = reader.GetInt32(reader.GetOrdinal("user_id")) };
-                            
-                            var flight = new Flight 
-                            { 
+
+                            var airport = new Airport
+                            {
+                                City = reader.IsDBNull(reader.GetOrdinal("city")) ? null : reader.GetString(reader.GetOrdinal("city")),
+                                AirportCode = reader.IsDBNull(reader.GetOrdinal("airport_code")) ? null : reader.GetString(reader.GetOrdinal("airport_code"))
+                            };
+
+                            var route = new Route
+                            {
+                                RouteType = reader.IsDBNull(reader.GetOrdinal("route_type")) ? null : reader.GetString(reader.GetOrdinal("route_type")),
+                                DepartureTime = reader.GetDateTime(reader.GetOrdinal("departure_time")),
+                                ArrivalTime = reader.GetDateTime(reader.GetOrdinal("arrival_time")),
+                                Airport = airport
+                            };
+
+                            Gate gate = null;
+                            if (!reader.IsDBNull(reader.GetOrdinal("gate_name")))
+                            {
+                                gate = new Gate
+                                {
+                                    GateName = reader.GetString(reader.GetOrdinal("gate_name"))
+                                };
+                            }
+
+                            var flight = new Flight
+                            {
                                 FlightId = reader.GetInt32(reader.GetOrdinal("flight_id")),
                                 FlightNr = reader.IsDBNull(reader.GetOrdinal("flight_number")) ? null : reader.GetString(reader.GetOrdinal("flight_number")),
-                                Date = reader.GetDateTime(reader.GetOrdinal("flight_date"))
+                                Date = reader.GetDateTime(reader.GetOrdinal("flight_date")),
+                                Route = route,
+                                Gate = gate
                             };
 
                             var ticket = new Ticket
@@ -83,9 +117,7 @@ namespace TicketManager.Repository
                     using (var addOnCommand = new SqlCommand(addOnQuery, connection))
                     {
                         foreach (var param in parameters)
-                        {
                             addOnCommand.Parameters.AddWithValue(param.ParameterName, param.Value);
-                        }
 
                         using (var addOnReader = addOnCommand.ExecuteReader())
                         {
@@ -93,9 +125,7 @@ namespace TicketManager.Repository
                             {
                                 int ticketId = addOnReader.GetInt32(addOnReader.GetOrdinal("ticket_id"));
                                 if (!ticketById.TryGetValue(ticketId, out var ticket))
-                                {
                                     continue;
-                                }
 
                                 ticket.SelectedAddOns.Add(new AddOn
                                 {
@@ -127,7 +157,7 @@ namespace TicketManager.Repository
                     command.Parameters.AddWithValue("@FlightId", ticket.Flight.FlightId);
                     command.Parameters.AddWithValue("@Seat", ticket.Seat ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Price", ticket.Price);
-                    command.Parameters.AddWithValue("@Status", ticket.Status ?? "Active");
+                    command.Parameters.AddWithValue("@Status", ticket.Status ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@PassengerFirstName", ticket.PassengerFirstName ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@PassengerLastName", ticket.PassengerLastName ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@PassengerEmail", ticket.PassengerEmail ?? (object)DBNull.Value);
@@ -149,7 +179,6 @@ namespace TicketManager.Repository
                 {
                     command.Parameters.AddWithValue("@TicketId", ticketId);
                     command.Parameters.AddWithValue("@Status", status);
-                    
                     command.ExecuteNonQuery();
                 }
             }
@@ -167,7 +196,7 @@ namespace TicketManager.Repository
                     try
                     {
                         string query = "INSERT INTO Tickets_AddOns (ticket_id, addon_id) VALUES (@TicketId, @AddOnId)";
-                        
+
                         using (var command = new SqlCommand(query, connection, transaction))
                         {
                             command.Parameters.Add("@TicketId", System.Data.SqlDbType.Int);
@@ -197,23 +226,95 @@ namespace TicketManager.Repository
             using (var connection = _dbFactory.GetConnection())
             {
                 connection.Open();
-                // Assumes "Cancelled" tickets free up the seat
-                string query = "SELECT seat FROM Tickets WHERE flight_id = @FlightId AND status != 'Cancelled' AND seat IS NOT NULL";
+                string query = $"SELECT seat FROM Tickets WHERE flight_id = @FlightId AND status != '{CancelledStatus}' AND seat IS NOT NULL";
 
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@FlightId", flightId);
-                    
+
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
-                        {
                             seats.Add(reader.GetString(reader.GetOrdinal("seat")));
-                        }
                     }
                 }
             }
             return seats;
+        }
+
+        public async Task<bool> SaveTicketsWithAddOnsAsync(List<Ticket> tickets)
+        {
+            using var connection = _dbFactory.GetConnection();
+            await connection.OpenAsync();
+            using var transaction = connection.BeginTransaction();
+
+            try
+            {
+                foreach (var ticket in tickets)
+                {
+                    if (!string.IsNullOrWhiteSpace(ticket.Seat))
+                    {
+                        string seatLockCheckQuery = @"
+                            SELECT COUNT(*)
+                            FROM Tickets WITH (UPDLOCK, HOLDLOCK)
+                            WHERE flight_id = @flightId
+                              AND seat = @seat
+                              AND status <> @cancelledStatus";
+
+                        using var seatCheckCmd = new SqlCommand(seatLockCheckQuery, connection, transaction);
+                        seatCheckCmd.Parameters.AddWithValue("@flightId", ticket.Flight.FlightId);
+                        seatCheckCmd.Parameters.AddWithValue("@seat", ticket.Seat);
+                        seatCheckCmd.Parameters.AddWithValue("@cancelledStatus", CancelledStatus);
+
+                        int existingSeatCount = (int)await seatCheckCmd.ExecuteScalarAsync();
+                        if (existingSeatCount > 0)
+                            throw new InvalidOperationException("Selected seat is no longer available.");
+                    }
+
+                    string insertTicketQuery = @"
+                        INSERT INTO Tickets (user_id, flight_id, seat, price, status, passenger_first_name, passenger_last_name, passenger_email, passenger_phone)
+                        OUTPUT INSERTED.ticket_id
+                        VALUES (@userId, @flightId, @seat, @price, @status, @fName, @lName, @email, @phone)";
+
+                    using var cmd = new SqlCommand(insertTicketQuery, connection, transaction);
+                    float persistedPrice = ticket.CalculateTotalPrice();
+                    cmd.Parameters.AddWithValue("@userId", ticket.User.UserId);
+                    cmd.Parameters.AddWithValue("@flightId", ticket.Flight.FlightId);
+                    cmd.Parameters.AddWithValue("@seat", ticket.Seat ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@price", (decimal)persistedPrice);
+                    cmd.Parameters.AddWithValue("@status", ticket.Status);
+                    cmd.Parameters.AddWithValue("@fName", ticket.PassengerFirstName);
+                    cmd.Parameters.AddWithValue("@lName", ticket.PassengerLastName);
+                    cmd.Parameters.AddWithValue("@email", ticket.PassengerEmail ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@phone", ticket.PassengerPhone ?? (object)DBNull.Value);
+
+                    var newTicketId = (int)await cmd.ExecuteScalarAsync();
+                    ticket.TicketId = newTicketId;
+
+                    if (ticket.SelectedAddOns != null && ticket.SelectedAddOns.Any())
+                    {
+                        string insertAddonQuery = @"
+                            INSERT INTO Tickets_AddOns (ticket_id, addon_id)
+                            VALUES (@ticketId, @addonId)";
+
+                        foreach (var addon in ticket.SelectedAddOns)
+                        {
+                            using var addonCmd = new SqlCommand(insertAddonQuery, connection, transaction);
+                            addonCmd.Parameters.AddWithValue("@ticketId", newTicketId);
+                            addonCmd.Parameters.AddWithValue("@addonId", addon.AddOnId);
+                            await addonCmd.ExecuteNonQueryAsync();
+                        }
+                    }
+                }
+
+                transaction.Commit();
+                return true;
+            }
+            catch
+            {
+                transaction.Rollback();
+                return false;
+            }
         }
     }
 }

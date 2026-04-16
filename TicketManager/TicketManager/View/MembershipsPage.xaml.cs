@@ -29,8 +29,8 @@ namespace TicketManager.View
             this.InitializeComponent();
 
             var dbFactory = new DatabaseConnectionFactory();
-            var userRepo = new UserRepository(dbFactory);
             var membershipRepo = new MembershipRepository(dbFactory);
+            var userRepo = new UserRepository(dbFactory, membershipRepo);
             var service = new MembershipService(userRepo, membershipRepo);
 
             ViewModel = new MembershipViewModel(service);

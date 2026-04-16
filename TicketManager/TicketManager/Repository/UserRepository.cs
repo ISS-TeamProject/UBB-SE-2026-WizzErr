@@ -10,10 +10,10 @@ namespace TicketManager.Repository
         private readonly DatabaseConnectionFactory _dbFactory;
         private readonly IMembershipRepository _membershipRepository;
 
-        public UserRepository(DatabaseConnectionFactory dbFactory)
+        public UserRepository(DatabaseConnectionFactory dbFactory, IMembershipRepository membershipRepository)
         {
             _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
-            _membershipRepository = new MembershipRepository(dbFactory);
+            _membershipRepository = membershipRepository ?? throw new ArgumentNullException(nameof(membershipRepository));
         }
 
         public User GetById(int id)
@@ -32,13 +32,10 @@ namespace TicketManager.Repository
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId", id);
-
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
-                        {
                             user = MapUser(reader);
-                        }
                     }
                 }
             }
@@ -61,13 +58,10 @@ namespace TicketManager.Repository
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Email", email);
-
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
-                        {
                             user = MapUser(reader);
-                        }
                     }
                 }
             }
@@ -82,7 +76,7 @@ namespace TicketManager.Repository
                 string query = @"
                     INSERT INTO Users (email, phone, username, password_hash, membership_id) 
                     VALUES (@Email, @Phone, @Username, @PasswordHash, @MembershipId)";
-                
+
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Email", user.Email);
@@ -90,7 +84,6 @@ namespace TicketManager.Repository
                     command.Parameters.AddWithValue("@Username", user.Username);
                     command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
                     command.Parameters.AddWithValue("@MembershipId", user.Membership?.MembershipId ?? (object)DBNull.Value);
-                    
                     command.ExecuteNonQuery();
                 }
             }
@@ -105,12 +98,11 @@ namespace TicketManager.Repository
                     UPDATE Users 
                     SET membership_id = @MembershipId
                     WHERE user_id = @UserId";
-                
+
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId", userId);
                     command.Parameters.AddWithValue("@MembershipId", newMembershipId);
-                    
                     command.ExecuteNonQuery();
                 }
             }
@@ -118,14 +110,14 @@ namespace TicketManager.Repository
 
         private User MapUser(SqlDataReader reader)
         {
-            int membershipIdIndex = reader.GetOrdinal("membership_id");
+            int membershipIdOrdinal = reader.GetOrdinal("membership_id");
             Membership membership = null;
 
-            if (!reader.IsDBNull(membershipIdIndex))
+            if (!reader.IsDBNull(membershipIdOrdinal))
             {
-                membership = new Membership 
-                { 
-                    MembershipId = reader.GetInt32(membershipIdIndex),
+                membership = new Membership
+                {
+                    MembershipId = reader.GetInt32(membershipIdOrdinal),
                     Name = reader.GetString(reader.GetOrdinal("membership_name")),
                     FlightDiscountPercentage = (float)reader.GetByte(reader.GetOrdinal("flight_discount_percentage"))
                 };

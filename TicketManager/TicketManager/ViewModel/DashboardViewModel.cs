@@ -1,15 +1,17 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using TicketManager.Domain;
 using TicketManager.Service;
-using System;
 
 namespace TicketManager.ViewModel
 {
     public partial class DashboardViewModel : INotifyPropertyChanged
     {
+        private const string CancelledStatus = "Cancelled";
+
         private readonly DashboardService _dashboardService;
 
         public ObservableCollection<Ticket> MyTickets { get; set; }
@@ -49,32 +51,23 @@ namespace TicketManager.ViewModel
             MyTickets.Clear();
             int? currentUserId = UserSession.CurrentUser?.UserId;
             if (!currentUserId.HasValue)
-            {
                 return;
-            }
 
             var filteredTickets = _dashboardService.GetUserTickets(currentUserId.Value, SelectedTicketFilter);
-
             foreach (var ticket in filteredTickets)
-            {
                 MyTickets.Add(ticket);
-            }
         }
 
         public void CancelTicket(Ticket ticket)
         {
             if (ticket == null)
-            {
                 return;
-            }
 
-            bool isCancelled = string.Equals(ticket.Status, "Cancelled", StringComparison.OrdinalIgnoreCase);
+            bool isCancelled = string.Equals(ticket.Status, CancelledStatus, StringComparison.OrdinalIgnoreCase);
             bool isPastFlight = ticket.Flight != null && ticket.Flight.Date < DateTime.Now;
 
             if (isCancelled || isPastFlight)
-            {
                 return;
-            }
 
             _dashboardService.CancelUserTicket(ticket.TicketId);
             LoadUserTickets();
@@ -83,9 +76,7 @@ namespace TicketManager.ViewModel
         private void ExecuteCancelTicket(object parameter)
         {
             if (parameter is Ticket ticket)
-            {
                 CancelTicket(ticket);
-            }
         }
 
         private void ExecuteDownloadPdf(object parameter)
@@ -94,10 +85,7 @@ namespace TicketManager.ViewModel
             {
                 try
                 {
-                    // Apelăm serviciul (Separation of Concerns)
                     string generatedFilePath = _dashboardService.GenerateTicketPdf(ticket);
-
-                    // Interacțiunea cu sistemul (deschiderea fișierului pe ecran) rămâne în ViewModel
                     System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                     {
                         FileName = generatedFilePath,
