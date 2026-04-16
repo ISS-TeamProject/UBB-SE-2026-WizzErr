@@ -11,6 +11,8 @@ namespace TicketManager.View
 {
     public sealed partial class DashboardPage : Page
     {
+        private const string CancelledStatus = "Cancelled";
+
         private readonly DashboardViewModel _viewModel;
 
         public DashboardPage()
@@ -42,10 +44,9 @@ namespace TicketManager.View
 
         private async void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is not Button button || button.Tag is not Ticket ticket)
-            {
+            if (sender is not Button button || button.Tag is not Ticket ticket ||
+                string.Equals(ticket.Status, CancelledStatus, StringComparison.OrdinalIgnoreCase))
                 return;
-            }
 
             // Delegate cancellation eligibility check to ViewModel/Service
             var (canCancel, reason) = _viewModel.CanCancelTicket(ticket);

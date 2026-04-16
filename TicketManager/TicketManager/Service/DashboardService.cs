@@ -1,24 +1,24 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using TicketManager.Domain;
 using TicketManager.Repository;
-using System.Linq;
 
 namespace TicketManager.Service
 {
     public class DashboardService : IDashboardService
     {
+        private const string CancelledStatus = "Cancelled";
+
         private readonly ITicketRepository _ticketRepository;
 
         public DashboardService(ITicketRepository ticketRepository)
         {
             _ticketRepository = ticketRepository;
-
-            // Setăm licența QuestPDF o singură dată aici
             QuestPDF.Settings.License = LicenseType.Community;
         }
 
@@ -34,8 +34,6 @@ namespace TicketManager.Service
         }
 
 
-
-        // Funcția nouă care se ocupă exclusiv de PDF
         public string GenerateTicketPdf(Ticket ticket)
         {
             string downloadsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
@@ -58,12 +56,16 @@ namespace TicketManager.Service
                     {
                         col.Spacing(5);
                         col.Item().Text($"Ticket ID: {ticket.TicketId}").FontSize(14).SemiBold();
-                        col.Item().Text($"Status: {ticket.Status}").FontColor(ticket.Status == "Cancelled" ? Colors.Red.Medium : Colors.Green.Darken1);
+                        col.Item().Text($"Status: {ticket.Status}").FontColor(ticket.Status == CancelledStatus ? Colors.Red.Medium : Colors.Green.Darken1);
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
                         col.Item().PaddingTop(10).Text("Flight Details").FontSize(16).SemiBold();
                         col.Item().Text($"Flight Number: {ticket.Flight?.FlightNr ?? "N/A"}");
                         col.Item().Text($"Date: {ticket.Flight?.Date:dd MMM yyyy HH:mm}");
+                        col.Item().Text($"Route: {ticket.Flight?.Route?.Airport?.City ?? "N/A"} ({ticket.Flight?.Route?.RouteType ?? "N/A"})");
+                        col.Item().Text($"Departure: {ticket.Flight?.Route?.DepartureTime:HH:mm}");
+                        col.Item().Text($"Arrival: {ticket.Flight?.Route?.ArrivalTime:HH:mm}");
+                        col.Item().Text($"Gate: {ticket.Flight?.Gate?.GateName ?? "N/A"}");
                         col.Item().Text($"Seat: {ticket.Seat ?? "Unassigned"}");
 
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
@@ -79,9 +81,7 @@ namespace TicketManager.Service
                         if (ticket.SelectedAddOns != null && ticket.SelectedAddOns.Count > 0)
                         {
                             foreach (var addOn in ticket.SelectedAddOns)
-                            {
                                 col.Item().Text($"• {addOn.Name}");
-                            }
                         }
                         else
                         {
@@ -102,7 +102,7 @@ namespace TicketManager.Service
             })
             .GeneratePdf(filePath);
 
-            return filePath; // Returnăm calea pentru ca ViewModel-ul să știe ce fișier să deschidă
+            return filePath;
         }
     }
 }

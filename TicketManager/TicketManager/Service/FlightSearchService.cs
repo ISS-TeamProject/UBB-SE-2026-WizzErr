@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketManager.Domain;
 using TicketManager.Repository;
 
@@ -12,7 +10,6 @@ namespace TicketManager.Service
     {
         private readonly IFlightRepository _flightRepository;
 
-        // Injectăm repository-ul prin constructor
         public FlightSearchService(IFlightRepository flightRepository)
         {
             _flightRepository = flightRepository ?? throw new ArgumentNullException(nameof(flightRepository));
@@ -20,14 +17,22 @@ namespace TicketManager.Service
 
         public IEnumerable<Flight> SearchFlights(string location, string flightType, DateTime? date, int? passengers)
         {
-            // Validări de bază (Business Logic)
             if (string.IsNullOrWhiteSpace(location))
-            {
                 return new List<Flight>();
+
+            var flights = _flightRepository.GetFlightsByRoute(location, flightType, date);
+
+            if (passengers.HasValue && passengers.Value > 0)
+            {
+                flights = flights.Where(flight =>
+                {
+                    int occupiedSeats = _flightRepository.GetOccupiedSeatCount(flight.FlightId);
+                    int availableSeats = flight.Route.Capacity - occupiedSeats;
+                    return availableSeats >= passengers.Value;
+                });
             }
 
-            // Dacă datele sunt ok, apelăm interogarea SQL deja scrisă în Repository
-            return _flightRepository.GetFlightsByRoute(location, flightType, date, passengers);
+            return flights;
         }
     }
 }

@@ -1,10 +1,10 @@
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using TicketManager.Domain;
 using TicketManager.Service;
-using System;
 
 namespace TicketManager.ViewModel
 {
@@ -51,16 +51,11 @@ namespace TicketManager.ViewModel
             MyTickets.Clear();
             int? currentUserId = UserSession.CurrentUser?.UserId;
             if (!currentUserId.HasValue)
-            {
                 return;
-            }
 
             var filteredTickets = _dashboardService.GetUserTickets(currentUserId.Value, SelectedTicketFilter);
-
             foreach (var ticket in filteredTickets)
-            {
                 MyTickets.Add(ticket);
-            }
         }
 
         public (bool CanCancel, string Reason) CanCancelTicket(Ticket ticket)
@@ -74,7 +69,6 @@ namespace TicketManager.ViewModel
             if (!canCancel)
             {
                 return;
-            }
 
             _cancellationService.CancelTicket(ticket.TicketId);
             LoadUserTickets();
@@ -83,9 +77,7 @@ namespace TicketManager.ViewModel
         private void ExecuteCancelTicket(object parameter)
         {
             if (parameter is Ticket ticket)
-            {
                 CancelTicket(ticket);
-            }
         }
 
         private void ExecuteDownloadPdf(object parameter)
@@ -95,7 +87,6 @@ namespace TicketManager.ViewModel
                 try
                 {
                     string generatedFilePath = _dashboardService.GenerateTicketPdf(ticket);
-
                     System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                     {
                         FileName = generatedFilePath,

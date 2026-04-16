@@ -36,29 +36,22 @@ namespace TicketManager.Repository
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@FlightId", id);
-                    
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
-                        {
                             flight = MapFlight(reader);
-                        }
                     }
                 }
             }
             return flight;
         }
 
-        public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime? date, int? passengers)
+        public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime? date)
         {
             var flights = new List<Flight>();
             using (var connection = _dbFactory.GetConnection())
             {
                 connection.Open();
-                // Basic implementation for flight searching based on Airport city/code matching.
-                // In a Central Hub system, flights either depart from the hub to the location (DEP)
-                // or arrive at the hub from the location (ARR).
-
                 string query = @"
                     SELECT f.id as flight_id, f.date, f.flight_number,
                            r.id as route_id, r.route_type, r.departure_time, r.arrival_time, r.capacity,
@@ -72,31 +65,41 @@ namespace TicketManager.Repository
                     LEFT JOIN Gates g ON f.gate_id = g.id
                     WHERE (@Date IS NULL OR CAST(f.date AS DATE) = CAST(@Date AS DATE))
                       AND r.route_type = @RouteType
-                      AND (a.city = @Location OR a.code = @Location)
-                      AND (@Passengers IS NULL OR (r.capacity - ISNULL((
-                            SELECT COUNT(*)
-                            FROM Tickets t
-                            WHERE t.flight_id = f.id
-                              AND t.status <> 'Cancelled'
-                          ), 0)) >= @Passengers)";
+                      AND (a.city = @Location OR a.code = @Location)";
 
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Location", location);
                     command.Parameters.AddWithValue("@RouteType", routeType);
                     command.Parameters.AddWithValue("@Date", (object?)date ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@Passengers", passengers.HasValue ? passengers.Value : DBNull.Value);
 
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
-                        {
                             flights.Add(MapFlight(reader));
-                        }
                     }
                 }
             }
             return flights;
+        }
+
+        public int GetOccupiedSeatCount(int flightId)
+        {
+            using (var connection = _dbFactory.GetConnection())
+            {
+                connection.Open();
+                string query = @"
+                    SELECT COUNT(*) 
+                    FROM Tickets 
+                    WHERE flight_id = @FlightId 
+                      AND status <> 'Cancelled'";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@FlightId", flightId);
+                    return (int)command.ExecuteScalar();
+                }
+            }
         }
 
         private Flight MapFlight(SqlDataReader reader)
