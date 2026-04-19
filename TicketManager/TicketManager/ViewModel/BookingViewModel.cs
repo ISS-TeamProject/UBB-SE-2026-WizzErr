@@ -3,18 +3,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 using TicketManager.Domain;
 using TicketManager.Service;
 
 namespace TicketManager.ViewModel
 {
-    public class BookingViewModel : INotifyPropertyChanged
+    public class BookingViewModel : ViewModelBase
     {
         private readonly IBookingService _bookingService;
         private readonly IPricingService _pricingService;
+        private readonly INavigationService _navigationService;
         private readonly RelayCommand _confirmBookingCommand;
         private bool _isSaving;
         private bool _passengersValid;
@@ -120,10 +119,11 @@ namespace TicketManager.ViewModel
 
         public event EventHandler BookingConfirmed;
 
-        public BookingViewModel(IBookingService bookingService, IPricingService pricingService)
+        public BookingViewModel(IBookingService bookingService, IPricingService pricingService, INavigationService navigationService)
         {
             _bookingService = bookingService;
             _pricingService = pricingService;
+            _navigationService = navigationService;
             AddPassengerCommand = new RelayCommand(_ => AddPassenger());
             RemovePassengerCommand = new RelayCommand(param => RemovePassenger(param as PassengerFormViewModel));
             _confirmBookingCommand = new RelayCommand(async _ => await ConfirmBookingAsync(), _ => CanConfirmBooking);
@@ -134,11 +134,47 @@ namespace TicketManager.ViewModel
         public ICommand RemovePassengerCommand { get; }
         public ICommand ConfirmBookingCommand { get; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        /// <summary>
+        /// Parses the navigation parameter and initializes the booking.
+        /// Returns true if initialization succeeded, false if redirected to auth.
+        /// This replaces the parameter parsing that was in BookingPage.xaml.cs OnNavigatedTo.
+        /// </summary>
+        public async Task<bool> OnNavigatedToAsync(object parameter)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Flight selectedFlight = null;
+            User currentUser = null;
+            int requestedPassengers = 0;
+
+            if (parameter is object[] args && args.Length > 0)
+            {
+                selectedFlight = args[0] as Flight;
+
+                if (args.Length >= 3)
+                {
+                    currentUser = args[1] as User;
+                    if (args[2] is int count) requestedPassengers = count;
+                }
+                else if (args.Length >= 2)
+                {
+                    if (args[1] is int count) requestedPassengers = count;
+                    else currentUser = args[1] as User;
+                }
+            }
+
+            currentUser ??= UserSession.CurrentUser;
+
+            if (selectedFlight == null)
+                return false;
+
+            if (currentUser == null)
+            {
+                UserSession.PendingBookingParameters = new object[] { selectedFlight, requestedPassengers };
+                _navigationService.NavigateTo(typeof(View.AuthPage));
+                return false;
+            }
+
+            await InitializeAsync(selectedFlight, currentUser, requestedPassengers);
+            return true;
         }
 
         public async Task InitializeAsync(Flight flight, User user, int requestedPassengerCount = 0)
