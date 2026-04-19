@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using TicketManager.Domain;
 using TicketManager.Service;
 
@@ -48,12 +49,39 @@ namespace TicketManager.ViewModel
     public class MembershipViewModel : ViewModelBase
     {
         private readonly IMembershipService _membershipService;
+        private readonly INavigationService _navigationService;
+
         public ObservableCollection<MembershipDisplayModel> Memberships { get; set; }
 
-        public MembershipViewModel(IMembershipService membershipService)
+        // ── Result state exposed to the View ──────────────────────
+        private string _purchaseResultMessage;
+        public string PurchaseResultMessage
+        {
+            get => _purchaseResultMessage;
+            set { _purchaseResultMessage = value; OnPropertyChanged(); }
+        }
+
+        private bool? _purchaseSucceeded;
+        /// <summary>
+        /// null = no purchase attempted yet, true = success, false = failure.
+        /// The View observes this to decide whether to show a success or error dialog.
+        /// </summary>
+        public bool? PurchaseSucceeded
+        {
+            get => _purchaseSucceeded;
+            set { _purchaseSucceeded = value; OnPropertyChanged(); }
+        }
+
+        public ICommand PurchaseCommand { get; }
+
+        public MembershipViewModel(IMembershipService membershipService, INavigationService navigationService)
         {
             _membershipService = membershipService;
+            _navigationService = navigationService;
             Memberships = new ObservableCollection<MembershipDisplayModel>();
+
+            PurchaseCommand = new RelayCommand(param => ExecutePurchase(param));
+
             LoadMemberships();
         }
 
@@ -66,12 +94,40 @@ namespace TicketManager.ViewModel
             }
         }
 
-        public void ExecutePurchase(int membershipId)
+        /// <summary>
+        /// Handles the purchase flow. If the user is not logged in, navigates to auth.
+        /// On success/failure, sets PurchaseResultMessage and PurchaseSucceeded so the View
+        /// can react (e.g., show a dialog). The View never does try/catch or business logic.
+        /// </summary>
+        private void ExecutePurchase(object parameter)
         {
-            if (UserSession.CurrentUser == null) return;
+            // Reset previous result
+            PurchaseSucceeded = null;
+            PurchaseResultMessage = string.Empty;
 
-            var updatedMembership = _membershipService.UpgradeUserMembership(UserSession.CurrentUser.UserId, membershipId);
-            UserSession.CurrentUser.Membership = updatedMembership;
+            if (UserSession.CurrentUser == null)
+            {
+                _navigationService.NavigateTo(typeof(View.AuthPage));
+                return;
+            }
+
+            if (parameter is not int membershipId)
+                return;
+
+            try
+            {
+                var updatedMembership = _membershipService.UpgradeUserMembership(
+                    UserSession.CurrentUser.UserId, membershipId);
+                UserSession.CurrentUser.Membership = updatedMembership;
+
+                PurchaseSucceeded = true;
+                PurchaseResultMessage = "Your membership purchase was completed successfully.";
+            }
+            catch
+            {
+                PurchaseSucceeded = false;
+                PurchaseResultMessage = "Membership purchase could not be completed. Please try again.";
+            }
         }
     }
 }
