@@ -1,18 +1,16 @@
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using TicketManager.Domain;
 using TicketManager.Service;
 
 namespace TicketManager.ViewModel
 {
-    public partial class DashboardViewModel : INotifyPropertyChanged
+    public partial class DashboardViewModel : ViewModelBase
     {
         private readonly IDashboardService _dashboardService;
-
         private readonly ICancellationService _cancellationService;
+        private readonly INavigationService _navigationService;
 
         public ObservableCollection<Ticket> MyTickets { get; set; }
         public ObservableCollection<string> TicketFilters { get; }
@@ -30,13 +28,45 @@ namespace TicketManager.ViewModel
             }
         }
 
+        // ── Cancellation result state (View observes these to show dialogs) ──
+        private string _cancellationMessage;
+        public string CancellationMessage
+        {
+            get => _cancellationMessage;
+            set { _cancellationMessage = value; OnPropertyChanged(); }
+        }
+
+        private bool? _cancellationSucceeded;
+        /// <summary>
+        /// null = no cancellation attempted, true = cancelled, false = cannot cancel.
+        /// </summary>
+        public bool? CancellationSucceeded
+        {
+            get => _cancellationSucceeded;
+            set { _cancellationSucceeded = value; OnPropertyChanged(); }
+        }
+
+        // ── The ticket that is pending confirmation from the user ──
+        private Ticket _pendingCancelTicket;
+        /// <summary>
+        /// When set to a non-null ticket, the View should show a confirmation dialog.
+        /// After the user responds, the View calls ConfirmCancellation() or clears this.
+        /// </summary>
+        public Ticket PendingCancelTicket
+        {
+            get => _pendingCancelTicket;
+            set { _pendingCancelTicket = value; OnPropertyChanged(); }
+        }
+
         public ICommand CancelTicketCommand { get; }
         public ICommand DownloadPdfCommand { get; }
 
-        public DashboardViewModel(IDashboardService dashboardService, ICancellationService cancellationService)
+        public DashboardViewModel(IDashboardService dashboardService, ICancellationService cancellationService, INavigationService navigationService)
         {
             _dashboardService = dashboardService;
             _cancellationService = cancellationService;
+            _navigationService = navigationService;
+
             MyTickets = new ObservableCollection<Ticket>();
             TicketFilters = new ObservableCollection<string> { "Upcoming", "Past" };
             _selectedTicketFilter = "Upcoming";
@@ -59,28 +89,71 @@ namespace TicketManager.ViewModel
                 MyTickets.Add(ticket);
         }
 
-        public (bool CanCancel, string Reason) CanCancelTicket(Ticket ticket)
+        /// <summary>
+        /// Handles the cancel command. Checks eligibility via the service, then
+        /// either reports an error or sets PendingCancelTicket to request user confirmation.
+        /// This replaces the code-behind's multi-step orchestration.
+        /// </summary>
+        private void ExecuteCancelTicket(object parameter)
         {
-            return _cancellationService.CanCancelTicket(ticket);
-        }
+            CancellationSucceeded = null;
+            CancellationMessage = string.Empty;
 
-        public void CancelTicket(Ticket ticket)
-        {
-            if (ticket == null)
+            if (parameter is not Ticket ticket)
+                return;
+
+            if (string.Equals(ticket.Status, "Cancelled", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            var (canCancel, reason) = _cancellationService.CanCancelTicket(ticket);
+            if (!canCancel)
             {
+                CancellationSucceeded = false;
+                CancellationMessage = reason;
                 return;
             }
 
-            
-
-            _cancellationService.CancelTicket(ticket.TicketId);
-            LoadUserTickets();
+            // Request confirmation from the user (View will show a dialog)
+            PendingCancelTicket = ticket;
         }
 
-        private void ExecuteCancelTicket(object parameter)
+        /// <summary>
+        /// Called by the View after the user confirms they want to cancel.
+        /// </summary>
+        public void ConfirmCancellation()
         {
-            if (parameter is Ticket ticket)
-                CancelTicket(ticket);
+            if (PendingCancelTicket == null)
+                return;
+
+            _cancellationService.CancelTicket(PendingCancelTicket.TicketId);
+            PendingCancelTicket = null;
+            LoadUserTickets();
+
+            CancellationSucceeded = true;
+            CancellationMessage = "The ticket status was updated to Cancelled.";
+        }
+
+        /// <summary>
+        /// Called by the View if the user declines the cancellation.
+        /// </summary>
+        public void DeclineCancellation()
+        {
+            PendingCancelTicket = null;
+        }
+
+        /// <summary>
+        /// Called by the View when navigated to. Checks auth and refreshes data.
+        /// </summary>
+        public bool OnNavigatedTo()
+        {
+            if (UserSession.CurrentUser == null)
+            {
+                _navigationService.NavigateTo(typeof(View.AuthPage));
+                return false;
+            }
+
+            LoadUserTickets();
+            return true;
         }
 
         private void ExecuteDownloadPdf(object parameter)
@@ -91,7 +164,6 @@ namespace TicketManager.ViewModel
                 {
                     string generatedFilePath = _dashboardService.GenerateTicketPdf(ticket);
 
-                    // Interac?iunea cu sistemul (deschiderea fi?ierului pe ecran) r?m�ne �n ViewModel
                     System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                     {
                         FileName = generatedFilePath,
@@ -103,12 +175,6 @@ namespace TicketManager.ViewModel
                     System.Diagnostics.Debug.WriteLine($"Failed to generate PDF: {ex.Message}");
                 }
             }
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
