@@ -6,13 +6,16 @@ using Microsoft.UI;
 using System;
 using System.Linq;
 using System.Collections.Specialized;
-using TicketManager.Repository;
-using TicketManager.Service;
 using TicketManager.ViewModel;
 using TicketManager.Domain;
 
 namespace TicketManager.View
 {
+    /// <summary>
+    /// Code-behind handles only pure-UI concerns: seat map rendering, seat selection visuals,
+    /// dialog display, and add-on list management. All parameter parsing, auth checking,
+    /// and business logic lives in BookingViewModel.
+    /// </summary>
     public sealed partial class BookingPage : Page
     {
         public BookingViewModel ViewModel { get; }
@@ -25,19 +28,16 @@ namespace TicketManager.View
         {
             this.InitializeComponent();
 
-            var dbFactory = new DatabaseConnectionFactory();
-            var ticketRepository = new TicketRepository(dbFactory);
-            var addOnRepository = new AddOnRepository(dbFactory);
-            var bookingService = new BookingService(ticketRepository, addOnRepository);
-            var pricingService = new PricingService();
-            ViewModel = new BookingViewModel(bookingService, pricingService);
+            // ViewModel is built with services from the composition root.
+            // This View no longer knows about DatabaseConnectionFactory or repositories.
+            ViewModel = new BookingViewModel(App.BookingService, App.PricingService, App.NavigationService);
             ViewModel.Passengers.CollectionChanged += Passengers_CollectionChanged;
             ViewModel.BookingConfirmed += ViewModel_BookingConfirmed;
 
             this.DataContext = ViewModel;
         }
 
-        private async void ViewModel_BookingConfirmed(object sender, System.EventArgs e)
+        private async void ViewModel_BookingConfirmed(object sender, EventArgs e)
         {
             var dialog = new ContentDialog
             {
@@ -48,50 +48,27 @@ namespace TicketManager.View
             };
 
             await dialog.ShowAsync();
-            this.Frame.Navigate(typeof(FlightSearchPage));
+            App.NavigationService.NavigateTo(typeof(FlightSearchPage));
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            Flight selectedFlight = null;
-            User currentUser = null;
-            int requestedPassengers = 0;
+            // Delegate all parameter parsing and auth checking to the ViewModel
+            bool initialized = await ViewModel.OnNavigatedToAsync(e.Parameter);
 
-            if (e.Parameter is object[] args && args.Length > 0)
+            if (initialized)
             {
-                selectedFlight = args[0] as Flight;
-
-                if (args.Length >= 3)
-                {
-                    currentUser = args[1] as User;
-                    if (args[2] is int count) requestedPassengers = count;
-                }
-                else if (args.Length >= 2)
-                {
-                    if (args[1] is int count) requestedPassengers = count;
-                    else currentUser = args[1] as User;
-                }
+                // These are pure-UI operations (generating WinUI Button controls,
+                // coloring them, managing grid layout). They belong in the View.
+                GenerateSeatMap();
+                EnsureSeatTargetPassenger();
+                RefreshSeatMapVisuals();
             }
-
-            currentUser ??= UserSession.CurrentUser;
-
-            if (selectedFlight == null)
-                return;
-
-            if (currentUser == null)
-            {
-                UserSession.PendingBookingParameters = new object[] { selectedFlight, requestedPassengers };
-                this.Frame.Navigate(typeof(AuthPage));
-                return;
-            }
-
-            await ViewModel.InitializeAsync(selectedFlight, currentUser, requestedPassengers);
-            GenerateSeatMap();
-            EnsureSeatTargetPassenger();
-            RefreshSeatMapVisuals();
         }
+
+        // ── Seat Map (pure UI: creating buttons, setting colors) ────────
 
         private void GenerateSeatMap()
         {
@@ -128,8 +105,8 @@ namespace TicketManager.View
                 Content = seatNumber,
                 Width = 50,
                 Height = 44,
-                Margin = new Microsoft.UI.Xaml.Thickness(2),
-                Padding = new Microsoft.UI.Xaml.Thickness(0),
+                Margin = new Thickness(2),
+                Padding = new Thickness(0),
                 FontSize = 13,
                 HorizontalContentAlignment = HorizontalAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center
