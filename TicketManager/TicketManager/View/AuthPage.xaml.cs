@@ -1,170 +1,75 @@
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System;
-using TicketManager.Domain;
-using TicketManager.Repository;
-using TicketManager.Service;
+using System.ComponentModel;
 using TicketManager.ViewModel;
+using System;
 
 namespace TicketManager.View
 {
+    /// <summary>
+    /// Code-behind is now minimal: constructs the ViewModel and reacts to state
+    /// changes by showing message dialogs... The ViewModel handles all login/register
+    /// logic, form validation, mode switching, and navigation.
+    /// 
+    /// Compare with the original 170-line version that manually set TitleTextBlock.Text,
+    /// usernameInput.Visibility, validated forms, managed sessions, and navigated.
+    /// </summary>
     public sealed partial class AuthPage : Page
     {
-        private readonly AuthViewModel _viewModel;
+        public AuthViewModel ViewModel { get; }
 
         public AuthPage()
         {
             this.InitializeComponent();
 
-            var dbFactory = new DatabaseConnectionFactory();
-            var membershipRepository = new MembershipRepository(dbFactory);
-            var userRepository = new UserRepository(dbFactory, membershipRepository);
-            var authService = new AuthService(userRepository);
-            _viewModel = new AuthViewModel(authService);
+            // ViewModel is built with services from the composition root.
+            ViewModel = new AuthViewModel(App.AuthService, App.NavigationService);
 
-            this.DataContext = _viewModel;
+            this.DataContext = ViewModel;
+
+            // React to result messages (showing dialogs is a UI concern)
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        private void ActionButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Shows error/success dialogs when the ViewModel reports them.
+        /// This is the only "logic" left in the View — and it's pure UI.
+        /// </summary>
+        private async void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            _viewModel.PasswordText = passwordInput.Password;
-
-            if (_viewModel.IsLoginMode)
+            if (e.PropertyName == nameof(ViewModel.ErrorMessage) &&
+                !string.IsNullOrWhiteSpace(ViewModel.ErrorMessage))
             {
-                _viewModel.Login();
-
-                if (_viewModel.IsAuthenticated)
-                {
-                    UserSession.CurrentUser = _viewModel.AuthenticatedUser;
-
-                    if (UserSession.PendingBookingParameters != null)
-                    {
-                        var pendingParameters = UserSession.PendingBookingParameters;
-                        UserSession.PendingBookingParameters = null;
-                        this.Frame.Navigate(typeof(BookingPage), pendingParameters);
-                    }
-                    else
-                    {
-                        this.Frame.Navigate(typeof(FlightSearchPage));
-                    }
-                }
-            }
-            else
-            {
-                _viewModel.Register();
-
-                if (string.IsNullOrWhiteSpace(_viewModel.ErrorMessage))
-                {
-                    _viewModel.IsLoginMode = true;
-
-                    TitleTextBlock.Text = "Welcome to WizzErr";
-                    SubtitleTextBlock.Text = "Please sign in to manage your tickets";
-                    loginButton.Content = "Sign In";
-                    TogglePromptText.Text = "Don't have an account?";
-                    ToggleModeButton.Content = "Create one";
-                    usernameInput.Visibility = Visibility.Collapsed;
-                    phoneInput.Visibility = Visibility.Collapsed;
-                }
-            }
-
-            ShowMessages();
-        }
-
-        private void ToggleMode_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.IsLoginMode = !_viewModel.IsLoginMode;
-
-            if (_viewModel.IsLoginMode)
-            {
-                TitleTextBlock.Text = "Welcome to WizzErr";
-                SubtitleTextBlock.Text = "Please sign in to manage your tickets";
-                loginButton.Content = "Sign In";
-                TogglePromptText.Text = "Don't have an account?";
-                ToggleModeButton.Content = "Create one";
-                usernameInput.Visibility = Visibility.Collapsed;
-                phoneInput.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                TitleTextBlock.Text = "Create a WizzErr Account";
-                SubtitleTextBlock.Text = "Fill in the details to register";
-                loginButton.Content = "Register";
-                TogglePromptText.Text = "Already have an account?";
-                ToggleModeButton.Content = "Sign in";
-                usernameInput.Visibility = Visibility.Visible;
-                phoneInput.Visibility = Visibility.Visible;
-            }
-
-            _viewModel.ClearMessages();
-            ShowMessages();
-            ValidateInput();
-        }
-
-        private void Input_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            SyncInputsToViewModel();
-            ValidateInput();
-        }
-
-        private void Password_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            _viewModel.PasswordText = passwordInput.Password;
-            ValidateInput();
-        }
-
-        private void SyncInputsToViewModel()
-        {
-            _viewModel.EmailText = emailInput.Text;
-            _viewModel.UsernameText = usernameInput.Text;
-            _viewModel.PhoneText = phoneInput.Text;
-        }
-
-        private void ValidateInput()
-        {
-            if (loginButton == null) return;
-
-            if (_viewModel.IsLoginMode)
-            {
-                loginButton.IsEnabled =
-                    !string.IsNullOrWhiteSpace(emailInput.Text) &&
-                    !string.IsNullOrWhiteSpace(passwordInput.Password);
-            }
-            else
-            {
-                loginButton.IsEnabled =
-                    !string.IsNullOrWhiteSpace(emailInput.Text) &&
-                    !string.IsNullOrWhiteSpace(usernameInput.Text) &&
-                    !string.IsNullOrWhiteSpace(phoneInput.Text) &&
-                    !string.IsNullOrWhiteSpace(passwordInput.Password);
-            }
-        }
-
-        private async void ShowMessages()
-        {
-            if (!string.IsNullOrWhiteSpace(_viewModel.ErrorMessage))
-            {
-                ContentDialog dialog = new ContentDialog
+                var dialog = new ContentDialog
                 {
                     Title = "Error",
-                    Content = _viewModel.ErrorMessage,
+                    Content = ViewModel.ErrorMessage,
                     CloseButtonText = "OK",
                     XamlRoot = this.XamlRoot
                 };
-
                 await dialog.ShowAsync();
             }
-            else if (!string.IsNullOrWhiteSpace(_viewModel.SuccessMessage) && !_viewModel.IsAuthenticated)
+            else if (e.PropertyName == nameof(ViewModel.SuccessMessage) &&
+                     !string.IsNullOrWhiteSpace(ViewModel.SuccessMessage) &&
+                     !ViewModel.IsAuthenticated)
             {
-                ContentDialog dialog = new ContentDialog
+                var dialog = new ContentDialog
                 {
                     Title = "Success",
-                    Content = _viewModel.SuccessMessage,
+                    Content = ViewModel.SuccessMessage,
                     CloseButtonText = "OK",
                     XamlRoot = this.XamlRoot
                 };
-
                 await dialog.ShowAsync();
             }
+        }
+
+        /// <summary>
+        /// PasswordBox doesn't support two-way binding in WinUI, so we sync it manually.
+        /// This is a known WinUI limitation and is an acceptable UI concern.
+        /// </summary>
+        private void Password_PasswordChanged(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewModel.PasswordText = passwordInput.Password;
         }
     }
 }
