@@ -1,26 +1,15 @@
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using TicketManager.Domain;
-using TicketManager.Repository;
-using TicketManager.Service;
+using System.ComponentModel;
 using TicketManager.ViewModel;
+using System;
 
 namespace TicketManager.View
 {
+    /// <summary>
+    /// Code-behind is now minimal: constructs the ViewModel from the composition root
+    /// and reacts to ViewModel state changes to show dialogs (a pure-UI concern).
+    /// All purchase logic lives in MembershipViewModel.
+    /// </summary>
     public sealed partial class MembershipsPage : Page
     {
         public MembershipViewModel ViewModel { get; }
@@ -29,52 +18,33 @@ namespace TicketManager.View
         {
             this.InitializeComponent();
 
-            var dbFactory = new DatabaseConnectionFactory();
-            var membershipRepo = new MembershipRepository(dbFactory);
-            var userRepo = new UserRepository(dbFactory, membershipRepo);
-            var service = new MembershipService(userRepo, membershipRepo);
+            // ViewModel is built with services from the composition root.
+            // This View no longer knows about DatabaseConnectionFactory, repos, or concrete services.
+            ViewModel = new MembershipViewModel(App.MembershipService, App.NavigationService);
+            this.DataContext = ViewModel;
 
-            ViewModel = new MembershipViewModel(service);
+            // React to purchase result changes to show a dialog (UI-only concern)
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        private async void PurchaseButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// When the ViewModel reports a purchase result, show the appropriate dialog.
+        /// Showing a ContentDialog is a UI concern — the ViewModel only sets the state.
+        /// </summary>
+        private async void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            // Dacă nu e logat, îl trimitem la Login
-            if (UserSession.CurrentUser == null)
-            {
-                this.Frame.Navigate(typeof(AuthPage));
+            if (e.PropertyName != nameof(ViewModel.PurchaseSucceeded) || ViewModel.PurchaseSucceeded == null)
                 return;
-            }
 
-            if (sender is Button btn && btn.Tag is int membershipId)
+            var dialog = new ContentDialog
             {
-                try
-                {
-                    ViewModel.ExecutePurchase(membershipId);
+                Title = ViewModel.PurchaseSucceeded == true ? "Membership updated" : "Purchase failed",
+                Content = ViewModel.PurchaseResultMessage,
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
 
-                    var dialog = new ContentDialog
-                    {
-                        Title = "Membership updated",
-                        Content = "Your membership purchase was completed successfully.",
-                        CloseButtonText = "OK",
-                        XamlRoot = this.XamlRoot
-                    };
-
-                    await dialog.ShowAsync();
-                }
-                catch
-                {
-                    var dialog = new ContentDialog
-                    {
-                        Title = "Purchase failed",
-                        Content = "Membership purchase could not be completed. Please try again.",
-                        CloseButtonText = "OK",
-                        XamlRoot = this.XamlRoot
-                    };
-
-                    await dialog.ShowAsync();
-                }
-            }
+            await dialog.ShowAsync();
         }
     }
 }

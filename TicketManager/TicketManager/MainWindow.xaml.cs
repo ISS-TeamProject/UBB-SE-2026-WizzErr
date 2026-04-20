@@ -1,20 +1,10 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using TicketManager.Domain;
-using TicketManager.Repository;
 using TicketManager.Service;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 namespace TicketManager
 {
@@ -27,10 +17,12 @@ namespace TicketManager
         {
             this.InitializeComponent();
 
-            var dbFactory = new DatabaseConnectionFactory();
-            var membershipRepository = new MembershipRepository(dbFactory);
-            var userRepository = new UserRepository(dbFactory, membershipRepository);
-            _authService = new AuthService(userRepository);
+            // Get the auth service from the centralized composition root — 
+            // no more constructing DatabaseConnectionFactory/repos here.
+            _authService = App.AuthService;
+
+            // Give the NavigationService the Frame it needs to work with.
+            App.NavigationService.Initialize(ContentFrame);
 
             ContentFrame.Navigated += ContentFrame_Navigated;
 

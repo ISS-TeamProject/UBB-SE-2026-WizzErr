@@ -14,7 +14,7 @@
             <TextBlock Text="Choose Your Membership" FontSize="32" FontWeight="Bold" Foreground="#2bb8c0" HorizontalAlignment="Center"/>
             <TextBlock Text="Unlock exclusive flight discounts and premium perks." FontSize="16" Foreground="Gray" HorizontalAlignment="Center"/>
 
-            <GridView ItemsSource="{x:Bind ViewModel.Memberships, Mode=OneWay}" SelectionMode="None" HorizontalAlignment="Center" Margin="0,30,0,0">
+            <GridView x:Name="membershipGridView" ItemsSource="{x:Bind ViewModel.Memberships, Mode=OneWay}" SelectionMode="None" HorizontalAlignment="Center" Margin="0,30,0,0">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="vm:MembershipDisplayModel">
 
@@ -40,7 +40,8 @@
                                     </ItemsControl>
                                 </StackPanel>
 
-                                <Button Grid.Row="2" Content="Purchase" Click="PurchaseButton_Click" Tag="{x:Bind MembershipId}" 
+                                <Button Grid.Row="2" Content="Purchase" 
+                                        Command="{Binding DataContext.PurchaseCommand, ElementName=membershipGridView}" CommandParameter="{x:Bind MembershipId}"
                                         Background="{x:Bind CardColor}" Foreground="White" FontWeight="Bold" 
                                         Width="200" Height="40" CornerRadius="8" HorizontalAlignment="Center"/>
                             </Grid>

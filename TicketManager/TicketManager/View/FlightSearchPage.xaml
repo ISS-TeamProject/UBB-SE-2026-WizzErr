@@ -107,7 +107,8 @@
                             <TextBlock Grid.Column="2" Text="{x:Bind DisplayDate}" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="3" Text="{x:Bind DisplayPrice}" VerticalAlignment="Center" />
 
-                            <Button Grid.Column="4" Content="Book" Background="#2bb8c0" Foreground="White" CornerRadius="4" Height="30" HorizontalAlignment="Right" Margin="8,0,0,0" Click="BookButton_Click" Tag="{x:Bind}"/>
+                            <Button Grid.Column="4" Content="Book" Background="#2bb8c0" Foreground="White" CornerRadius="4" Height="30" HorizontalAlignment="Right" Margin="8,0,0,0" 
+                                    Command="{Binding DataContext.BookFlightCommand, ElementName=flightsGrid}" CommandParameter="{x:Bind}" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

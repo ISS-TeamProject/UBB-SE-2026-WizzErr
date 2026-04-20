@@ -1,10 +1,8 @@
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace TicketManager.ViewModel
 {
-    public class PassengerFormViewModel : INotifyPropertyChanged
+    public class PassengerFormViewModel : ViewModelBase
     {
         private string _passengerLabel = "Passenger";
         public string PassengerLabel
@@ -51,10 +49,5 @@ namespace TicketManager.ViewModel
         // AddOns selected for this specific passenger
         public ObservableCollection<Domain.AddOn> SelectedAddOns { get; set; } = new ObservableCollection<Domain.AddOn>();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

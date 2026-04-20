@@ -1,92 +1,94 @@
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using System;
-using TicketManager.Domain;
-using TicketManager.Repository;
-using TicketManager.Service;
+using System.ComponentModel;
 using TicketManager.ViewModel;
-
+using System;
 namespace TicketManager.View
 {
+    /// <summary>
+    /// Code-behind is now minimal: constructs the ViewModel from the composition root,
+    /// delegates navigation/auth to the ViewModel, and only handles dialog display (UI concern).
+    /// All cancellation logic and eligibility checking lives in DashboardViewModel.
+    /// </summary>
     public sealed partial class DashboardPage : Page
     {
-        private const string CancelledStatus = "Cancelled";
-
         private readonly DashboardViewModel _viewModel;
 
         public DashboardPage()
         {
             this.InitializeComponent();
 
-            var dbFactory = new DatabaseConnectionFactory();
-            var ticketRepository = new TicketRepository(dbFactory);
-            var dashboardService = new DashboardService(ticketRepository);
-            var cancellationService = new CancellationService(ticketRepository);
-
-            _viewModel = new DashboardViewModel(dashboardService, cancellationService);
-
+            // ViewModel is built with services from the composition root.
+            _viewModel = new DashboardViewModel(App.DashboardService, App.CancellationService, App.NavigationService);
             this.DataContext = _viewModel;
+
+            // React to ViewModel state changes to show dialogs (pure UI)
+            _viewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            if (UserSession.CurrentUser == null)
-            {
-                Frame.Navigate(typeof(AuthPage));
-                return;
-            }
-
-            _viewModel.LoadUserTickets();
+            // ViewModel handles the auth check and data loading
+            _viewModel.OnNavigatedTo();
         }
 
-        private async void CancelButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Reacts to ViewModel state changes by showing the appropriate dialog.
+        /// The ViewModel decides WHAT happened; the View decides HOW to display it.
+        /// </summary>
+        private async void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (sender is not Button button || button.Tag is not Ticket ticket ||
-                string.Equals(ticket.Status, CancelledStatus, StringComparison.OrdinalIgnoreCase))
-                return;
-
-            // Delegate cancellation eligibility check to ViewModel/Service
-            var (canCancel, reason) = _viewModel.CanCancelTicket(ticket);
-            if (!canCancel)
+            // When cancellation fails (eligibility check), show error dialog
+            if (e.PropertyName == nameof(_viewModel.CancellationSucceeded) &&
+                _viewModel.CancellationSucceeded == false)
             {
                 var errorDialog = new ContentDialog
                 {
                     Title = "Cannot cancel",
-                    Content = reason,
+                    Content = _viewModel.CancellationMessage,
                     CloseButtonText = "OK",
                     XamlRoot = this.XamlRoot
                 };
-
                 await errorDialog.ShowAsync();
-                return;
             }
 
-            var dialog = new ContentDialog
+            // When cancellation succeeds, show confirmation dialog
+            if (e.PropertyName == nameof(_viewModel.CancellationSucceeded) &&
+                _viewModel.CancellationSucceeded == true)
             {
-                Title = "Cancel ticket",
-                Content = $"Are you sure you want to cancel ticket #{ticket.TicketId}?",
-                PrimaryButtonText = "Yes, cancel",
-                CloseButtonText = "No",
-                XamlRoot = this.XamlRoot
-            };
-
-            var result = await dialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                _viewModel.CancelTicket(ticket);
-
                 var resultDialog = new ContentDialog
                 {
                     Title = "Ticket cancelled",
-                    Content = "The ticket status was updated to Cancelled.",
+                    Content = _viewModel.CancellationMessage,
                     CloseButtonText = "OK",
                     XamlRoot = this.XamlRoot
                 };
-
                 await resultDialog.ShowAsync();
+            }
+
+            // When a ticket is pending cancellation, show confirmation prompt
+            if (e.PropertyName == nameof(_viewModel.PendingCancelTicket) &&
+                _viewModel.PendingCancelTicket != null)
+            {
+                var dialog = new ContentDialog
+                {
+                    Title = "Cancel ticket",
+                    Content = $"Are you sure you want to cancel ticket #{_viewModel.PendingCancelTicket.TicketId}?",
+                    PrimaryButtonText = "Yes, cancel",
+                    CloseButtonText = "No",
+                    XamlRoot = this.XamlRoot
+                };
+
+                var result = await dialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    _viewModel.ConfirmCancellation();
+                }
+                else
+                {
+                    _viewModel.DeclineCancellation();
+                }
             }
         }
     }

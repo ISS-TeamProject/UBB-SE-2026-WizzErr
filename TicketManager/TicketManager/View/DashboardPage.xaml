@@ -110,8 +110,8 @@
                                     <Button Content="Cancel" 
                                             Background="#FF4444" 
                                             Foreground="White"
-                                            Click="CancelButton_Click"
-                                            Tag="{Binding}"
+                                            Command="{Binding ElementName=RootPage, Path=DataContext.CancelTicketCommand}"
+                                            CommandParameter="{Binding}"
                                             HorizontalAlignment="Stretch" />
                                 </StackPanel>
                             </Grid>
