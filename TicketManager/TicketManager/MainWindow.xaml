@@ -33,8 +33,6 @@
 				<NavigationViewItem Content="Search" Tag="TicketManager.View.FlightSearchPage" />
 				<NavigationViewItem Content="Dashboard" Tag="TicketManager.View.DashboardPage" />
 				<NavigationViewItem Content="Memberships" Tag="TicketManager.View.MembershipsPage" />
-				<NavigationViewItem Content="Services" Tag="TicketManager.View.ServicesPage" />
-				<NavigationViewItem Content="Support" Tag="TicketManager.View.SupportPage" />
 			</NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>

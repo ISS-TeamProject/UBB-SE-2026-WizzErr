@@ -88,11 +88,11 @@ namespace TicketManager.ViewModel
             set { _membershipSavings = value; OnPropertyChanged(); }
         }
 
-        public string BasePricePerPersonDisplay => $"{BasePricePerPerson:0.00} â‚¬";
-        public string BasePriceTotalDisplay => $"{BasePriceTotal:0.00} â‚¬";
-        public string AddOnsTotalDisplay => $"{AddOnsTotal:0.00} â‚¬";
-        public string MembershipSavingsDisplay => $"-{MembershipSavings:0.00} â‚¬";
-        public string FinalTotalPriceDisplay => $"{FinalTotalPrice:0.00} â‚¬";
+        public string BasePricePerPersonDisplay => $"{BasePricePerPerson:0.00} €";
+        public string BasePriceTotalDisplay => $"{BasePriceTotal:0.00} €";
+        public string AddOnsTotalDisplay => $"{AddOnsTotal:0.00} €";
+        public string MembershipSavingsDisplay => $"-{MembershipSavings:0.00} €";
+        public string FinalTotalPriceDisplay => $"{FinalTotalPrice:0.00} €";
 
         private string _validationMessage;
         public string ValidationMessage
@@ -124,6 +124,11 @@ namespace TicketManager.ViewModel
             _bookingService = bookingService;
             _pricingService = pricingService;
             _navigationService = navigationService;
+            _currentFlight = null!; // Set during OnNavigatedToAsync
+            _currentUser = null!;   // Set during OnNavigatedToAsync
+            _validationMessage = string.Empty;
+            BookingConfirmed += (s, e) => { }; // Dummy to avoid null warning
+
             AddPassengerCommand = new RelayCommand(_ => AddPassenger());
             RemovePassengerCommand = new RelayCommand(param => RemovePassenger(param as PassengerFormViewModel));
             _confirmBookingCommand = new RelayCommand(async _ => await ConfirmBookingAsync(), _ => CanConfirmBooking);
@@ -134,11 +139,10 @@ namespace TicketManager.ViewModel
         public ICommand RemovePassengerCommand { get; }
         public ICommand ConfirmBookingCommand { get; }
 
-        /// <summary>
-        /// Parses the navigation parameter and initializes the booking.
-        /// Returns true if initialization succeeded, false if redirected to auth.
-        /// This replaces the parameter parsing that was in BookingPage.xaml.cs OnNavigatedTo.
-        /// </summary>
+
+
+
+
         public async Task<bool> OnNavigatedToAsync(object parameter)
         {
             Flight selectedFlight = null;
@@ -182,7 +186,6 @@ namespace TicketManager.ViewModel
             CurrentFlight = flight;
             CurrentUser = user;
 
-            // Load AddOns
             var addons = await _bookingService.GetAvailableAddOnsAsync();
             AvailableAddOns.Clear();
             foreach (var addon in addons)
@@ -190,7 +193,6 @@ namespace TicketManager.ViewModel
                 AvailableAddOns.Add(addon);
             }
 
-            // Load Occupied Seats
             var seats = await _bookingService.GetOccupiedSeatsAsync(flight?.FlightId ?? 0);
             OccupiedSeats.Clear();
             foreach (var seat in seats)
@@ -198,7 +200,6 @@ namespace TicketManager.ViewModel
                 OccupiedSeats.Add(seat);
             }
 
-            // Delegate capacity calculation to service
             int capacity = flight?.Route?.Capacity ?? 180;
             MaxPassengers = _bookingService.CalculateMaxPassengers(capacity, OccupiedSeats.Count, requestedPassengerCount);
 
@@ -302,7 +303,7 @@ namespace TicketManager.ViewModel
             }
             else
             {
-                // Delegate validation to service
+
                 var passengerData = MapPassengersToData();
                 ValidationMessage = _bookingService.ValidatePassengers(passengerData);
                 _passengersValid = string.IsNullOrEmpty(ValidationMessage);
@@ -320,7 +321,6 @@ namespace TicketManager.ViewModel
             var passengerData = MapPassengersToData();
             var tickets = _bookingService.CreateTickets(CurrentFlight, CurrentUser, passengerData, basePrice);
 
-            // Delegate price calculation to PricingService
             var breakdown = _pricingService.CalculatePriceBreakdown(CurrentFlight, CurrentUser, tickets);
 
             BasePricePerPerson = breakdown.BasePricePerPerson;

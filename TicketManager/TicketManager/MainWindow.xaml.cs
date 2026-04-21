@@ -17,7 +17,7 @@ namespace TicketManager
         {
             this.InitializeComponent();
 
-            // Get the auth service from the centralized composition root â€” 
+            // Get the auth service from the centralized composition root a€” 
             // no more constructing DatabaseConnectionFactory/repos here.
             _authService = App.AuthService;
 

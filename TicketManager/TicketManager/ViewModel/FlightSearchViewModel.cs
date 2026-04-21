@@ -15,7 +15,6 @@ namespace TicketManager.ViewModel
         private readonly IFlightSearchService _searchService;
         private readonly INavigationService _navigationService;
 
-        // Proprietăți legate la input-urile din UI
         private string _location;
         public string Location
         {
@@ -30,7 +29,6 @@ namespace TicketManager.ViewModel
             set { _isDeparture = value; OnPropertyChanged(); }
         }
 
-        // WinUI CalendarDatePicker folosește DateTimeOffset
         private DateTimeOffset? _flightDate;
         public DateTimeOffset? FlightDate
         {
@@ -52,10 +50,8 @@ namespace TicketManager.ViewModel
             set { _searchResultMessage = value; OnPropertyChanged(); }
         }
 
-        // Lista de zboruri care va fi afișată automat în DataGrid/ListView
         public ObservableCollection<FlightDisplayModel> AvailableFlights { get; set; }
 
-        // Comanda pentru butonul Search
         public ICommand SearchCommand { get; }
         public ICommand BookFlightCommand { get; }
 
@@ -64,15 +60,16 @@ namespace TicketManager.ViewModel
             _searchService = searchService;
             _navigationService = navigationService;
             AvailableFlights = new ObservableCollection<FlightDisplayModel>();
+            _location = string.Empty;
+            _passengers = string.Empty;
+            _searchResultMessage = string.Empty;
 
-            // Legăm butonul de metoda ExecuteSearch
             SearchCommand = new RelayCommand(_ => ExecuteSearch());
             BookFlightCommand = new RelayCommand(param => ExecuteBookFlight(param as FlightDisplayModel));
         }
 
-        /// <summary>
-        /// Called by the View when navigated to, so the ViewModel can process the parameter.
-        /// </summary>
+
+
         public void OnNavigatedTo(object parameter)
         {
             if (parameter is User user)
@@ -83,15 +80,13 @@ namespace TicketManager.ViewModel
 
         private void ExecuteSearch()
         {
-            // Curățăm rezultatele vechi
+
             AvailableFlights.Clear();
             SearchResultMessage = string.Empty;
 
-            // Validări minime
             if (string.IsNullOrWhiteSpace(Location))
                 return;
 
-            // Conform comentariilor din FlightRepository, tipul rutei este "DEP" sau "ARR"
             string routeType = IsDeparture ? "DEP" : "ARR";
             DateTime? date = FlightDate?.Date;
 
@@ -109,13 +104,12 @@ namespace TicketManager.ViewModel
                 }
             }
 
-            // Apelăm Serviciul creat la Task-ul 1
             var results = _searchService.SearchFlights(Location, routeType, date, requestedPassengers);
             bool hasResults = false;
 
             foreach (var flight in results)
             {
-                // Împachetăm zborul brut în modelul de afișare (formatat)
+
                 AvailableFlights.Add(new FlightDisplayModel(flight));
                 hasResults = true;
             }
@@ -126,11 +120,10 @@ namespace TicketManager.ViewModel
             }
         }
 
-        /// <summary>
-        /// Handles the Book button click. Parses passenger count, checks auth,
-        /// and navigates to the appropriate page. Previously this logic lived
-        /// in FlightSearchPage.xaml.cs BookButton_Click.
-        /// </summary>
+
+
+
+
         private void ExecuteBookFlight(FlightDisplayModel selectedFlightDisplay)
         {
             if (selectedFlightDisplay?.Flight == null)

@@ -32,7 +32,7 @@ namespace TicketManager.View
 
         /// <summary>
         /// Shows error/success dialogs when the ViewModel reports them.
-        /// This is the only "logic" left in the View â€” and it's pure UI.
+        /// This is the only "logic" left in the View a€” and it's pure UI.
         /// </summary>
         private async void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

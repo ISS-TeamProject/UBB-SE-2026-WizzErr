@@ -5,14 +5,14 @@ namespace TicketManager.Domain
     public class Flight
     {
         public int FlightId { get; set; }
-        public Route Route { get; set; }
-        public Gate Gate { get; set; }
+        public Route? Route { get; set; }
+        public Gate? Gate { get; set; }
         public DateTime Date { get; set; }
-        public string FlightNr { get; set; }
+        public string? FlightNr { get; set; }
 
         public Flight() { }
 
-        public Flight(Route route, Gate gate, DateTime date, string flightNr)
+        public Flight(Route? route, Gate? gate, DateTime date, string? flightNr)
         {
             Route = route;
             Gate = gate;

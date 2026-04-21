@@ -1,0 +1,6 @@
+C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Unit\obj\x64\Debug\net8.0\TicketManager.Tests.Unit.csproj.AssemblyReference.cache
+C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Unit\obj\x64\Debug\net8.0\TicketManager.Tests.Unit.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Unit\obj\x64\Debug\net8.0\TicketManager.Tests.Unit.AssemblyInfoInputs.cache
+C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Unit\obj\x64\Debug\net8.0\TicketManager.Tests.Unit.AssemblyInfo.cs
+C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Unit\obj\x64\Debug\net8.0\TicketManager.Tests.Unit.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Unit\obj\x64\Debug\net8.0\TicketManager.Tests.Unit.sourcelink.json

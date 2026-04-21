@@ -10,20 +10,17 @@ namespace TicketManager.ViewModel
         private readonly IAuthService _authService;
         private readonly INavigationService _navigationService;
 
-        // ── Input fields (bound two-way from XAML) ──────────────────
         private string _emailText;
         private string _passwordText;
         private string _usernameText;
         private string _phoneText;
 
-        // ── Internal state ──────────────────────────────────────────
         private string _errorMessage;
         private string _successMessage;
         private bool _isLoginMode = true;
         private bool _isAuthenticated;
         private User _authenticatedUser;
 
-        // ── UI text properties (View binds to these instead of setting them directly) ──
         private string _titleText = "Welcome to WizzErr";
         private string _subtitleText = "Please sign in to manage your tickets";
         private string _actionButtonLabel = "Sign In";
@@ -36,12 +33,10 @@ namespace TicketManager.ViewModel
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
-            // Single command for both Login and Register — the ViewModel decides which to execute
             ActionCommand = new RelayCommand(_ => ExecuteAction(), _ => IsFormValid);
             ToggleModeCommand = new RelayCommand(_ => ToggleMode());
         }
 
-        // ── Input properties ────────────────────────────────────────
 
         public string EmailText
         {
@@ -67,7 +62,6 @@ namespace TicketManager.ViewModel
             set { _phoneText = value; OnPropertyChanged(); RaiseActionCanExecuteChanged(); }
         }
 
-        // ── State properties ────────────────────────────────────────
 
         public string ErrorMessage
         {
@@ -99,7 +93,6 @@ namespace TicketManager.ViewModel
             set { _authenticatedUser = value; OnPropertyChanged(); }
         }
 
-        // ── UI text properties (replacing code-behind UI manipulation) ──
 
         public string TitleText
         {
@@ -137,12 +130,10 @@ namespace TicketManager.ViewModel
             set { _isRegisterFieldsVisible = value; OnPropertyChanged(); }
         }
 
-        // ── Validation (replaces ValidateInput() from code-behind) ──
 
-        /// <summary>
-        /// Determines if the form has enough input to attempt the action.
-        /// Previously this logic lived in AuthPage.xaml.cs ValidateInput().
-        /// </summary>
+
+
+
         public bool IsFormValid
         {
             get
@@ -162,18 +153,15 @@ namespace TicketManager.ViewModel
             }
         }
 
-        // ── Commands ────────────────────────────────────────────────
 
         public ICommand ActionCommand { get; }
         public ICommand ToggleModeCommand { get; }
 
-        // ── Command implementations ─────────────────────────────────
 
-        /// <summary>
-        /// Handles the main action button (Sign In or Register).
-        /// After successful login, navigates to the appropriate page.
-        /// Previously this orchestration lived in AuthPage.xaml.cs ActionButton_Click.
-        /// </summary>
+
+
+
+
         private void ExecuteAction()
         {
             if (IsLoginMode)
@@ -202,17 +190,16 @@ namespace TicketManager.ViewModel
 
                 if (string.IsNullOrWhiteSpace(ErrorMessage))
                 {
-                    // Switch back to login mode after successful registration
+
                     SetLoginMode();
                 }
             }
         }
 
-        /// <summary>
-        /// Toggles between Login and Register modes.
-        /// Previously this logic lived in AuthPage.xaml.cs ToggleMode_Click,
-        /// including the direct UI element manipulation.
-        /// </summary>
+
+
+
+
         private void ToggleMode()
         {
             if (IsLoginMode)
@@ -250,7 +237,6 @@ namespace TicketManager.ViewModel
             IsRegisterFieldsVisible = true;
         }
 
-        // ── Core auth methods (unchanged, just made private) ────────
 
         private void Login()
         {

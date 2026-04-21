@@ -19,10 +19,9 @@ namespace TicketManager.Service
 
         public IEnumerable<Membership> GetAllMemberships()
         {
-            // 1. Luăm toate abonamentele
+
             var memberships = _membershipRepository.GetAllMemberships().ToList();
 
-            // 2. Pentru fiecare abonament, mergem în baza de date și îi aducem și reducerile extra
             foreach (var membership in memberships)
             {
                 membership.AddonDiscounts = _membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();

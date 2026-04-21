@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <WindowsAppSDKExcludeAutoInitialize>true</WindowsAppSDKExcludeAutoInitialize>
+    <WindowsAppSDKExcludeBootstrapAutoInitialize>true</WindowsAppSDKExcludeBootstrapAutoInitialize>
+  </PropertyGroup>
+</Project>

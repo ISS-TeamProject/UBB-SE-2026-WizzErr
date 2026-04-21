@@ -12,6 +12,10 @@ namespace TicketManager.ViewModel
         private readonly ICancellationService _cancellationService;
         private readonly INavigationService _navigationService;
 
+        public string WelcomeMessage => UserSession.CurrentUser != null 
+            ? $"Welcome, {UserSession.CurrentUser.Username}!" 
+            : "Welcome!";
+
         public ObservableCollection<Ticket> MyTickets { get; set; }
         public ObservableCollection<string> TicketFilters { get; }
 
@@ -28,7 +32,6 @@ namespace TicketManager.ViewModel
             }
         }
 
-        // ── Cancellation result state (View observes these to show dialogs) ──
         private string _cancellationMessage;
         public string CancellationMessage
         {
@@ -37,21 +40,20 @@ namespace TicketManager.ViewModel
         }
 
         private bool? _cancellationSucceeded;
-        /// <summary>
-        /// null = no cancellation attempted, true = cancelled, false = cannot cancel.
-        /// </summary>
+
+
+
         public bool? CancellationSucceeded
         {
             get => _cancellationSucceeded;
             set { _cancellationSucceeded = value; OnPropertyChanged(); }
         }
 
-        // ── The ticket that is pending confirmation from the user ──
         private Ticket _pendingCancelTicket;
-        /// <summary>
-        /// When set to a non-null ticket, the View should show a confirmation dialog.
-        /// After the user responds, the View calls ConfirmCancellation() or clears this.
-        /// </summary>
+
+
+
+
         public Ticket PendingCancelTicket
         {
             get => _pendingCancelTicket;
@@ -89,11 +91,10 @@ namespace TicketManager.ViewModel
                 MyTickets.Add(ticket);
         }
 
-        /// <summary>
-        /// Handles the cancel command. Checks eligibility via the service, then
-        /// either reports an error or sets PendingCancelTicket to request user confirmation.
-        /// This replaces the code-behind's multi-step orchestration.
-        /// </summary>
+
+
+
+
         private void ExecuteCancelTicket(object parameter)
         {
             CancellationSucceeded = null;
@@ -113,13 +114,11 @@ namespace TicketManager.ViewModel
                 return;
             }
 
-            // Request confirmation from the user (View will show a dialog)
             PendingCancelTicket = ticket;
         }
 
-        /// <summary>
-        /// Called by the View after the user confirms they want to cancel.
-        /// </summary>
+
+
         public void ConfirmCancellation()
         {
             if (PendingCancelTicket == null)
@@ -133,17 +132,15 @@ namespace TicketManager.ViewModel
             CancellationMessage = "The ticket status was updated to Cancelled.";
         }
 
-        /// <summary>
-        /// Called by the View if the user declines the cancellation.
-        /// </summary>
+
+
         public void DeclineCancellation()
         {
             PendingCancelTicket = null;
         }
 
-        /// <summary>
-        /// Called by the View when navigated to. Checks auth and refreshes data.
-        /// </summary>
+
+
         public bool OnNavigatedTo()
         {
             if (UserSession.CurrentUser == null)
