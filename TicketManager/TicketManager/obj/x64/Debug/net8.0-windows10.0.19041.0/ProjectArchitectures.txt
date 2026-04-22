@@ -1,1 +1,1 @@
-C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager\TicketManager.csproj;x64
+C:\Users\Gabi\Desktop\UBB-SE-2026-WizzErr\TicketManager\TicketManager\TicketManager.csproj;x64

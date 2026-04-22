@@ -7,17 +7,17 @@ namespace TicketManager.Repository
 {
     public class FlightRepository : IFlightRepository
     {
-        private readonly DatabaseConnectionFactory _dbFactory;
+        private readonly DatabaseConnectionFactory dbFactory;
 
         public FlightRepository(DatabaseConnectionFactory dbFactory)
         {
-            _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
         }
 
         public Flight GetFlightById(int id)
         {
             Flight flight = null;
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -39,7 +39,9 @@ namespace TicketManager.Repository
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
+                        {
                             flight = MapFlight(reader);
+                        }
                     }
                 }
             }
@@ -49,7 +51,7 @@ namespace TicketManager.Repository
         public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime? date)
         {
             var flights = new List<Flight>();
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -76,7 +78,9 @@ namespace TicketManager.Repository
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
+                        {
                             flights.Add(MapFlight(reader));
+                        }
                     }
                 }
             }
@@ -85,7 +89,7 @@ namespace TicketManager.Repository
 
         public int GetOccupiedSeatCount(int flightId)
         {
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"

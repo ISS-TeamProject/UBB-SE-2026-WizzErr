@@ -24,7 +24,7 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatTicketsCanBeCreatedAndSaved()
+    public async Task TestThatTicketsCanBeCreatedAndSaved()
     {
         var flightId = GetFirstAvailableFlightId();
         var flight = new Flight { FlightId = flightId };
@@ -33,22 +33,22 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
         _userRepository.AddUser(user);
         var dbUser = _userRepository.GetByEmail(user.Email);
 
-        var passengers = new List<PassengerData> 
-        { 
+        var passengers = new List<PassengerData>
+        {
             new PassengerData { FirstName = "Mircea", LastName = "Popa", Email = user.Email, Phone = "0722334455", SelectedSeat = $"{code}_1A" }
         };
 
         var tickets = _bookingService.CreateTickets(flight, dbUser!, passengers, 150.0f);
-        var saveResult = _bookingService.SaveTicketsAsync(tickets).Result;
+        var saveResult = await _bookingService.SaveTicketsAsync(tickets);
 
         saveResult.Should().BeTrue();
         tickets.Should().HaveCount(1);
     }
 
     [Fact]
-    public void TestThatAvailableAddOnsCanBeRetrieved()
+    public async Task TestThatAvailableAddOnsCanBeRetrieved()
     {
-        var addOns = _bookingService.GetAvailableAddOnsAsync().Result;
+        var addOns = await _bookingService.GetAvailableAddOnsAsync();
         addOns.Should().NotBeNull();
     }
 

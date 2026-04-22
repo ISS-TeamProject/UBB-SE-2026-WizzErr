@@ -3,9 +3,11 @@ namespace TicketManager.Domain
     public class Gate
     {
         public int GateId { get; set; }
-        public string GateName { get; set; }
+        public string GateName { get; set; } = string.Empty;
 
-        public Gate() { }
+        public Gate()
+        {
+        }
 
         public Gate(string gateName)
         {

@@ -11,29 +11,31 @@ namespace TicketManager.Service
     /// </summary>
     public class NavigationService : INavigationService
     {
-        private Frame _frame;
+        private Frame frame;
 
         public void Initialize(Frame frame)
         {
-            _frame = frame ?? throw new ArgumentNullException(nameof(frame));
+            this.frame = frame ?? throw new ArgumentNullException(nameof(frame));
         }
 
         public void NavigateTo(Type pageType, object parameter = null)
         {
-            if (_frame == null)
+            if (frame == null)
+            {
                 throw new InvalidOperationException("NavigationService has not been initialized with a Frame.");
+            }
 
-            _frame.Navigate(pageType, parameter);
+            frame.Navigate(pageType, parameter);
         }
 
         public void GoBack()
         {
-            if (_frame != null && _frame.CanGoBack)
+            if (frame != null && frame.CanGoBack)
             {
-                _frame.GoBack();
+                frame.GoBack();
             }
         }
 
-        public bool CanGoBack => _frame?.CanGoBack ?? false;
+        public bool CanGoBack => frame?.CanGoBack ?? false;
     }
 }

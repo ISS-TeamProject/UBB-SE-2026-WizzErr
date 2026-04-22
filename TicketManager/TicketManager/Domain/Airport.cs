@@ -3,10 +3,12 @@ namespace TicketManager.Domain
     public class Airport
     {
         public int AirportId { get; set; }
-        public string AirportCode { get; set; }
-        public string City { get; set; }
+        public string AirportCode { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
 
-        public Airport() { }
+        public Airport()
+        {
+        }
 
         public Airport(string airportCode, string city)
         {

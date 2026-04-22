@@ -16,8 +16,9 @@ namespace TicketManager.Service
 {
     public class NavigationService : INavigationService
     {
-        public void NavigateTo(Type pageType, object parameter = null) { }
+        public void NavigateTo(Type pageType, object? parameter = null) { }
         public void GoBack() { }
         public bool CanGoBack => false;
     }
 }
+

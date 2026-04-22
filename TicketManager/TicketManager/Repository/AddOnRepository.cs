@@ -8,17 +8,17 @@ namespace TicketManager.Repository
 {
     public class AddOnRepository : IAddOnRepository
     {
-        private readonly DatabaseConnectionFactory _dbFactory;
+        private readonly DatabaseConnectionFactory dbFactory;
 
         public AddOnRepository(DatabaseConnectionFactory dbFactory)
         {
-            _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
         }
 
         public IEnumerable<AddOn> GetAllAddOns()
         {
             var addons = new List<AddOn>();
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT addon_id, name, base_price FROM AddOns";
@@ -37,23 +37,26 @@ namespace TicketManager.Repository
                     }
                 }
             }
+
             return addons;
         }
 
         public IEnumerable<AddOn> GetAddOnsByIds(IEnumerable<int> ids)
         {
             var addons = new List<AddOn>();
-            
-            if (ids == null || !ids.Any())
-                return addons;
 
-            using (var connection = _dbFactory.GetConnection())
+            if (ids == null || !ids.Any())
+            {
+                return addons;
+            }
+
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
 
                 var parameters = ids.Select((id, index) => new { ParameterName = $"@Id{index}", Value = id }).ToList();
                 string inClause = string.Join(", ", parameters.Select(p => p.ParameterName));
-                
+
                 string query = $"SELECT addon_id, name, base_price FROM AddOns WHERE addon_id IN ({inClause})";
 
                 using (var command = new SqlCommand(query, connection))
@@ -77,6 +80,7 @@ namespace TicketManager.Repository
                     }
                 }
             }
+
             return addons;
         }
     }

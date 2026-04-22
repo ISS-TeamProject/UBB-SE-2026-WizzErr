@@ -11,18 +11,18 @@ namespace TicketManager.Repository
     {
         private const string CancelledStatus = "Cancelled";
 
-        private readonly DatabaseConnectionFactory _dbFactory;
+        private readonly DatabaseConnectionFactory dbFactory;
 
         public TicketRepository(DatabaseConnectionFactory dbFactory)
         {
-            _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
         }
 
         public IEnumerable<Ticket> GetTicketsByUserId(int userId)
         {
             var tickets = new List<Ticket>();
             var ticketById = new Dictionary<int, Ticket>();
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -63,7 +63,7 @@ namespace TicketManager.Repository
                                 Airport = airport
                             };
 
-                            Gate gate = null;
+                            Gate? gate = null;
                             if (!reader.IsDBNull(reader.GetOrdinal("gate_name")))
                             {
                                 gate = new Gate
@@ -117,7 +117,9 @@ namespace TicketManager.Repository
                     using (var addOnCommand = new SqlCommand(addOnQuery, connection))
                     {
                         foreach (var param in parameters)
+                        {
                             addOnCommand.Parameters.AddWithValue(param.ParameterName, param.Value);
+                        }
 
                         using (var addOnReader = addOnCommand.ExecuteReader())
                         {
@@ -125,7 +127,9 @@ namespace TicketManager.Repository
                             {
                                 int ticketId = addOnReader.GetInt32(addOnReader.GetOrdinal("ticket_id"));
                                 if (!ticketById.TryGetValue(ticketId, out var ticket))
+                                {
                                     continue;
+                                }
 
                                 ticket.SelectedAddOns.Add(new AddOn
                                 {
@@ -138,12 +142,13 @@ namespace TicketManager.Repository
                     }
                 }
             }
+
             return tickets;
         }
 
         public void AddTicket(Ticket ticket)
         {
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -153,8 +158,8 @@ namespace TicketManager.Repository
 
                 using (var command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", ticket.User.UserId);
-                    command.Parameters.AddWithValue("@FlightId", ticket.Flight.FlightId);
+                    command.Parameters.AddWithValue("@UserId", ticket.User!.UserId);
+                    command.Parameters.AddWithValue("@FlightId", ticket.Flight!.FlightId);
                     command.Parameters.AddWithValue("@Seat", ticket.Seat ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Price", ticket.Price);
                     command.Parameters.AddWithValue("@Status", ticket.Status ?? (object)DBNull.Value);
@@ -170,7 +175,7 @@ namespace TicketManager.Repository
 
         public void UpdateTicketStatus(int ticketId, string status)
         {
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = "UPDATE Tickets SET status = @Status WHERE ticket_id = @TicketId";
@@ -186,9 +191,12 @@ namespace TicketManager.Repository
 
         public void AddTicketAddOns(int ticketId, IEnumerable<int> addOnIds)
         {
-            if (addOnIds == null) return;
+            if (addOnIds == null)
+            {
+                return;
+            }
 
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -209,9 +217,10 @@ namespace TicketManager.Repository
                                 command.ExecuteNonQuery();
                             }
                         }
+
                         transaction.Commit();
                     }
-                    catch
+                    catch (Exception)
                     {
                         transaction.Rollback();
                         throw;
@@ -223,7 +232,7 @@ namespace TicketManager.Repository
         public IEnumerable<string> GetOccupiedSeats(int flightId)
         {
             var seats = new List<string>();
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = $"SELECT seat FROM Tickets WHERE flight_id = @FlightId AND status != '{CancelledStatus}' AND seat IS NOT NULL";
@@ -235,16 +244,19 @@ namespace TicketManager.Repository
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
+                        {
                             seats.Add(reader.GetString(reader.GetOrdinal("seat")));
+                        }
                     }
                 }
             }
+
             return seats;
         }
 
         public async Task<bool> SaveTicketsWithAddOnsAsync(List<Ticket> tickets)
         {
-            using var connection = _dbFactory.GetConnection();
+            using var connection = dbFactory.GetConnection();
             await connection.OpenAsync();
             using var transaction = connection.BeginTransaction();
 
@@ -268,7 +280,9 @@ namespace TicketManager.Repository
 
                         int existingSeatCount = Convert.ToInt32(await seatCheckCmd.ExecuteScalarAsync() ?? 0);
                         if (existingSeatCount > 0)
+                        {
                             throw new InvalidOperationException("Selected seat is no longer available.");
+                        }
                     }
 
                     string insertTicketQuery = @"
@@ -282,9 +296,9 @@ namespace TicketManager.Repository
                     cmd.Parameters.AddWithValue("@flightId", ticket.Flight?.FlightId ?? 0);
                     cmd.Parameters.AddWithValue("@seat", ticket.Seat ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@price", (decimal)persistedPrice);
-                    cmd.Parameters.AddWithValue("@status", ticket.Status);
-                    cmd.Parameters.AddWithValue("@fName", ticket.PassengerFirstName);
-                    cmd.Parameters.AddWithValue("@lName", ticket.PassengerLastName);
+                    cmd.Parameters.AddWithValue("@status", ticket.Status ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@fName", ticket.PassengerFirstName ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@lName", ticket.PassengerLastName ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@email", ticket.PassengerEmail ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@phone", ticket.PassengerPhone ?? (object)DBNull.Value);
 
@@ -310,10 +324,10 @@ namespace TicketManager.Repository
                 transaction.Commit();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 transaction.Rollback();
-                throw; // Rethrow so we can see the error in tests
+                throw;
             }
         }
     }

@@ -46,35 +46,38 @@ namespace TicketManager.ViewModel
 
     public class MembershipViewModel : ViewModelBase
     {
-        private readonly IMembershipService _membershipService;
-        private readonly INavigationService _navigationService;
-
+        private readonly IMembershipService membershipService;
+        private readonly INavigationService navigationService;
         public ObservableCollection<MembershipDisplayModel> Memberships { get; set; }
 
-        private string _purchaseResultMessage;
+        private string purchaseResultMessage;
         public string PurchaseResultMessage
         {
-            get => _purchaseResultMessage;
-            set { _purchaseResultMessage = value; OnPropertyChanged(); }
+            get => purchaseResultMessage;
+            set
+            {
+                purchaseResultMessage = value;
+                OnPropertyChanged();
+            }
         }
 
-        private bool? _purchaseSucceeded;
-
-
-
-
+        private bool? purchaseSucceeded;
         public bool? PurchaseSucceeded
         {
-            get => _purchaseSucceeded;
-            set { _purchaseSucceeded = value; OnPropertyChanged(); }
+            get => purchaseSucceeded;
+            set
+            {
+                purchaseSucceeded = value;
+                OnPropertyChanged();
+            }
         }
 
         public ICommand PurchaseCommand { get; }
 
         public MembershipViewModel(IMembershipService membershipService, INavigationService navigationService)
         {
-            _membershipService = membershipService;
-            _navigationService = navigationService;
+            this.membershipService = membershipService;
+            this.navigationService = navigationService;
             Memberships = new ObservableCollection<MembershipDisplayModel>();
 
             PurchaseCommand = new RelayCommand(param => ExecutePurchase(param));
@@ -84,35 +87,31 @@ namespace TicketManager.ViewModel
 
         private void LoadMemberships()
         {
-            var memberships = _membershipService.GetAllMemberships();
+            var memberships = membershipService.GetAllMemberships();
             foreach (var m in memberships)
             {
                 Memberships.Add(new MembershipDisplayModel(m));
             }
         }
-
-
-
-
-
         private void ExecutePurchase(object parameter)
         {
-
             PurchaseSucceeded = null;
             PurchaseResultMessage = string.Empty;
 
             if (UserSession.CurrentUser == null)
             {
-                _navigationService.NavigateTo(typeof(View.AuthPage));
+                navigationService.NavigateTo(typeof(View.AuthPage));
                 return;
             }
 
             if (parameter is not int membershipId)
+            {
                 return;
+            }
 
             try
             {
-                var updatedMembership = _membershipService.UpgradeUserMembership(
+                var updatedMembership = membershipService.UpgradeUserMembership(
                     UserSession.CurrentUser.UserId, membershipId);
                 UserSession.CurrentUser.Membership = updatedMembership;
 

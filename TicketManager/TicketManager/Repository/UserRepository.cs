@@ -7,19 +7,19 @@ namespace TicketManager.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DatabaseConnectionFactory _dbFactory;
-        private readonly IMembershipRepository _membershipRepository;
+        private readonly DatabaseConnectionFactory dbFactory;
+        private readonly IMembershipRepository membershipRepository;
 
         public UserRepository(DatabaseConnectionFactory dbFactory, IMembershipRepository membershipRepository)
         {
-            _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
-            _membershipRepository = membershipRepository ?? throw new ArgumentNullException(nameof(membershipRepository));
+            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.membershipRepository = membershipRepository ?? throw new ArgumentNullException(nameof(membershipRepository));
         }
 
         public User GetById(int id)
         {
             User user = null;
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -35,7 +35,9 @@ namespace TicketManager.Repository
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
+                        {
                             user = MapUser(reader);
+                        }
                     }
                 }
             }
@@ -45,7 +47,7 @@ namespace TicketManager.Repository
         public User GetByEmail(string email)
         {
             User user = null;
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -61,7 +63,9 @@ namespace TicketManager.Repository
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
+                        {
                             user = MapUser(reader);
+                        }
                     }
                 }
             }
@@ -70,7 +74,7 @@ namespace TicketManager.Repository
 
         public void AddUser(User user)
         {
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -91,7 +95,7 @@ namespace TicketManager.Repository
 
         public void UpdateUserMembership(int userId, int newMembershipId)
         {
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -122,7 +126,7 @@ namespace TicketManager.Repository
                     FlightDiscountPercentage = (float)reader.GetByte(reader.GetOrdinal("flight_discount_percentage"))
                 };
 
-                membership.AddonDiscounts = _membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();
+                membership.AddonDiscounts = membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();
             }
 
             return new User(
@@ -131,8 +135,7 @@ namespace TicketManager.Repository
                 reader.IsDBNull(reader.GetOrdinal("phone")) ? null : reader.GetString(reader.GetOrdinal("phone")),
                 reader.GetString(reader.GetOrdinal("username")),
                 reader.GetString(reader.GetOrdinal("password_hash")),
-                membership
-            );
+                membership);
         }
     }
 }

@@ -6,11 +6,11 @@ namespace TicketManager.Service
 {
     public class CancellationService : ICancellationService
     {
-        private readonly ITicketRepository _ticketRepository;
+        private readonly ITicketRepository ticketRepository;
 
         public CancellationService(ITicketRepository ticketRepository)
         {
-            _ticketRepository = ticketRepository ?? throw new ArgumentNullException(nameof(ticketRepository));
+            this.ticketRepository = ticketRepository ?? throw new ArgumentNullException(nameof(ticketRepository));
         }
 
         public (bool CanCancel, string Reason) CanCancelTicket(Ticket ticket)
@@ -35,7 +35,7 @@ namespace TicketManager.Service
 
         public void CancelTicket(int ticketId)
         {
-            _ticketRepository.UpdateTicketStatus(ticketId, "Cancelled");
+            ticketRepository.UpdateTicketStatus(ticketId, "Cancelled");
         }
     }
 }

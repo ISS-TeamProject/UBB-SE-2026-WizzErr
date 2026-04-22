@@ -12,7 +12,9 @@ namespace TicketManager.Domain
         public DateTime ArrivalTime { get; set; }
         public int Capacity { get; set; }
 
-        public Route() { }
+        public Route()
+        {
+        }
 
         public Route(Company company, Airport airport, string routeType, DateTime departureTime, DateTime arrivalTime, int capacity)
         {
