@@ -33,7 +33,8 @@
 
   <ItemGroup>
     <Compile Include="..\TicketManager\Domain\**\*.cs" Link="LinkedSources\Domain\%(RecursiveDir)%(FileName)%(Extension)" />
-    <Compile Include="..\TicketManager\Service\**\*.cs" Exclude="..\TicketManager\Service\NavigationService.cs;..\TicketManager\Service\INavigationService.cs" Link="LinkedSources\Service\%(RecursiveDir)%(FileName)%(Extension)" />
+    <Compile Include="..\TicketManager\Service\**\*.cs" Exclude="..\TicketManager\Service\NavigationService.cs" Link="LinkedSources\Service\%(RecursiveDir)%(FileName)%(Extension)" />
     <Compile Include="..\TicketManager\Repository\**\*.cs" Link="LinkedSources\Repository\%(RecursiveDir)%(FileName)%(Extension)" />
+    <Compile Include="..\TicketManager\ViewModel\**\*.cs" Link="LinkedSources\ViewModel\%(RecursiveDir)%(FileName)%(Extension)" />
   </ItemGroup>
 </Project>

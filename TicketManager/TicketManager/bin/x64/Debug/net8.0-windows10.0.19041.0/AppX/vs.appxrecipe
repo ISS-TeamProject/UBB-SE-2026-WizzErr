@@ -29,7 +29,7 @@
     <AppXManifest Include="C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager\bin\x64\Debug\net8.0-windows10.0.19041.0\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2026-04-21T15:19:03.488</Modified>
+      <Modified>2026-04-22T10:00:04.003</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -39,7 +39,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager\obj\x64\Debug\net8.0-windows10.0.19041.0\apphost.exe">
       <PackagePath>TicketManager.exe</PackagePath>
-      <Modified>2026-04-21T15:19:03.064</Modified>
+      <Modified>2026-04-22T10:00:03.628</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager\appsettings.json">
       <PackagePath>appsettings.json</PackagePath>
@@ -123,7 +123,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\UBB-SE-2026-WizzErr\TicketManager\TicketManager\obj\x64\Debug\net8.0-windows10.0.19041.0\TicketManager.dll">
       <PackagePath>TicketManager.dll</PackagePath>
-      <Modified>2026-04-21T15:19:03.018</Modified>
+      <Modified>2026-04-22T10:00:03.588</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.57\lib\net8.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
