@@ -25,12 +25,12 @@ namespace TicketManager.Service
         public IEnumerable<Ticket> GetUserTickets(int userId, string ticketFilter)
         {
             var now = DateTime.Now;
-            var tickets = ticketRepository.GetTicketsByUserId(userId)
+            var tickets = this.ticketRepository.GetTicketsByUserId(userId)
                 .Where(ticket => ticket.Flight != null);
 
             return string.Equals(ticketFilter, "Past", StringComparison.OrdinalIgnoreCase)
-                ? tickets.Where(ticket => ticket.Flight.Date < now).OrderByDescending(ticket => ticket.Flight.Date)
-                : tickets.Where(ticket => ticket.Flight.Date >= now).OrderBy(ticket => ticket.Flight.Date);
+                ? tickets.Where(ticket => ticket.Flight!.Date < now).OrderByDescending(ticket => ticket.Flight!.Date)
+                : tickets.Where(ticket => ticket.Flight!.Date >= now).OrderBy(ticket => ticket.Flight!.Date);
         }
 
         public string GenerateTicketPdf(Ticket ticket)
@@ -81,7 +81,7 @@ namespace TicketManager.Service
                         {
                             foreach (var addOn in ticket.SelectedAddOns)
                             {
-                                col.Item().Text($"a€¢ {addOn.Name}");
+                                col.Item().Text($"• {addOn.Name}");
                             }
                         }
                         else

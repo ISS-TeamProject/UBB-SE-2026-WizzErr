@@ -16,10 +16,10 @@ namespace TicketManager.Repository
             this.membershipRepository = membershipRepository ?? throw new ArgumentNullException(nameof(membershipRepository));
         }
 
-        public User GetById(int id)
+        public User? GetById(int id)
         {
-            User user = null;
-            using (var connection = dbFactory.GetConnection())
+            User? user = null;
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -36,18 +36,19 @@ namespace TicketManager.Repository
                     {
                         if (reader.Read())
                         {
-                            user = MapUser(reader);
+                            user = this.MapUser(reader);
                         }
                     }
                 }
             }
+
             return user;
         }
 
-        public User GetByEmail(string email)
+        public User? GetByEmail(string email)
         {
-            User user = null;
-            using (var connection = dbFactory.GetConnection())
+            User? user = null;
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -64,17 +65,18 @@ namespace TicketManager.Repository
                     {
                         if (reader.Read())
                         {
-                            user = MapUser(reader);
+                            user = this.MapUser(reader);
                         }
                     }
                 }
             }
+
             return user;
         }
 
         public void AddUser(User user)
         {
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -95,7 +97,7 @@ namespace TicketManager.Repository
 
         public void UpdateUserMembership(int userId, int newMembershipId)
         {
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -115,7 +117,7 @@ namespace TicketManager.Repository
         private User MapUser(SqlDataReader reader)
         {
             int membershipIdOrdinal = reader.GetOrdinal("membership_id");
-            Membership membership = null;
+            Membership? membership = null;
 
             if (!reader.IsDBNull(membershipIdOrdinal))
             {
@@ -126,7 +128,7 @@ namespace TicketManager.Repository
                     FlightDiscountPercentage = (float)reader.GetByte(reader.GetOrdinal("flight_discount_percentage"))
                 };
 
-                membership.AddonDiscounts = membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();
+                membership.AddonDiscounts = this.membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();
             }
 
             return new User(

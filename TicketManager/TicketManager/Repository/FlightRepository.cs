@@ -14,10 +14,10 @@ namespace TicketManager.Repository
             this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
         }
 
-        public Flight GetFlightById(int id)
+        public Flight? GetFlightById(int id)
         {
-            Flight flight = null;
-            using (var connection = dbFactory.GetConnection())
+            Flight? flight = null;
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -40,18 +40,19 @@ namespace TicketManager.Repository
                     {
                         if (reader.Read())
                         {
-                            flight = MapFlight(reader);
+                            flight = this.MapFlight(reader);
                         }
                     }
                 }
             }
+
             return flight;
         }
 
         public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime? date)
         {
             var flights = new List<Flight>();
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -79,17 +80,18 @@ namespace TicketManager.Repository
                     {
                         while (reader.Read())
                         {
-                            flights.Add(MapFlight(reader));
+                            flights.Add(this.MapFlight(reader));
                         }
                     }
                 }
             }
+
             return flights;
         }
 
         public int GetOccupiedSeatCount(int flightId)
         {
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -101,7 +103,7 @@ namespace TicketManager.Repository
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@FlightId", flightId);
-                    return (int)command.ExecuteScalar();
+                    return (int)command.ExecuteScalar() !;
                 }
             }
         }
@@ -132,7 +134,7 @@ namespace TicketManager.Repository
                 Capacity = reader.IsDBNull(reader.GetOrdinal("capacity")) ? 0 : reader.GetInt32(reader.GetOrdinal("capacity"))
             };
 
-            Gate gate = null;
+            Gate? gate = null;
             if (!reader.IsDBNull(reader.GetOrdinal("gate_id")))
             {
                 gate = new Gate

@@ -14,6 +14,7 @@
           "Microsoft.Windows.SDK.BuildTools": "10.0.26100.7705",
           "Microsoft.WindowsAppSDK": "1.8.260317003",
           "QuestPDF": "2026.2.4",
+          "StyleCop.Analyzers": "1.1.118",
           "Microsoft.Web.WebView2.Core.Projection": "1.0.3179.45",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.19041.57"
         },
@@ -873,6 +874,7 @@
           }
         }
       },
+      "StyleCop.Analyzers/1.1.118": {},
       "System.ComponentModel.Annotations/5.0.0": {},
       "System.Configuration.ConfigurationManager/8.0.1": {
         "dependencies": {
@@ -1353,6 +1355,13 @@
       "sha512": "sha512-fajBdRJFr3hu2Mr6mEVsXjvVKD9Q/Q6hfPEUMpV/xlwxWdFebmpGdi0FLQTApMvpapy72v9dvcGuk7e7NQmQyQ==",
       "path": "questpdf/2026.2.4",
       "hashPath": "questpdf.2026.2.4.nupkg.sha512"
+    },
+    "StyleCop.Analyzers/1.1.118": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw==",
+      "path": "stylecop.analyzers/1.1.118",
+      "hashPath": "stylecop.analyzers.1.1.118.nupkg.sha512"
     },
     "System.ComponentModel.Annotations/5.0.0": {
       "type": "package",

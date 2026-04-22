@@ -22,7 +22,7 @@ namespace TicketManager.Repository
         {
             var tickets = new List<Ticket>();
             var ticketById = new Dictionary<int, Ticket>();
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -148,7 +148,7 @@ namespace TicketManager.Repository
 
         public void AddTicket(Ticket ticket)
         {
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -168,14 +168,14 @@ namespace TicketManager.Repository
                     command.Parameters.AddWithValue("@PassengerEmail", ticket.PassengerEmail ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@PassengerPhone", ticket.PassengerPhone ?? (object)DBNull.Value);
 
-                    ticket.TicketId = (int)command.ExecuteScalar();
+                    ticket.TicketId = (int)command.ExecuteScalar() !;
                 }
             }
         }
 
         public void UpdateTicketStatus(int ticketId, string status)
         {
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = "UPDATE Tickets SET status = @Status WHERE ticket_id = @TicketId";
@@ -196,7 +196,7 @@ namespace TicketManager.Repository
                 return;
             }
 
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -232,7 +232,7 @@ namespace TicketManager.Repository
         public IEnumerable<string> GetOccupiedSeats(int flightId)
         {
             var seats = new List<string>();
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = this.dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = $"SELECT seat FROM Tickets WHERE flight_id = @FlightId AND status != '{CancelledStatus}' AND seat IS NOT NULL";
@@ -256,7 +256,7 @@ namespace TicketManager.Repository
 
         public async Task<bool> SaveTicketsWithAddOnsAsync(List<Ticket> tickets)
         {
-            using var connection = dbFactory.GetConnection();
+            using var connection = this.dbFactory.GetConnection();
             await connection.OpenAsync();
             using var transaction = connection.BeginTransaction();
 

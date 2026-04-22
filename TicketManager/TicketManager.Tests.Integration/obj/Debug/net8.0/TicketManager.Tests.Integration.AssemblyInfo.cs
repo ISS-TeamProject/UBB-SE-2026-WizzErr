@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TicketManager.Tests.Integration")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d99ecec728f48341db926811beb7e59e3f361450")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9392a47d229cd9345b090170a03c695d5f00e78b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TicketManager.Tests.Integration")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TicketManager.Tests.Integration")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

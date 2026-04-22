@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TicketManager.Domain;
@@ -13,9 +9,12 @@ namespace TicketManager.ViewModel
     public class MembershipDisplayModel
     {
         public int MembershipId { get; set; }
-        public string Name { get; set; }
-        public string DiscountText { get; set; }
-        public string CardColor { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+
+        public string DiscountText { get; set; } = string.Empty;
+
+        public string CardColor { get; set; } = string.Empty;
 
         public ObservableCollection<string> AddonBenefits { get; set; }
 
@@ -38,7 +37,7 @@ namespace TicketManager.ViewModel
             {
                 foreach (var discount in m.AddonDiscounts)
                 {
-                    AddonBenefits.Add($"a€¢ {discount.DiscountPercentage}% Off {discount.AddOn.Name}");
+                    AddonBenefits.Add($"• {discount.DiscountPercentage}% Off {discount.AddOn.Name}");
                 }
             }
         }
@@ -48,59 +47,63 @@ namespace TicketManager.ViewModel
     {
         private readonly IMembershipService membershipService;
         private readonly INavigationService navigationService;
-        public ObservableCollection<MembershipDisplayModel> Memberships { get; set; }
 
-        private string purchaseResultMessage;
-        public string PurchaseResultMessage
-        {
-            get => purchaseResultMessage;
-            set
-            {
-                purchaseResultMessage = value;
-                OnPropertyChanged();
-            }
-        }
+        private string purchaseResultMessage = string.Empty;
 
         private bool? purchaseSucceeded;
-        public bool? PurchaseSucceeded
-        {
-            get => purchaseSucceeded;
-            set
-            {
-                purchaseSucceeded = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ICommand PurchaseCommand { get; }
 
         public MembershipViewModel(IMembershipService membershipService, INavigationService navigationService)
         {
             this.membershipService = membershipService;
             this.navigationService = navigationService;
-            Memberships = new ObservableCollection<MembershipDisplayModel>();
+            this.Memberships = new ObservableCollection<MembershipDisplayModel>();
 
-            PurchaseCommand = new RelayCommand(param => ExecutePurchase(param));
+            this.PurchaseCommand = new RelayCommand(param => this.ExecutePurchase(param));
 
-            LoadMemberships();
+            this.LoadMemberships();
         }
+
+        public ObservableCollection<MembershipDisplayModel> Memberships { get; set; }
+
+        public string PurchaseResultMessage
+        {
+            get => this.purchaseResultMessage;
+            set
+            {
+                this.purchaseResultMessage = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool? PurchaseSucceeded
+        {
+            get => this.purchaseSucceeded;
+            set
+            {
+                this.purchaseSucceeded = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public ICommand PurchaseCommand { get; }
 
         private void LoadMemberships()
         {
-            var memberships = membershipService.GetAllMemberships();
+            var memberships = this.membershipService.GetAllMemberships();
             foreach (var m in memberships)
             {
-                Memberships.Add(new MembershipDisplayModel(m));
+                this.Memberships.Add(new MembershipDisplayModel(m));
             }
         }
-        private void ExecutePurchase(object parameter)
+
+        private void ExecutePurchase(object? parameter)
         {
-            PurchaseSucceeded = null;
-            PurchaseResultMessage = string.Empty;
+            this.PurchaseSucceeded = null;
+            this.PurchaseResultMessage = string.Empty;
 
             if (UserSession.CurrentUser == null)
             {
-                navigationService.NavigateTo(typeof(View.AuthPage));
+                this.navigationService.NavigateTo(typeof(View.AuthPage));
                 return;
             }
 
@@ -111,17 +114,17 @@ namespace TicketManager.ViewModel
 
             try
             {
-                var updatedMembership = membershipService.UpgradeUserMembership(
+                var updatedMembership = this.membershipService.UpgradeUserMembership(
                     UserSession.CurrentUser.UserId, membershipId);
                 UserSession.CurrentUser.Membership = updatedMembership;
 
-                PurchaseSucceeded = true;
-                PurchaseResultMessage = "Your membership purchase was completed successfully.";
+                this.PurchaseSucceeded = true;
+                this.PurchaseResultMessage = "Your membership purchase was completed successfully.";
             }
             catch
             {
-                PurchaseSucceeded = false;
-                PurchaseResultMessage = "Membership purchase could not be completed. Please try again.";
+                this.PurchaseSucceeded = false;
+                this.PurchaseResultMessage = "Membership purchase could not be completed. Please try again.";
             }
         }
     }

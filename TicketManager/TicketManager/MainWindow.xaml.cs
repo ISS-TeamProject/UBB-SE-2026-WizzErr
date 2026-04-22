@@ -85,7 +85,7 @@ namespace TicketManager
 
             foreach (NavigationViewItem item in TopNav.MenuItems)
             {
-                if (item.Tag != null && item.Tag.ToString().EndsWith(pageName, StringComparison.OrdinalIgnoreCase))
+                if (item.Tag?.ToString()?.EndsWith(pageName, StringComparison.OrdinalIgnoreCase) == true)
                 {
                     TopNav.SelectedItem = item;
                     itemFound = true;

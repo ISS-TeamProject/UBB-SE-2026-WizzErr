@@ -22,14 +22,14 @@ namespace TicketManager.Service
                 return new List<Flight>();
             }
 
-            var flights = flightRepository.GetFlightsByRoute(location, flightType, date);
+            var flights = this.flightRepository.GetFlightsByRoute(location, flightType, date);
 
             if (passengers.HasValue && passengers.Value > 0)
             {
                 flights = flights.Where(flight =>
                 {
-                    int occupiedSeats = flightRepository.GetOccupiedSeatCount(flight.FlightId);
-                    int availableSeats = flight.Route.Capacity - occupiedSeats;
+                    int occupiedSeats = this.flightRepository.GetOccupiedSeatCount(flight.FlightId);
+                    int availableSeats = flight.Route!.Capacity - occupiedSeats;
                     return availableSeats >= passengers.Value;
                 });
             }

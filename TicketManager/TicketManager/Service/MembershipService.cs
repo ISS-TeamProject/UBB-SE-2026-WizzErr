@@ -19,24 +19,24 @@ namespace TicketManager.Service
 
         public IEnumerable<Membership> GetAllMemberships()
         {
-            var memberships = membershipRepository.GetAllMemberships().ToList();
+            var memberships = this.membershipRepository.GetAllMemberships().ToList();
 
             foreach (var membership in memberships)
             {
-                membership.AddonDiscounts = membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();
+                membership.AddonDiscounts = this.membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();
             }
 
             return memberships;
         }
 
-        public Membership UpgradeUserMembership(int userId, int newMembershipId)
+        public Membership? UpgradeUserMembership(int userId, int newMembershipId)
         {
-            userRepository.UpdateUserMembership(userId, newMembershipId);
+            this.userRepository.UpdateUserMembership(userId, newMembershipId);
 
-            var membership = membershipRepository.GetMembershipById(newMembershipId);
+            var membership = this.membershipRepository.GetMembershipById(newMembershipId);
             if (membership != null)
             {
-                membership.AddonDiscounts = membershipRepository.GetAddonDiscounts(newMembershipId).ToList();
+                membership.AddonDiscounts = this.membershipRepository.GetAddonDiscounts(newMembershipId).ToList();
             }
 
             return membership;

@@ -15,7 +15,7 @@ namespace TicketManager.Service
         public AuthService(IUserRepository userRepo)
         {
             this.userRepo = userRepo ?? throw new ArgumentNullException(nameof(userRepo));
-            passwordHasher = new PasswordHasher<User>();
+            this.passwordHasher = new PasswordHasher<User>();
         }
 
         public User Login(string email, string password)
@@ -30,7 +30,7 @@ namespace TicketManager.Service
                 throw new ArgumentException("Password is required.");
             }
 
-            User existingUser = userRepo.GetByEmail(email.Trim());
+            User? existingUser = this.userRepo.GetByEmail(email.Trim());
 
             if (existingUser == null)
             {
@@ -38,7 +38,7 @@ namespace TicketManager.Service
             }
 
             PasswordVerificationResult result =
-                passwordHasher.VerifyHashedPassword(existingUser, existingUser.PasswordHash, password);
+                this.passwordHasher.VerifyHashedPassword(existingUser, existingUser.PasswordHash, password);
 
             if (result == PasswordVerificationResult.Failed)
             {
@@ -50,13 +50,13 @@ namespace TicketManager.Service
 
         public void Register(string email, string phone, string username, string password)
         {
-            string normalizedEmail = email?.Trim();
-            string normalizedUsername = username?.Trim();
-            string normalizedPhone = phone?.Trim();
+            string? normalizedEmail = email?.Trim();
+            string? normalizedUsername = username?.Trim();
+            string? normalizedPhone = phone?.Trim();
 
-            ValidateRegistrationData(normalizedEmail, normalizedPhone, normalizedUsername, password);
+            this.ValidateRegistrationData(normalizedEmail, normalizedPhone, normalizedUsername, password);
 
-            User existingUser = userRepo.GetByEmail(normalizedEmail);
+            User? existingUser = this.userRepo.GetByEmail(normalizedEmail!);
             if (existingUser != null)
             {
                 throw new InvalidOperationException("An account with this email already exists.");
@@ -64,19 +64,25 @@ namespace TicketManager.Service
 
             User newUser = new User
             {
-                Email = normalizedEmail,
+                Email = normalizedEmail!,
                 Phone = normalizedPhone,
-                Username = normalizedUsername,
+                Username = normalizedUsername!,
                 Membership = null
             };
 
-            string hashedPassword = passwordHasher.HashPassword(newUser, password);
+            string hashedPassword = this.passwordHasher.HashPassword(newUser, password);
             newUser.PasswordHash = hashedPassword;
 
-            userRepo.AddUser(newUser);
+            this.userRepo.AddUser(newUser);
         }
 
-        private void ValidateRegistrationData(string email, string phone, string username, string password)
+        public void Logout()
+        {
+            UserSession.CurrentUser = null;
+            UserSession.PendingBookingParameters = null;
+        }
+
+        private void ValidateRegistrationData(string? email, string? phone, string? username, string password)
         {
             if (string.IsNullOrWhiteSpace(email))
             {
@@ -122,12 +128,6 @@ namespace TicketManager.Service
             {
                 throw new ArgumentException("Password must be at least 6 characters long.");
             }
-        }
-
-        public void Logout()
-        {
-            UserSession.CurrentUser = null;
-            UserSession.PendingBookingParameters = null;
         }
     }
 }
