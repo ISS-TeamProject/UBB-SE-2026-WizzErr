@@ -17,7 +17,9 @@ namespace TicketManager.Domain
         public string? PassengerPhone { get; set; }
         public List<AddOn> SelectedAddOns { get; set; } = new List<AddOn>();
 
-        public Ticket() { }
+        public Ticket()
+        {
+        }
 
         public Ticket(User user, Flight flight, string seat, float price, string status, string passengerFirstName, string passengerLastName, string passengerEmail, string passengerPhone)
         {

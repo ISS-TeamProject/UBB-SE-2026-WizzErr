@@ -1,18 +1,10 @@
-using Microsoft.UI.Xaml.Controls;
-using System.ComponentModel;
-using TicketManager.ViewModel;
 using System;
+using System.ComponentModel;
+using Microsoft.UI.Xaml.Controls;
+using TicketManager.ViewModel;
 
 namespace TicketManager.View
 {
-    /// <summary>
-    /// Code-behind is now minimal: constructs the ViewModel and reacts to state
-    /// changes by showing message dialogs... The ViewModel handles all login/register
-    /// logic, form validation, mode switching, and navigation.
-    /// 
-    /// Compare with the original 170-line version that manually set TitleTextBlock.Text,
-    /// usernameInput.Visibility, validated forms, managed sessions, and navigated.
-    /// </summary>
     public sealed partial class AuthPage : Page
     {
         public AuthViewModel ViewModel { get; }
@@ -21,20 +13,13 @@ namespace TicketManager.View
         {
             this.InitializeComponent();
 
-            // ViewModel is built with services from the composition root.
             ViewModel = new AuthViewModel(App.AuthService, App.NavigationService);
-
             this.DataContext = ViewModel;
 
-            // React to result messages (showing dialogs is a UI concern)
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        /// <summary>
-        /// Shows error/success dialogs when the ViewModel reports them.
-        /// This is the only "logic" left in the View a€” and it's pure UI.
-        /// </summary>
-        private async void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(ViewModel.ErrorMessage) &&
                 !string.IsNullOrWhiteSpace(ViewModel.ErrorMessage))
@@ -63,11 +48,7 @@ namespace TicketManager.View
             }
         }
 
-        /// <summary>
-        /// PasswordBox doesn't support two-way binding in WinUI, so we sync it manually.
-        /// This is a known WinUI limitation and is an acceptable UI concern.
-        /// </summary>
-        private void Password_PasswordChanged(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        private void Password_PasswordChanged(object? sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
             ViewModel.PasswordText = passwordInput.Password;
         }

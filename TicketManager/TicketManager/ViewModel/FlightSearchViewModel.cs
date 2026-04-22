@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TicketManager.Domain;
@@ -12,42 +8,62 @@ namespace TicketManager.ViewModel
 {
     public class FlightSearchViewModel : ViewModelBase
     {
-        private readonly IFlightSearchService _searchService;
-        private readonly INavigationService _navigationService;
+        private readonly IFlightSearchService searchService;
+        private readonly INavigationService navigationService;
 
-        private string _location;
+        private string location = string.Empty;
         public string Location
         {
-            get => _location;
-            set { _location = value; OnPropertyChanged(); }
+            get => location;
+            set
+            {
+                location = value;
+                OnPropertyChanged();
+            }
         }
 
-        private bool _isDeparture = true;
+        private bool isDeparture = true;
         public bool IsDeparture
         {
-            get => _isDeparture;
-            set { _isDeparture = value; OnPropertyChanged(); }
+            get => isDeparture;
+            set
+            {
+                isDeparture = value;
+                OnPropertyChanged();
+            }
         }
 
-        private DateTimeOffset? _flightDate;
+        private DateTimeOffset? flightDate;
         public DateTimeOffset? FlightDate
         {
-            get => _flightDate;
-            set { _flightDate = value; OnPropertyChanged(); }
+            get => flightDate;
+            set
+            {
+                flightDate = value;
+                OnPropertyChanged();
+            }
         }
 
-        private string _passengers;
+        private string passengers = string.Empty;
         public string Passengers
         {
-            get => _passengers;
-            set { _passengers = value; OnPropertyChanged(); }
+            get => passengers;
+            set
+            {
+                passengers = value;
+                OnPropertyChanged();
+            }
         }
 
-        private string _searchResultMessage;
+        private string searchResultMessage = string.Empty;
         public string SearchResultMessage
         {
-            get => _searchResultMessage;
-            set { _searchResultMessage = value; OnPropertyChanged(); }
+            get => searchResultMessage;
+            set
+            {
+                searchResultMessage = value;
+                OnPropertyChanged();
+            }
         }
 
         public ObservableCollection<FlightDisplayModel> AvailableFlights { get; set; }
@@ -57,18 +73,13 @@ namespace TicketManager.ViewModel
 
         public FlightSearchViewModel(IFlightSearchService searchService, INavigationService navigationService)
         {
-            _searchService = searchService;
-            _navigationService = navigationService;
+            this.searchService = searchService;
+            this.navigationService = navigationService;
             AvailableFlights = new ObservableCollection<FlightDisplayModel>();
-            _location = string.Empty;
-            _passengers = string.Empty;
-            _searchResultMessage = string.Empty;
 
             SearchCommand = new RelayCommand(_ => ExecuteSearch());
             BookFlightCommand = new RelayCommand(param => ExecuteBookFlight(param as FlightDisplayModel));
         }
-
-
 
         public void OnNavigatedTo(object parameter)
         {
@@ -80,12 +91,13 @@ namespace TicketManager.ViewModel
 
         private void ExecuteSearch()
         {
-
             AvailableFlights.Clear();
             SearchResultMessage = string.Empty;
 
             if (string.IsNullOrWhiteSpace(Location))
+            {
                 return;
+            }
 
             string routeType = IsDeparture ? "DEP" : "ARR";
             DateTime? date = FlightDate?.Date;
@@ -104,12 +116,11 @@ namespace TicketManager.ViewModel
                 }
             }
 
-            var results = _searchService.SearchFlights(Location, routeType, date, requestedPassengers);
+            var results = searchService.SearchFlights(Location, routeType, date, requestedPassengers);
             bool hasResults = false;
 
             foreach (var flight in results)
             {
-
                 AvailableFlights.Add(new FlightDisplayModel(flight));
                 hasResults = true;
             }
@@ -120,36 +131,37 @@ namespace TicketManager.ViewModel
             }
         }
 
-
-
-
-
-        private void ExecuteBookFlight(FlightDisplayModel selectedFlightDisplay)
+        private void ExecuteBookFlight(FlightDisplayModel? selectedFlightDisplay)
         {
             if (selectedFlightDisplay?.Flight == null)
+            {
                 return;
+            }
 
             int passengerCount = ParsePassengerCount();
-
             var bookingParameters = new object[] { selectedFlightDisplay.Flight, passengerCount };
 
             if (UserSession.CurrentUser == null)
             {
                 UserSession.PendingBookingParameters = bookingParameters;
-                _navigationService.NavigateTo(typeof(View.AuthPage));
+                navigationService.NavigateTo(typeof(View.AuthPage));
                 return;
             }
 
-            _navigationService.NavigateTo(typeof(View.BookingPage), bookingParameters);
+            navigationService.NavigateTo(typeof(View.BookingPage), bookingParameters);
         }
 
         private int ParsePassengerCount()
         {
             if (string.IsNullOrWhiteSpace(Passengers))
+            {
                 return 0;
+            }
 
             if (int.TryParse(Passengers, out var parsed) && parsed > 0)
+            {
                 return parsed;
+            }
 
             Passengers = "1";
             return 1;

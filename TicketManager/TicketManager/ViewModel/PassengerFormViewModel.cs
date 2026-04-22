@@ -4,49 +4,72 @@ namespace TicketManager.ViewModel
 {
     public class PassengerFormViewModel : ViewModelBase
     {
-        private string _passengerLabel = "Passenger";
+        private string passengerLabel = "Passenger";
         public string PassengerLabel
         {
-            get => _passengerLabel;
-            set { _passengerLabel = value; OnPropertyChanged(); }
+            get => passengerLabel;
+            set
+            {
+                passengerLabel = value;
+                OnPropertyChanged();
+            }
         }
 
-        private string _firstName = string.Empty;
+        private string firstName = string.Empty;
         public string FirstName
         {
-            get => _firstName;
-            set { _firstName = value; OnPropertyChanged(); }
+            get => firstName;
+            set
+            {
+                firstName = value;
+                OnPropertyChanged();
+            }
         }
 
-        private string _lastName = string.Empty;
+        private string lastName = string.Empty;
         public string LastName
         {
-            get => _lastName;
-            set { _lastName = value; OnPropertyChanged(); }
+            get => lastName;
+            set
+            {
+                lastName = value;
+                OnPropertyChanged();
+            }
         }
 
-        private string _email = string.Empty;
+        private string email = string.Empty;
         public string Email
         {
-            get => _email;
-            set { _email = value; OnPropertyChanged(); }
+            get => email;
+            set
+            {
+                email = value;
+                OnPropertyChanged();
+            }
         }
 
-        private string _phone = string.Empty;
+        private string phone = string.Empty;
         public string Phone
         {
-            get => _phone;
-            set { _phone = value; OnPropertyChanged(); }
+            get => phone;
+            set
+            {
+                phone = value;
+                OnPropertyChanged();
+            }
         }
 
-        private string _selectedSeat = string.Empty;
+        private string selectedSeat = string.Empty;
         public string SelectedSeat
         {
-            get => _selectedSeat;
-            set { _selectedSeat = value; OnPropertyChanged(); }
+            get => selectedSeat;
+            set
+            {
+                selectedSeat = value;
+                OnPropertyChanged();
+            }
         }
 
         public ObservableCollection<Domain.AddOn> SelectedAddOns { get; set; } = new ObservableCollection<Domain.AddOn>();
-
     }
 }

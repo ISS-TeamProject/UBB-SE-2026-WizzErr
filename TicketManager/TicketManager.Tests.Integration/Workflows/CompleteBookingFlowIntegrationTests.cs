@@ -37,7 +37,7 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatCompleteBookingFlowSucceeds()
+    public async Task TestThatCompleteBookingFlowSucceeds()
     {
         string code = Guid.NewGuid().ToString().Substring(0, 4);
         string email = $"dan.ionescu_{code}@gmail.com";
@@ -48,8 +48,8 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
         var flight = CreateFlightWithBasePrice(150.0f);
         var passengers = PassengerDataFixture.CreateValidPassengerList(1);
 
-        var tickets = _bookingService.CreateTickets(flight, user!, passengers, 150.0f);
-        var saveResult = _bookingService.SaveTicketsAsync(tickets).Result;
+        var tickets = _bookingService.CreateTickets(flight, user, passengers, 150.0f);
+        var saveResult = await _bookingService.SaveTicketsAsync(tickets);
 
         saveResult.Should().BeTrue();
     }

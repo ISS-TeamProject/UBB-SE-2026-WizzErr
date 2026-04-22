@@ -12,27 +12,24 @@ namespace TicketManager
     /// </summary>
     public partial class App : Application
     {
-        private Window _window;
+        private Window window = null!;
 
-        // a”€a”€ Shared infrastructure a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€
-        private static DatabaseConnectionFactory _dbFactory;
+        private static DatabaseConnectionFactory dbFactory = null!;
 
-        // a”€a”€ Repositories (all behind interfaces) a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€
-        private static IFlightRepository _flightRepository;
-        private static ITicketRepository _ticketRepository;
-        private static IAddOnRepository _addOnRepository;
-        private static IMembershipRepository _membershipRepository;
-        private static IUserRepository _userRepository;
+        private static IFlightRepository flightRepository = null!;
+        private static ITicketRepository ticketRepository = null!;
+        private static IAddOnRepository addOnRepository = null!;
+        private static IMembershipRepository membershipRepository = null!;
+        private static IUserRepository userRepository = null!;
 
-        // a”€a”€ Services (all behind interfaces) a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€
-        public static IAuthService AuthService { get; private set; }
-        public static IFlightSearchService FlightSearchService { get; private set; }
-        public static IBookingService BookingService { get; private set; }
-        public static IPricingService PricingService { get; private set; }
-        public static IDashboardService DashboardService { get; private set; }
-        public static ICancellationService CancellationService { get; private set; }
-        public static IMembershipService MembershipService { get; private set; }
-        public static NavigationService NavigationService { get; private set; }
+        public static IAuthService AuthService { get; private set; } = null!;
+        public static IFlightSearchService FlightSearchService { get; private set; } = null!;
+        public static IBookingService BookingService { get; private set; } = null!;
+        public static IPricingService PricingService { get; private set; } = null!;
+        public static IDashboardService DashboardService { get; private set; } = null!;
+        public static ICancellationService CancellationService { get; private set; } = null!;
+        public static IMembershipService MembershipService { get; private set; } = null!;
+        public static NavigationService NavigationService { get; private set; } = null!;
 
         public App()
         {
@@ -42,8 +39,8 @@ namespace TicketManager
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            _window = new MainWindow();
-            _window.Activate();
+            window = new MainWindow();
+            window.Activate();
         }
 
         /// <summary>
@@ -52,24 +49,21 @@ namespace TicketManager
         /// </summary>
         private static void ConfigureServices()
         {
-            // Infrastructure
-            _dbFactory = new DatabaseConnectionFactory();
+            dbFactory = new DatabaseConnectionFactory();
 
-            // Repositories
-            _flightRepository = new FlightRepository(_dbFactory);
-            _ticketRepository = new TicketRepository(_dbFactory);
-            _addOnRepository = new AddOnRepository(_dbFactory);
-            _membershipRepository = new MembershipRepository(_dbFactory);
-            _userRepository = new UserRepository(_dbFactory, _membershipRepository);
+            flightRepository = new FlightRepository(dbFactory);
+            ticketRepository = new TicketRepository(dbFactory);
+            addOnRepository = new AddOnRepository(dbFactory);
+            membershipRepository = new MembershipRepository(dbFactory);
+            userRepository = new UserRepository(dbFactory, membershipRepository);
 
-            // Services
-            AuthService = new AuthService(_userRepository);
-            FlightSearchService = new FlightSearchService(_flightRepository);
-            BookingService = new BookingService(_ticketRepository, _addOnRepository);
+            AuthService = new AuthService(userRepository);
+            FlightSearchService = new FlightSearchService(flightRepository);
+            BookingService = new BookingService(ticketRepository, addOnRepository);
             PricingService = new PricingService();
-            DashboardService = new DashboardService(_ticketRepository);
-            CancellationService = new CancellationService(_ticketRepository);
-            MembershipService = new MembershipService(_userRepository, _membershipRepository);
+            DashboardService = new DashboardService(ticketRepository);
+            CancellationService = new CancellationService(ticketRepository);
+            MembershipService = new MembershipService(userRepository, membershipRepository);
             NavigationService = new NavigationService();
         }
     }

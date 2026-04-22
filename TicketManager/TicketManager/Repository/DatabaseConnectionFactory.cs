@@ -1,12 +1,12 @@
+using System;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using System;
 
 namespace TicketManager.Repository
 {
     public class DatabaseConnectionFactory
     {
-        private readonly string _connectionString;
+        private readonly string connectionString;
 
         public DatabaseConnectionFactory()
         {
@@ -16,18 +16,18 @@ namespace TicketManager.Repository
 
             IConfiguration configuration = builder.Build();
 
-            _connectionString = configuration.GetConnectionString("DefaultConnection")
+            connectionString = configuration.GetConnectionString("DefaultConnection")
                                 ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
         }
 
         public DatabaseConnectionFactory(string connectionString)
         {
-            _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
         public SqlConnection GetConnection()
         {
-            return new SqlConnection(_connectionString);
+            return new SqlConnection(connectionString);
         }
     }
 }

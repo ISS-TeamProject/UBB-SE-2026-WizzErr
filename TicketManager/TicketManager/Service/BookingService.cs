@@ -12,13 +12,13 @@ namespace TicketManager.Service
         private const string CancelledStatus = "Cancelled";
         private const string ActiveStatus = "Active";
 
-        private readonly ITicketRepository _ticketRepository;
-        private readonly IAddOnRepository _addOnRepository;
+        private readonly ITicketRepository ticketRepository;
+        private readonly IAddOnRepository addOnRepository;
 
         public BookingService(ITicketRepository ticketRepository, IAddOnRepository addOnRepository)
         {
-            _ticketRepository = ticketRepository ?? throw new ArgumentNullException(nameof(ticketRepository));
-            _addOnRepository = addOnRepository ?? throw new ArgumentNullException(nameof(addOnRepository));
+            this.ticketRepository = ticketRepository ?? throw new ArgumentNullException(nameof(ticketRepository));
+            this.addOnRepository = addOnRepository ?? throw new ArgumentNullException(nameof(addOnRepository));
         }
 
         public List<Ticket> CreateTickets(Flight flight, User user, List<PassengerData> passengers, float basePrice)
@@ -97,7 +97,9 @@ namespace TicketManager.Service
         public async Task<bool> SaveTicketsAsync(List<Ticket> tickets)
         {
             if (tickets == null || tickets.Count == 0)
+            {
                 return false;
+            }
 
             bool duplicateSeatInRequest = tickets
                 .Where(t => !string.IsNullOrWhiteSpace(t.Seat))
@@ -105,20 +107,21 @@ namespace TicketManager.Service
                 .Any(g => g.Count() > 1);
 
             if (duplicateSeatInRequest)
+            {
                 return false;
+            }
 
-            return await _ticketRepository.SaveTicketsWithAddOnsAsync(tickets);
+            return await ticketRepository.SaveTicketsWithAddOnsAsync(tickets);
         }
 
         public async Task<List<AddOn>> GetAvailableAddOnsAsync()
         {
-            return await Task.FromResult(_addOnRepository.GetAllAddOns().ToList());
+            return await Task.FromResult(addOnRepository.GetAllAddOns().ToList());
         }
 
         public async Task<List<string>> GetOccupiedSeatsAsync(int flightId)
         {
-            return await Task.FromResult(_ticketRepository.GetOccupiedSeats(flightId).ToList());
+            return await Task.FromResult(ticketRepository.GetOccupiedSeats(flightId).ToList());
         }
-
     }
 }

@@ -58,7 +58,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
         authVM.ActionCommand.Execute(null);
         authVM.IsAuthenticated.Should().BeTrue();
         authVM.AuthenticatedUser.Should().NotBeNull();
-        authVM.AuthenticatedUser.Email.Should().Be(email);
+        authVM.AuthenticatedUser!.Email.Should().Be(email);
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestBookingViewModel_InitializeAndUpdatePrices()
+    public async Task TestBookingViewModel_InitializeAndUpdatePrices()
     {
         var bookingVM = new BookingViewModel(_bookingService, _pricingService, _navigationService);
 
@@ -92,7 +92,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
             Route = new Route { Capacity = 180, DepartureTime = DateTime.Now.AddDays(5), ArrivalTime = DateTime.Now.AddDays(5).AddHours(2) }
         };
 
-        bookingVM.InitializeAsync(flight, user).Wait();
+        await bookingVM.InitializeAsync(flight, user);
 
         bookingVM.CurrentFlight.Should().Be(flight);
         bookingVM.CurrentUser.Should().Be(user);
@@ -100,7 +100,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestBookingViewModel_AddPassengers_UpdatesState()
+    public async Task TestBookingViewModel_AddPassengers_UpdatesState()
     {
         var bookingVM = new BookingViewModel(_bookingService, _pricingService, _navigationService);
 
@@ -111,14 +111,14 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
             Route = new Route { Capacity = 180, DepartureTime = DateTime.Now.AddDays(3), ArrivalTime = DateTime.Now.AddDays(3).AddHours(1) }
         };
 
-        bookingVM.InitializeAsync(flight, user, 3).Wait();
+        await bookingVM.InitializeAsync(flight, user, 3);
 
         bookingVM.Passengers.Count.Should().Be(3);
         bookingVM.CanAddPassenger.Should().BeFalse();
     }
 
     [Fact]
-    public void TestBookingViewModel_RemovePassenger_UpdatesCapacity()
+    public async Task TestBookingViewModel_RemovePassenger_UpdatesCapacity()
     {
         var bookingVM = new BookingViewModel(_bookingService, _pricingService, _navigationService);
 
@@ -129,7 +129,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
             Route = new Route { Capacity = 180, DepartureTime = DateTime.Now.AddDays(2), ArrivalTime = DateTime.Now.AddDays(2).AddHours(2) }
         };
 
-        bookingVM.InitializeAsync(flight, user, 2).Wait();
+        await bookingVM.InitializeAsync(flight, user, 2);
         int passengerCountBefore = bookingVM.Passengers.Count;
 
         var passengerToRemove = bookingVM.Passengers[0];
@@ -178,4 +178,3 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
         dashboardVM.MyTickets.Should().NotBeNull();
     }
 }
-

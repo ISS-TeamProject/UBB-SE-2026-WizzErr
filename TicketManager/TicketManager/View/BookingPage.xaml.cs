@@ -1,35 +1,28 @@
+using System;
+using System.Collections.Specialized;
+using System.Linq;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI;
-using System;
-using System.Linq;
-using System.Collections.Specialized;
-using TicketManager.ViewModel;
 using TicketManager.Domain;
+using TicketManager.ViewModel;
 
 namespace TicketManager.View
 {
-    /// <summary>
-    /// Code-behind handles only pure-UI concerns: seat map rendering, seat selection visuals,
-    /// dialog display, and add-on list management. All parameter parsing, auth checking,
-    /// and business logic lives in BookingViewModel.
-    /// </summary>
     public sealed partial class BookingPage : Page
     {
         public BookingViewModel ViewModel { get; }
-        private PassengerFormViewModel _seatTargetPassenger;
-        private readonly SolidColorBrush _occupiedSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 156, 163, 175));
-        private readonly SolidColorBrush _selectedSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 43, 184, 192));
-        private readonly SolidColorBrush _availableSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 229, 231, 235));
+        private PassengerFormViewModel? seatTargetPassenger;
+        private readonly SolidColorBrush occupiedSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 156, 163, 175));
+        private readonly SolidColorBrush selectedSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 43, 184, 192));
+        private readonly SolidColorBrush availableSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 229, 231, 235));
 
         public BookingPage()
         {
             this.InitializeComponent();
 
-            // ViewModel is built with services from the composition root.
-            // This View no longer knows about DatabaseConnectionFactory or repositories.
             ViewModel = new BookingViewModel(App.BookingService, App.PricingService, App.NavigationService);
             ViewModel.Passengers.CollectionChanged += Passengers_CollectionChanged;
             ViewModel.BookingConfirmed += ViewModel_BookingConfirmed;
@@ -37,7 +30,7 @@ namespace TicketManager.View
             this.DataContext = ViewModel;
         }
 
-        private async void ViewModel_BookingConfirmed(object sender, EventArgs e)
+        private async void ViewModel_BookingConfirmed(object? sender, EventArgs e)
         {
             var dialog = new ContentDialog
             {
@@ -55,20 +48,15 @@ namespace TicketManager.View
         {
             base.OnNavigatedTo(e);
 
-            // Delegate all parameter parsing and auth checking to the ViewModel
             bool initialized = await ViewModel.OnNavigatedToAsync(e.Parameter);
 
             if (initialized)
             {
-                // These are pure-UI operations (generating WinUI Button controls,
-                // coloring them, managing grid layout). They belong in the View.
                 GenerateSeatMap();
                 EnsureSeatTargetPassenger();
                 RefreshSeatMapVisuals();
             }
         }
-
-        // a”€a”€ Seat Map (pure UI: creating buttons, setting colors) a”€a”€a”€a”€a”€a”€a”€a”€
 
         private void GenerateSeatMap()
         {
@@ -77,7 +65,9 @@ namespace TicketManager.View
             seatMapGrid.ColumnDefinitions.Clear();
 
             for (int i = 0; i < 6; i++)
+            {
                 seatMapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(58) });
+            }
 
             seatMapGrid.ColumnDefinitions.Insert(3, new ColumnDefinition() { Width = new GridLength(24) });
 
@@ -117,36 +107,41 @@ namespace TicketManager.View
             if (ViewModel.OccupiedSeats.Contains(seatNumber))
             {
                 btn.IsHitTestVisible = false;
-                btn.Background = _occupiedSeatBrush;
+                btn.Background = occupiedSeatBrush;
                 btn.Foreground = new SolidColorBrush(Colors.White);
             }
             else
             {
-                btn.Background = _availableSeatBrush;
+                btn.Background = availableSeatBrush;
                 btn.Click += Seat_Click;
             }
+
             seatMapGrid.Children.Add(btn);
         }
 
-        private void Seat_Click(object sender, RoutedEventArgs e)
+        private void Seat_Click(object? sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.Content is string seat)
             {
                 EnsureSeatTargetPassenger();
-                if (_seatTargetPassenger == null)
-                    return;
-
-                var currentHolder = ViewModel.Passengers.FirstOrDefault(p => p.SelectedSeat == seat);
-                if (currentHolder == _seatTargetPassenger)
+                if (seatTargetPassenger == null)
                 {
-                    _seatTargetPassenger.SelectedSeat = string.Empty;
+                    return;
+                }
+
+                var currentHolder = ViewModel.Passengers.FirstOrDefault(passenger => passenger.SelectedSeat == seat);
+                if (currentHolder == seatTargetPassenger)
+                {
+                    seatTargetPassenger.SelectedSeat = string.Empty;
                 }
                 else
                 {
                     if (currentHolder != null)
+                    {
                         currentHolder.SelectedSeat = string.Empty;
+                    }
 
-                    _seatTargetPassenger.SelectedSeat = seat;
+                    seatTargetPassenger.SelectedSeat = seat;
                     RefreshSeatMapVisuals();
                 }
 
@@ -154,25 +149,27 @@ namespace TicketManager.View
             }
         }
 
-        private void Passengers_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void Passengers_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             EnsureSeatTargetPassenger();
             RefreshSeatMapVisuals();
         }
 
-        private void SeatPassengerSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SeatPassengerSelector_SelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
-            _seatTargetPassenger = seatPassengerSelector.SelectedItem as PassengerFormViewModel;
+            seatTargetPassenger = seatPassengerSelector.SelectedItem as PassengerFormViewModel;
             RefreshSeatMapVisuals();
         }
 
         private void EnsureSeatTargetPassenger()
         {
-            if (_seatTargetPassenger != null && ViewModel.Passengers.Contains(_seatTargetPassenger))
+            if (seatTargetPassenger != null && ViewModel.Passengers.Contains(seatTargetPassenger))
+            {
                 return;
+            }
 
-            _seatTargetPassenger = ViewModel.Passengers.FirstOrDefault();
-            seatPassengerSelector.SelectedItem = _seatTargetPassenger;
+            seatTargetPassenger = ViewModel.Passengers.FirstOrDefault();
+            seatPassengerSelector.SelectedItem = seatTargetPassenger;
         }
 
         private void RefreshSeatMapVisuals()
@@ -180,37 +177,43 @@ namespace TicketManager.View
             foreach (var btn in seatMapGrid.Children.OfType<Button>())
             {
                 if (btn.Content is not string seatNumber)
+                {
                     continue;
+                }
 
                 if (ViewModel.OccupiedSeats.Contains(seatNumber))
                 {
                     btn.IsEnabled = true;
                     btn.IsHitTestVisible = false;
-                    btn.Background = _occupiedSeatBrush;
+                    btn.Background = occupiedSeatBrush;
                     btn.Foreground = new SolidColorBrush(Colors.White);
                 }
                 else
                 {
                     btn.IsEnabled = true;
                     btn.IsHitTestVisible = true;
-                    bool isSelectedByPassenger = ViewModel.Passengers.Any(p => p.SelectedSeat == seatNumber);
-                    btn.Background = isSelectedByPassenger ? _selectedSeatBrush : _availableSeatBrush;
+                    bool isSelectedByPassenger = ViewModel.Passengers.Any(passenger => passenger.SelectedSeat == seatNumber);
+                    btn.Background = isSelectedByPassenger ? selectedSeatBrush : availableSeatBrush;
                     btn.Foreground = new SolidColorBrush(Colors.Black);
                 }
             }
         }
 
-        private void AddOnList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AddOnList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
-            if (sender is ListView lv && lv.Tag is PassengerFormViewModel pass)
+            if (sender is ListView listView && listView.Tag is PassengerFormViewModel passenger)
             {
                 foreach (var added in System.Linq.Enumerable.OfType<AddOn>(e.AddedItems))
                 {
-                    if (!pass.SelectedAddOns.Contains(added)) pass.SelectedAddOns.Add(added);
+                    if (!passenger.SelectedAddOns.Contains(added))
+                    {
+                        passenger.SelectedAddOns.Add(added);
+                    }
                 }
+
                 foreach (var removed in System.Linq.Enumerable.OfType<AddOn>(e.RemovedItems))
                 {
-                    pass.SelectedAddOns.Remove(removed);
+                    passenger.SelectedAddOns.Remove(removed);
                 }
             }
         }

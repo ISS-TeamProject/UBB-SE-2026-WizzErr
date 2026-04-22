@@ -55,6 +55,6 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
         _authService.Register(email, "0766112233", $"SorinM_{code}", password);
         var user = _userRepository.GetByEmail(email);
 
-        user.PasswordHash.Should().NotBe(password);
+        user!.PasswordHash.Should().NotBe(password);
     }
 }

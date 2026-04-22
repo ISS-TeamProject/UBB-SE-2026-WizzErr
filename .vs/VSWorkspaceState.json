@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Database",
+    "\\docs",
+    "\\TicketManager",
+    "\\TicketManager\\TicketManager"
   ],
   "PreviewInSolutionExplorer": false
 }

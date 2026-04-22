@@ -44,17 +44,17 @@ public class MembershipServiceTests
 
         var result = _service.UpgradeUserMembership(10, 3);
 
-        result.Name.Should().Be("Premium Plus");
+        result!.Name.Should().Be("Premium Plus");
         _mockUserRepository.Verify(r => r.UpdateUserMembership(10, 3), Times.Once);
     }
 
     [Fact]
     public void TestThatUpgradeUserMembershipReturnsNullIfNotFoundInRepo()
     {
-        _mockMembershipRepository.Setup(r => r.GetMembershipById(99)).Returns((Membership)null);
-        
+        _mockMembershipRepository.Setup(r => r.GetMembershipById(99)).Returns((Membership?)null);
+
         var result = _service.UpgradeUserMembership(1, 99);
-        
+
         result.Should().BeNull();
     }
 }

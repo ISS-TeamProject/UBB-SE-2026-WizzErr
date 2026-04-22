@@ -14,25 +14,24 @@ namespace TicketManager.Service
     {
         private const string CancelledStatus = "Cancelled";
 
-        private readonly ITicketRepository _ticketRepository;
+        private readonly ITicketRepository ticketRepository;
 
         public DashboardService(ITicketRepository ticketRepository)
         {
-            _ticketRepository = ticketRepository;
+            this.ticketRepository = ticketRepository;
             QuestPDF.Settings.License = LicenseType.Community;
         }
 
         public IEnumerable<Ticket> GetUserTickets(int userId, string ticketFilter)
         {
             var now = DateTime.Now;
-            var tickets = _ticketRepository.GetTicketsByUserId(userId)
+            var tickets = this.ticketRepository.GetTicketsByUserId(userId)
                 .Where(ticket => ticket.Flight != null);
 
             return string.Equals(ticketFilter, "Past", StringComparison.OrdinalIgnoreCase)
-                ? tickets.Where(ticket => ticket.Flight.Date < now).OrderByDescending(ticket => ticket.Flight.Date)
-                : tickets.Where(ticket => ticket.Flight.Date >= now).OrderBy(ticket => ticket.Flight.Date);
+                ? tickets.Where(ticket => ticket.Flight!.Date < now).OrderByDescending(ticket => ticket.Flight!.Date)
+                : tickets.Where(ticket => ticket.Flight!.Date >= now).OrderBy(ticket => ticket.Flight!.Date);
         }
-
 
         public string GenerateTicketPdf(Ticket ticket)
         {
@@ -81,7 +80,9 @@ namespace TicketManager.Service
                         if (ticket.SelectedAddOns != null && ticket.SelectedAddOns.Count > 0)
                         {
                             foreach (var addOn in ticket.SelectedAddOns)
-                                col.Item().Text($"a€¢ {addOn.Name}");
+                            {
+                                col.Item().Text($"• {addOn.Name}");
+                            }
                         }
                         else
                         {

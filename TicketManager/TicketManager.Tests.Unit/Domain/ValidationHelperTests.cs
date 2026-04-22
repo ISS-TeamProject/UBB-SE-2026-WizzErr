@@ -29,7 +29,7 @@ public class ValidationHelperTests
     [Fact]
     public void TestThatNullEmailIsRejected()
     {
-        var result = ValidationHelper.IsValidEmail(null);
+        var result = ValidationHelper.IsValidEmail(null!);
         result.Should().BeFalse();
     }
 
