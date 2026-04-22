@@ -46,7 +46,6 @@ namespace TicketManager.ViewModel
             set { _selectedSeat = value; OnPropertyChanged(); }
         }
 
-        // AddOns selected for this specific passenger
         public ObservableCollection<Domain.AddOn> SelectedAddOns { get; set; } = new ObservableCollection<Domain.AddOn>();
 
     }

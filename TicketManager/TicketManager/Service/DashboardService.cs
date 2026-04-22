@@ -81,7 +81,7 @@ namespace TicketManager.Service
                         if (ticket.SelectedAddOns != null && ticket.SelectedAddOns.Count > 0)
                         {
                             foreach (var addOn in ticket.SelectedAddOns)
-                                col.Item().Text($"â€¢ {addOn.Name}");
+                                col.Item().Text($"a€¢ {addOn.Name}");
                         }
                         else
                         {

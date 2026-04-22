@@ -4,6 +4,8 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="TicketManager.Tests.Integration/TicketManager.Tests.Integration.csproj" />
+  <Project Path="TicketManager.Tests.Unit/TicketManager.Tests.Unit.csproj" />
   <Project Path="TicketManager/TicketManager.csproj">
     <Platform Solution="*|ARM64" Project="ARM64" />
     <Platform Solution="*|x64" Project="x64" />

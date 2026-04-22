@@ -29,7 +29,7 @@ namespace TicketManager.View
 
         /// <summary>
         /// When the ViewModel reports a purchase result, show the appropriate dialog.
-        /// Showing a ContentDialog is a UI concern â€” the ViewModel only sets the state.
+        /// Showing a ContentDialog is a UI concern a€” the ViewModel only sets the state.
         /// </summary>
         private async void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

@@ -262,11 +262,11 @@ namespace TicketManager.Repository
                               AND status <> @cancelledStatus";
 
                         using var seatCheckCmd = new SqlCommand(seatLockCheckQuery, connection, transaction);
-                        seatCheckCmd.Parameters.AddWithValue("@flightId", ticket.Flight.FlightId);
+                        seatCheckCmd.Parameters.AddWithValue("@flightId", ticket.Flight?.FlightId ?? 0);
                         seatCheckCmd.Parameters.AddWithValue("@seat", ticket.Seat);
                         seatCheckCmd.Parameters.AddWithValue("@cancelledStatus", CancelledStatus);
 
-                        int existingSeatCount = (int)await seatCheckCmd.ExecuteScalarAsync();
+                        int existingSeatCount = Convert.ToInt32(await seatCheckCmd.ExecuteScalarAsync() ?? 0);
                         if (existingSeatCount > 0)
                             throw new InvalidOperationException("Selected seat is no longer available.");
                     }
@@ -278,8 +278,8 @@ namespace TicketManager.Repository
 
                     using var cmd = new SqlCommand(insertTicketQuery, connection, transaction);
                     float persistedPrice = ticket.CalculateTotalPrice();
-                    cmd.Parameters.AddWithValue("@userId", ticket.User.UserId);
-                    cmd.Parameters.AddWithValue("@flightId", ticket.Flight.FlightId);
+                    cmd.Parameters.AddWithValue("@userId", ticket.User?.UserId ?? 0);
+                    cmd.Parameters.AddWithValue("@flightId", ticket.Flight?.FlightId ?? 0);
                     cmd.Parameters.AddWithValue("@seat", ticket.Seat ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@price", (decimal)persistedPrice);
                     cmd.Parameters.AddWithValue("@status", ticket.Status);
@@ -288,7 +288,7 @@ namespace TicketManager.Repository
                     cmd.Parameters.AddWithValue("@email", ticket.PassengerEmail ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@phone", ticket.PassengerPhone ?? (object)DBNull.Value);
 
-                    var newTicketId = (int)await cmd.ExecuteScalarAsync();
+                    var newTicketId = Convert.ToInt32(await cmd.ExecuteScalarAsync() ?? 0);
                     ticket.TicketId = newTicketId;
 
                     if (ticket.SelectedAddOns != null && ticket.SelectedAddOns.Any())
@@ -310,10 +310,10 @@ namespace TicketManager.Repository
                 transaction.Commit();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 transaction.Rollback();
-                return false;
+                throw; // Rethrow so we can see the error in tests
             }
         }
     }

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page x:ConnectionId='1'
+    x:Class="TicketManager.View.FlightSearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TicketManager.View"
+    xmlns:domain="using:TicketManager.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Padding="24" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Spacing="20" Margin="0,0,0,30">
+            <TextBlock Text="Find your next flight" FontSize="28" FontWeight="Bold" Foreground="#2bb8c0"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Bottom">
+
+                <TextBox x:ConnectionId='12' x:Name="locationInput" Header="Location" PlaceholderText="e.g. Barcelona..." Width="180" 
+                                                                         />
+
+                <StackPanel>
+                    <TextBlock Text="Flight Type" Margin="0,0,0,6"/>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <RadioButton x:ConnectionId='17' x:Name="flightTypeDeparture" Content="Departure"                                                         />
+                        <RadioButton x:ConnectionId='18' x:Name="flightTypeArrival" Content="Arrival" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Bottom">
+                    <CalendarDatePicker x:ConnectionId='15' x:Name="datePicker" Header="Date" PlaceholderText="Select date" Width="150" 
+                                                                                          
+                                                                                                             />
+
+                    <Button x:ConnectionId='16' Content="✕" Background="Transparent" Foreground="Gray" BorderThickness="0" 
+                            VerticalAlignment="Bottom" Height="32" ToolTipService.ToolTip="Clear Date"
+                                                         />
+                </StackPanel>
+
+                <TextBox x:ConnectionId='13' x:Name="passengersInput" Header="Passengers" PlaceholderText="Nr" Width="80" 
+                                                                           
+                         InputScope="Number" 
+                                                                                />
+
+                <Button x:ConnectionId='14' x:Name="searchButton" Content="SEARCH" 
+                                                                   
+                        Background="#2bb8c0" 
+                        Foreground="White" 
+                        FontWeight="Bold" 
+                        Height="32" 
+                        VerticalAlignment="Bottom" 
+                        Margin="0,0,0,1"/>
+
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Available Flights" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+            <TextBlock x:ConnectionId='2' Grid.Row="1"                                                            Foreground="Gray" Margin="0,0,0,10"/>
+
+            <ListView x:ConnectionId='3' x:Name="flightsGrid"                                                                
+                      Grid.Row="2" BorderBrush="#2bb8c0" BorderThickness="1" CornerRadius="8" SelectionMode="Single">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid Background="Transparent" Padding="12" BorderBrush="#2bb8c0" BorderThickness="0,0,0,1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="110"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Flight Nr" FontWeight="Bold" />
+                            <TextBlock Grid.Column="1" Text="Route" FontWeight="Bold" />
+                            <TextBlock Grid.Column="2" Text="Date &amp; Time" FontWeight="Bold" />
+                            <TextBlock Grid.Column="3" Text="Base Price / person" FontWeight="Bold" />
+                            <TextBlock Grid.Column="4" Text="Action" FontWeight="Bold" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate                                       >
+                        <Grid x:ConnectionId='6' Padding="12" BorderBrush="#2bb8c0" BorderThickness="0,0,0,1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="110"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock x:ConnectionId='7' Grid.Column="0"                          VerticalAlignment="Center" />
+                            <TextBlock x:ConnectionId='8' Grid.Column="1"                           VerticalAlignment="Center" />
+                            <TextBlock x:ConnectionId='9' Grid.Column="2"                             VerticalAlignment="Center" />
+                            <TextBlock x:ConnectionId='10' Grid.Column="3"                              VerticalAlignment="Center" />
+
+                            <Button x:ConnectionId='11' Grid.Column="4" Content="Book" Background="#2bb8c0" Foreground="White" CornerRadius="4" Height="30" HorizontalAlignment="Right" Margin="8,0,0,0" 
+                                    Command="{Binding DataContext.BookFlightCommand, ElementName=flightsGrid}"                             />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
+

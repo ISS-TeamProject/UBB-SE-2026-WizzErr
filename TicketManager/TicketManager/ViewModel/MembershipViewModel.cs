@@ -17,7 +17,6 @@ namespace TicketManager.ViewModel
         public string DiscountText { get; set; }
         public string CardColor { get; set; }
 
-        // NOU: O listă specială pentru UI care va conține textele reducerilor
         public ObservableCollection<string> AddonBenefits { get; set; }
 
         public MembershipDisplayModel(Membership m)
@@ -34,13 +33,12 @@ namespace TicketManager.ViewModel
                 _ => "#2bb8c0"
             };
 
-            // NOU: Generăm textele dinamic citind din lista adusă de Service
             AddonBenefits = new ObservableCollection<string>();
             if (m.AddonDiscounts != null)
             {
                 foreach (var discount in m.AddonDiscounts)
                 {
-                    AddonBenefits.Add($"• {discount.DiscountPercentage}% Off {discount.AddOn.Name}");
+                    AddonBenefits.Add($"a�� {discount.DiscountPercentage}% Off {discount.AddOn.Name}");
                 }
             }
         }
@@ -53,7 +51,6 @@ namespace TicketManager.ViewModel
 
         public ObservableCollection<MembershipDisplayModel> Memberships { get; set; }
 
-        // ── Result state exposed to the View ──────────────────────
         private string _purchaseResultMessage;
         public string PurchaseResultMessage
         {
@@ -62,10 +59,10 @@ namespace TicketManager.ViewModel
         }
 
         private bool? _purchaseSucceeded;
-        /// <summary>
-        /// null = no purchase attempted yet, true = success, false = failure.
-        /// The View observes this to decide whether to show a success or error dialog.
-        /// </summary>
+
+
+
+
         public bool? PurchaseSucceeded
         {
             get => _purchaseSucceeded;
@@ -94,14 +91,13 @@ namespace TicketManager.ViewModel
             }
         }
 
-        /// <summary>
-        /// Handles the purchase flow. If the user is not logged in, navigates to auth.
-        /// On success/failure, sets PurchaseResultMessage and PurchaseSucceeded so the View
-        /// can react (e.g., show a dialog). The View never does try/catch or business logic.
-        /// </summary>
+
+
+
+
         private void ExecutePurchase(object parameter)
         {
-            // Reset previous result
+
             PurchaseSucceeded = null;
             PurchaseResultMessage = string.Empty;
 

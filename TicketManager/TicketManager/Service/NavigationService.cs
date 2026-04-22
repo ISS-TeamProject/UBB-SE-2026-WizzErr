@@ -5,7 +5,7 @@ namespace TicketManager.Service
 {
     /// <summary>
     /// Concrete navigation service that wraps the WinUI Frame.
-    /// Lives in the Service layer but depends on WinUI â€” this is acceptable because
+    /// Lives in the Service layer but depends on WinUI a€” this is acceptable because
     /// it's the single place where the UI framework is referenced for navigation.
     /// ViewModels only see the INavigationService interface.
     /// </summary>

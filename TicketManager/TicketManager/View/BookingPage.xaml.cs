@@ -68,7 +68,7 @@ namespace TicketManager.View
             }
         }
 
-        // â”€â”€ Seat Map (pure UI: creating buttons, setting colors) â”€â”€â”€â”€â”€â”€â”€â”€
+        // a”€a”€ Seat Map (pure UI: creating buttons, setting colors) a”€a”€a”€a”€a”€a”€a”€a”€
 
         private void GenerateSeatMap()
         {

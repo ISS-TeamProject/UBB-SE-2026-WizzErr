@@ -12,6 +12,8 @@
     <WinUISDKReferences>false</WinUISDKReferences>
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
+    <WindowsAppSDKExcludeAutoInitialize>true</WindowsAppSDKExcludeAutoInitialize>
+    <WindowsAppSDKExcludeBootstrapAutoInitialize>true</WindowsAppSDKExcludeBootstrapAutoInitialize>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="View\LoginPage.xaml" />

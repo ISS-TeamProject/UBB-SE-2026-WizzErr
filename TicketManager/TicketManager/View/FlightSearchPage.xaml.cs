@@ -26,11 +26,11 @@ namespace TicketManager.View
             this.DataContext = ViewModel;
         }
 
-        // â”€â”€ Pure-UI handlers (no logic, just visual behaviour) â”€â”€â”€â”€â”€â”€
+        // a”€a”€ Pure-UI handlers (no logic, just visual behaviour) a”€a”€a”€a”€a”€a”€
 
         /// <summary>
         /// Restricts the passengers TextBox to digits only. This is a UI input filter,
-        /// not business validation â€” it belongs in the View.
+        /// not business validation a€” it belongs in the View.
         /// </summary>
         private void PassengersInput_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {

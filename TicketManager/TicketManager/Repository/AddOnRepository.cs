@@ -50,8 +50,7 @@ namespace TicketManager.Repository
             using (var connection = _dbFactory.GetConnection())
             {
                 connection.Open();
-                
-                // Create parameterized list for IN clause safely
+
                 var parameters = ids.Select((id, index) => new { ParameterName = $"@Id{index}", Value = id }).ToList();
                 string inClause = string.Join(", ", parameters.Select(p => p.ParameterName));
                 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="TicketManager.Tests.Unit" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="TicketManager.Tests.Unit">
+				<NamedResource name="testhost.dll" uri="ms-resource://TicketManager.Tests.Unit/Files/TicketManager.Tests.Unit/testhost.dll">
+					<Candidate type="Path">
+						<Value>TicketManager.Tests.Unit\testhost.dll</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="testhost.exe" uri="ms-resource://TicketManager.Tests.Unit/Files/TicketManager.Tests.Unit/testhost.exe">
+					<Candidate type="Path">
+						<Value>TicketManager.Tests.Unit\testhost.exe</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

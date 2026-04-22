@@ -14,17 +14,17 @@ namespace TicketManager
     {
         private Window _window;
 
-        // â”€â”€ Shared infrastructure â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // a”€a”€ Shared infrastructure a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€
         private static DatabaseConnectionFactory _dbFactory;
 
-        // â”€â”€ Repositories (all behind interfaces) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // a”€a”€ Repositories (all behind interfaces) a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€
         private static IFlightRepository _flightRepository;
         private static ITicketRepository _ticketRepository;
         private static IAddOnRepository _addOnRepository;
         private static IMembershipRepository _membershipRepository;
         private static IUserRepository _userRepository;
 
-        // â”€â”€ Services (all behind interfaces) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // a”€a”€ Services (all behind interfaces) a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€a”€
         public static IAuthService AuthService { get; private set; }
         public static IFlightSearchService FlightSearchService { get; private set; }
         public static IBookingService BookingService { get; private set; }
