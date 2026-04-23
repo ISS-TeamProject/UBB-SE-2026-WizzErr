@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace TicketManager.ViewModel
     {
         public Flight Flight { get; }
 
-        public string FlightNr { get; set; } = string.Empty;
+        public string FlightNumber { get; set; } = string.Empty;
 
         public string RouteCity { get; set; } = string.Empty;
 
@@ -22,7 +22,7 @@ namespace TicketManager.ViewModel
         public FlightDisplayModel(Flight flight)
         {
             this.Flight = flight;
-            this.FlightNr = flight.FlightNr ?? string.Empty;
+            this.FlightNumber = flight.FlightNumber ?? string.Empty;
             this.RouteCity = flight.Route?.Airport?.City ?? "Unknown";
             this.DisplayDate = flight.Date.ToString("g");
             this.DisplayPrice = $"{flight.GetBasePrice():0.00} € / person";

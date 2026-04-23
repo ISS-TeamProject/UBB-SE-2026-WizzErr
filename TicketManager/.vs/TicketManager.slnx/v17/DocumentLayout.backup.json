@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\domain\\validationhelpertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\domain\\validationhelpertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\flightsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -266,7 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Airport.cs",
               "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Airport.cs",
@@ -278,19 +278,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "FlightRepository.cs",
               "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\FlightRepository.cs",
               "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\FlightRepository.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAADwv3kAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAiwDgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-22T16:31:45.148Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ValidationHelperTests.cs",
               "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
@@ -314,7 +314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Gate.cs",
               "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Gate.cs",
@@ -332,14 +332,14 @@
               "RelativeDocumentMoniker": "TicketManager\\appsettings.json",
               "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
               "RelativeToolTip": "TicketManager\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAACFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-04-21T12:19:31.538Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TicketManager.csproj",
               "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeDocumentMoniker": "TicketManager\\TicketManager.csproj",

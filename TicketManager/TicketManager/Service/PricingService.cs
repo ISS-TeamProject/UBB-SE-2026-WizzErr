@@ -17,7 +17,7 @@ namespace TicketManager.Service
             float basePrice = flight.GetBasePrice();
             float basePriceTotal = basePrice * tickets.Count;
 
-            float addOnsWithoutMembership = tickets.Sum(ticket => ticket.SelectedAddOns.Sum(addOn => addOn.GetBasePrice()));
+            float addOnsWithoutMembership = tickets.Sum(ticket => ticket.SelectedAddOns.Sum(addOn => addOn.BasePrice));
             float totalWithoutMembership = basePriceTotal + addOnsWithoutMembership;
 
             float finalTotal = 0f;

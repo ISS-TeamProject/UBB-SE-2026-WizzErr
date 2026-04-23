@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace TicketManager.Domain
 {
@@ -11,7 +11,7 @@ namespace TicketManager.Domain
         public Route? Route { get; set; }
         public Gate? Gate { get; set; }
         public DateTime Date { get; set; }
-        public string? FlightNr { get; set; }
+        public string? FlightNumber { get; set; }
 
         public Flight()
         {
@@ -22,7 +22,7 @@ namespace TicketManager.Domain
             Route = route;
             Gate = gate;
             Date = date;
-            FlightNr = flightNr;
+            FlightNumber = flightNr;
         }
 
         public Flight(int flightId, Route route, Gate gate, DateTime date, string flightNr)
@@ -31,7 +31,7 @@ namespace TicketManager.Domain
             Route = route;
             Gate = gate;
             Date = date;
-            FlightNr = flightNr;
+            FlightNumber = flightNr;
         }
 
         public float GetBasePrice()

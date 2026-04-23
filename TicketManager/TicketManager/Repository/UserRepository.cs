@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.Data.SqlClient;
 using TicketManager.Domain;
@@ -7,19 +7,19 @@ namespace TicketManager.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DatabaseConnectionFactory dbFactory;
+        private readonly IDatabaseConnectionFactory databaseConnectionFactory;
         private readonly IMembershipRepository membershipRepository;
 
-        public UserRepository(DatabaseConnectionFactory dbFactory, IMembershipRepository membershipRepository)
+        public UserRepository(IDatabaseConnectionFactory databaseConnectionFactory, IMembershipRepository membershipRepository)
         {
-            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.databaseConnectionFactory = databaseConnectionFactory ?? throw new ArgumentNullException(nameof(databaseConnectionFactory));
             this.membershipRepository = membershipRepository ?? throw new ArgumentNullException(nameof(membershipRepository));
         }
 
         public User? GetById(int id)
         {
             User? user = null;
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -48,7 +48,7 @@ namespace TicketManager.Repository
         public User? GetByEmail(string email)
         {
             User? user = null;
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -76,7 +76,7 @@ namespace TicketManager.Repository
 
         public void AddUser(User user)
         {
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -97,7 +97,7 @@ namespace TicketManager.Repository
 
         public void UpdateUserMembership(int userId, int newMembershipId)
         {
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"

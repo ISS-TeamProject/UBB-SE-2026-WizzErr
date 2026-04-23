@@ -11,18 +11,18 @@ namespace TicketManager.Repository
     {
         private const string CancelledStatus = "Cancelled";
 
-        private readonly DatabaseConnectionFactory dbFactory;
+        private readonly IDatabaseConnectionFactory databaseConnectionFactory;
 
-        public TicketRepository(DatabaseConnectionFactory dbFactory)
+        public TicketRepository(IDatabaseConnectionFactory databaseConnectionFactory)
         {
-            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.databaseConnectionFactory = databaseConnectionFactory ?? throw new ArgumentNullException(nameof(databaseConnectionFactory));
         }
 
         public IEnumerable<Ticket> GetTicketsByUserId(int userId)
         {
             var tickets = new List<Ticket>();
             var ticketById = new Dictionary<int, Ticket>();
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -75,7 +75,7 @@ namespace TicketManager.Repository
                             var flight = new Flight
                             {
                                 FlightId = reader.GetInt32(reader.GetOrdinal("flight_id")),
-                                FlightNr = reader.IsDBNull(reader.GetOrdinal("flight_number")) ? null : reader.GetString(reader.GetOrdinal("flight_number")),
+                                FlightNumber = reader.IsDBNull(reader.GetOrdinal("flight_number")) ? null : reader.GetString(reader.GetOrdinal("flight_number")),
                                 Date = reader.GetDateTime(reader.GetOrdinal("flight_date")),
                                 Route = route,
                                 Gate = gate
@@ -148,7 +148,7 @@ namespace TicketManager.Repository
 
         public void AddTicket(Ticket ticket)
         {
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -175,7 +175,7 @@ namespace TicketManager.Repository
 
         public void UpdateTicketStatus(int ticketId, string status)
         {
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = "UPDATE Tickets SET status = @Status WHERE ticket_id = @TicketId";
@@ -196,7 +196,7 @@ namespace TicketManager.Repository
                 return;
             }
 
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -232,7 +232,7 @@ namespace TicketManager.Repository
         public IEnumerable<string> GetOccupiedSeats(int flightId)
         {
             var seats = new List<string>();
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = $"SELECT seat FROM Tickets WHERE flight_id = @FlightId AND status != '{CancelledStatus}' AND seat IS NOT NULL";
@@ -256,7 +256,7 @@ namespace TicketManager.Repository
 
         public async Task<bool> SaveTicketsWithAddOnsAsync(List<Ticket> tickets)
         {
-            using var connection = this.dbFactory.GetConnection();
+            using var connection = this.databaseConnectionFactory.GetConnection();
             await connection.OpenAsync();
             using var transaction = connection.BeginTransaction();
 

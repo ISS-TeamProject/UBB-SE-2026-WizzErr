@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace TicketManager.Domain
 {
@@ -24,11 +24,6 @@ namespace TicketManager.Domain
             MembershipId = membershipId;
             Name = name;
             FlightDiscountPercentage = flightDiscountPercentage;
-        }
-
-        public float GetFlightDiscount()
-        {
-            return FlightDiscountPercentage;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using TicketManager.Domain;
@@ -7,17 +7,17 @@ namespace TicketManager.Repository
 {
     public class FlightRepository : IFlightRepository
     {
-        private readonly DatabaseConnectionFactory dbFactory;
+        private readonly IDatabaseConnectionFactory databaseConnectionFactory;
 
-        public FlightRepository(DatabaseConnectionFactory dbFactory)
+        public FlightRepository(IDatabaseConnectionFactory databaseConnectionFactory)
         {
-            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.databaseConnectionFactory = databaseConnectionFactory ?? throw new ArgumentNullException(nameof(databaseConnectionFactory));
         }
 
         public Flight? GetFlightById(int id)
         {
             Flight? flight = null;
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -52,7 +52,7 @@ namespace TicketManager.Repository
         public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime? date)
         {
             var flights = new List<Flight>();
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -91,7 +91,7 @@ namespace TicketManager.Repository
 
         public int GetOccupiedSeatCount(int flightId)
         {
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -150,7 +150,7 @@ namespace TicketManager.Repository
                 Route = route,
                 Gate = gate,
                 Date = reader.GetDateTime(reader.GetOrdinal("date")),
-                FlightNr = reader.IsDBNull(reader.GetOrdinal("flight_number")) ? null : reader.GetString(reader.GetOrdinal("flight_number"))
+                FlightNumber = reader.IsDBNull(reader.GetOrdinal("flight_number")) ? null : reader.GetString(reader.GetOrdinal("flight_number"))
             };
         }
     }

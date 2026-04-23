@@ -59,7 +59,7 @@ namespace TicketManager.Service
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
                         col.Item().PaddingTop(10).Text("Flight Details").FontSize(16).SemiBold();
-                        col.Item().Text($"Flight Number: {ticket.Flight?.FlightNr ?? "N/A"}");
+                        col.Item().Text($"Flight Number: {ticket.Flight?.FlightNumber ?? "N/A"}");
                         col.Item().Text($"Date: {ticket.Flight?.Date:dd MMM yyyy HH:mm}");
                         col.Item().Text($"Route: {ticket.Flight?.Route?.Airport?.City ?? "N/A"} ({ticket.Flight?.Route?.RouteType ?? "N/A"})");
                         col.Item().Text($"Departure: {ticket.Flight?.Route?.DepartureTime:HH:mm}");

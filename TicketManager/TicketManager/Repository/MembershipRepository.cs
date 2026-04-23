@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using TicketManager.Domain;
@@ -7,17 +7,17 @@ namespace TicketManager.Repository
 {
     public class MembershipRepository : IMembershipRepository
     {
-        private readonly DatabaseConnectionFactory dbFactory;
+        private readonly IDatabaseConnectionFactory databaseConnectionFactory;
 
-        public MembershipRepository(DatabaseConnectionFactory dbFactory)
+        public MembershipRepository(IDatabaseConnectionFactory databaseConnectionFactory)
         {
-            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.databaseConnectionFactory = databaseConnectionFactory ?? throw new ArgumentNullException(nameof(databaseConnectionFactory));
         }
 
         public Membership? GetMembershipById(int id)
         {
             Membership? membership = null;
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT membership_id, name, flight_discount_percentage FROM Memberships WHERE membership_id = @MembershipId";
@@ -47,7 +47,7 @@ namespace TicketManager.Repository
         public IEnumerable<Membership> GetAllMemberships()
         {
             var memberships = new List<Membership>();
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT membership_id, name, flight_discount_percentage FROM Memberships";
@@ -72,7 +72,7 @@ namespace TicketManager.Repository
         public IEnumerable<MembershipAddonDiscount> GetAddonDiscounts(int membershipId)
         {
             var discounts = new List<MembershipAddonDiscount>();
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"

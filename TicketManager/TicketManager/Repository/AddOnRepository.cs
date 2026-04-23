@@ -8,17 +8,17 @@ namespace TicketManager.Repository
 {
     public class AddOnRepository : IAddOnRepository
     {
-        private readonly DatabaseConnectionFactory dbFactory;
+        private readonly IDatabaseConnectionFactory databaseConnectionFactory;
 
-        public AddOnRepository(DatabaseConnectionFactory dbFactory)
+        public AddOnRepository(IDatabaseConnectionFactory databaseConnectionFactory)
         {
-            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.databaseConnectionFactory = databaseConnectionFactory ?? throw new ArgumentNullException(nameof(databaseConnectionFactory));
         }
 
         public IEnumerable<AddOn> GetAllAddOns()
         {
             var addons = new List<AddOn>();
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT addon_id, name, base_price FROM AddOns";
@@ -50,7 +50,7 @@ namespace TicketManager.Repository
                 return addons;
             }
 
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
 

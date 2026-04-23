@@ -1,4 +1,4 @@
-﻿namespace TicketManager.Domain
+namespace TicketManager.Domain
 {
     public class User
     {
@@ -32,14 +32,5 @@
             Membership = membership;
         }
 
-        public int GetId()
-        {
-            return UserId;
-        }
-
-        public string GetEmail()
-        {
-            return Email;
-        }
     }
 }

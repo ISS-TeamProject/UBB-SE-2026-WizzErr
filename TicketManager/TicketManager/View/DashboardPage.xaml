@@ -78,7 +78,7 @@
                                     <!-- Nr zbor si Data -->
                                     <StackPanel Orientation="Horizontal" Spacing="10">
                                         <TextBlock Text="Flight:" FontWeight="SemiBold"/>
-                                        <TextBlock Text="{Binding Flight.FlightNr}" FontWeight="Bold" FontSize="16"/>
+                                        <TextBlock Text="{Binding Flight.FlightNumber}" FontWeight="Bold" FontSize="16"/>
                                         <TextBlock Text="•"/>
                                         <TextBlock Text="{Binding Flight.Date}" Foreground="Gray"/>
                                     </StackPanel>

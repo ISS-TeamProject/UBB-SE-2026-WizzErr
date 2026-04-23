@@ -1,4 +1,4 @@
-﻿namespace TicketManager.Domain
+namespace TicketManager.Domain
 {
     public class AddOn
     {
@@ -21,11 +21,6 @@
             AddOnId = addOnId;
             Name = name;
             BasePrice = basePrice;
-        }
-
-        public float GetBasePrice()
-        {
-            return BasePrice;
         }
     }
 }
