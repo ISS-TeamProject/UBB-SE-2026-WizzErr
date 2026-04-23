@@ -43,7 +43,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Oricum\OneDrive\Desktop\PROIECT ISS\UBB-SE-2026-WizzErr\TicketManager\TicketManager\appsettings.json">
       <PackagePath>appsettings.json</PackagePath>
-      <Modified>2026-04-23T14:26:23.055</Modified>
+      <Modified>2026-04-23T15:08:48.561</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Oricum\.nuget\packages\questpdf\2026.2.4\LatoFont\Lato-Black.ttf">
       <PackagePath>LatoFont\Lato-Black.ttf</PackagePath>
