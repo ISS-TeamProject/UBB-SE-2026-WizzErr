@@ -31,6 +31,5 @@ namespace TicketManager.Domain
             PasswordHash = passwordHash;
             Membership = membership;
         }
-
     }
 }
