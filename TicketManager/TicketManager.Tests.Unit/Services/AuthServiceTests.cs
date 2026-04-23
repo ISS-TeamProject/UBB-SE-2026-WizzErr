@@ -26,7 +26,7 @@ public class AuthServiceTests
         var pass = "ParolaIonut123!";
         var user = new User { Email = "ionut.popescu@gmail.com" };
         user.PasswordHash = _passwordHasher.HashPassword(user, pass);
-        
+
         _mockUserRepository.Setup(r => r.GetByEmail(user.Email)).Returns(user);
 
         var result = _authService.Login(user.Email, pass);
@@ -40,7 +40,7 @@ public class AuthServiceTests
     {
         var user = new User { Email = "gigel.frone@yahoo.ro" };
         user.PasswordHash = _passwordHasher.HashPassword(user, "parola_corecta");
-        
+
         _mockUserRepository.Setup(r => r.GetByEmail(user.Email)).Returns(user);
 
         Action act = () => _authService.Login(user.Email, "parola_incorecta_99");
@@ -68,7 +68,7 @@ public class AuthServiceTests
     public void TestThatRegisterCreatesNewRomanianUser()
     {
         string email = "andreea.marin@yahoo.ro";
-        _mockUserRepository.Setup(r => r.GetByEmail(email)).Returns((User)null);
+        _mockUserRepository.Setup(r => r.GetByEmail(email)).Returns((User?)null);
 
         _authService.Register(email, "0744112233", "andreeam", "ZanaSurprizelor1!");
 

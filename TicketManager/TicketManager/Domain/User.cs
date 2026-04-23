@@ -9,7 +9,9 @@ namespace TicketManager.Domain
         public string PasswordHash { get; set; } = string.Empty;
         public Membership? Membership { get; set; }
 
-        public User() { }
+        public User()
+        {
+        }
 
         public User(string email, string? phone, string username, string passwordHash, Membership? membership)
         {

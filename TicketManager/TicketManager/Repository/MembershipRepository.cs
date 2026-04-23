@@ -7,25 +7,25 @@ namespace TicketManager.Repository
 {
     public class MembershipRepository : IMembershipRepository
     {
-        private readonly DatabaseConnectionFactory _dbFactory;
+        private readonly DatabaseConnectionFactory dbFactory;
 
         public MembershipRepository(DatabaseConnectionFactory dbFactory)
         {
-            _dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
         }
 
-        public Membership GetMembershipById(int id)
+        public Membership? GetMembershipById(int id)
         {
-            Membership membership = null;
-            using (var connection = _dbFactory.GetConnection())
+            Membership? membership = null;
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT membership_id, name, flight_discount_percentage FROM Memberships WHERE membership_id = @MembershipId";
-                
+
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@MembershipId", id);
-                    
+
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -47,7 +47,7 @@ namespace TicketManager.Repository
         public IEnumerable<Membership> GetAllMemberships()
         {
             var memberships = new List<Membership>();
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT membership_id, name, flight_discount_percentage FROM Memberships";
@@ -72,7 +72,7 @@ namespace TicketManager.Repository
         public IEnumerable<MembershipAddonDiscount> GetAddonDiscounts(int membershipId)
         {
             var discounts = new List<MembershipAddonDiscount>();
-            using (var connection = _dbFactory.GetConnection())
+            using (var connection = dbFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -83,11 +83,11 @@ namespace TicketManager.Repository
                     INNER JOIN Memberships m ON mad.membership_id = m.membership_id
                     INNER JOIN AddOns a ON mad.addon_id = a.addon_id
                     WHERE mad.membership_id = @MembershipId";
-                
+
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@MembershipId", membershipId);
-                    
+
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -107,10 +107,9 @@ namespace TicketManager.Repository
                             };
 
                             var discount = new MembershipAddonDiscount(
-                                membership, 
-                                addon, 
-                                (float)reader.GetByte(reader.GetOrdinal("discount_percentage"))
-                            );
+                                membership,
+                                addon,
+                                (float)reader.GetByte(reader.GetOrdinal("discount_percentage")));
 
                             discounts.Add(discount);
                         }

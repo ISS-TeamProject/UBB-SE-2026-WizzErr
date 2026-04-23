@@ -8,56 +8,65 @@ namespace TicketManager.ViewModel
 {
     public partial class DashboardViewModel : ViewModelBase
     {
-        private readonly IDashboardService _dashboardService;
-        private readonly ICancellationService _cancellationService;
-        private readonly INavigationService _navigationService;
+        private readonly IDashboardService dashboardService;
+        private readonly ICancellationService cancellationService;
+        private readonly INavigationService navigationService;
 
-        public string WelcomeMessage => UserSession.CurrentUser != null 
-            ? $"Welcome, {UserSession.CurrentUser.Username}!" 
+        public string WelcomeMessage => UserSession.CurrentUser != null
+            ? $"Welcome, {UserSession.CurrentUser.Username}!"
             : "Welcome!";
 
         public ObservableCollection<Ticket> MyTickets { get; set; }
         public ObservableCollection<string> TicketFilters { get; }
 
-        private string _selectedTicketFilter;
+        private string selectedTicketFilter = "Upcoming";
         public string SelectedTicketFilter
         {
-            get => _selectedTicketFilter;
+            get => selectedTicketFilter;
             set
             {
-                if (_selectedTicketFilter == value) return;
-                _selectedTicketFilter = value;
+                if (selectedTicketFilter == value)
+                {
+                    return;
+                }
+
+                selectedTicketFilter = value;
                 OnPropertyChanged();
                 LoadUserTickets();
             }
         }
 
-        private string _cancellationMessage;
+        private string cancellationMessage = string.Empty;
         public string CancellationMessage
         {
-            get => _cancellationMessage;
-            set { _cancellationMessage = value; OnPropertyChanged(); }
+            get => cancellationMessage;
+            set
+            {
+                cancellationMessage = value;
+                OnPropertyChanged();
+            }
         }
 
-        private bool? _cancellationSucceeded;
-
-
-
+        private bool? cancellationSucceeded;
         public bool? CancellationSucceeded
         {
-            get => _cancellationSucceeded;
-            set { _cancellationSucceeded = value; OnPropertyChanged(); }
+            get => cancellationSucceeded;
+            set
+            {
+                cancellationSucceeded = value;
+                OnPropertyChanged();
+            }
         }
 
-        private Ticket _pendingCancelTicket;
-
-
-
-
-        public Ticket PendingCancelTicket
+        private Ticket? pendingCancelTicket;
+        public Ticket? PendingCancelTicket
         {
-            get => _pendingCancelTicket;
-            set { _pendingCancelTicket = value; OnPropertyChanged(); }
+            get => pendingCancelTicket;
+            set
+            {
+                pendingCancelTicket = value;
+                OnPropertyChanged();
+            }
         }
 
         public ICommand CancelTicketCommand { get; }
@@ -65,13 +74,12 @@ namespace TicketManager.ViewModel
 
         public DashboardViewModel(IDashboardService dashboardService, ICancellationService cancellationService, INavigationService navigationService)
         {
-            _dashboardService = dashboardService;
-            _cancellationService = cancellationService;
-            _navigationService = navigationService;
+            this.dashboardService = dashboardService;
+            this.cancellationService = cancellationService;
+            this.navigationService = navigationService;
 
             MyTickets = new ObservableCollection<Ticket>();
             TicketFilters = new ObservableCollection<string> { "Upcoming", "Past" };
-            _selectedTicketFilter = "Upcoming";
 
             CancelTicketCommand = new RelayCommand(ExecuteCancelTicket);
             DownloadPdfCommand = new RelayCommand(ExecuteDownloadPdf);
@@ -84,16 +92,16 @@ namespace TicketManager.ViewModel
             MyTickets.Clear();
             int? currentUserId = UserSession.CurrentUser?.UserId;
             if (!currentUserId.HasValue)
+            {
                 return;
+            }
 
-            var filteredTickets = _dashboardService.GetUserTickets(currentUserId.Value, SelectedTicketFilter);
+            var filteredTickets = dashboardService.GetUserTickets(currentUserId.Value, SelectedTicketFilter);
             foreach (var ticket in filteredTickets)
+            {
                 MyTickets.Add(ticket);
+            }
         }
-
-
-
-
 
         private void ExecuteCancelTicket(object parameter)
         {
@@ -101,12 +109,16 @@ namespace TicketManager.ViewModel
             CancellationMessage = string.Empty;
 
             if (parameter is not Ticket ticket)
+            {
                 return;
+            }
 
             if (string.Equals(ticket.Status, "Cancelled", StringComparison.OrdinalIgnoreCase))
+            {
                 return;
+            }
 
-            var (canCancel, reason) = _cancellationService.CanCancelTicket(ticket);
+            var (canCancel, reason) = cancellationService.CanCancelTicket(ticket);
             if (!canCancel)
             {
                 CancellationSucceeded = false;
@@ -117,14 +129,14 @@ namespace TicketManager.ViewModel
             PendingCancelTicket = ticket;
         }
 
-
-
         public void ConfirmCancellation()
         {
             if (PendingCancelTicket == null)
+            {
                 return;
+            }
 
-            _cancellationService.CancelTicket(PendingCancelTicket.TicketId);
+            cancellationService.CancelTicket(PendingCancelTicket.TicketId);
             PendingCancelTicket = null;
             LoadUserTickets();
 
@@ -132,20 +144,16 @@ namespace TicketManager.ViewModel
             CancellationMessage = "The ticket status was updated to Cancelled.";
         }
 
-
-
         public void DeclineCancellation()
         {
             PendingCancelTicket = null;
         }
 
-
-
         public bool OnNavigatedTo()
         {
             if (UserSession.CurrentUser == null)
             {
-                _navigationService.NavigateTo(typeof(View.AuthPage));
+                navigationService.NavigateTo(typeof(View.AuthPage));
                 return false;
             }
 
@@ -159,7 +167,7 @@ namespace TicketManager.ViewModel
             {
                 try
                 {
-                    string generatedFilePath = _dashboardService.GenerateTicketPdf(ticket);
+                    string generatedFilePath = dashboardService.GenerateTicketPdf(ticket);
 
                     System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                     {

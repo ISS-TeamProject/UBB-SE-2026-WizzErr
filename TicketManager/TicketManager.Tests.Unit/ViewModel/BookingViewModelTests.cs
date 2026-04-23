@@ -73,7 +73,7 @@ public class BookingViewModelTests
     {
         var flight = new Flight { FlightId = 1, Route = new Route { Capacity = 180 } };
         var user = new User { UserId = 1, Email = "andrei.tudor@gmail.com" };
-        
+
         _mockBookingService.Setup(s => s.GetAvailableAddOnsAsync()).ReturnsAsync(new List<AddOn>());
         _mockBookingService.Setup(s => s.GetOccupiedSeatsAsync(It.IsAny<int>())).ReturnsAsync(new List<string>());
         _mockBookingService.Setup(s => s.CalculateMaxPassengers(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(5);
@@ -85,7 +85,7 @@ public class BookingViewModelTests
             .Returns(new PriceBreakdown { FinalTotal = 100 });
 
         await _viewModel.InitializeAsync(flight, user, 1);
-        
+
         var passenger = _viewModel.Passengers[0];
         passenger.FirstName = "Andrei";
         passenger.LastName = "Tudor";
@@ -120,11 +120,10 @@ public class BookingViewModelTests
     }
 
     [Fact]
-    public void OnNavigatedToAsync_ReturnsFalseWhenNoFlight()
+    public async Task OnNavigatedToAsync_ReturnsFalseWhenNoFlight()
     {
-        var result = _viewModel.OnNavigatedToAsync(new object[] { null }).Result;
+        var result = await _viewModel.OnNavigatedToAsync(new object?[] { null });
 
         result.Should().BeFalse();
     }
 }
-

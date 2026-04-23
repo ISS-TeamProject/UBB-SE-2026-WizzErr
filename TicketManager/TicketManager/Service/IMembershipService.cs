@@ -10,6 +10,7 @@ namespace TicketManager.Service
     public interface IMembershipService
     {
         IEnumerable<Membership> GetAllMemberships();
-        Membership UpgradeUserMembership(int userId, int newMembershipId);
+
+        Membership? UpgradeUserMembership(int userId, int newMembershipId);
     }
 }
