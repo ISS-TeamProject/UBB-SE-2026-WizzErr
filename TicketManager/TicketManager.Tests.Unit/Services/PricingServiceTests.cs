@@ -85,4 +85,47 @@ public class PricingServiceTests
         breakdown.BasePriceTotal.Should().Be(200.0f);
         breakdown.FinalTotal.Should().Be(200.0f);
     }
+
+    [Fact]
+    public void TestThatCalculatePriceBreakdownCalculatesMembershipSavingsCorrectly()
+    {
+        var flight = CreateFlightWithBasePrice(100.0f);
+        var membership = new Membership { MembershipId = 1, Name = "Premium", FlightDiscountPercentage = 10, AddonDiscounts = new List<MembershipAddonDiscount>() };
+        var user = UserFixture.CreateValidTestUser(membership: membership);
+        var tickets = new List<Ticket>
+        {
+            new Ticket { Price = 100.0f },
+            new Ticket { Price = 100.0f }
+        };
+
+        var breakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+
+        breakdown.MembershipSavings.Should().Be(20.0f);
+        breakdown.FinalTotal.Should().Be(180.0f);
+    }
+
+    [Fact]
+    public void TestThatCalculatePriceBreakdownWithComplexDiscountScenario()
+    {
+        var flight = CreateFlightWithBasePrice(100.0f);
+        var addon = new AddOn { AddOnId = 1, Name = "Bagaj", BasePrice = 50.0f };
+        var addonDiscount = new MembershipAddonDiscount { AddOn = addon, DiscountPercentage = 20.0f };
+        var membership = new Membership
+        {
+            MembershipId = 1,
+            Name = "Premium",
+            FlightDiscountPercentage = 10.0f,
+            AddonDiscounts = new List<MembershipAddonDiscount> { addonDiscount }
+        };
+        var user = UserFixture.CreateValidTestUser(membership: membership);
+        var ticket1 = new Ticket { Price = 100.0f, SelectedAddOns = new List<AddOn> { addon } };
+        var ticket2 = new Ticket { Price = 100.0f, SelectedAddOns = new List<AddOn> { addon } };
+        var tickets = new List<Ticket> { ticket1, ticket2 };
+
+        var breakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+
+        breakdown.BasePriceTotal.Should().Be(200.0f);
+        breakdown.AddOnsTotal.Should().Be(100.0f);
+        breakdown.MembershipSavings.Should().BeGreaterThan(0);
+    }
 }

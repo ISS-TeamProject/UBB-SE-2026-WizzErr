@@ -43,7 +43,7 @@ public class TicketRepositoryIntegrationTests : BaseIntegrationTest
         _ticketRepository.AddTicket(ticket);
         var userTickets = _ticketRepository.GetTicketsByUserId(dbUser.UserId);
 
-        userTickets.Should().Contain(t => t.Seat == seat);
+        userTickets.Should().Contain(ticket1 => ticket1.Seat == seat);
     }
 
     [Fact]
@@ -60,6 +60,6 @@ public class TicketRepositoryIntegrationTests : BaseIntegrationTest
         _ticketRepository.UpdateTicketStatus(ticket.TicketId, "Cancelled");
         var updatedTickets = _ticketRepository.GetTicketsByUserId(dbUser!.UserId);
         
-        updatedTickets.First(t => t.TicketId == ticket.TicketId).Status.Should().Be("Cancelled");
+        updatedTickets.First(ticket1 => ticket1.TicketId == ticket.TicketId).Status.Should().Be("Cancelled");
     }
 }

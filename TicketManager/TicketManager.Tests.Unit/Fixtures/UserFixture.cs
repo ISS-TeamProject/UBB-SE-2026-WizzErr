@@ -5,8 +5,8 @@ namespace TicketManager.Tests.Unit.Fixtures;
 public static class UserFixture
 {
     public static User CreateValidTestUser(
-        string email = "ion.popescu@gmail.com",
-        string username = "ionPopescu99",
+        string email = "andrei.ionescu@gmail.com",
+        string username = "andrei_ionescu",
         string phone = "0722112233",
         Membership? membership = null)
     {
@@ -23,8 +23,8 @@ public static class UserFixture
     public static User CreateBasicTestUser()
     {
         return CreateValidTestUser(
-            email: "gheorghe.vasile@yahoo.ro",
-            username: "gVasile_77",
+            email: "elena.dumitru@yahoo.ro",
+            username: "elena_d88",
             phone: "0744556677");
     }
 }
