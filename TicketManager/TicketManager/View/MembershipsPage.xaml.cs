@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using TicketManager.ViewModel;

@@ -37,7 +37,7 @@ namespace TicketManager.ViewModel
             {
                 foreach (var discount in m.AddonDiscounts)
                 {
-                    AddonBenefits.Add($"• {discount.DiscountPercentage}% Off {discount.AddOn.Name}");
+                    AddonBenefits.Add($"â€¢ {discount.DiscountPercentage}% Off {discount.AddOn.Name}");
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace TicketManager.ViewModel
             this.navigationService = navigationService;
             this.Memberships = new ObservableCollection<MembershipDisplayModel>();
 
-            this.PurchaseCommand = new RelayCommand(param => this.ExecutePurchase(param));
+            this.PurchaseCommand = new RelayCommand(parameter => this.ExecutePurchase(parameter));
 
             this.LoadMemberships();
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using TicketManager.Domain;
 using TicketManager.Repository;
 

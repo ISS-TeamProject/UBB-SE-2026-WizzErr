@@ -104,10 +104,10 @@ namespace TicketManager.Repository
                 if (ticketById.Count > 0)
                 {
                     var parameters = ticketById.Keys
-                        .Select((id, index) => new { ParameterName = $"@TicketId{index}", Value = id })
+                        .Select((identifier, index) => new { ParameterName = $"@TicketId{index}", Value = identifier })
                         .ToList();
 
-                    string inClause = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    string inClause = string.Join(", ", parameters.Select(parameter => parameter.ParameterName));
                     string addOnQuery = $@"
                         SELECT ta.ticket_id, a.addon_id, a.name, a.base_price
                         FROM Tickets_AddOns ta

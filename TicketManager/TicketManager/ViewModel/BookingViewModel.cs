@@ -127,11 +127,11 @@ namespace TicketManager.ViewModel
             }
         }
 
-        public string BasePricePerPersonDisplay => $"{BasePricePerPerson:0.00} €";
-        public string BasePriceTotalDisplay => $"{BasePriceTotal:0.00} €";
-        public string AddOnsTotalDisplay => $"{AddOnsTotal:0.00} €";
-        public string MembershipSavingsDisplay => $"-{MembershipSavings:0.00} €";
-        public string FinalTotalPriceDisplay => $"{FinalTotalPrice:0.00} €";
+        public string BasePricePerPersonDisplay => $"{BasePricePerPerson:0.00} â‚¬";
+        public string BasePriceTotalDisplay => $"{BasePriceTotal:0.00} â‚¬";
+        public string AddOnsTotalDisplay => $"{AddOnsTotal:0.00} â‚¬";
+        public string MembershipSavingsDisplay => $"-{MembershipSavings:0.00} â‚¬";
+        public string FinalTotalPriceDisplay => $"{FinalTotalPrice:0.00} â‚¬";
 
         private string validationMessage = string.Empty;
         public string ValidationMessage
@@ -173,9 +173,9 @@ namespace TicketManager.ViewModel
             this.pricingService = pricingService;
             this.navigationService = navigationService;
 
-            AddPassengerCommand = new RelayCommand(_ => AddPassenger());
-            RemovePassengerCommand = new RelayCommand(param => RemovePassenger(param as PassengerFormViewModel));
-            confirmBookingCommand = new RelayCommand(async _ => await ConfirmBookingAsync(), _ => CanConfirmBooking);
+            AddPassengerCommand = new RelayCommand(parameter => AddPassenger());
+            RemovePassengerCommand = new RelayCommand(parameter => RemovePassenger(parameter as PassengerFormViewModel));
+            confirmBookingCommand = new RelayCommand(async parameter => await ConfirmBookingAsync(), parameter => CanConfirmBooking);
             ConfirmBookingCommand = confirmBookingCommand;
         }
 

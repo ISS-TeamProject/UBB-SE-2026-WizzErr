@@ -1,4 +1,4 @@
-using TicketManager.Domain;
+﻿using TicketManager.Domain;
 
 namespace TicketManager.Service
 {

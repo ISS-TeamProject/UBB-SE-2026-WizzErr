@@ -77,8 +77,8 @@ namespace TicketManager.ViewModel
             this.navigationService = navigationService;
             AvailableFlights = new ObservableCollection<FlightDisplayModel>();
 
-            SearchCommand = new RelayCommand(_ => ExecuteSearch());
-            BookFlightCommand = new RelayCommand(param => ExecuteBookFlight(param as FlightDisplayModel));
+            SearchCommand = new RelayCommand(parameter => ExecuteSearch());
+            BookFlightCommand = new RelayCommand(parameter => ExecuteBookFlight(parameter as FlightDisplayModel));
         }
 
         public void OnNavigatedTo(object parameter)
