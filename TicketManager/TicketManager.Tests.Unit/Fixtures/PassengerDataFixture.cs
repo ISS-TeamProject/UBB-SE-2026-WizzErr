@@ -5,9 +5,9 @@ namespace TicketManager.Tests.Unit.Fixtures;
 public static class PassengerDataFixture
 {
     public static PassengerData CreateValidPassengerData(
-        string firstName = "Maria",
-        string lastName = "Ionescu",
-        string email = "maria.io@gmail.com",
+        string firstName = "Alexandru",
+        string lastName = "Miron",
+        string email = "alex.miron@gmail.com",
         string phone = "0733112233",
         string selectedSeat = "1A")
     {
@@ -26,14 +26,17 @@ public static class PassengerDataFixture
     {
         var randomPrefix = Guid.NewGuid().ToString().Substring(0, 4);
         var passengers = new List<PassengerData>();
-        var firstNames = new[] { "Andrei", "Elena", "Sorin", "Cristina", "Mihai" };
-        var lastNames = new[] { "Radu", "Stan", "Stoica", "Dumitru", "Marin" };
+        var firstNames = new[] { "Mihai", "Simona", "Bogdan", "Raluca", "Cristian", "Adina", "Florin" };
+        var lastNames = new[] { "Popa", "Stan", "Diaconu", "Ungureanu", "Vasile", "Lupu", "Nistor" };
         
         for (int i = 0; i < count; i++)
         {
+            var fName = firstNames[i % firstNames.Length];
+            var lName = lastNames[i % lastNames.Length];
             passengers.Add(CreateValidPassengerData(
-                firstName: firstNames[i % firstNames.Length],
-                lastName: lastNames[i % lastNames.Length],
+                firstName: fName,
+                lastName: lName,
+                email: $"{fName.ToLower()}.{lName.ToLower()}_{randomPrefix}@yahoo.com",
                 selectedSeat: $"{randomPrefix}_{i + 1}B"));
         }
         return passengers;

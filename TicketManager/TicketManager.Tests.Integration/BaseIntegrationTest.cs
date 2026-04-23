@@ -7,14 +7,15 @@ public abstract class BaseIntegrationTest
 {
     protected string GetTestConnectionString()
     {
-        return "Server=DESKTOP-NENJ194\\SQLEXPRESS;Database=TicketsDB;Trusted_Connection=True;TrustServerCertificate=True;";
+        return "Server=LUP_ALEXIA\\SQLEXPRESS;Database=TicketsDB;Trusted_Connection=True;TrustServerCertificate=True;";
     }
 
     protected int GetFirstAvailableFlightId()
     {
         using var connection = new SqlConnection(GetTestConnectionString());
         connection.Open();
-        using var command = new SqlCommand("SELECT TOP 1 id FROM Flights", connection);
+        // Prefer future flights for tests that need to test cancellation/booking
+        using var command = new SqlCommand("SELECT TOP 1 id FROM Flights ORDER BY CASE WHEN date > GETDATE() THEN 0 ELSE 1 END, date ASC", connection);
         var result = command.ExecuteScalar();
         if (result == null || result == DBNull.Value)
             throw new Exception("Nu s-au gasit zboruri in baza de date. Va rugam sa rulati scriptul de seed.");

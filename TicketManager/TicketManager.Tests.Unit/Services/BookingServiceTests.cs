@@ -82,4 +82,60 @@ public class BookingServiceTests
         var maxPassengers = _bookingService.CalculateMaxPassengers(200, 100, 5);
         maxPassengers.Should().Be(5);
     }
+
+    [Fact]
+    public async Task TestThatSaveTicketsAsyncReturnsFalseWhenTicketListIsNull()
+    {
+        var result = await _bookingService.SaveTicketsAsync(null!);
+        result.Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task TestThatSaveTicketsAsyncReturnsFalseWhenTicketListIsEmpty()
+    {
+        var result = await _bookingService.SaveTicketsAsync(new List<Ticket>());
+        result.Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task TestThatSaveTicketsAsyncReturnsFalseWhenDuplicateSeatsInRequest()
+    {
+        var ticket1 = new Ticket { Seat = "1A", Price = 100.0f, Status = "Active" };
+        var ticket2 = new Ticket { Seat = "1A", Price = 100.0f, Status = "Active" };
+        var tickets = new List<Ticket> { ticket1, ticket2 };
+
+        var result = await _bookingService.SaveTicketsAsync(tickets);
+
+        result.Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task TestThatSaveTicketsAsyncReturnsTrueWhenAllTicketsValid()
+    {
+        _mockTicketRepository.Setup(r => r.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>())).ReturnsAsync(true);
+        var ticket1 = new Ticket { Seat = "1A", Price = 100.0f, Status = "Active" };
+        var ticket2 = new Ticket { Seat = "1B", Price = 100.0f, Status = "Active" };
+        var tickets = new List<Ticket> { ticket1, ticket2 };
+
+        var result = await _bookingService.SaveTicketsAsync(tickets);
+
+        result.Should().BeTrue();
+        _mockTicketRepository.Verify(r => r.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>()), Times.Once);
+    }
+
+    [Fact]
+    public void TestThatValidatePassengersAcceptsValidEmailWhenProvided()
+    {
+        var passenger = PassengerDataFixture.CreateValidPassengerData(email: "test@gmail.com");
+        var result = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
+        result.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void TestThatValidatePassengersRejectsInvalidEmailWhenProvided()
+    {
+        var passenger = new PassengerData { FirstName = "Ion", LastName = "Pop", SelectedSeat = "1A", Email = "not-an-email" };
+        var result = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
+        result.Should().Contain("email format is invalid");
+    }
 }

@@ -22,8 +22,8 @@ public class FlightSearchServiceTests
     {
         var flights = new List<Flight>
         {
-            new Flight { FlightId = 1, FlightNr = "RO101", Route = new Route { Capacity = 100 } },
-            new Flight { FlightId = 2, FlightNr = "RO102", Route = new Route { Capacity = 100 } }
+            new Flight { FlightId = 1, FlightNumber = "RO101", Route = new Route { Capacity = 100 } },
+            new Flight { FlightId = 2, FlightNumber = "RO102", Route = new Route { Capacity = 100 } }
         };
         _mockFlightRepository.Setup(r => r.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
             .Returns(flights);
@@ -45,5 +45,25 @@ public class FlightSearchServiceTests
 
         result.Should().NotBeNull();
         result.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void TestThatSearchFlightsFiltersFlightsByCapacity()
+    {
+        var flight1 = new Flight { FlightId = 1, FlightNumber = "RO101", Route = new Route { Capacity = 100 } };
+        var flight2 = new Flight { FlightId = 2, FlightNumber = "RO102", Route = new Route { Capacity = 100 } };
+        var flight3 = new Flight { FlightId = 3, FlightNumber = "RO103", Route = new Route { Capacity = 100 } };
+        var flights = new List<Flight> { flight1, flight2, flight3 };
+
+        _mockFlightRepository.Setup(r => r.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+            .Returns(flights);
+        _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(1)).Returns(95);
+        _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(2)).Returns(99);
+        _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(3)).Returns(90);
+
+        var result = _flightSearchService.SearchFlights("location", "OneWay", null, 10);
+
+        result.Should().HaveCount(1);
+        result.First().FlightId.Should().Be(3);
     }
 }

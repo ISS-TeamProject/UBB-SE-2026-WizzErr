@@ -1,1 +1,1 @@
-C:\Users\Oricum\OneDrive\Desktop\PROIECT ISS\UBB-SE-2026-WizzErr\TicketManager\TicketManager\TicketManager.csproj;x64
+D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\TicketManager.csproj;x64

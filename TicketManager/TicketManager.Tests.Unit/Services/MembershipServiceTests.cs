@@ -57,4 +57,47 @@ public class MembershipServiceTests
 
         result.Should().BeNull();
     }
+
+    [Fact]
+    public void TestThatGetAllMembershipsLoadsAddOnDiscountsForEachMembership()
+    {
+        var addon1 = new AddOn { AddOnId = 1, Name = "Bagaj", BasePrice = 25.0f };
+        var addon2 = new AddOn { AddOnId = 2, Name = "Prioritate", BasePrice = 10.0f };
+        var discount1 = new MembershipAddonDiscount { AddOn = addon1, DiscountPercentage = 10.0f };
+        var discount2 = new MembershipAddonDiscount { AddOn = addon2, DiscountPercentage = 20.0f };
+
+        var memberships = new List<Membership>
+        {
+            new Membership { MembershipId = 1, Name = "Argint", FlightDiscountPercentage = 5 },
+            new Membership { MembershipId = 2, Name = "Aur", FlightDiscountPercentage = 15 }
+        };
+
+        _mockMembershipRepository.Setup(r => r.GetAllMemberships()).Returns(memberships);
+        _mockMembershipRepository.Setup(r => r.GetAddonDiscounts(1)).Returns(new List<MembershipAddonDiscount> { discount1 });
+        _mockMembershipRepository.Setup(r => r.GetAddonDiscounts(2)).Returns(new List<MembershipAddonDiscount> { discount2 });
+
+        var result = _service.GetAllMemberships();
+
+        result.Should().HaveCount(2);
+        result.First(m => m.MembershipId == 1).AddonDiscounts.Should().HaveCount(1);
+        result.First(m => m.MembershipId == 2).AddonDiscounts.Should().HaveCount(1);
+    }
+
+    [Fact]
+    public void TestThatUpgradeUserMembershipLoadsAddonDiscounts()
+    {
+        var addon = new AddOn { AddOnId = 1, Name = "Bagaj", BasePrice = 25.0f };
+        var discount = new MembershipAddonDiscount { AddOn = addon, DiscountPercentage = 15.0f };
+        var membership = new Membership { MembershipId = 3, Name = "Premium Plus", FlightDiscountPercentage = 20 };
+
+        _mockMembershipRepository.Setup(r => r.GetMembershipById(3)).Returns(membership);
+        _mockMembershipRepository.Setup(r => r.GetAddonDiscounts(3)).Returns(new List<MembershipAddonDiscount> { discount });
+
+        var result = _service.UpgradeUserMembership(10, 3);
+
+        result.Should().NotBeNull();
+        result!.AddonDiscounts.Should().HaveCount(1);
+        result.AddonDiscounts.First().DiscountPercentage.Should().Be(15.0f);
+        _mockUserRepository.Verify(r => r.UpdateUserMembership(10, 3), Times.Once);
+    }
 }
