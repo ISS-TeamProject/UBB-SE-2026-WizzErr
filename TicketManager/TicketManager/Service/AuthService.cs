@@ -104,7 +104,7 @@ namespace TicketManager.Service
                 throw new ArgumentException("Username must have at least 3 characters.");
             }
 
-            if (!username.All(c => char.IsLetter(c) || char.IsDigit(c) || c == '_' || c == ' '))
+            if (!username.All(character => char.IsLetter(character) || char.IsDigit(character) || character == '_' || character == ' '))
             {
                 throw new ArgumentException("Username contains invalid characters.");
             }

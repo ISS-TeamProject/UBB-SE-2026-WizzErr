@@ -45,7 +45,7 @@ namespace TicketManager.Service
                     page.Size(PageSizes.A4);
                     page.Margin(2, Unit.Centimetre);
                     page.PageColor(Colors.White);
-                    page.DefaultTextStyle(x => x.FontSize(12));
+                    page.DefaultTextStyle(textStyle => textStyle.FontSize(12));
 
                     page.Header()
                         .Text("WizzErr Boarding Pass")
@@ -81,7 +81,7 @@ namespace TicketManager.Service
                         {
                             foreach (var addOn in ticket.SelectedAddOns)
                             {
-                                col.Item().Text($"• {addOn.Name}");
+                                col.Item().Text($"â€¢ {addOn.Name}");
                             }
                         }
                         else
@@ -92,12 +92,12 @@ namespace TicketManager.Service
                         col.Item().PaddingTop(15).Text($"Total Price: {ticket.Price} EUR").FontSize(16).SemiBold();
                     });
 
-                    page.Footer().AlignCenter().Text(x =>
+                    page.Footer().AlignCenter().Text(textDescriptor =>
                     {
-                        x.Span("Page ");
-                        x.CurrentPageNumber();
-                        x.Span(" of ");
-                        x.TotalPages();
+                        textDescriptor.Span("Page ");
+                        textDescriptor.CurrentPageNumber();
+                        textDescriptor.Span(" of ");
+                        textDescriptor.TotalPages();
                     });
                 });
             })

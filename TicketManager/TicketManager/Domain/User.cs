@@ -1,4 +1,4 @@
-namespace TicketManager.Domain
+﻿namespace TicketManager.Domain
 {
     public class User
     {

@@ -1,253 +1,221 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\",
+  "WorkspaceRootPath": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\authpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\view\\authpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\domain\\validationhelpertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\domain\\validationhelpertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\domain\\validationhelpertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\ticketmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\ticketmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\ticketmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\airport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\airport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\airport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\flightsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\flightsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\flightsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\flightdisplaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\flightdisplaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\flightdisplaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\imembershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\imembershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\imembershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\imembershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\imembershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\imembershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iflightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iflightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\iflightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\membershipviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\membershipviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\membershipviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\membershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\membershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\membershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\passengerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\passengerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\passengerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\authviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\authviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\authviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\membershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\membershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\membershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\bookingviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\bookingviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\viewmodel\\bookingviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\workflows\\authandbookingviewmodelintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\workflows\\authandbookingviewmodelintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\workflows\\authandbookingviewmodelintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\workflows\\completebookingflowintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\workflows\\completebookingflowintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\workflows\\completebookingflowintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\bookingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\bookingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\services\\bookingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\authserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\authserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\services\\authserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\membershipservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\membershipservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\membershipservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\authviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\authviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\viewmodel\\authviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\flightsearchpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\view\\flightsearchpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\membershipspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\view\\membershipspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\dashboardpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\view\\dashboardpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\bookingpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\view\\bookingpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\addonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\addonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\addonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager\\service\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager\\domain\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\dashboardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\view\\dashboardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\bookingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\bookingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\bookingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\flightsearchviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\flightsearchviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\flightsearchviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\passengerformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\passengerformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\passengerformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\databaseconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\databaseconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\databaseconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\membershipaddondiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\membershipaddondiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\membershipaddondiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\membership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\membership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\membership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\addon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\addon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\addon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\cancellationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\cancellationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager\\service\\cancellationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\ticketmanager.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\ticketmanager.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\ticketmanager.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\gabi\\desktop\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\repositories\\ticketrepositoryintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\oricum\\onedrive\\desktop\\proiect iss\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\repositories\\ticketrepositoryintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\repositories\\ticketrepositoryintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -262,115 +230,107 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 7,
               "Title": "TicketRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\TicketRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\TicketRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\TicketRepository.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\TicketRepository.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\TicketRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\TicketRepository.cs",
               "ViewState": "AgIAAJYAAAAAAAAAAAAIwLEAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:32:19.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UserSession.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\UserSession.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Domain\\UserSession.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\UserSession.cs",
-              "RelativeToolTip": "TicketManager\\Domain\\UserSession.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T18:36:42.296Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "FlightDisplayModel.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightDisplayModel.cs",
-              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\FlightDisplayModel.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightDisplayModel.cs",
-              "RelativeToolTip": "TicketManager\\ViewModel\\FlightDisplayModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T18:53:23.556Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Airport.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Domain\\Airport.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
-              "RelativeToolTip": "TicketManager\\Domain\\Airport.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:54:27.998Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:32:19.372Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "FlightRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Repository\\FlightRepository.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
-              "RelativeToolTip": "TicketManager\\Repository\\FlightRepository.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAADwv3kAAAAXAAAAAAAAAA==",
+              "Title": "UserSession.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\UserSession.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Domain\\UserSession.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\UserSession.cs",
+              "RelativeToolTip": "TicketManager\\Domain\\UserSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:31:45.148Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ValidationHelperTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T19:12:22.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T18:36:42.296Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "FlightSearchService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\FlightSearchService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\FlightSearchService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\FlightSearchService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\FlightSearchService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAANAAAAAAAAAA==",
+              "Title": "FlightDisplayModel.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightDisplayModel.cs",
+              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\FlightDisplayModel.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightDisplayModel.cs",
+              "RelativeToolTip": "TicketManager\\ViewModel\\FlightDisplayModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:35:25.715Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T18:53:23.556Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
+              "Title": "Airport.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Domain\\Airport.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
+              "RelativeToolTip": "TicketManager\\Domain\\Airport.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T16:54:27.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FlightRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Repository\\FlightRepository.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
+              "RelativeToolTip": "TicketManager\\Repository\\FlightRepository.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAADwv3kAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T16:31:45.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ValidationHelperTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Unit\\Domain\\ValidationHelperTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T19:12:22.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FlightSearchService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\FlightSearchService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\FlightSearchService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\FlightSearchService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\FlightSearchService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T16:35:25.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Gate.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Gate.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Gate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:55:50.46Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:55:50.46Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
               "RelativeDocumentMoniker": "TicketManager\\appsettings.json",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
               "RelativeToolTip": "TicketManager\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -380,270 +340,214 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AuthPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\AuthPage.xaml.cs",
-              "RelativeDocumentMoniker": "TicketManager\\View\\AuthPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\AuthPage.xaml.cs",
-              "RelativeToolTip": "TicketManager\\View\\AuthPage.xaml.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAUwB4AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:00:04.972Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\App.xaml.cs",
-              "RelativeDocumentMoniker": "TicketManager\\App.xaml.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\App.xaml.cs",
-              "RelativeToolTip": "TicketManager\\App.xaml.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAkwEYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:24:46.128Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "TicketManager\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\MainWindow.xaml.cs",
-              "RelativeToolTip": "TicketManager\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAmwFsAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:30:41.433Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "TicketManager.csproj",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeDocumentMoniker": "TicketManager\\TicketManager.csproj",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeToolTip": "TicketManager\\TicketManager.csproj",
               "ViewState": "AgIAAEQAAAAAAAAAAADwv2YAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-21T11:54:19.696Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T11:54:19.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IMembershipService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IMembershipService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\IMembershipService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IMembershipService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\IMembershipService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T18:56:52.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Repository\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IUserRepository.cs",
+              "RelativeToolTip": "TicketManager\\Repository\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T18:56:27.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IMembershipRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IMembershipRepository.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Repository\\IMembershipRepository.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IMembershipRepository.cs",
+              "RelativeToolTip": "TicketManager\\Repository\\IMembershipRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T18:56:15.047Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "IMembershipService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IMembershipService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\IMembershipService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IMembershipService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\IMembershipService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T18:56:52.013Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "IUserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IUserRepository.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Repository\\IUserRepository.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IUserRepository.cs",
-              "RelativeToolTip": "TicketManager\\Repository\\IUserRepository.cs",
+              "Title": "IFlightRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IFlightRepository.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Repository\\IFlightRepository.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IFlightRepository.cs",
+              "RelativeToolTip": "TicketManager\\Repository\\IFlightRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T18:56:27.596Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "IMembershipRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IMembershipRepository.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Repository\\IMembershipRepository.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IMembershipRepository.cs",
-              "RelativeToolTip": "TicketManager\\Repository\\IMembershipRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T18:56:15.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T18:56:02.962Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "IFlightRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IFlightRepository.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Repository\\IFlightRepository.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IFlightRepository.cs",
-              "RelativeToolTip": "TicketManager\\Repository\\IFlightRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T18:56:02.962Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
               "Title": "DashboardService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\DashboardService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\DashboardService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\DashboardService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\DashboardService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\DashboardService.cs",
               "RelativeToolTip": "TicketManager\\Service\\DashboardService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:35:15.628Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:35:15.628Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 15,
               "Title": "MembershipService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\MembershipService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\MembershipService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\MembershipService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\MembershipService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\MembershipService.cs",
               "RelativeToolTip": "TicketManager\\Service\\MembershipService.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAwCwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:36:16.398Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:36:16.398Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MembershipViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\MembershipViewModel.cs",
+              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\MembershipViewModel.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\MembershipViewModel.cs",
+              "RelativeToolTip": "TicketManager\\ViewModel\\MembershipViewModel.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAswIIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T17:03:45.805Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "MembershipViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\MembershipViewModel.cs",
-              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\MembershipViewModel.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\MembershipViewModel.cs",
-              "RelativeToolTip": "TicketManager\\ViewModel\\MembershipViewModel.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAswIIAAAABAAAAAAAAAA==",
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\AuthService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\AuthService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:03:45.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:32:55.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\UserRepository.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Repository\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\UserRepository.cs",
+              "RelativeToolTip": "TicketManager\\Repository\\UserRepository.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAswI4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T16:32:30.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "NavigationService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\NavigationService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\NavigationService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\NavigationService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\NavigationService.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAswCgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T16:36:25.233Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 20,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\AuthService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\AuthService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\AuthService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\AuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIQAAAABAAAAAAAAAA==",
+              "Title": "INavigationService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\INavigationService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\INavigationService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\INavigationService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\INavigationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:32:55.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T18:39:55.466Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\UserRepository.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Repository\\UserRepository.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\UserRepository.cs",
-              "RelativeToolTip": "TicketManager\\Repository\\UserRepository.cs",
-              "ViewState": "AgIAAHoAAAAAAAAAAAAswI4AAAABAAAAAAAAAA==",
+              "Title": "Route.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Route.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Domain\\Route.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Route.cs",
+              "RelativeToolTip": "TicketManager\\Domain\\Route.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:32:30.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T17:05:35.184Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 22,
-              "Title": "NavigationService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\NavigationService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\NavigationService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\NavigationService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\NavigationService.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAswCgAAAABAAAAAAAAAA==",
+              "Title": "PassengerData.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PassengerData.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Domain\\PassengerData.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PassengerData.cs",
+              "RelativeToolTip": "TicketManager\\Domain\\PassengerData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:36:25.233Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T17:26:06.366Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 23,
-              "Title": "INavigationService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\INavigationService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\INavigationService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\INavigationService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\INavigationService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Title": "AuthViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\AuthViewModel.cs",
+              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\AuthViewModel.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\AuthViewModel.cs",
+              "RelativeToolTip": "TicketManager\\ViewModel\\AuthViewModel.cs",
+              "ViewState": "AgIAADABAAAAAAAAAAAYwEIBAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T18:39:55.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:36:52.448Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 24,
-              "Title": "Route.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Route.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Domain\\Route.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Route.cs",
-              "RelativeToolTip": "TicketManager\\Domain\\Route.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
+              "Title": "MembershipRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\MembershipRepository.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Repository\\MembershipRepository.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\MembershipRepository.cs",
+              "RelativeToolTip": "TicketManager\\Repository\\MembershipRepository.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAowG8AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:05:35.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:32:07.374Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 25,
-              "Title": "PassengerData.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PassengerData.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Domain\\PassengerData.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PassengerData.cs",
-              "RelativeToolTip": "TicketManager\\Domain\\PassengerData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Title": "Flight.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Flight.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Domain\\Flight.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Flight.cs",
+              "RelativeToolTip": "TicketManager\\Domain\\Flight.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:26:06.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "AuthViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\AuthViewModel.cs",
-              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\AuthViewModel.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\AuthViewModel.cs",
-              "RelativeToolTip": "TicketManager\\ViewModel\\AuthViewModel.cs",
-              "ViewState": "AgIAADABAAAAAAAAAAAYwEIBAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:36:52.448Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "MembershipRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\MembershipRepository.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Repository\\MembershipRepository.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\MembershipRepository.cs",
-              "RelativeToolTip": "TicketManager\\Repository\\MembershipRepository.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAowG8AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:32:07.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:55:37.99Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 28,
-              "Title": "Flight.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Flight.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Domain\\Flight.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Flight.cs",
-              "RelativeToolTip": "TicketManager\\Domain\\Flight.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:55:37.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
               "Title": "CompleteBookingFlowIntegrationTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -651,11 +555,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 27,
               "Title": "AuthAndBookingViewModelIntegrationTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
               "ViewState": "AgIAAIwAAAAAAAAAAAAswLQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -663,11 +567,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 29,
               "Title": "BookingServiceIntegrationTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -675,11 +579,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 26,
               "Title": "BookingViewModelTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAnwBAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -687,11 +591,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 30,
               "Title": "AuthServiceIntegrationTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAswDwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -699,11 +603,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 31,
               "Title": "MembershipServiceTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -711,11 +615,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 32,
               "Title": "AuthServiceTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -723,11 +627,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 33,
               "Title": "Dummies.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Dummies.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Dummies.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Dummies.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Dummies.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Dummies.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\Dummies.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -735,11 +639,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 34,
               "Title": "Dummies.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Dummies.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Dummies.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Dummies.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Dummies.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Dummies.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Dummies.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -747,11 +651,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 35,
               "Title": "AuthViewModelTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAmwBAAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -759,11 +663,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 36,
               "Title": "AddOnRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\AddOnRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\AddOnRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\AddOnRepository.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\AddOnRepository.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\AddOnRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\AddOnRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -771,59 +675,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "BookingPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\BookingPage.xaml.cs",
-              "RelativeDocumentMoniker": "TicketManager\\View\\BookingPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\BookingPage.xaml.cs",
-              "RelativeToolTip": "TicketManager\\View\\BookingPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAN0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:00:38.164Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "DashboardPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\DashboardPage.xaml.cs",
-              "RelativeDocumentMoniker": "TicketManager\\View\\DashboardPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\DashboardPage.xaml.cs",
-              "RelativeToolTip": "TicketManager\\View\\DashboardPage.xaml.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAADwv1EAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:01:04.111Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "MembershipsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\MembershipsPage.xaml.cs",
-              "RelativeDocumentMoniker": "TicketManager\\View\\MembershipsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\MembershipsPage.xaml.cs",
-              "RelativeToolTip": "TicketManager\\View\\MembershipsPage.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAADwvygAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:01:38.334Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "FlightSearchPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\FlightSearchPage.xaml.cs",
-              "RelativeDocumentMoniker": "TicketManager\\View\\FlightSearchPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\FlightSearchPage.xaml.cs",
-              "RelativeToolTip": "TicketManager\\View\\FlightSearchPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:01:26.952Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 37,
               "Title": "BookingService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\BookingService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\BookingService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\BookingService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\BookingService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\BookingService.cs",
               "RelativeToolTip": "TicketManager\\Service\\BookingService.cs",
               "ViewState": "AgIAAHEAAAAAAAAAAAAUwHwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -831,11 +687,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 38,
               "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\User.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\User.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\User.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\User.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\User.cs",
               "RelativeToolTip": "TicketManager\\Domain\\User.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAowAwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -843,11 +699,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 39,
               "Title": "Ticket.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Ticket.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Ticket.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Ticket.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Ticket.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Ticket.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Ticket.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAqwBUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -855,23 +711,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "DashboardPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\DashboardPage.xaml",
-              "RelativeDocumentMoniker": "TicketManager\\View\\DashboardPage.xaml",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\DashboardPage.xaml",
-              "RelativeToolTip": "TicketManager\\View\\DashboardPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-22T17:00:36.051Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 40,
               "Title": "DashboardViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\DashboardViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\DashboardViewModel.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\DashboardViewModel.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\DashboardViewModel.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\DashboardViewModel.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\DashboardViewModel.cs",
               "ViewState": "AgIAAI8AAAAAAAAAAADwv7kAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -879,11 +723,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 42,
               "Title": "FlightSearchViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightSearchViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightSearchViewModel.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\FlightSearchViewModel.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightSearchViewModel.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightSearchViewModel.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\FlightSearchViewModel.cs",
               "ViewState": "AgIAAH0AAAAAAAAAAADwv6oAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -891,11 +735,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 43,
               "Title": "PassengerFormViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\PassengerFormViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\PassengerFormViewModel.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\PassengerFormViewModel.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\PassengerFormViewModel.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\PassengerFormViewModel.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\PassengerFormViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -903,11 +747,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 44,
               "Title": "ViewModelBase.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\ViewModelBase.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\ViewModelBase.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\ViewModelBase.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\ViewModelBase.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\ViewModelBase.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\ViewModelBase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -915,11 +759,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 45,
               "Title": "RelayCommand.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\RelayCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\RelayCommand.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\RelayCommand.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\RelayCommand.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\RelayCommand.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\RelayCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -927,11 +771,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 47,
               "Title": "MembershipAddonDiscount.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\MembershipAddonDiscount.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\MembershipAddonDiscount.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\MembershipAddonDiscount.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\MembershipAddonDiscount.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\MembershipAddonDiscount.cs",
               "RelativeToolTip": "TicketManager\\Domain\\MembershipAddonDiscount.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -939,11 +783,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 48,
               "Title": "Membership.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Membership.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Membership.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Membership.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Membership.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Membership.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Membership.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -951,11 +795,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 49,
               "Title": "Company.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Company.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Company.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Company.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Company.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Company.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Company.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -963,11 +807,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 41,
               "Title": "BookingViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\BookingViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\BookingViewModel.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\BookingViewModel.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\BookingViewModel.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\BookingViewModel.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\BookingViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAKwBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -975,11 +819,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 50,
               "Title": "AddOn.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\AddOn.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\AddOn.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\AddOn.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\AddOn.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\AddOn.cs",
               "RelativeToolTip": "TicketManager\\Domain\\AddOn.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -987,11 +831,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 46,
               "Title": "DatabaseConnectionFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\DatabaseConnectionFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\DatabaseConnectionFactory.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\DatabaseConnectionFactory.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\DatabaseConnectionFactory.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\DatabaseConnectionFactory.cs",
               "RelativeToolTip": "TicketManager\\Repository\\DatabaseConnectionFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -999,11 +843,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 51,
               "Title": "CancellationService.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\CancellationService.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\CancellationService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\CancellationService.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\CancellationService.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\CancellationService.cs",
               "RelativeToolTip": "TicketManager\\Service\\CancellationService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1011,23 +855,22 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 52,
               "Title": "TicketManager",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeDocumentMoniker": "TicketManager\\TicketManager.csproj",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeToolTip": "TicketManager\\TicketManager.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-21T12:23:46.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T12:23:46.952Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 53,
               "Title": "TicketRepositoryIntegrationTests.cs",
-              "DocumentMoniker": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Repositories\\TicketRepositoryIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Repositories\\TicketRepositoryIntegrationTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Repositories\\TicketRepositoryIntegrationTests.cs",
-              "ToolTip": "C:\\Users\\Gabi\\Desktop\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Repositories\\TicketRepositoryIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Repositories\\TicketRepositoryIntegrationTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Repositories\\TicketRepositoryIntegrationTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

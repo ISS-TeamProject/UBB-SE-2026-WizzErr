@@ -54,8 +54,8 @@ namespace TicketManager.Repository
             {
                 connection.Open();
 
-                var parameters = ids.Select((id, index) => new { ParameterName = $"@Id{index}", Value = id }).ToList();
-                string inClause = string.Join(", ", parameters.Select(p => p.ParameterName));
+                var parameters = ids.Select((identifier, index) => new { ParameterName = $"@Id{index}", Value = identifier }).ToList();
+                string inClause = string.Join(", ", parameters.Select(parameter => parameter.ParameterName));
 
                 string query = $"SELECT addon_id, name, base_price FROM AddOns WHERE addon_id IN ({inClause})";
 

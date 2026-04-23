@@ -32,8 +32,8 @@ namespace TicketManager.ViewModel
             this.authService = authService ?? throw new ArgumentNullException(nameof(authService));
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
-            ActionCommand = new RelayCommand(_ => ExecuteAction(), _ => IsFormValid);
-            ToggleModeCommand = new RelayCommand(_ => ToggleMode());
+            ActionCommand = new RelayCommand(parameter => ExecuteAction(), parameter => IsFormValid);
+            ToggleModeCommand = new RelayCommand(parameter => ToggleMode());
         }
 
         public string EmailText
