@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TicketManager.Domain;
@@ -377,7 +378,7 @@ namespace TicketManager.ViewModel
                 return;
             }
 
-            float basePrice = CurrentFlight.GetBasePrice();
+            float basePrice = pricingService.CalculateBasePrice(CurrentFlight);
             var passengerData = MapPassengersToData();
             var tickets = bookingService.CreateTickets(CurrentFlight, CurrentUser, passengerData, basePrice);
             var breakdown = pricingService.CalculatePriceBreakdown(CurrentFlight, CurrentUser, tickets);
@@ -404,9 +405,13 @@ namespace TicketManager.ViewModel
                 return;
             }
 
-            float basePrice = CurrentFlight.GetBasePrice();
+            float basePrice = pricingService.CalculateBasePrice(CurrentFlight);
             var passengerData = MapPassengersToData();
             var tickets = bookingService.CreateTickets(CurrentFlight, CurrentUser, passengerData, basePrice);
+            foreach (var ticket in tickets)
+            {
+                ticket.Price = pricingService.CalculateTotalPrice(ticket);
+            }
 
             isSaving = true;
             OnPropertyChanged(nameof(CanConfirmBooking));

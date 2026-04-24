@@ -291,7 +291,7 @@ namespace TicketManager.Repository
                         VALUES (@userId, @flightId, @seat, @price, @status, @fName, @lName, @email, @phone)";
 
                     using var cmd = new SqlCommand(insertTicketQuery, connection, transaction);
-                    float persistedPrice = ticket.CalculateTotalPrice();
+                    float persistedPrice = ticket.Price;
                     cmd.Parameters.AddWithValue("@userId", ticket.User?.UserId ?? 0);
                     cmd.Parameters.AddWithValue("@flightId", ticket.Flight?.FlightId ?? 0);
                     cmd.Parameters.AddWithValue("@seat", ticket.Seat ?? (object)DBNull.Value);

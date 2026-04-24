@@ -7,7 +7,7 @@ public abstract class BaseIntegrationTest
 {
     protected string GetTestConnectionString()
     {
-        return "Server=LUP_ALEXIA\\SQLEXPRESS;Database=TicketsDB;Trusted_Connection=True;TrustServerCertificate=True;";
+        return "Server=MARINELA\\SQLEXPRESS01;Database=TicketsDB;Trusted_Connection=True;TrustServerCertificate=True;";
     }
 
     protected int GetFirstAvailableFlightId()
