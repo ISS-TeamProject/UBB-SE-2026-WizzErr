@@ -29,7 +29,7 @@ public class FlightSearchServiceTests
             .Returns(flights);
         _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(It.IsAny<int>())).Returns(10);
 
-        var result = _flightSearchService.SearchFlights("Bucuresti", "OneWay", DateTime.Now.AddDays(3), 1);
+        var result = _flightSearchService.SearchFlights("Bucuresti", true, DateTime.Now.AddDays(3), 1);
 
         result.Should().NotBeNull();
         result.Should().HaveCount(2);
@@ -41,7 +41,7 @@ public class FlightSearchServiceTests
         _mockFlightRepository.Setup(r => r.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
             .Returns(new List<Flight>());
 
-        var result = _flightSearchService.SearchFlights("Cluj-Napoca", "OneWay", DateTime.Now.AddDays(5), 1);
+        var result = _flightSearchService.SearchFlights("Cluj-Napoca", true, DateTime.Now.AddDays(5), 1);
 
         result.Should().NotBeNull();
         result.Should().BeEmpty();
@@ -61,7 +61,7 @@ public class FlightSearchServiceTests
         _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(2)).Returns(99);
         _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(3)).Returns(90);
 
-        var result = _flightSearchService.SearchFlights("location", "OneWay", null, 10);
+        var result = _flightSearchService.SearchFlights("location", true, null, 10);
 
         result.Should().HaveCount(1);
         result.First().FlightId.Should().Be(3);

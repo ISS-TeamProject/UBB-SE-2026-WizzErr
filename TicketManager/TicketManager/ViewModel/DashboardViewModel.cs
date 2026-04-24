@@ -113,11 +113,6 @@ namespace TicketManager.ViewModel
                 return;
             }
 
-            if (string.Equals(ticket.Status, "Cancelled", StringComparison.OrdinalIgnoreCase))
-            {
-                return;
-            }
-
             var (canCancel, reason) = cancellationService.CanCancelTicket(ticket);
             if (!canCancel)
             {

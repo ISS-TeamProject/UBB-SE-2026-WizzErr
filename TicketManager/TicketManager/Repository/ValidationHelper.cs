@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Net.Mail;
 
-namespace TicketManager.Domain
+namespace TicketManager.Service
 {
     public static class ValidationHelper
     {

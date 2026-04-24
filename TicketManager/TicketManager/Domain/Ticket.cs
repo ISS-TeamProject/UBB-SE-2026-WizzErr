@@ -46,11 +46,5 @@ namespace TicketManager.Domain
             PassengerEmail = passengerEmail;
             PassengerPhone = passengerPhone;
         }
-
-        public void CancelTicket()
-        {
-            Status = "Cancelled";
-            Seat = string.Empty;
-        }
     }
 }

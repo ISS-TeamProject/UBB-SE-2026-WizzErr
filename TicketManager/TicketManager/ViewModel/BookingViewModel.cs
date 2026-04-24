@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -428,6 +429,40 @@ namespace TicketManager.ViewModel
             if (success)
             {
                 BookingConfirmed?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public void SelectSeat(PassengerFormViewModel targetPassenger, string seat)
+        {
+            var currentHolder = Passengers.FirstOrDefault(passenger => passenger.SelectedSeat == seat);
+            if (currentHolder == targetPassenger)
+            {
+                targetPassenger.SelectedSeat = string.Empty;
+            }
+            else
+            {
+                if (currentHolder != null)
+                {
+                    currentHolder.SelectedSeat = string.Empty;
+                }
+
+                targetPassenger.SelectedSeat = seat;
+            }
+        }
+
+        public void UpdatePassengerAddOns(PassengerFormViewModel passenger, IEnumerable<AddOn> addedAddOns, IEnumerable<AddOn> removedAddOns)
+        {
+            foreach (var addOn in addedAddOns)
+            {
+                if (!passenger.SelectedAddOns.Contains(addOn))
+                {
+                    passenger.SelectedAddOns.Add(addOn);
+                }
+            }
+
+            foreach (var addOn in removedAddOns)
+            {
+                passenger.SelectedAddOns.Remove(addOn);
             }
         }
     }

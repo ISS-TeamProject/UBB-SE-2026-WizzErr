@@ -101,7 +101,6 @@ namespace TicketManager.ViewModel
                 return;
             }
 
-            string routeType = IsDeparture ? "DEP" : "ARR";
             DateTime? date = FlightDate?.Date;
 
             int? requestedPassengers = null;
@@ -118,7 +117,7 @@ namespace TicketManager.ViewModel
                 }
             }
 
-            var results = searchService.SearchFlights(Location, routeType, date, requestedPassengers);
+            var results = searchService.SearchFlights(Location, IsDeparture, date, requestedPassengers);
             bool hasResults = false;
 
             foreach (var flight in results)
