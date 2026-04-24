@@ -13,11 +13,34 @@ namespace TicketManager.View
 {
     public sealed partial class BookingPage : Page
     {
+        private const byte ColorAlphaFull = 255;
+        private const byte OccupiedSeatColorR = 156;
+        private const byte OccupiedSeatColorG = 163;
+        private const byte OccupiedSeatColorB = 175;
+        private const byte SelectedSeatColorR = 43;
+        private const byte SelectedSeatColorG = 184;
+        private const byte SelectedSeatColorB = 192;
+        private const byte AvailableSeatColorR = 229;
+        private const byte AvailableSeatColorG = 231;
+        private const byte AvailableSeatColorB = 235;
+        private const int SeatColumnsCount = 6;
+        private const int SeatColumnWidth = 58;
+        private const int AisleColumnIndex = 3;
+        private const int AisleColumnWidth = 24;
+        private const int DefaultSeatCapacity = 40;
+        private const int SeatRowHeight = 54;
+        private const int SeatButtonWidth = 50;
+        private const int SeatButtonHeight = 44;
+        private const int SeatButtonFontSize = 13;
+        private const int SeatCColumnIndex = 2;
+        private const int SeatDColumnIndex = 4;
+        private const int SeatEColumnIndex = 5;
+
         public BookingViewModel ViewModel { get; }
         private PassengerFormViewModel? seatTargetPassenger;
-        private readonly SolidColorBrush occupiedSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 156, 163, 175));
-        private readonly SolidColorBrush selectedSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 43, 184, 192));
-        private readonly SolidColorBrush availableSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(255, 229, 231, 235));
+        private readonly SolidColorBrush occupiedSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(ColorAlphaFull, OccupiedSeatColorR, OccupiedSeatColorG, OccupiedSeatColorB));
+        private readonly SolidColorBrush selectedSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(ColorAlphaFull, SelectedSeatColorR, SelectedSeatColorG, SelectedSeatColorB));
+        private readonly SolidColorBrush availableSeatBrush = new SolidColorBrush(ColorHelper.FromArgb(ColorAlphaFull, AvailableSeatColorR, AvailableSeatColorG, AvailableSeatColorB));
 
         public BookingPage()
         {
@@ -64,25 +87,25 @@ namespace TicketManager.View
             seatMapGrid.RowDefinitions.Clear();
             seatMapGrid.ColumnDefinitions.Clear();
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < SeatColumnsCount; i++)
             {
-                seatMapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(58) });
+                seatMapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(SeatColumnWidth) });
             }
 
-            seatMapGrid.ColumnDefinitions.Insert(3, new ColumnDefinition() { Width = new GridLength(24) });
+            seatMapGrid.ColumnDefinitions.Insert(AisleColumnIndex, new ColumnDefinition() { Width = new GridLength(AisleColumnWidth) });
 
-            int capacity = ViewModel.CurrentFlight?.Route?.Capacity ?? 40;
-            int rows = (capacity + 5) / 6;
+            int capacity = ViewModel.CurrentFlight?.Route?.Capacity ?? DefaultSeatCapacity;
+            int rows = (capacity + SeatColumnsCount - 1) / SeatColumnsCount;
 
             for (int r = 0; r < rows; r++)
             {
-                seatMapGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(54) });
+                seatMapGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(SeatRowHeight) });
                 CreateSeatButton(r, 0, $"{r + 1}A");
                 CreateSeatButton(r, 1, $"{r + 1}B");
-                CreateSeatButton(r, 2, $"{r + 1}C");
-                CreateSeatButton(r, 4, $"{r + 1}D");
-                CreateSeatButton(r, 5, $"{r + 1}E");
-                CreateSeatButton(r, 6, $"{r + 1}F");
+                CreateSeatButton(r, SeatCColumnIndex, $"{r + 1}C");
+                CreateSeatButton(r, SeatDColumnIndex, $"{r + 1}D");
+                CreateSeatButton(r, SeatEColumnIndex, $"{r + 1}E");
+                CreateSeatButton(r, SeatColumnsCount, $"{r + 1}F");
             }
 
             RefreshSeatMapVisuals();
@@ -93,11 +116,11 @@ namespace TicketManager.View
             Button btn = new Button
             {
                 Content = seatNumber,
-                Width = 50,
-                Height = 44,
+                Width = SeatButtonWidth,
+                Height = SeatButtonHeight,
                 Margin = new Thickness(2),
                 Padding = new Thickness(0),
-                FontSize = 13,
+                FontSize = SeatButtonFontSize,
                 HorizontalContentAlignment = HorizontalAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center
             };

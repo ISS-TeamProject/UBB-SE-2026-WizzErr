@@ -10,6 +10,7 @@ namespace TicketManager.ViewModel
 {
     public class BookingViewModel : ViewModelBase
     {
+        private const int DefaultFlightCapacity = 180;
         private readonly IBookingService bookingService;
         private readonly IPricingService pricingService;
         private readonly INavigationService navigationService;
@@ -251,7 +252,7 @@ namespace TicketManager.ViewModel
                 OccupiedSeats.Add(seat);
             }
 
-            int capacity = flight?.Route?.Capacity ?? 180;
+            int capacity = flight?.Route?.Capacity ?? DefaultFlightCapacity;
             MaxPassengers = bookingService.CalculateMaxPassengers(capacity, OccupiedSeats.Count, requestedPassengerCount);
 
             Passengers.Clear();

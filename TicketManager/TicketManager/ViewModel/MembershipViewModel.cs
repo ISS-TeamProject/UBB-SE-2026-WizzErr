@@ -8,6 +8,11 @@ namespace TicketManager.ViewModel
 {
     public class MembershipDisplayModel
     {
+        private const string BronzeMembershipColor = "#CD7F32";
+        private const string SilverMembershipColor = "#A9A9A9";
+        private const string GoldMembershipColor = "#DAA520";
+        private const string DefaultMembershipColor = "#2bb8c0";
+
         public int MembershipId { get; set; }
 
         public string Name { get; set; } = string.Empty;
@@ -26,10 +31,10 @@ namespace TicketManager.ViewModel
 
             CardColor = Name.ToLower() switch
             {
-                "bronze" => "#CD7F32",
-                "silver" => "#A9A9A9",
-                "gold" => "#DAA520",
-                _ => "#2bb8c0"
+                "bronze" => BronzeMembershipColor,
+                "silver" => SilverMembershipColor,
+                "gold" => GoldMembershipColor,
+                _ => DefaultMembershipColor
             };
 
             AddonBenefits = new ObservableCollection<string>();

@@ -5,6 +5,9 @@ namespace TicketManager.Domain
 {
     public static class ValidationHelper
     {
+        private const int MinimumPhoneLength = 10;
+        private const int MaximumPhoneLength = 15;
+
         public static bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -30,7 +33,7 @@ namespace TicketManager.Domain
                 return false;
             }
 
-            return phone.All(char.IsDigit) && phone.Length >= 10 && phone.Length <= 15;
+            return phone.All(char.IsDigit) && phone.Length >= MinimumPhoneLength && phone.Length <= MaximumPhoneLength;
         }
     }
 }
