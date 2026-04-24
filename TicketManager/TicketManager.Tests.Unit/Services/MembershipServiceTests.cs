@@ -27,8 +27,8 @@ public class MembershipServiceTests
             new Membership { MembershipId = 1, Name = "Argint", FlightDiscountPercentage = 5 },
             new Membership { MembershipId = 2, Name = "Aur", FlightDiscountPercentage = 15 }
         };
-        _mockMembershipRepository.Setup(r => r.GetAllMemberships()).Returns(memberships);
-        _mockMembershipRepository.Setup(r => r.GetAddonDiscounts(It.IsAny<int>())).Returns(new List<MembershipAddonDiscount>());
+        _mockMembershipRepository.Setup(repoWithExistingTiers => repoWithExistingTiers.GetAllMemberships()).Returns(memberships);
+        _mockMembershipRepository.Setup(repoWithNoDiscounts => repoWithNoDiscounts.GetAddonDiscounts(It.IsAny<int>())).Returns(new List<MembershipAddonDiscount>());
 
         var result = _service.GetAllMemberships();
 
@@ -39,19 +39,19 @@ public class MembershipServiceTests
     public void TestThatUpgradeUserMembershipCallsRepositoryWithCorrectId()
     {
         var membership = new Membership { MembershipId = 3, Name = "Premium Plus" };
-        _mockMembershipRepository.Setup(r => r.GetMembershipById(3)).Returns(membership);
-        _mockMembershipRepository.Setup(r => r.GetAddonDiscounts(3)).Returns(new List<MembershipAddonDiscount>());
+        _mockMembershipRepository.Setup(repoWithPremiumPlus => repoWithPremiumPlus.GetMembershipById(3)).Returns(membership);
+        _mockMembershipRepository.Setup(repoWithNoAddonDiscounts => repoWithNoAddonDiscounts.GetAddonDiscounts(3)).Returns(new List<MembershipAddonDiscount>());
 
         var result = _service.UpgradeUserMembership(10, 3);
 
         result!.Name.Should().Be("Premium Plus");
-        _mockUserRepository.Verify(r => r.UpdateUserMembership(10, 3), Times.Once);
+        _mockUserRepository.Verify(repoToVerifyUpdate => repoToVerifyUpdate.UpdateUserMembership(10, 3), Times.Once);
     }
 
     [Fact]
     public void TestThatUpgradeUserMembershipReturnsNullIfNotFoundInRepo()
     {
-        _mockMembershipRepository.Setup(r => r.GetMembershipById(99)).Returns((Membership?)null);
+        _mockMembershipRepository.Setup(repoWithMissingMembership => repoWithMissingMembership.GetMembershipById(99)).Returns((Membership?)null);
 
         var result = _service.UpgradeUserMembership(1, 99);
 
@@ -72,15 +72,15 @@ public class MembershipServiceTests
             new Membership { MembershipId = 2, Name = "Aur", FlightDiscountPercentage = 15 }
         };
 
-        _mockMembershipRepository.Setup(r => r.GetAllMemberships()).Returns(memberships);
-        _mockMembershipRepository.Setup(r => r.GetAddonDiscounts(1)).Returns(new List<MembershipAddonDiscount> { discount1 });
-        _mockMembershipRepository.Setup(r => r.GetAddonDiscounts(2)).Returns(new List<MembershipAddonDiscount> { discount2 });
+        _mockMembershipRepository.Setup(repoWithMemberships => repoWithMemberships.GetAllMemberships()).Returns(memberships);
+        _mockMembershipRepository.Setup(repoWithSilverDiscounts => repoWithSilverDiscounts.GetAddonDiscounts(1)).Returns(new List<MembershipAddonDiscount> { discount1 });
+        _mockMembershipRepository.Setup(repoWithGoldDiscounts => repoWithGoldDiscounts.GetAddonDiscounts(2)).Returns(new List<MembershipAddonDiscount> { discount2 });
 
         var result = _service.GetAllMemberships();
 
         result.Should().HaveCount(2);
-        result.First(m => m.MembershipId == 1).AddonDiscounts.Should().HaveCount(1);
-        result.First(m => m.MembershipId == 2).AddonDiscounts.Should().HaveCount(1);
+        result.First(silverMembership => silverMembership.MembershipId == 1).AddonDiscounts.Should().HaveCount(1);
+        result.First(goldMembership => goldMembership.MembershipId == 2).AddonDiscounts.Should().HaveCount(1);
     }
 
     [Fact]
@@ -90,14 +90,14 @@ public class MembershipServiceTests
         var discount = new MembershipAddonDiscount { AddOn = addon, DiscountPercentage = 15.0f };
         var membership = new Membership { MembershipId = 3, Name = "Premium Plus", FlightDiscountPercentage = 20 };
 
-        _mockMembershipRepository.Setup(r => r.GetMembershipById(3)).Returns(membership);
-        _mockMembershipRepository.Setup(r => r.GetAddonDiscounts(3)).Returns(new List<MembershipAddonDiscount> { discount });
+        _mockMembershipRepository.Setup(repoWithMembershipToUpgrade => repoWithMembershipToUpgrade.GetMembershipById(3)).Returns(membership);
+        _mockMembershipRepository.Setup(repoWithMembershipDiscounts => repoWithMembershipDiscounts.GetAddonDiscounts(3)).Returns(new List<MembershipAddonDiscount> { discount });
 
         var result = _service.UpgradeUserMembership(10, 3);
 
         result.Should().NotBeNull();
         result!.AddonDiscounts.Should().HaveCount(1);
         result.AddonDiscounts.First().DiscountPercentage.Should().Be(15.0f);
-        _mockUserRepository.Verify(r => r.UpdateUserMembership(10, 3), Times.Once);
+        _mockUserRepository.Verify(repoToVerifyMembershipUpdate => repoToVerifyMembershipUpdate.UpdateUserMembership(10, 3), Times.Once);
     }
 }

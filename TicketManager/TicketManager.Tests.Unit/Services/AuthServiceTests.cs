@@ -27,7 +27,7 @@ public class AuthServiceTests
         var user = new User { Email = "andrei.ionescu@gmail.com" };
         user.PasswordHash = _passwordHasher.HashPassword(user, pass);
 
-        _mockUserRepository.Setup(r => r.GetByEmail(user.Email)).Returns(user);
+        _mockUserRepository.Setup(repoWithExistingUser => repoWithExistingUser.GetByEmail(user.Email)).Returns(user);
 
         var result = _authService.Login(user.Email, pass);
 
@@ -41,7 +41,7 @@ public class AuthServiceTests
         var user = new User { Email = "george.popa@yahoo.ro" };
         user.PasswordHash = _passwordHasher.HashPassword(user, "parola_secreta_99");
 
-        _mockUserRepository.Setup(r => r.GetByEmail(user.Email)).Returns(user);
+        _mockUserRepository.Setup(repoWithRegisteredUser => repoWithRegisteredUser.GetByEmail(user.Email)).Returns(user);
 
         Action act = () => _authService.Login(user.Email, "parola_incorecta_99");
         act.Should().Throw<InvalidOperationException>().WithMessage("Invalid email or password.");
@@ -51,7 +51,7 @@ public class AuthServiceTests
     public void TestThatRegisterFailsForDuplicateEmail()
     {
         string email = "bogdan.stefan@gmail.com";
-        _mockUserRepository.Setup(r => r.GetByEmail(email)).Returns(new User { Email = email });
+        _mockUserRepository.Setup(repoWithDuplicateEmail => repoWithDuplicateEmail.GetByEmail(email)).Returns(new User { Email = email });
 
         Action act = () => _authService.Register(email, "0722334455", "bogdan_s", "ParolaBogdan!");
         act.Should().Throw<InvalidOperationException>().WithMessage("An account with this email already exists.");
@@ -68,12 +68,13 @@ public class AuthServiceTests
     public void TestThatRegisterCreatesNewRomanianUser()
     {
         string email = "gabriela.stan@yahoo.ro";
-        _mockUserRepository.Setup(r => r.GetByEmail(email)).Returns((User?)null);
+        _mockUserRepository.Setup(repoWithAvailableEmail => repoWithAvailableEmail.GetByEmail(email)).Returns((User?)null);
 
         _authService.Register(email, "0744112233", "gabriela_s", "ParolaGabriela123!");
 
-        _mockUserRepository.Verify(r => r.AddUser(It.Is<User>(u => u.Email == email)), Times.Once);
+        _mockUserRepository.Verify(repoToVerifyAddUser => repoToVerifyAddUser.AddUser(It.Is<User>(userToRegister => userToRegister.Email == email)), Times.Once);
     }
+
     [Fact]
     public void TestThatLoginThrowsExceptionWhenEmailIsNull()
     {
@@ -105,7 +106,7 @@ public class AuthServiceTests
     [Fact]
     public void TestThatLoginThrowsExceptionWhenUserNotFound()
     {
-        _mockUserRepository.Setup(r => r.GetByEmail(It.IsAny<string>())).Returns((User?)null);
+        _mockUserRepository.Setup(repoWithMissingUser => repoWithMissingUser.GetByEmail(It.IsAny<string>())).Returns((User?)null);
 
         Action act = () => _authService.Login("nonexistent@gmail.com", "password");
         act.Should().Throw<InvalidOperationException>().WithMessage("No account found with this email.");

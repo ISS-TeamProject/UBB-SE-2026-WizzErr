@@ -25,9 +25,9 @@ public class FlightSearchServiceTests
             new Flight { FlightId = 1, FlightNumber = "RO101", Route = new Route { Capacity = 100 } },
             new Flight { FlightId = 2, FlightNumber = "RO102", Route = new Route { Capacity = 100 } }
         };
-        _mockFlightRepository.Setup(r => r.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+        _mockFlightRepository.Setup(repoWithMatchingFlights => repoWithMatchingFlights.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
             .Returns(flights);
-        _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(It.IsAny<int>())).Returns(10);
+        _mockFlightRepository.Setup(repoWithAvailableSeats => repoWithAvailableSeats.GetOccupiedSeatCount(It.IsAny<int>())).Returns(10);
 
         var result = _flightSearchService.SearchFlights("Bucuresti", "OneWay", DateTime.Now.AddDays(3), 1);
 
@@ -38,7 +38,7 @@ public class FlightSearchServiceTests
     [Fact]
     public void TestThatSearchFlightsReturnsEmptyListWhenNoMatches()
     {
-        _mockFlightRepository.Setup(r => r.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+        _mockFlightRepository.Setup(repoWithNoMatchingFlights => repoWithNoMatchingFlights.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
             .Returns(new List<Flight>());
 
         var result = _flightSearchService.SearchFlights("Cluj-Napoca", "OneWay", DateTime.Now.AddDays(5), 1);
@@ -55,11 +55,11 @@ public class FlightSearchServiceTests
         var flight3 = new Flight { FlightId = 3, FlightNumber = "RO103", Route = new Route { Capacity = 100 } };
         var flights = new List<Flight> { flight1, flight2, flight3 };
 
-        _mockFlightRepository.Setup(r => r.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+        _mockFlightRepository.Setup(repoWithMultipleFlights => repoWithMultipleFlights.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
             .Returns(flights);
-        _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(1)).Returns(95);
-        _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(2)).Returns(99);
-        _mockFlightRepository.Setup(r => r.GetOccupiedSeatCount(3)).Returns(90);
+        _mockFlightRepository.Setup(repoWithFlight1Seats => repoWithFlight1Seats.GetOccupiedSeatCount(1)).Returns(95);
+        _mockFlightRepository.Setup(repoWithFlight2Seats => repoWithFlight2Seats.GetOccupiedSeatCount(2)).Returns(99);
+        _mockFlightRepository.Setup(repoWithFlight3Seats => repoWithFlight3Seats.GetOccupiedSeatCount(3)).Returns(90);
 
         var result = _flightSearchService.SearchFlights("location", "OneWay", null, 10);
 
