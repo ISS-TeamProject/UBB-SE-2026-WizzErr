@@ -10,6 +10,7 @@ namespace TicketManager.ViewModel
     {
         private readonly IFlightSearchService searchService;
         private readonly INavigationService navigationService;
+        private readonly IPricingService pricingService;
 
         private string location = string.Empty;
         public string Location
@@ -71,10 +72,11 @@ namespace TicketManager.ViewModel
         public ICommand SearchCommand { get; }
         public ICommand BookFlightCommand { get; }
 
-        public FlightSearchViewModel(IFlightSearchService searchService, INavigationService navigationService)
+        public FlightSearchViewModel(IFlightSearchService searchService, INavigationService navigationService, IPricingService pricingService)
         {
             this.searchService = searchService;
             this.navigationService = navigationService;
+            this.pricingService = pricingService;
             AvailableFlights = new ObservableCollection<FlightDisplayModel>();
 
             SearchCommand = new RelayCommand(parameter => ExecuteSearch());
@@ -99,7 +101,6 @@ namespace TicketManager.ViewModel
                 return;
             }
 
-            string routeType = IsDeparture ? "DEP" : "ARR";
             DateTime? date = FlightDate?.Date;
 
             int? requestedPassengers = null;
@@ -116,12 +117,12 @@ namespace TicketManager.ViewModel
                 }
             }
 
-            var results = searchService.SearchFlights(Location, routeType, date, requestedPassengers);
+            var results = searchService.SearchFlights(Location, IsDeparture, date, requestedPassengers);
             bool hasResults = false;
 
             foreach (var flight in results)
             {
-                AvailableFlights.Add(new FlightDisplayModel(flight));
+                AvailableFlights.Add(new FlightDisplayModel(flight, pricingService.CalculateBasePrice(flight)));
                 hasResults = true;
             }
 

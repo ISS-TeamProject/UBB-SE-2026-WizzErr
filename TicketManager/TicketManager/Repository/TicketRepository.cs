@@ -152,7 +152,7 @@ namespace TicketManager.Repository
             {
                 connection.Open();
                 string query = @"
-                    INSERT INTO Tickets (user_id, flight_id, seat, price, status, passenger_first_name, passenger_last_name, passenger_email, passenger_phone) 
+                    INSERT INTO Tickets (user_id, flight_id, seat, price, status, passenger_first_name, passenger_last_name, passenger_email, passenger_phone)
                     OUTPUT INSERTED.ticket_id
                     VALUES (@UserId, @FlightId, @Seat, @Price, @Status, @PassengerFirstName, @PassengerLastName, @PassengerEmail, @PassengerPhone)";
 
@@ -254,6 +254,21 @@ namespace TicketManager.Repository
             return seats;
         }
 
+        public async Task<bool> IsSeatAvailable(int flightId, string seat)
+        {
+            using var connection = this.databaseConnectionFactory.GetConnection();
+            await connection.OpenAsync();
+            string query = @"SELECT COUNT(*) FROM Tickets WHERE flight_id = @flightId AND seat = @seat AND status <> @cancelledStatus";
+
+            using var cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@flightId", flightId);
+            cmd.Parameters.AddWithValue("@seat", seat);
+            cmd.Parameters.AddWithValue("@cancelledStatus", CancelledStatus);
+
+            int count = Convert.ToInt32(await cmd.ExecuteScalarAsync() ?? 0);
+            return count == 0;
+        }
+
         public async Task<bool> SaveTicketsWithAddOnsAsync(List<Ticket> tickets)
         {
             using var connection = this.databaseConnectionFactory.GetConnection();
@@ -264,34 +279,13 @@ namespace TicketManager.Repository
             {
                 foreach (var ticket in tickets)
                 {
-                    if (!string.IsNullOrWhiteSpace(ticket.Seat))
-                    {
-                        string seatLockCheckQuery = @"
-                            SELECT COUNT(*)
-                            FROM Tickets WITH (UPDLOCK, HOLDLOCK)
-                            WHERE flight_id = @flightId
-                              AND seat = @seat
-                              AND status <> @cancelledStatus";
-
-                        using var seatCheckCmd = new SqlCommand(seatLockCheckQuery, connection, transaction);
-                        seatCheckCmd.Parameters.AddWithValue("@flightId", ticket.Flight?.FlightId ?? 0);
-                        seatCheckCmd.Parameters.AddWithValue("@seat", ticket.Seat);
-                        seatCheckCmd.Parameters.AddWithValue("@cancelledStatus", CancelledStatus);
-
-                        int existingSeatCount = Convert.ToInt32(await seatCheckCmd.ExecuteScalarAsync() ?? 0);
-                        if (existingSeatCount > 0)
-                        {
-                            throw new InvalidOperationException("Selected seat is no longer available.");
-                        }
-                    }
-
                     string insertTicketQuery = @"
                         INSERT INTO Tickets (user_id, flight_id, seat, price, status, passenger_first_name, passenger_last_name, passenger_email, passenger_phone)
                         OUTPUT INSERTED.ticket_id
                         VALUES (@userId, @flightId, @seat, @price, @status, @fName, @lName, @email, @phone)";
 
                     using var cmd = new SqlCommand(insertTicketQuery, connection, transaction);
-                    float persistedPrice = ticket.CalculateTotalPrice();
+                    float persistedPrice = ticket.Price;
                     cmd.Parameters.AddWithValue("@userId", ticket.User?.UserId ?? 0);
                     cmd.Parameters.AddWithValue("@flightId", ticket.Flight?.FlightId ?? 0);
                     cmd.Parameters.AddWithValue("@seat", ticket.Seat ?? (object)DBNull.Value);

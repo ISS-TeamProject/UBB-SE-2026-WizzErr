@@ -4,9 +4,6 @@ namespace TicketManager.Domain
 {
     public class Flight
     {
-        private const float PricePerMinuteMultiplier = 1.25f;
-        private const float MinimumFlightPrice = 40f;
-
         public int FlightId { get; set; }
         public Route? Route { get; set; }
         public Gate? Gate { get; set; }
@@ -32,18 +29,6 @@ namespace TicketManager.Domain
             Gate = gate;
             Date = date;
             FlightNumber = flightNr;
-        }
-
-        public float GetBasePrice()
-        {
-            if (Route == null)
-            {
-                return 0f;
-            }
-
-            TimeSpan duration = Route.ArrivalTime - Route.DepartureTime;
-            float calculatedPrice = (float)duration.TotalMinutes * PricePerMinuteMultiplier;
-            return Math.Max(calculatedPrice, MinimumFlightPrice);
         }
     }
 }

@@ -111,6 +111,18 @@ namespace TicketManager.Service
                 return false;
             }
 
+            foreach (var ticket in tickets)
+            {
+                if (!string.IsNullOrWhiteSpace(ticket.Seat))
+                {
+                    bool seatAvailable = await ticketRepository.IsSeatAvailable(ticket.Flight?.FlightId ?? 0, ticket.Seat);
+                    if (!seatAvailable)
+                    {
+                        return false;
+                    }
+                }
+            }
+
             return await ticketRepository.SaveTicketsWithAddOnsAsync(tickets);
         }
 

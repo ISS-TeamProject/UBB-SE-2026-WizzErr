@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 
 namespace TicketManager.Domain
 {
     public class Ticket
     {
-        private const float PercentageDivisor = 100.0f;
         public int TicketId { get; set; }
         public User? User { get; set; }
         public Flight? Flight { get; set; }
@@ -47,52 +45,6 @@ namespace TicketManager.Domain
             PassengerLastName = passengerLastName;
             PassengerEmail = passengerEmail;
             PassengerPhone = passengerPhone;
-        }
-
-        public float CalculateTotalPrice()
-        {
-            float finalTotal = Price;
-
-            if (User != null && User.Membership != null)
-            {
-                float flightDiscount = User.Membership.FlightDiscountPercentage;
-                finalTotal -= finalTotal * (flightDiscount / PercentageDivisor);
-
-                foreach (var addon in SelectedAddOns)
-                {
-                    float addonPrice = addon.BasePrice;
-                    float specificAddonDiscount = 0f;
-
-                    if (User.Membership.AddonDiscounts != null)
-                    {
-                        foreach (var discount in User.Membership.AddonDiscounts)
-                        {
-                            if (discount.AddOn != null && discount.AddOn.AddOnId == addon.AddOnId)
-                            {
-                                specificAddonDiscount = discount.DiscountPercentage;
-                                break;
-                            }
-                        }
-                    }
-
-                    finalTotal += addonPrice - (addonPrice * (specificAddonDiscount / PercentageDivisor));
-                }
-            }
-            else
-            {
-                foreach (var addon in SelectedAddOns)
-                {
-                    finalTotal += addon.BasePrice;
-                }
-            }
-
-            return finalTotal;
-        }
-
-        public void CancelTicket()
-        {
-            Status = "Cancelled";
-            Seat = string.Empty;
         }
     }
 }

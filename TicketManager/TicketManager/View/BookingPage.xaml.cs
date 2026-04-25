@@ -152,22 +152,7 @@ namespace TicketManager.View
                     return;
                 }
 
-                var currentHolder = ViewModel.Passengers.FirstOrDefault(passenger => passenger.SelectedSeat == seat);
-                if (currentHolder == seatTargetPassenger)
-                {
-                    seatTargetPassenger.SelectedSeat = string.Empty;
-                }
-                else
-                {
-                    if (currentHolder != null)
-                    {
-                        currentHolder.SelectedSeat = string.Empty;
-                    }
-
-                    seatTargetPassenger.SelectedSeat = seat;
-                    RefreshSeatMapVisuals();
-                }
-
+                ViewModel.SelectSeat(seatTargetPassenger, seat);
                 RefreshSeatMapVisuals();
             }
         }
@@ -226,18 +211,10 @@ namespace TicketManager.View
         {
             if (sender is ListView listView && listView.Tag is PassengerFormViewModel passenger)
             {
-                foreach (var added in System.Linq.Enumerable.OfType<AddOn>(e.AddedItems))
-                {
-                    if (!passenger.SelectedAddOns.Contains(added))
-                    {
-                        passenger.SelectedAddOns.Add(added);
-                    }
-                }
-
-                foreach (var removed in System.Linq.Enumerable.OfType<AddOn>(e.RemovedItems))
-                {
-                    passenger.SelectedAddOns.Remove(removed);
-                }
+                ViewModel.UpdatePassengerAddOns(
+                    passenger,
+                    System.Linq.Enumerable.OfType<AddOn>(e.AddedItems),
+                    System.Linq.Enumerable.OfType<AddOn>(e.RemovedItems));
             }
         }
     }

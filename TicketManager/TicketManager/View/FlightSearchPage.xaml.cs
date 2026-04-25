@@ -15,7 +15,7 @@ namespace TicketManager.View
         {
             this.InitializeComponent();
 
-            ViewModel = new FlightSearchViewModel(App.FlightSearchService, App.NavigationService);
+            ViewModel = new FlightSearchViewModel(App.FlightSearchService, App.NavigationService, App.PricingService);
             this.DataContext = ViewModel;
         }
 
