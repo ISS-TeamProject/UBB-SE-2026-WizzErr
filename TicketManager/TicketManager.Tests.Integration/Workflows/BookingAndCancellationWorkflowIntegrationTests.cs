@@ -18,11 +18,11 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
 
     public BookingAndCancellationWorkflowIntegrationTests()
     {
-        var dbFactory = new DatabaseConnectionFactory(GetTestConnectionString());
-        var membershipRepo = new MembershipRepository(dbFactory);
-        _userRepository = new UserRepository(dbFactory, membershipRepo);
-        _ticketRepository = new TicketRepository(dbFactory);
-        _addOnRepository = new AddOnRepository(dbFactory);
+        var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
+        var membershipRepository = new MembershipRepository(databaseConnectionFactory);
+        _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
+        _ticketRepository = new TicketRepository(databaseConnectionFactory);
+        _addOnRepository = new AddOnRepository(databaseConnectionFactory);
         _authService = new AuthService(_userRepository);
         _bookingService = new BookingService(_ticketRepository, _addOnRepository);
         _pricingService = new PricingService();
@@ -69,9 +69,9 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
         var ticket1 = new Ticket { Flight = flight, User = user, Seat = "1A", Price = 100.0f, Status = "Active", PassengerFirstName = "Gigel", PassengerLastName = "Frone" };
         var ticket2 = new Ticket { Flight = flight, User = user, Seat = "1A", Price = 100.0f, Status = "Active", PassengerFirstName = "Vasile", PassengerLastName = "Traian" };
 
-        var result = await _bookingService.SaveTicketsAsync(new List<Ticket> { ticket1, ticket2 });
+        var saveTicketsResult = await _bookingService.SaveTicketsAsync(new List<Ticket> { ticket1, ticket2 });
 
-        result.Should().BeFalse();
+        saveTicketsResult.Should().BeFalse();
     }
 
     [Fact]
@@ -113,4 +113,6 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
         reasonAgain.Should().Contain("already cancelled");
     }
 }
+
+
 

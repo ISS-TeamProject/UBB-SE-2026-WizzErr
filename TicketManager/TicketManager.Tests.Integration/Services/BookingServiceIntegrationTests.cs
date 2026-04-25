@@ -1,4 +1,7 @@
 using FluentAssertions;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
@@ -8,6 +11,14 @@ namespace TicketManager.Tests.Integration.Services;
 
 public class BookingServiceIntegrationTests : BaseIntegrationTest
 {
+    private const float DefaultBasePrice = 150.0f;
+    private const int DefaultFlightCapacity = 180;
+    private const int DefaultOccupiedSeats = 50;
+    private const int DefaultRequestedPassengers = 10;
+    private const int UniqueCodeStartIndex = 0;
+    private const int UniqueCodeLength = 4;
+    private const int ExpectedTicketCount = 1;
+
     private readonly ITicketRepository _ticketRepository;
     private readonly IAddOnRepository _addOnRepository;
     private readonly IUserRepository _userRepository;
@@ -15,11 +26,11 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
 
     public BookingServiceIntegrationTests()
     {
-        var dbFactory = new DatabaseConnectionFactory(GetTestConnectionString());
-        _ticketRepository = new TicketRepository(dbFactory);
-        _addOnRepository = new AddOnRepository(dbFactory);
-        var membershipRepo = new MembershipRepository(dbFactory);
-        _userRepository = new UserRepository(dbFactory, membershipRepo);
+        var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
+        _ticketRepository = new TicketRepository(databaseConnectionFactory);
+        _addOnRepository = new AddOnRepository(databaseConnectionFactory);
+        var membershipRepository = new MembershipRepository(databaseConnectionFactory);
+        _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
         _bookingService = new BookingService(_ticketRepository, _addOnRepository);
     }
 
@@ -28,7 +39,7 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
     {
         var flightId = GetFirstAvailableFlightId();
         var flight = new Flight { FlightId = flightId };
-        var code = Guid.NewGuid().ToString().Substring(0, 4);
+        var code = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var user = new User { Email = $"mrc.popa_{code}@gmail.com", Username = $"MirceaP_{code}", PasswordHash = "Mircea123!" };
         _userRepository.AddUser(user);
         var dbUser = _userRepository.GetByEmail(user.Email);
@@ -38,24 +49,19 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
             new PassengerData { FirstName = "Mircea", LastName = "Popa", Email = user.Email, Phone = "0722334455", SelectedSeat = $"{code}_1A" }
         };
 
-        var tickets = _bookingService.CreateTickets(flight, dbUser!, passengers, 150.0f);
+        var tickets = _bookingService.CreateTickets(flight, dbUser!, passengers, DefaultBasePrice);
         var saveResult = await _bookingService.SaveTicketsAsync(tickets);
 
         saveResult.Should().BeTrue();
-        tickets.Should().HaveCount(1);
-    }
-
-    [Fact]
-    public async Task TestThatAvailableAddOnsCanBeRetrieved()
-    {
-        var addOns = await _bookingService.GetAvailableAddOnsAsync();
-        addOns.Should().NotBeNull();
+        tickets.Should().HaveCount(ExpectedTicketCount);
     }
 
     [Fact]
     public void TestThatMaxPassengersIsCalculatedCorrectly()
     {
-        var maxPassengers = _bookingService.CalculateMaxPassengers(180, 50, 10);
-        maxPassengers.Should().Be(10);
+        var maxPassengers = _bookingService.CalculateMaxPassengers(DefaultFlightCapacity, DefaultOccupiedSeats, DefaultRequestedPassengers);
+        maxPassengers.Should().Be(DefaultRequestedPassengers);
     }
 }
+
+

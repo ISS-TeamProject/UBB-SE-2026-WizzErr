@@ -31,14 +31,16 @@ public static class PassengerDataFixture
         
         for (int i = 0; i < count; i++)
         {
-            var fName = firstNames[i % firstNames.Length];
-            var lName = lastNames[i % lastNames.Length];
+            var firstName = firstNames[i % firstNames.Length];
+            var lastName = lastNames[i % lastNames.Length];
             passengers.Add(CreateValidPassengerData(
-                firstName: fName,
-                lastName: lName,
-                email: $"{fName.ToLower()}.{lName.ToLower()}_{randomPrefix}@yahoo.com",
+                firstName: firstName,
+                lastName: lastName,
+                email: $"{firstName.ToLower()}.{lastName.ToLower()}_{randomPrefix}@yahoo.com",
                 selectedSeat: $"{randomPrefix}_{i + 1}B"));
         }
         return passengers;
     }
 }
+
+

@@ -14,9 +14,9 @@ public class PricingServiceIntegrationTests : BaseIntegrationTest
 
     public PricingServiceIntegrationTests()
     {
-        var dbFactory = new DatabaseConnectionFactory(GetTestConnectionString());
-        _membershipRepository = new MembershipRepository(dbFactory);
-        _userRepository = new UserRepository(dbFactory, _membershipRepository);
+        var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
+        _membershipRepository = new MembershipRepository(databaseConnectionFactory);
+        _userRepository = new UserRepository(databaseConnectionFactory, _membershipRepository);
         _pricingService = new PricingService();
     }
 
@@ -51,4 +51,6 @@ public class PricingServiceIntegrationTests : BaseIntegrationTest
         breakdown.MembershipSavings.Should().BeGreaterThanOrEqualTo(0);
     }
 }
+
+
 

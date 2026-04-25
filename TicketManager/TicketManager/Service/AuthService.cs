@@ -40,10 +40,10 @@ namespace TicketManager.Service
                 throw new InvalidOperationException("No account found with this email.");
             }
 
-            PasswordVerificationResult result =
+            PasswordVerificationResult passwordVerificationResult =
                 this.passwordHasher.VerifyHashedPassword(existingUser, existingUser.PasswordHash, password);
 
-            if (result == PasswordVerificationResult.Failed)
+            if (passwordVerificationResult == PasswordVerificationResult.Failed)
             {
                 throw new InvalidOperationException("Invalid email or password.");
             }
@@ -134,3 +134,4 @@ namespace TicketManager.Service
         }
     }
 }
+

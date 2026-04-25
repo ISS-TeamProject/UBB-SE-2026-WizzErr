@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using TicketManager.ViewModel;
@@ -19,9 +19,9 @@ namespace TicketManager.View
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        private async void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private async void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs eventArgs)
         {
-            if (e.PropertyName != nameof(ViewModel.PurchaseSucceeded) || ViewModel.PurchaseSucceeded == null)
+            if (eventArgs.PropertyName != nameof(ViewModel.PurchaseSucceeded) || ViewModel.PurchaseSucceeded == null)
             {
                 return;
             }
@@ -38,3 +38,7 @@ namespace TicketManager.View
         }
     }
 }
+
+
+
+
