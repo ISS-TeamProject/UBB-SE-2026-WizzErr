@@ -20,12 +20,12 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
 
     public AuthAndBookingViewModelIntegrationTests()
     {
-        var dbFactory = new DatabaseConnectionFactory(GetTestConnectionString());
-        _membershipRepository = new MembershipRepository(dbFactory);
-        _userRepository = new UserRepository(dbFactory, _membershipRepository);
-        _flightRepository = new FlightRepository(dbFactory);
-        _ticketRepository = new TicketRepository(dbFactory);
-        _addOnRepository = new AddOnRepository(dbFactory);
+        var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
+        _membershipRepository = new MembershipRepository(databaseConnectionFactory);
+        _userRepository = new UserRepository(databaseConnectionFactory, _membershipRepository);
+        _flightRepository = new FlightRepository(databaseConnectionFactory);
+        _ticketRepository = new TicketRepository(databaseConnectionFactory);
+        _addOnRepository = new AddOnRepository(databaseConnectionFactory);
 
         _authService = new AuthService(_userRepository);
         _bookingService = new BookingService(_ticketRepository, _addOnRepository);
@@ -178,3 +178,5 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
         dashboardVM.MyTickets.Should().NotBeNull();
     }
 }
+
+

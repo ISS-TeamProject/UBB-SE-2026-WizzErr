@@ -23,8 +23,8 @@ namespace TicketManager.Repository
                 connection.Open();
                 string query = "SELECT addon_id, name, base_price FROM AddOns";
 
-                using (var command = new SqlCommand(query, connection))
-                using (var reader = command.ExecuteReader())
+                using (var getAllAddOnsCommand = new SqlCommand(query, connection))
+                using (var reader = getAllAddOnsCommand.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -59,14 +59,14 @@ namespace TicketManager.Repository
 
                 string query = $"SELECT addon_id, name, base_price FROM AddOns WHERE addon_id IN ({inClause})";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getAddOnsByIdsCommand = new SqlCommand(query, connection))
                 {
-                    foreach (var param in parameters)
+                    foreach (var parameter in parameters)
                     {
-                        command.Parameters.AddWithValue(param.ParameterName, param.Value);
+                        getAddOnsByIdsCommand.Parameters.AddWithValue(parameter.ParameterName, parameter.Value);
                     }
 
-                    using (var reader = command.ExecuteReader())
+                    using (var reader = getAddOnsByIdsCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -85,3 +85,4 @@ namespace TicketManager.Repository
         }
     }
 }
+

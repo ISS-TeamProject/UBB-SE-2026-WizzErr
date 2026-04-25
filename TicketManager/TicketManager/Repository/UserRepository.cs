@@ -29,10 +29,10 @@ namespace TicketManager.Repository
                     LEFT JOIN Memberships m ON u.membership_id = m.membership_id
                     WHERE u.user_id = @UserId";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getUserByIdCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", id);
-                    using (var reader = command.ExecuteReader())
+                    getUserByIdCommand.Parameters.AddWithValue("@UserId", id);
+                    using (var reader = getUserByIdCommand.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -58,10 +58,10 @@ namespace TicketManager.Repository
                     LEFT JOIN Memberships m ON u.membership_id = m.membership_id
                     WHERE u.email = @Email";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getUserByEmailCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Email", email);
-                    using (var reader = command.ExecuteReader())
+                    getUserByEmailCommand.Parameters.AddWithValue("@Email", email);
+                    using (var reader = getUserByEmailCommand.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -83,14 +83,14 @@ namespace TicketManager.Repository
                     INSERT INTO Users (email, phone, username, password_hash, membership_id) 
                     VALUES (@Email, @Phone, @Username, @PasswordHash, @MembershipId)";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var insertUserCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Email", user.Email);
-                    command.Parameters.AddWithValue("@Phone", user.Phone ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Username", user.Username);
-                    command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
-                    command.Parameters.AddWithValue("@MembershipId", user.Membership?.MembershipId ?? (object)DBNull.Value);
-                    command.ExecuteNonQuery();
+                    insertUserCommand.Parameters.AddWithValue("@Email", user.Email);
+                    insertUserCommand.Parameters.AddWithValue("@Phone", user.Phone ?? (object)DBNull.Value);
+                    insertUserCommand.Parameters.AddWithValue("@Username", user.Username);
+                    insertUserCommand.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
+                    insertUserCommand.Parameters.AddWithValue("@MembershipId", user.Membership?.MembershipId ?? (object)DBNull.Value);
+                    insertUserCommand.ExecuteNonQuery();
                 }
             }
         }
@@ -105,11 +105,11 @@ namespace TicketManager.Repository
                     SET membership_id = @MembershipId
                     WHERE user_id = @UserId";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var updateUserMembershipCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", userId);
-                    command.Parameters.AddWithValue("@MembershipId", newMembershipId);
-                    command.ExecuteNonQuery();
+                    updateUserMembershipCommand.Parameters.AddWithValue("@UserId", userId);
+                    updateUserMembershipCommand.Parameters.AddWithValue("@MembershipId", newMembershipId);
+                    updateUserMembershipCommand.ExecuteNonQuery();
                 }
             }
         }

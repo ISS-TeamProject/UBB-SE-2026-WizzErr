@@ -14,21 +14,21 @@ namespace TicketManager.Domain
         {
         }
 
-        public Flight(Route? route, Gate? gate, DateTime date, string? flightNr)
+        public Flight(Route? route, Gate? gate, DateTime date, string? flightNumber)
         {
             Route = route;
             Gate = gate;
             Date = date;
-            FlightNumber = flightNr;
+            FlightNumber = flightNumber;
         }
 
-        public Flight(int flightId, Route route, Gate gate, DateTime date, string flightNr)
+        public Flight(int flightId, Route route, Gate gate, DateTime date, string flightNumber)
         {
             FlightId = flightId;
             Route = route;
             Gate = gate;
             Date = date;
-            FlightNumber = flightNr;
+            FlightNumber = flightNumber;
         }
     }
 }

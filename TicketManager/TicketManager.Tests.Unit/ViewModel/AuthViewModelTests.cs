@@ -8,6 +8,11 @@ namespace TicketManager.Tests.Unit.ViewModel;
 
 public class AuthViewModelTests
 {
+    private const int PrimaryTestUserId = 1;
+    private const int SecondaryTestUserId = 2;
+    private const int TestFlightId = 1;
+    private const int RequestedPassengerCount = 2;
+
     private readonly Mock<IAuthService> _mockAuthService;
     private readonly Mock<INavigationService> _mockNavigationService;
     private readonly AuthViewModel _viewModel;
@@ -24,7 +29,7 @@ public class AuthViewModelTests
     [Fact]
     public void ActionCommand_LoginSuccess_NavigatesToFlightSearch()
     {
-        var user = new User { UserId = 1, Email = "mihai.ionescu@gmail.com", Username = "MihaiI" };
+        var user = new User { UserId = PrimaryTestUserId, Email = "mihai.ionescu@gmail.com", Username = "MihaiI" };
         _mockAuthService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
         _viewModel.IsLoginMode = true;
         _viewModel.EmailText = "mihai.ionescu@gmail.com";
@@ -85,8 +90,8 @@ public class AuthViewModelTests
     [Fact]
     public void ActionCommand_LoginWithPendingBooking_NavigatesToBooking()
     {
-        var user = new User { UserId = 2, Email = "elena.popescu@gmail.com", Username = "ElenaP" };
-        var pendingParams = new object[] { new Flight { FlightId = 1 }, 2 };
+        var user = new User { UserId = SecondaryTestUserId, Email = "elena.popescu@gmail.com", Username = "ElenaP" };
+        var pendingParams = new object[] { new Flight { FlightId = TestFlightId }, RequestedPassengerCount };
         _mockAuthService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
 
         UserSession.PendingBookingParameters = pendingParams;

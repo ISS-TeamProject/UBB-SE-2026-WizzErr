@@ -13,6 +13,11 @@ namespace TicketManager.ViewModel
     public class BookingViewModel : ViewModelBase
     {
         private const int DefaultFlightCapacity = 180;
+        private const int FlightArgIndex = 0;
+        private const int UserArgIndex = 1;
+        private const int PassengerCountArgIndex = 2;
+        private const int MinNavigationArgsLengthWithUser = 2;
+        private const int NavigationArgsLengthWithPassengerCount = 3;
         private readonly IBookingService bookingService;
         private readonly IPricingService pricingService;
         private readonly INavigationService navigationService;
@@ -192,27 +197,27 @@ namespace TicketManager.ViewModel
             User? localUser = null;
             int requestedPassengers = 0;
 
-            if (parameter is object[] args && args.Length > 0)
+            if (parameter is object[] navigationArguments && navigationArguments.Length > 0)
             {
-                selectedFlight = args[0] as Flight;
+                selectedFlight = navigationArguments[FlightArgIndex] as Flight;
 
-                if (args.Length >= 3)
+                if (navigationArguments.Length >= NavigationArgsLengthWithPassengerCount)
                 {
-                    localUser = args[1] as User;
-                    if (args[2] is int count)
+                    localUser = navigationArguments[UserArgIndex] as User;
+                    if (navigationArguments[PassengerCountArgIndex] is int count)
                     {
                         requestedPassengers = count;
                     }
                 }
-                else if (args.Length >= 2)
+                else if (navigationArguments.Length >= MinNavigationArgsLengthWithUser)
                 {
-                    if (args[1] is int count)
+                    if (navigationArguments[UserArgIndex] is int count)
                     {
                         requestedPassengers = count;
                     }
                     else
                     {
-                        localUser = args[1] as User;
+                        localUser = navigationArguments[UserArgIndex] as User;
                     }
                 }
             }

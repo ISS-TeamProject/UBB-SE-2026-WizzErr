@@ -4,6 +4,8 @@ namespace TicketManager.Tests.Unit.Fixtures;
 
 public static class UserFixture
 {
+    private const int DefaultTestUserId = 1;
+
     public static User CreateValidTestUser(
         string email = "andrei.ionescu@gmail.com",
         string username = "andrei_ionescu",
@@ -12,7 +14,7 @@ public static class UserFixture
     {
         return new User
         {
-            UserId = 1,
+            UserId = DefaultTestUserId,
             Email = email,
             Username = username,
             Phone = phone,
