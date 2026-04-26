@@ -112,7 +112,7 @@ public class BookingServiceTests
     [Fact]
     public async Task TestThatSaveTicketsAsyncReturnsTrueWhenAllTicketsValid()
     {
-        _mockTicketRepository.Setup(r => r.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>())).ReturnsAsync(true);
+            _mockTicketRepository.Setup(repoThatSuccessfullySavesTickets => repoThatSuccessfullySavesTickets.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>())).ReturnsAsync(true);
         var ticket1 = new Ticket { Seat = "1A", Price = 100.0f, Status = "Active" };
         var ticket2 = new Ticket { Seat = "1B", Price = 100.0f, Status = "Active" };
         var tickets = new List<Ticket> { ticket1, ticket2 };
@@ -120,7 +120,7 @@ public class BookingServiceTests
         var result = await _bookingService.SaveTicketsAsync(tickets);
 
         result.Should().BeTrue();
-        _mockTicketRepository.Verify(r => r.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>()), Times.Once);
+        _mockTicketRepository.Verify(repoToVerifySaveTickets => repoToVerifySaveTickets.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>()), Times.Once);
     }
 
     [Fact]

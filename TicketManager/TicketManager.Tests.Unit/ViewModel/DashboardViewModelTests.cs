@@ -25,7 +25,7 @@ public class DashboardViewModelTests
     public void CancelTicketCommand_SetsPendingWhenCancelable()
     {
         var ticket = new Ticket { TicketId = 1, Status = "Active" };
-        _mockCancellationService.Setup(s => s.CanCancelTicket(ticket)).Returns((true, ""));
+        _mockCancellationService.Setup(serviceAllowingCancel => serviceAllowingCancel.CanCancelTicket(ticket)).Returns((true, ""));
 
         _viewModel.CancelTicketCommand.Execute(ticket);
 
@@ -36,7 +36,7 @@ public class DashboardViewModelTests
     public void CancelTicketCommand_SetsCancellationFailedWhenNotCancelable()
     {
         var ticket = new Ticket { TicketId = 1, Status = "Active" };
-        _mockCancellationService.Setup(s => s.CanCancelTicket(ticket))
+        _mockCancellationService.Setup(serviceDenyingCancel => serviceDenyingCancel.CanCancelTicket(ticket))
             .Returns((false, "Cannot cancel within 24 hours of departure"));
 
         _viewModel.CancelTicketCommand.Execute(ticket);
@@ -61,11 +61,11 @@ public class DashboardViewModelTests
         UserSession.CurrentUser = new User { UserId = 1, Email = "bogdan.ionescu@gmail.com" };
         var ticket = new Ticket { TicketId = 5, Status = "Active" };
         _viewModel.PendingCancelTicket = ticket;
-        _mockDashboardService.Setup(s => s.GetUserTickets(It.IsAny<int>(), It.IsAny<string>())).Returns(new List<Ticket>());
+        _mockDashboardService.Setup(dashboardServiceReturningNoTickets => dashboardServiceReturningNoTickets.GetUserTickets(It.IsAny<int>(), It.IsAny<string>())).Returns(new List<Ticket>());
 
         _viewModel.ConfirmCancellation();
 
-        _mockCancellationService.Verify(s => s.CancelTicket(5), Times.Once);
+        _mockCancellationService.Verify(cancellationServiceToVerifyCancel => cancellationServiceToVerifyCancel.CancelTicket(5), Times.Once);
         _viewModel.PendingCancelTicket.Should().BeNull();
         _viewModel.CancellationSucceeded.Should().BeTrue();
     }
@@ -89,7 +89,7 @@ public class DashboardViewModelTests
         var result = _viewModel.OnNavigatedTo();
 
         result.Should().BeFalse();
-        _mockNavigationService.Verify(n => n.NavigateTo(typeof(View.AuthPage), null), Times.Once);
+        _mockNavigationService.Verify(navServiceToVerifyAuthRedirect => navServiceToVerifyAuthRedirect.NavigateTo(typeof(View.AuthPage), null), Times.Once);
     }
 }
 
