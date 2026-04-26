@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TicketManager.Domain;
 
@@ -12,5 +12,7 @@ namespace TicketManager.Service
         Task<List<string>> GetOccupiedSeatsAsync(int flightId);
         string ValidatePassengers(List<PassengerData> passengers);
         int CalculateMaxPassengers(int routeCapacity, int occupiedSeatCount, int requestedPassengerCount);
+        BookingParametersResult ParseBookingParameters(object parameter);
+        void StorePendingBooking(Flight flight, int requestedPassengers);
     }
 }

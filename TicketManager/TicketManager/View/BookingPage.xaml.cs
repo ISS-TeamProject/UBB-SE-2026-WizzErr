@@ -27,14 +27,10 @@ namespace TicketManager.View
         private const int SeatColumnWidth = 58;
         private const int AisleColumnIndex = 3;
         private const int AisleColumnWidth = 24;
-        private const int DefaultSeatCapacity = 40;
         private const int SeatRowHeight = 54;
         private const int SeatButtonWidth = 50;
         private const int SeatButtonHeight = 44;
         private const int SeatButtonFontSize = 13;
-        private const int SeatCColumnIndex = 2;
-        private const int SeatDColumnIndex = 4;
-        private const int SeatEColumnIndex = 5;
         private const int SeatButtonMargin = 2;
 
         public BookingViewModel ViewModel { get; }
@@ -95,18 +91,14 @@ namespace TicketManager.View
 
             seatMapGrid.ColumnDefinitions.Insert(AisleColumnIndex, new ColumnDefinition() { Width = new GridLength(AisleColumnWidth) });
 
-            int capacity = ViewModel.CurrentFlight?.Route?.Capacity ?? DefaultSeatCapacity;
-            int rows = (capacity + SeatColumnsCount - 1) / SeatColumnsCount;
-
-            for (int r = 0; r < rows; r++)
+            for (int r = 0; r < ViewModel.SeatMapRowCount; r++)
             {
                 seatMapGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(SeatRowHeight) });
-                CreateSeatButton(r, 0, $"{r + 1}A");
-                CreateSeatButton(r, 1, $"{r + 1}B");
-                CreateSeatButton(r, SeatCColumnIndex, $"{r + 1}C");
-                CreateSeatButton(r, SeatDColumnIndex, $"{r + 1}D");
-                CreateSeatButton(r, SeatEColumnIndex, $"{r + 1}E");
-                CreateSeatButton(r, SeatColumnsCount, $"{r + 1}F");
+            }
+
+            foreach (var seat in ViewModel.SeatMapLayout)
+            {
+                CreateSeatButton(seat.Row, seat.Column, seat.Label);
             }
 
             RefreshSeatMapVisuals();
