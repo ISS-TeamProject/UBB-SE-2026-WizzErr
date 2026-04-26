@@ -24,7 +24,7 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
     private const string DomainGmail = "@gmail.com";
     private readonly IUserRepository _userRepository;
     private readonly ITicketRepository _ticketRepository;
-    private readonly AuthService _authService;
+    private readonly AuthService _authentificationService;
     private readonly BookingService _bookingService;
     private readonly PricingService _pricingService;
 
@@ -34,7 +34,7 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
         var membershipRepository = new MembershipRepository(databaseConnectionFactory);
         _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
         _ticketRepository = new TicketRepository(databaseConnectionFactory);
-        _authService = new AuthService(_userRepository);
+        _authentificationService = new AuthService(_userRepository);
         _bookingService = new BookingService(_ticketRepository, new AddOnRepository(databaseConnectionFactory));
         _pricingService = new PricingService();
     }
@@ -56,9 +56,9 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
         string uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         string email = $"{DanEmail}_{uniqueCode}{DomainGmail}";
         string password = DanPassword;
-        _authService.Register(email, DefaultPhone, $"{DanUsername}_{uniqueCode}", password);
+        _authentificationService.Register(email, DefaultPhone, $"{DanUsername}_{uniqueCode}", password);
 
-        var user = _authService.Login(email, password);
+        var user = _authentificationService.Login(email, password);
         var flight = CreateFlightWithBasePrice(TargetPrice);
         var passengers = PassengerDataFixture.CreateValidPassengerList(SinglePassenger);
 

@@ -14,5 +14,9 @@ namespace TicketManager.Service
         int CalculateMaxPassengers(int routeCapacity, int occupiedSeatCount, int requestedPassengerCount);
         BookingParametersResult ParseBookingParameters(object parameter);
         void StorePendingBooking(Flight flight, int requestedPassengers);
+        (List<SeatDescriptor> Layout, int RowCount) BuildSeatMapLayout(int capacity);
+        IList<string> ApplySeatSelection(IList<string> currentSeats, int targetPassengerIndex, string clickedSeat);
+        void ApplyAddOnUpdates(IList<AddOn> currentAddOns, IEnumerable<AddOn> toAdd, IEnumerable<AddOn> toRemove);
+        int GetInitialPassengerCount(int maxPassengers, int requestedCount);
     }
 }

@@ -13,8 +13,6 @@ namespace TicketManager.ViewModel
     public class BookingViewModel : ViewModelBase
     {
         private const int DefaultFlightCapacity = 180;
-        private const int SeatsPerRow = 6;
-        private const int AisleAfterColumn = 3;
         private readonly IBookingService bookingService;
         private readonly IPricingService pricingService;
         private readonly INavigationService navigationService;
@@ -149,19 +147,19 @@ namespace TicketManager.ViewModel
             }
         }
 
-        private int maxPassengers;
-        public int MaxPassengers
+        private int maximumPassengers;
+        public int MaximumPassengers
         {
-            get => maxPassengers;
+            get => maximumPassengers;
             set
             {
-                maxPassengers = value;
+                maximumPassengers = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CanAddPassenger));
             }
         }
 
-        public bool CanAddPassenger => Passengers.Count < MaxPassengers;
+        public bool CanAddPassenger => Passengers.Count < MaximumPassengers;
         public bool CanRemovePassenger => Passengers.Count > 1;
         public bool CanConfirmBooking =>
             !isSaving &&
@@ -192,11 +190,6 @@ namespace TicketManager.ViewModel
 
         public int SeatMapRowCount { get; private set; }
 
-        /// <summary>
-        /// Parses the navigation parameter via the service and initializes the booking.
-        /// Previously this method contained 45 lines of if/else parameter parsing;
-        /// that logic now lives in BookingService.ParseBookingParameters.
-        /// </summary>
         public async Task<bool> OnNavigatedToAsync(object parameter)
         {
             var parsed = bookingService.ParseBookingParameters(parameter);
@@ -222,11 +215,11 @@ namespace TicketManager.ViewModel
             CurrentFlight = flight;
             CurrentUser = user;
 
-            var addons = await bookingService.GetAvailableAddOnsAsync();
+            var addOns = await bookingService.GetAvailableAddOnsAsync();
             AvailableAddOns.Clear();
-            foreach (var addon in addons)
+            foreach (var addOn in addOns)
             {
-                AvailableAddOns.Add(addon);
+                AvailableAddOns.Add(addOn);
             }
 
             var seats = await bookingService.GetOccupiedSeatsAsync(flight?.FlightId ?? 0);
@@ -237,23 +230,15 @@ namespace TicketManager.ViewModel
             }
 
             int capacity = flight?.Route?.Capacity ?? DefaultFlightCapacity;
-            MaxPassengers = bookingService.CalculateMaxPassengers(capacity, OccupiedSeats.Count, requestedPassengerCount);
+            MaximumPassengers = bookingService.CalculateMaxPassengers(capacity, OccupiedSeats.Count, requestedPassengerCount);
 
             Passengers.Clear();
-            int initialCount = requestedPassengerCount > 0 ? requestedPassengerCount : 1;
-            if (initialCount > MaxPassengers)
+            int initialCount = bookingService.GetInitialPassengerCount(MaximumPassengers, requestedPassengerCount);
+            for (int index = 0; index < initialCount; index++)
             {
-                initialCount = MaxPassengers;
-            }
-
-            for (int i = 0; i < initialCount; i++)
-            {
-                if (CanAddPassenger || Passengers.Count == 0)
-                {
-                    var passenger = new PassengerFormViewModel();
-                    RegisterPassenger(passenger);
-                    Passengers.Add(passenger);
-                }
+                var passenger = new PassengerFormViewModel();
+                RegisterPassenger(passenger);
+                Passengers.Add(passenger);
             }
 
             UpdatePassengerLabels();
@@ -264,36 +249,12 @@ namespace TicketManager.ViewModel
             BuildSeatMapLayout();
         }
 
-        /// <summary>
-        /// Computes the seat map structure: how many rows, and for each seat its
-        /// row index, column index (with aisle gap), and label (e.g. "1A", "3F").
-        /// Previously this computation lived in BookingPage.xaml.cs GenerateSeatMap().
-        /// The View now just reads SeatMapLayout and creates a Button for each entry.
-        /// </summary>
         public void BuildSeatMapLayout()
         {
-            var layout = new List<SeatDescriptor>();
-            char[] seatLetters = { 'A', 'B', 'C', 'D', 'E', 'F' };
-            int[] seatColumns = { 0, 1, 2, 4, 5, 6 }; // column 3 is the aisle
-
             int capacity = CurrentFlight?.Route?.Capacity ?? DefaultFlightCapacity;
-            int rowCount = (capacity + SeatsPerRow - 1) / SeatsPerRow;
-            SeatMapRowCount = rowCount;
-
-            for (int row = 0; row < rowCount; row++)
-            {
-                for (int i = 0; i < SeatsPerRow; i++)
-                {
-                    layout.Add(new SeatDescriptor
-                    {
-                        Row = row,
-                        Column = seatColumns[i],
-                        Label = $"{row + 1}{seatLetters[i]}"
-                    });
-                }
-            }
-
+            var (layout, rowCount) = bookingService.BuildSeatMapLayout(capacity);
             SeatMapLayout = layout;
+            SeatMapRowCount = rowCount;
             OnPropertyChanged(nameof(SeatMapLayout));
             OnPropertyChanged(nameof(SeatMapRowCount));
         }
@@ -330,9 +291,9 @@ namespace TicketManager.ViewModel
 
         private void UpdatePassengerLabels()
         {
-            for (int i = 0; i < Passengers.Count; i++)
+            for (int index = 0; index < Passengers.Count; index++)
             {
-                Passengers[i].PassengerLabel = $"Passenger {i + 1}";
+                Passengers[index].PassengerLabel = $"Passenger {index + 1}";
             }
         }
 
@@ -451,36 +412,18 @@ namespace TicketManager.ViewModel
 
         public void SelectSeat(PassengerFormViewModel targetPassenger, string seat)
         {
-            var currentHolder = Passengers.FirstOrDefault(passenger => passenger.SelectedSeat == seat);
-            if (currentHolder == targetPassenger)
+            var currentSeats = Passengers.Select(p => p.SelectedSeat ?? string.Empty).ToList();
+            int targetIndex = Passengers.IndexOf(targetPassenger);
+            var updatedSeats = bookingService.ApplySeatSelection(currentSeats, targetIndex, seat);
+            for (int index = 0; index < Passengers.Count; index++)
             {
-                targetPassenger.SelectedSeat = string.Empty;
-            }
-            else
-            {
-                if (currentHolder != null)
-                {
-                    currentHolder.SelectedSeat = string.Empty;
-                }
-
-                targetPassenger.SelectedSeat = seat;
+                Passengers[index].SelectedSeat = updatedSeats[index];
             }
         }
 
         public void UpdatePassengerAddOns(PassengerFormViewModel passenger, IEnumerable<AddOn> addedAddOns, IEnumerable<AddOn> removedAddOns)
         {
-            foreach (var addOn in addedAddOns)
-            {
-                if (!passenger.SelectedAddOns.Contains(addOn))
-                {
-                    passenger.SelectedAddOns.Add(addOn);
-                }
-            }
-
-            foreach (var addOn in removedAddOns)
-            {
-                passenger.SelectedAddOns.Remove(addOn);
-            }
+            bookingService.ApplyAddOnUpdates(passenger.SelectedAddOns, addedAddOns, removedAddOns);
         }
     }
 }

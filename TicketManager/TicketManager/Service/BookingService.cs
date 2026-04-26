@@ -11,6 +11,14 @@ namespace TicketManager.Service
     {
         private const string CancelledStatus = "Cancelled";
         private const string ActiveStatus = "Active";
+        private const int FlightAndUserAndCountArgumentLength = 3;
+        private const int FlightAndSecondArgumentLength = 2;
+        private const int FlightArgumentIndex = 0;
+        private const int SecondArgumentIndex = 1;
+        private const int PassengerCountArgumentIndex = 2;
+        private const int SeatsPerRow = 6;
+        private const int AisleAfterColumn = 3;
+        private const int DefaultInitialPassengerCount = 1;
 
         private readonly ITicketRepository ticketRepository;
         private readonly IAddOnRepository addOnRepository;
@@ -25,20 +33,20 @@ namespace TicketManager.Service
         {
             var tickets = new List<Ticket>();
 
-            foreach (var pass in passengers)
+            foreach (var passenger in passengers)
             {
                 var ticket = new Ticket
                 {
                     Flight = flight,
                     User = user,
-                    PassengerFirstName = pass.FirstName,
-                    PassengerLastName = pass.LastName,
-                    PassengerEmail = pass.Email,
-                    PassengerPhone = pass.Phone,
-                    Seat = pass.SelectedSeat,
+                    PassengerFirstName = passenger.FirstName,
+                    PassengerLastName = passenger.LastName,
+                    PassengerEmail = passenger.Email,
+                    PassengerPhone = passenger.Phone,
+                    Seat = passenger.SelectedSeat,
                     Price = basePrice,
                     Status = ActiveStatus,
-                    SelectedAddOns = pass.SelectedAddOns.ToList()
+                    SelectedAddOns = passenger.SelectedAddOns.ToList()
                 };
                 tickets.Add(ticket);
             }
@@ -53,10 +61,10 @@ namespace TicketManager.Service
                 return "At least one passenger is required.";
             }
 
-            for (int i = 0; i < passengers.Count; i++)
+            for (int index = 0; index < passengers.Count; index++)
             {
-                var passenger = passengers[i];
-                int passengerNumber = i + 1;
+                var passenger = passengers[index];
+                int passengerNumber = index + 1;
 
                 if (string.IsNullOrWhiteSpace(passenger.FirstName))
                 {
@@ -142,27 +150,27 @@ namespace TicketManager.Service
             User? user = null;
             int requestedPassengers = 0;
 
-            if (parameter is object[] args && args.Length > 0)
+            if (parameter is object[] arguments && arguments.Length > 0)
             {
-                selectedFlight = args[0] as Flight;
+                selectedFlight = arguments[FlightArgumentIndex] as Flight;
 
-                if (args.Length >= 3)
+                if (arguments.Length >= FlightAndUserAndCountArgumentLength)
                 {
-                    user = args[1] as User;
-                    if (args[2] is int count)
+                    user = arguments[SecondArgumentIndex] as User;
+                    if (arguments[PassengerCountArgumentIndex] is int count)
                     {
                         requestedPassengers = count;
                     }
                 }
-                else if (args.Length >= 2)
+                else if (arguments.Length >= FlightAndSecondArgumentLength)
                 {
-                    if (args[1] is int count)
+                    if (arguments[SecondArgumentIndex] is int count)
                     {
                         requestedPassengers = count;
                     }
                     else
                     {
-                        user = args[1] as User;
+                        user = arguments[SecondArgumentIndex] as User;
                     }
                 }
             }
@@ -180,6 +188,75 @@ namespace TicketManager.Service
         public void StorePendingBooking(Flight flight, int requestedPassengers)
         {
             UserSession.PendingBookingParameters = new object[] { flight, requestedPassengers };
+        }
+
+        public (List<SeatDescriptor> Layout, int RowCount) BuildSeatMapLayout(int capacity)
+        {
+            var layout = new List<SeatDescriptor>();
+            char[] seatLetters = { 'A', 'B', 'C', 'D', 'E', 'F' };
+            int rowCount = (capacity + SeatsPerRow - 1) / SeatsPerRow;
+
+            for (int row = 0; row < rowCount; row++)
+            {
+                for (int seatIndex = 0; seatIndex < SeatsPerRow; seatIndex++)
+                {
+                    int column = seatIndex < AisleAfterColumn ? seatIndex : seatIndex + 1;
+                    layout.Add(new SeatDescriptor
+                    {
+                        Row = row,
+                        Column = column,
+                        Label = $"{row + 1}{seatLetters[seatIndex]}"
+                    });
+                }
+            }
+
+            return (layout, rowCount);
+        }
+
+        public IList<string> ApplySeatSelection(IList<string> currentSeats, int targetPassengerIndex, string clickedSeat)
+        {
+            var updated = currentSeats.ToList();
+
+            if (updated[targetPassengerIndex] == clickedSeat)
+            {
+                updated[targetPassengerIndex] = string.Empty;
+            }
+            else
+            {
+                for (int index = 0; index < updated.Count; index++)
+                {
+                    if (updated[index] == clickedSeat)
+                    {
+                        updated[index] = string.Empty;
+                    }
+                }
+
+                updated[targetPassengerIndex] = clickedSeat;
+            }
+
+            return updated;
+        }
+
+        public void ApplyAddOnUpdates(IList<AddOn> currentAddOns, IEnumerable<AddOn> toAdd, IEnumerable<AddOn> toRemove)
+        {
+            foreach (var addOn in toAdd)
+            {
+                if (!currentAddOns.Contains(addOn))
+                {
+                    currentAddOns.Add(addOn);
+                }
+            }
+
+            foreach (var addOn in toRemove)
+            {
+                currentAddOns.Remove(addOn);
+            }
+        }
+
+        public int GetInitialPassengerCount(int maxPassengers, int requestedCount)
+        {
+            int initial = requestedCount > 0 ? requestedCount : DefaultInitialPassengerCount;
+            return Math.Min(initial, maxPassengers);
         }
     }
 }

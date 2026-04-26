@@ -40,7 +40,7 @@ public class BookingViewModelTests
     [Fact]
     public void AddPassengerCommand_AddsPassengerRespectingCapacity()
     {
-        _viewModel.MaxPassengers = LimitedMaxPassengers;
+        _viewModel.MaximumPassengers = LimitedMaxPassengers;
         _viewModel.Passengers.Clear();
 
         _viewModel.AddPassengerCommand.Execute(null);

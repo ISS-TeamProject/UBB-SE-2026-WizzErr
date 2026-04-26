@@ -19,7 +19,7 @@ public class AuthViewModelTests
     private const string SecondaryUsername = "ElenaP";
     private const string SecondaryPassword = "Parola@Elena321";
 
-    private readonly Mock<IAuthService> _mockAuthService;
+    private readonly Mock<IAuthService> _mockAuthentificationService;
     private readonly Mock<INavigationService> _mockNavigationService;
     private readonly AuthViewModel _viewModel;
 
@@ -27,16 +27,16 @@ public class AuthViewModelTests
     {
         UserSession.CurrentUser = null;
         UserSession.PendingBookingParameters = null;
-        _mockAuthService = new Mock<IAuthService>();
+        _mockAuthentificationService = new Mock<IAuthService>();
         _mockNavigationService = new Mock<INavigationService>();
-        _viewModel = new AuthViewModel(_mockAuthService.Object, _mockNavigationService.Object);
+        _viewModel = new AuthViewModel(_mockAuthentificationService.Object, _mockNavigationService.Object);
     }
 
     [Fact]
     public void ActionCommand_LoginSuccess_NavigatesToFlightSearch()
     {
         var user = new User { UserId = PrimaryTestUserId, Email = PrimaryUserEmail, Username = PrimaryUsername };
-        _mockAuthService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
+        _mockAuthentificationService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
         _viewModel.IsLoginMode = true;
         _viewModel.EmailText = PrimaryUserEmail;
         _viewModel.PasswordText = PrimaryPassword;
@@ -50,7 +50,7 @@ public class AuthViewModelTests
     [Fact]
     public void ActionCommand_LoginFailure_DoesNotNavigate()
     {
-        _mockAuthService.Setup(authFailingLogin => authFailingLogin.Login(It.IsAny<string>(), It.IsAny<string>()))
+        _mockAuthentificationService.Setup(authFailingLogin => authFailingLogin.Login(It.IsAny<string>(), It.IsAny<string>()))
             .Throws(new InvalidOperationException("Invalid email or password."));
         _viewModel.IsLoginMode = true;
         _viewModel.EmailText = "andrei.popescu@yahoo.ro";
@@ -65,7 +65,7 @@ public class AuthViewModelTests
     [Fact]
     public void ActionCommand_RegisterSuccess_SwitchesToLoginMode()
     {
-        _mockAuthService.Setup(authSucceedingRegistration => authSucceedingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
+        _mockAuthentificationService.Setup(authSucceedingRegistration => authSucceedingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
         _viewModel.IsLoginMode = false;
         _viewModel.EmailText = "cristina.radu@gmail.com";
         _viewModel.PhoneText = "0722334455";
@@ -80,7 +80,7 @@ public class AuthViewModelTests
     [Fact]
     public void ActionCommand_RegisterFailure_StaysInRegisterMode()
     {
-        _mockAuthService.Setup(authFailingRegistration => authFailingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+        _mockAuthentificationService.Setup(authFailingRegistration => authFailingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
             .Throws(new InvalidOperationException("Email already exists"));
         _viewModel.IsLoginMode = false;
         _viewModel.EmailText = "sorin.mihai@yahoo.ro";
@@ -98,7 +98,7 @@ public class AuthViewModelTests
     {
         var user = new User { UserId = SecondaryTestUserId, Email = SecondaryUserEmail, Username = SecondaryUsername };
         var pendingParams = new object[] { new Flight { FlightId = TestFlightId }, RequestedPassengerCount };
-        _mockAuthService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
+        _mockAuthentificationService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
 
         UserSession.PendingBookingParameters = pendingParams;
         _viewModel.IsLoginMode = true;

@@ -38,7 +38,7 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     private readonly IUserRepository _userRepository;
     private readonly ITicketRepository _ticketRepository;
     private readonly IAddOnRepository _addOnRepository;
-    private readonly AuthService _authService;
+    private readonly AuthService _authentificationService;
     private readonly BookingService _bookingService;
     private readonly PricingService _pricingService;
     private readonly CancellationService _cancellationService;
@@ -50,7 +50,7 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
         _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
         _ticketRepository = new TicketRepository(databaseConnectionFactory);
         _addOnRepository = new AddOnRepository(databaseConnectionFactory);
-        _authService = new AuthService(_userRepository);
+        _authentificationService = new AuthService(_userRepository);
         _bookingService = new BookingService(_ticketRepository, _addOnRepository);
         _pricingService = new PricingService();
         _cancellationService = new CancellationService(_ticketRepository);
@@ -63,8 +63,8 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
         var email = $"{ReservationEmail}_{uniqueCode}{DomainGmail}";
         var password = ReservationPassword;
 
-        _authService.Register(email, ReservationPhone, $"{ReservationUsername}_{uniqueCode}", password);
-        var user = _authService.Login(email, password);
+        _authentificationService.Register(email, ReservationPhone, $"{ReservationUsername}_{uniqueCode}", password);
+        var user = _authentificationService.Login(email, password);
 
         var flightId = GetFirstAvailableFlightId();
         var flight = FlightFixture.CreateValidTestFlight(flightId: flightId);
@@ -88,8 +88,8 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     {
         var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var email = $"{DuplicateSeatsEmail}_{uniqueCode}{DomainGmail}";
-        _authService.Register(email, ReservationPhone, $"{GigelUsername}_{uniqueCode}", GigelPassword);
-        var user = _authService.Login(email, GigelPassword);
+        _authentificationService.Register(email, ReservationPhone, $"{GigelUsername}_{uniqueCode}", GigelPassword);
+        var user = _authentificationService.Login(email, GigelPassword);
 
         var flightId = GetFirstAvailableFlightId();
         var flight = FlightFixture.CreateValidTestFlight(flightId: flightId);
@@ -106,8 +106,8 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     {
         var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var email = $"{CancellationEmail}_{uniqueCode}{DomainGmail}";
-        _authService.Register(email, ReservationPhone, $"{CancellationUsername}_{uniqueCode}", CancellationPassword);
-        var user = _authService.Login(email, CancellationPassword);
+        _authentificationService.Register(email, ReservationPhone, $"{CancellationUsername}_{uniqueCode}", CancellationPassword);
+        var user = _authentificationService.Login(email, CancellationPassword);
 
         var flightId = GetFirstAvailableFlightId();
         var flight = FlightFixture.CreateValidTestFlight(flightId: flightId);

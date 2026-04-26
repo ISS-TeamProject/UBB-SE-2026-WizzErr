@@ -39,7 +39,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     private readonly ITicketRepository _ticketRepository;
     private readonly IAddOnRepository _addOnRepository;
     private readonly IMembershipRepository _membershipRepository;
-    private readonly AuthService _authService;
+    private readonly AuthService _authentificationService;
     private readonly BookingService _bookingService;
     private readonly PricingService _pricingService;
     private readonly NavigationService _navigationService;
@@ -53,7 +53,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
         _ticketRepository = new TicketRepository(databaseConnectionFactory);
         _addOnRepository = new AddOnRepository(databaseConnectionFactory);
 
-        _authService = new AuthService(_userRepository);
+        _authentificationService = new AuthService(_userRepository);
         _bookingService = new BookingService(_ticketRepository, _addOnRepository);
         _pricingService = new PricingService();
         _navigationService = new NavigationService();
@@ -62,7 +62,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     [Fact]
     public void TestThatAuthViewModelRegistersAndLogsInSuccessfully()
     {
-        var authViewModel = new AuthViewModel(_authService, _navigationService);
+        var authViewModel = new AuthViewModel(_authentificationService, _navigationService);
         string uniqueCode = Guid.NewGuid().ToString().Substring(0, 4);
         string email = $"vasile.mihai_{uniqueCode}@gmail.com";
         string password = "Parola@Vasile123";
@@ -90,12 +90,12 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     [Fact]
     public void TestThatAuthViewModelLoginFailsWithInvalidPassword()
     {
-        var authViewModel = new AuthViewModel(_authService, _navigationService);
+        var authViewModel = new AuthViewModel(_authentificationService, _navigationService);
         string uniqueCode = Guid.NewGuid().ToString().Substring(0, 4);
         string email = $"georgeta.popescu_{uniqueCode}@gmail.com";
         string correctPassword = "Parola@Georgeta456";
 
-        _authService.Register(email, "0722556677", $"GeorgetaP_{uniqueCode}", correctPassword);
+        _authentificationService.Register(email, "0722556677", $"GeorgetaP_{uniqueCode}", correctPassword);
 
         authViewModel.IsLoginMode = true;
         authViewModel.EmailText = email;
@@ -172,8 +172,8 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
         string email = $"cosmin.tudor_{uniqueCode}@gmail.com";
         string password = "Parola@Cosmin789";
 
-        _authService.Register(email, "0733667788", $"CosminT_{uniqueCode}", password);
-        var user = _authService.Login(email, password);
+        _authentificationService.Register(email, "0733667788", $"CosminT_{uniqueCode}", password);
+        var user = _authentificationService.Login(email, password);
 
         UserSession.CurrentUser = user;
         var dashboardViewModel = new DashboardViewModel(

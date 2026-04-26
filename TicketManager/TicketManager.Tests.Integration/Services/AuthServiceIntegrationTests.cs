@@ -22,17 +22,17 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
     private const string DomainYahoo = "@yahoo.ro";
     private const string DomainGmail = "@gmail.com";
     private const string DefaultPhone = "0744112233";
-    private const string AltUsername = "AltUtilizator";
-    private const string AltPassword = "AltaParola2";
+    private const string AlternateUsername = "AltUtilizator";
+    private const string AlternatePassword = "AltaParola2";
     private readonly IUserRepository _userRepository;
-    private readonly AuthService _authService;
+    private readonly AuthService _authentificationService;
 
     public AuthServiceIntegrationTests()
     {
         var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
         var membershipRepository = new MembershipRepository(databaseConnectionFactory);
         _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
-        _authService = new AuthService(_userRepository);
+        _authentificationService = new AuthService(_userRepository);
     }
 
     [Fact]
@@ -44,8 +44,8 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
         string username = $"{AndreiUsername}_{uniqueCode}";
         string password = AndreiPassword;
 
-        _authService.Register(email, phone, username, password);
-        var loginResult = _authService.Login(email, password);
+        _authentificationService.Register(email, phone, username, password);
+        var loginResult = _authentificationService.Login(email, password);
 
         loginResult.Should().NotBeNull();
         loginResult.Email.Should().Be(email);
@@ -56,9 +56,9 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
     {
         string uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         string email = $"{ClaudiaEmail}_{uniqueCode}{DomainYahoo}";
-        _authService.Register(email, DefaultPhone, $"ClaudiaR_{uniqueCode}", ClaudiaPassword);
+        _authentificationService.Register(email, DefaultPhone, $"ClaudiaR_{uniqueCode}", ClaudiaPassword);
 
-        Action registerAction = () => _authService.Register(email, DefaultPhone, $"{AltUsername}_{uniqueCode}", AltPassword);
+        Action registerAction = () => _authentificationService.Register(email, DefaultPhone, $"{AlternateUsername}_{uniqueCode}", AlternatePassword);
         registerAction.Should().Throw<InvalidOperationException>();
     }
 
@@ -69,7 +69,7 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
         string email = $"{SorinEmail}_{uniqueCode}{DomainGmail}";
         string password = SorinPassword;
 
-        _authService.Register(email, SorinPhone, $"{SorinUsername}_{uniqueCode}", password);
+        _authentificationService.Register(email, SorinPhone, $"{SorinUsername}_{uniqueCode}", password);
         var user = _userRepository.GetByEmail(email);
 
         user!.PasswordHash.Should().NotBe(password);
