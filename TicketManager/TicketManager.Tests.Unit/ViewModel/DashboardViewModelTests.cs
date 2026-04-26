@@ -13,6 +13,11 @@ public class DashboardViewModelTests
     private const int TargetTicketIdToCancel = 5;
     private const int PendingTicketId = 3;
     private const int TestUserId = 1;
+    private const string TestEmail = "bogdan.ionescu@gmail.com";
+    private const string UpcomingFilter = "Upcoming";
+    private const string ActiveStatus = "Active";
+    private const string CancelledStatus = "Cancelled";
+    private const string CancellationReasonMessage = "Cannot cancel within 24 hours of departure";
 
     private readonly Mock<IDashboardService> _mockDashboardService;
     private readonly Mock<ICancellationService> _mockCancellationService;
@@ -30,7 +35,7 @@ public class DashboardViewModelTests
     [Fact]
     public void CancelTicketCommand_SetsPendingWhenCancelable()
     {
-        var ticket = new Ticket { TicketId = ActiveTicketId, Status = "Active" };
+        var ticket = new Ticket { TicketId = ActiveTicketId, Status = ActiveStatus };
         _mockCancellationService.Setup(serviceAllowingCancel => serviceAllowingCancel.CanCancelTicket(ticket)).Returns((true, ""));
 
         _viewModel.CancelTicketCommand.Execute(ticket);
@@ -41,9 +46,9 @@ public class DashboardViewModelTests
     [Fact]
     public void CancelTicketCommand_SetsCancellationFailedWhenNotCancelable()
     {
-        var ticket = new Ticket { TicketId = ActiveTicketId, Status = "Active" };
+        var ticket = new Ticket { TicketId = ActiveTicketId, Status = ActiveStatus };
         _mockCancellationService.Setup(serviceDenyingCancel => serviceDenyingCancel.CanCancelTicket(ticket))
-            .Returns((false, "Cannot cancel within 24 hours of departure"));
+            .Returns((false, CancellationReasonMessage));
 
         _viewModel.CancelTicketCommand.Execute(ticket);
 
@@ -54,7 +59,7 @@ public class DashboardViewModelTests
     [Fact]
     public void CancelTicketCommand_IgnoresCancelledTicket()
     {
-        var ticket = new Ticket { TicketId = CancelledTicketId, Status = "Cancelled" };
+        var ticket = new Ticket { TicketId = CancelledTicketId, Status = CancelledStatus };
 
         _viewModel.CancelTicketCommand.Execute(ticket);
 
@@ -64,8 +69,8 @@ public class DashboardViewModelTests
     [Fact]
     public void ConfirmCancellation_CallsServiceAndClearsState()
     {
-        UserSession.CurrentUser = new User { UserId = TestUserId, Email = "bogdan.ionescu@gmail.com" };
-        var ticket = new Ticket { TicketId = TargetTicketIdToCancel, Status = "Active" };
+        UserSession.CurrentUser = new User { UserId = TestUserId, Email = TestEmail };
+        var ticket = new Ticket { TicketId = TargetTicketIdToCancel, Status = ActiveStatus };
         _viewModel.PendingCancelTicket = ticket;
         _mockDashboardService.Setup(dashboardServiceReturningNoTickets => dashboardServiceReturningNoTickets.GetUserTickets(It.IsAny<int>(), It.IsAny<string>())).Returns(new List<Ticket>());
 
@@ -79,7 +84,7 @@ public class DashboardViewModelTests
     [Fact]
     public void DeclineCancellation_ClearsPendingTicket()
     {
-        var ticket = new Ticket { TicketId = PendingTicketId, Status = "Active" };
+        var ticket = new Ticket { TicketId = PendingTicketId, Status = ActiveStatus };
         _viewModel.PendingCancelTicket = ticket;
 
         _viewModel.DeclineCancellation();

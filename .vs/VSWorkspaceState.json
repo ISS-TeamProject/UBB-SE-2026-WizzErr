@@ -1,10 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Database",
-    "\\docs",
     "\\TicketManager",
-    "\\TicketManager\\TicketManager"
+    "\\TicketManager\\TicketManager",
+    "\\TicketManager\\TicketManager.Tests.Integration",
+    "\\TicketManager\\TicketManager.Tests.Integration\\Services",
+    "\\TicketManager\\TicketManager.Tests.Integration\\Workflows",
+    "\\TicketManager\\TicketManager.Tests.Unit",
+    "\\TicketManager\\TicketManager.Tests.Unit\\Services",
+    "\\TicketManager\\TicketManager\\Service",
+    "\\TicketManager\\TicketManager\\View"
   ],
+  "SelectedNode": "\\TicketManager\\TicketManager\\Service\\PricingService.cs",
   "PreviewInSolutionExplorer": false
 }

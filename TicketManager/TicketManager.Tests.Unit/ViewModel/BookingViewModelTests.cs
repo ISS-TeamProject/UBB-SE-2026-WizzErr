@@ -18,6 +18,8 @@ public class BookingViewModelTests
     private const int DefaultRequestedPassengers = 1;
     private const int EventWaitDelayMs = 50;
     private const int MaxEventWaitRetries = 10;
+    private const string TestEmail = "andrei.tudor@gmail.com";
+    private const string TestAlternateEmail = "andrei@gmail.com";
 
     private readonly Mock<IBookingService> _mockBookingService;
     private readonly Mock<IPricingService> _mockPricingService;
@@ -82,7 +84,7 @@ public class BookingViewModelTests
     public async Task ConfirmBookingCommand_CallsServiceAndRaisesEvent()
     {
         var flight = new Flight { FlightId = TestFlightId, Route = new Route { Capacity = DefaultFlightCapacity } };
-        var user = new User { UserId = TestUserId, Email = "andrei.tudor@gmail.com" };
+        var user = new User { UserId = TestUserId, Email = TestEmail };
 
         _mockBookingService.Setup(bookingServiceReturningEmptyAddOns => bookingServiceReturningEmptyAddOns.GetAvailableAddOnsAsync()).ReturnsAsync(new List<AddOn>());
         _mockBookingService.Setup(bookingServiceReturningEmptyOccupiedSeats => bookingServiceReturningEmptyOccupiedSeats.GetOccupiedSeatsAsync(It.IsAny<int>())).ReturnsAsync(new List<string>());
@@ -99,7 +101,7 @@ public class BookingViewModelTests
         var passenger = _viewModel.Passengers[0];
         passenger.FirstName = "Andrei";
         passenger.LastName = "Tudor";
-        passenger.Email = "andrei@gmail.com";
+        passenger.Email = TestAlternateEmail;
         passenger.SelectedSeat = "1A";
 
         var bookingConfirmedRaised = false;
@@ -122,7 +124,11 @@ public class BookingViewModelTests
     public async Task OnNavigatedToAsync_RedirectsToAuthWhenNotAuthenticated()
     {
         UserSession.CurrentUser = null;
-        var flight = new Flight { FlightId = TestFlightId, Route = new Route() };
+        var flight = new Flight
+        {
+            FlightId = TestFlightId,
+            Route = new Route { Capacity = DefaultFlightCapacity, DepartureTime = DateTime.Now, ArrivalTime = DateTime.Now.AddHours(2) }
+        };
 
         await _viewModel.OnNavigatedToAsync(new object[] { flight });
 

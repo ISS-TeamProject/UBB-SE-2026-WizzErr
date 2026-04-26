@@ -12,6 +12,12 @@ public class AuthViewModelTests
     private const int SecondaryTestUserId = 2;
     private const int TestFlightId = 1;
     private const int RequestedPassengerCount = 2;
+    private const string PrimaryUserEmail = "mihai.ionescu@gmail.com";
+    private const string PrimaryUsername = "MihaiI";
+    private const string PrimaryPassword = "Parola@Mihai123";
+    private const string SecondaryUserEmail = "elena.popescu@gmail.com";
+    private const string SecondaryUsername = "ElenaP";
+    private const string SecondaryPassword = "Parola@Elena321";
 
     private readonly Mock<IAuthService> _mockAuthService;
     private readonly Mock<INavigationService> _mockNavigationService;
@@ -29,11 +35,11 @@ public class AuthViewModelTests
     [Fact]
     public void ActionCommand_LoginSuccess_NavigatesToFlightSearch()
     {
-        var user = new User { UserId = PrimaryTestUserId, Email = "mihai.ionescu@gmail.com", Username = "MihaiI" };
+        var user = new User { UserId = PrimaryTestUserId, Email = PrimaryUserEmail, Username = PrimaryUsername };
         _mockAuthService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
         _viewModel.IsLoginMode = true;
-        _viewModel.EmailText = "mihai.ionescu@gmail.com";
-        _viewModel.PasswordText = "Parola@Mihai123";
+        _viewModel.EmailText = PrimaryUserEmail;
+        _viewModel.PasswordText = PrimaryPassword;
 
         _viewModel.ActionCommand.Execute(null);
 
@@ -90,14 +96,14 @@ public class AuthViewModelTests
     [Fact]
     public void ActionCommand_LoginWithPendingBooking_NavigatesToBooking()
     {
-        var user = new User { UserId = SecondaryTestUserId, Email = "elena.popescu@gmail.com", Username = "ElenaP" };
+        var user = new User { UserId = SecondaryTestUserId, Email = SecondaryUserEmail, Username = SecondaryUsername };
         var pendingParams = new object[] { new Flight { FlightId = TestFlightId }, RequestedPassengerCount };
         _mockAuthService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
 
         UserSession.PendingBookingParameters = pendingParams;
         _viewModel.IsLoginMode = true;
-        _viewModel.EmailText = "elena.popescu@gmail.com";
-        _viewModel.PasswordText = "Parola@Elena321";
+        _viewModel.EmailText = SecondaryUserEmail;
+        _viewModel.PasswordText = SecondaryPassword;
 
         _viewModel.ActionCommand.Execute(null);
 

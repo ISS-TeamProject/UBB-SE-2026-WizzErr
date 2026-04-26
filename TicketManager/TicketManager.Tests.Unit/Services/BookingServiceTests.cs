@@ -21,6 +21,9 @@ public class BookingServiceTests
     private const int ZeroRequestedPassengers = 0;
     private const int NormalRequestedPassengers = 5;
     private const int ExpectedMaxPassengers = 5;
+    private const string ActiveStatus = "Active";
+    private const string Seat1A = "1A";
+    private const string Seat1B = "1B";
 
     private readonly Mock<ITicketRepository> _mockTicketRepository;
     private readonly Mock<IAddOnRepository> _mockAddOnRepository;
@@ -43,9 +46,8 @@ public class BookingServiceTests
             lastName: "Gheorghe",
             email: "ionel.ghe@gmail.com");
         var passengers = new List<PassengerData> { passenger };
-        float basePrice = DefaultBasePrice;
 
-        var tickets = _bookingService.CreateTickets(flight, user, passengers, basePrice);
+        var tickets = _bookingService.CreateTickets(flight, user, passengers, DefaultBasePrice);
 
         tickets[0].PassengerFirstName.Should().Be("Ionel");
         tickets[0].PassengerLastName.Should().Be("Gheorghe");
@@ -61,7 +63,7 @@ public class BookingServiceTests
     [Fact]
     public void TestThatValidatePassengersFailsWhenFirstNameIsMissing()
     {
-        var passenger = new PassengerData { LastName = "Pop", SelectedSeat = "1A" };
+        var passenger = new PassengerData { LastName = "Pop", SelectedSeat = Seat1A };
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
         validationErrorMessage.Should().Contain("first name is required");
     }
@@ -69,7 +71,7 @@ public class BookingServiceTests
     [Fact]
     public void TestThatValidatePassengersFailsWhenLastNameIsMissing()
     {
-        var passenger = new PassengerData { FirstName = "Vasile", SelectedSeat = "1A" };
+        var passenger = new PassengerData { FirstName = "Vasile", SelectedSeat = Seat1A };
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
         validationErrorMessage.Should().Contain("last name is required");
     }
@@ -113,8 +115,8 @@ public class BookingServiceTests
     [Fact]
     public async Task TestThatSaveTicketsAsyncReturnsFalseWhenDuplicateSeatsInRequest()
     {
-        var ticket1 = new Ticket { Seat = "1A", Price = StandardTicketPrice, Status = "Active" };
-        var ticket2 = new Ticket { Seat = "1A", Price = StandardTicketPrice, Status = "Active" };
+        var ticket1 = new Ticket { Seat = Seat1A, Price = StandardTicketPrice, Status = ActiveStatus };
+        var ticket2 = new Ticket { Seat = Seat1A, Price = StandardTicketPrice, Status = ActiveStatus };
         var tickets = new List<Ticket> { ticket1, ticket2 };
 
         var saveTicketsSucceeded = await _bookingService.SaveTicketsAsync(tickets);
@@ -128,8 +130,8 @@ public class BookingServiceTests
         _mockTicketRepository.Setup(mockTicketRepository => mockTicketRepository.IsSeatAvailable(It.IsAny<int>(), It.IsAny<string>())).ReturnsAsync(true);
         _mockTicketRepository.Setup(mockTicketRepository => mockTicketRepository.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>())).ReturnsAsync(true);
         
-        var ticket1 = new Ticket { Seat = "1A", Price = StandardTicketPrice, Status = "Active" };
-        var ticket2 = new Ticket { Seat = "1B", Price = StandardTicketPrice, Status = "Active" };
+        var ticket1 = new Ticket { Seat = Seat1A, Price = StandardTicketPrice, Status = ActiveStatus };
+        var ticket2 = new Ticket { Seat = Seat1B, Price = StandardTicketPrice, Status = ActiveStatus };
         var tickets = new List<Ticket> { ticket1, ticket2 };
 
         var saveTicketsSucceeded = await _bookingService.SaveTicketsAsync(tickets);
@@ -149,7 +151,7 @@ public class BookingServiceTests
     [Fact]
     public void TestThatValidatePassengersRejectsInvalidEmailWhenProvided()
     {
-        var passenger = new PassengerData { FirstName = "Ion", LastName = "Pop", SelectedSeat = "1A", Email = "not-an-email" };
+        var passenger = new PassengerData { FirstName = "Ion", LastName = "Pop", SelectedSeat = Seat1A, Email = "not-an-email" };
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
         validationErrorMessage.Should().Contain("email format is invalid");
     }
