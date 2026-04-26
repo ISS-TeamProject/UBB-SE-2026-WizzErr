@@ -9,12 +9,15 @@ namespace TicketManager.Service
 {
     public class AuthService : IAuthService
     {
-        private readonly IUserRepository userRepo;
+        private const int MinimumUsernameLength = 3;
+        private const int MinimumPasswordLength = 6;
+
+        private readonly IUserRepository userRepository;
         private readonly PasswordHasher<User> passwordHasher;
 
-        public AuthService(IUserRepository userRepo)
+        public AuthService(IUserRepository userRepository)
         {
-            this.userRepo = userRepo ?? throw new ArgumentNullException(nameof(userRepo));
+            this.userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             this.passwordHasher = new PasswordHasher<User>();
         }
 
@@ -30,17 +33,17 @@ namespace TicketManager.Service
                 throw new ArgumentException("Password is required.");
             }
 
-            User? existingUser = this.userRepo.GetByEmail(email.Trim());
+            User? existingUser = this.userRepository.GetByEmail(email.Trim());
 
             if (existingUser == null)
             {
                 throw new InvalidOperationException("No account found with this email.");
             }
 
-            PasswordVerificationResult result =
+            PasswordVerificationResult passwordVerificationResult =
                 this.passwordHasher.VerifyHashedPassword(existingUser, existingUser.PasswordHash, password);
 
-            if (result == PasswordVerificationResult.Failed)
+            if (passwordVerificationResult == PasswordVerificationResult.Failed)
             {
                 throw new InvalidOperationException("Invalid email or password.");
             }
@@ -56,7 +59,7 @@ namespace TicketManager.Service
 
             this.ValidateRegistrationData(normalizedEmail, normalizedPhone, normalizedUsername, password);
 
-            User? existingUser = this.userRepo.GetByEmail(normalizedEmail!);
+            User? existingUser = this.userRepository.GetByEmail(normalizedEmail!);
             if (existingUser != null)
             {
                 throw new InvalidOperationException("An account with this email already exists.");
@@ -73,7 +76,7 @@ namespace TicketManager.Service
             string hashedPassword = this.passwordHasher.HashPassword(newUser, password);
             newUser.PasswordHash = hashedPassword;
 
-            this.userRepo.AddUser(newUser);
+            this.userRepository.AddUser(newUser);
         }
 
         public void Logout()
@@ -99,12 +102,12 @@ namespace TicketManager.Service
                 throw new ArgumentException("Username is required.");
             }
 
-            if (username.Length < 3)
+            if (username.Length < MinimumUsernameLength)
             {
                 throw new ArgumentException("Username must have at least 3 characters.");
             }
 
-            if (!username.All(c => char.IsLetter(c) || char.IsDigit(c) || c == '_' || c == ' '))
+            if (!username.All(character => char.IsLetter(character) || char.IsDigit(character) || character == '_' || character == ' '))
             {
                 throw new ArgumentException("Username contains invalid characters.");
             }
@@ -124,10 +127,11 @@ namespace TicketManager.Service
                 throw new ArgumentException("Password is required.");
             }
 
-            if (password.Length < 6)
+            if (password.Length < MinimumPasswordLength)
             {
                 throw new ArgumentException("Password must be at least 6 characters long.");
             }
         }
     }
 }
+

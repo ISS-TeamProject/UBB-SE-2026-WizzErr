@@ -16,12 +16,12 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
 
     public CompleteBookingFlowIntegrationTests()
     {
-        var dbFactory = new DatabaseConnectionFactory(GetTestConnectionString());
-        var membershipRepo = new MembershipRepository(dbFactory);
-        _userRepository = new UserRepository(dbFactory, membershipRepo);
-        _ticketRepository = new TicketRepository(dbFactory);
+        var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
+        var membershipRepository = new MembershipRepository(databaseConnectionFactory);
+        _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
+        _ticketRepository = new TicketRepository(databaseConnectionFactory);
         _authService = new AuthService(_userRepository);
-        _bookingService = new BookingService(_ticketRepository, new AddOnRepository(dbFactory));
+        _bookingService = new BookingService(_ticketRepository, new AddOnRepository(databaseConnectionFactory));
         _pricingService = new PricingService();
     }
 
@@ -68,3 +68,5 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
         priceBreakdown.FinalTotal.Should().BeLessThan(100.0f);
     }
 }
+
+

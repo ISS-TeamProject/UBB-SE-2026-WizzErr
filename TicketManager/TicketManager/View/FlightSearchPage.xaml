@@ -102,7 +102,7 @@
                                 <ColumnDefinition Width="110"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{x:Bind FlightNr}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="0" Text="{x:Bind FlightNumber}" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="1" Text="{x:Bind RouteCity}" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="2" Text="{x:Bind DisplayDate}" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="3" Text="{x:Bind DisplayPrice}" VerticalAlignment="Center" />

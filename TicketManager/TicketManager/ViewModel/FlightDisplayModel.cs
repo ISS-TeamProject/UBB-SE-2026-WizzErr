@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketManager.Domain;
 
 namespace TicketManager.ViewModel
@@ -10,22 +5,18 @@ namespace TicketManager.ViewModel
     public class FlightDisplayModel
     {
         public Flight Flight { get; }
-
-        public string FlightNr { get; set; } = string.Empty;
-
+        public string FlightNumber { get; set; } = string.Empty;
         public string RouteCity { get; set; } = string.Empty;
-
         public string DisplayDate { get; set; } = string.Empty;
-
         public string DisplayPrice { get; set; } = string.Empty;
 
-        public FlightDisplayModel(Flight flight)
+        public FlightDisplayModel(Flight flight, float basePrice)
         {
             this.Flight = flight;
-            this.FlightNr = flight.FlightNr ?? string.Empty;
+            this.FlightNumber = flight.FlightNumber ?? string.Empty;
             this.RouteCity = flight.Route?.Airport?.City ?? "Unknown";
             this.DisplayDate = flight.Date.ToString("g");
-            this.DisplayPrice = $"{flight.GetBasePrice():0.00} € / person";
+            this.DisplayPrice = $"{basePrice:0.00} â‚¬ / person";
         }
     }
 }

@@ -31,15 +31,5 @@ namespace TicketManager.Domain
             PasswordHash = passwordHash;
             Membership = membership;
         }
-
-        public int GetId()
-        {
-            return UserId;
-        }
-
-        public string GetEmail()
-        {
-            return Email;
-        }
     }
 }

@@ -102,13 +102,25 @@ namespace TicketManager.Service
             }
 
             bool duplicateSeatInRequest = tickets
-                .Where(t => !string.IsNullOrWhiteSpace(t.Seat))
-                .GroupBy(t => t.Seat)
-                .Any(g => g.Count() > 1);
+                .Where(ticket => !string.IsNullOrWhiteSpace(ticket.Seat))
+                .GroupBy(ticket => ticket.Seat)
+                .Any(group => group.Count() > 1);
 
             if (duplicateSeatInRequest)
             {
                 return false;
+            }
+
+            foreach (var ticket in tickets)
+            {
+                if (!string.IsNullOrWhiteSpace(ticket.Seat))
+                {
+                    bool seatAvailable = await ticketRepository.IsSeatAvailable(ticket.Flight?.FlightId ?? 0, ticket.Seat);
+                    if (!seatAvailable)
+                    {
+                        return false;
+                    }
+                }
             }
 
             return await ticketRepository.SaveTicketsWithAddOnsAsync(tickets);

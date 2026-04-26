@@ -15,35 +15,39 @@ namespace TicketManager.View
         {
             this.InitializeComponent();
 
-            ViewModel = new FlightSearchViewModel(App.FlightSearchService, App.NavigationService);
+            ViewModel = new FlightSearchViewModel(App.FlightSearchService, App.NavigationService, App.PricingService);
             this.DataContext = ViewModel;
         }
 
-        private void PassengersInput_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        private void PassengersInput_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs eventArgs)
         {
-            if (args.NewText.Any(character => !char.IsDigit(character)))
+            if (eventArgs.NewText.Any(character => !char.IsDigit(character)))
             {
-                args.Cancel = true;
+                eventArgs.Cancel = true;
             }
         }
 
-        private void DatePicker_CalendarViewDayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args)
+        private void DatePicker_CalendarViewDayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs eventArgs)
         {
-            if (args.Item.Date.Date < DateTimeOffset.Now.Date)
+            if (eventArgs.Item.Date.Date < DateTimeOffset.Now.Date)
             {
-                args.Item.IsBlackout = true;
+                eventArgs.Item.IsBlackout = true;
             }
         }
 
-        private void ClearDateButton_Click(object? sender, RoutedEventArgs e)
+        private void ClearDateButton_Click(object? sender, RoutedEventArgs eventArgs)
         {
             ViewModel.FlightDate = null;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs eventArgs)
         {
-            base.OnNavigatedTo(e);
-            ViewModel.OnNavigatedTo(e.Parameter);
+            base.OnNavigatedTo(eventArgs);
+            ViewModel.OnNavigatedTo(eventArgs.Parameter);
         }
     }
 }
+
+
+
+

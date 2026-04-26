@@ -9,6 +9,16 @@ namespace TicketManager.Tests.Unit.ViewModel;
 
 public class BookingViewModelTests
 {
+    private const int MockedMaxPassengers = 5;
+    private const int LimitedMaxPassengers = 2;
+    private const int DefaultFlightCapacity = 180;
+    private const int TestFlightId = 1;
+    private const int TestUserId = 1;
+    private const float BaseTicketPrice = 100.0f;
+    private const int DefaultRequestedPassengers = 1;
+    private const int EventWaitDelayMs = 50;
+    private const int MaxEventWaitRetries = 10;
+
     private readonly Mock<IBookingService> _mockBookingService;
     private readonly Mock<IPricingService> _mockPricingService;
     private readonly Mock<INavigationService> _mockNavigationService;
@@ -21,14 +31,14 @@ public class BookingViewModelTests
         _mockBookingService = new Mock<IBookingService>();
         _mockPricingService = new Mock<IPricingService>();
         _mockNavigationService = new Mock<INavigationService>();
-        _mockBookingService.Setup(s => s.CalculateMaxPassengers(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(5);
+        _mockBookingService.Setup(serviceReturningMockedCapacity => serviceReturningMockedCapacity.CalculateMaxPassengers(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(MockedMaxPassengers);
         _viewModel = new BookingViewModel(_mockBookingService.Object, _mockPricingService.Object, _mockNavigationService.Object);
     }
 
     [Fact]
     public void AddPassengerCommand_AddsPassengerRespectingCapacity()
     {
-        _viewModel.MaxPassengers = 2;
+        _viewModel.MaxPassengers = LimitedMaxPassengers;
         _viewModel.Passengers.Clear();
 
         _viewModel.AddPassengerCommand.Execute(null);
@@ -71,20 +81,20 @@ public class BookingViewModelTests
     [Fact]
     public async Task ConfirmBookingCommand_CallsServiceAndRaisesEvent()
     {
-        var flight = new Flight { FlightId = 1, Route = new Route { Capacity = 180 } };
-        var user = new User { UserId = 1, Email = "andrei.tudor@gmail.com" };
+        var flight = new Flight { FlightId = TestFlightId, Route = new Route { Capacity = DefaultFlightCapacity } };
+        var user = new User { UserId = TestUserId, Email = "andrei.tudor@gmail.com" };
 
-        _mockBookingService.Setup(s => s.GetAvailableAddOnsAsync()).ReturnsAsync(new List<AddOn>());
-        _mockBookingService.Setup(s => s.GetOccupiedSeatsAsync(It.IsAny<int>())).ReturnsAsync(new List<string>());
-        _mockBookingService.Setup(s => s.CalculateMaxPassengers(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(5);
-        _mockBookingService.Setup(s => s.CreateTickets(It.IsAny<Flight>(), It.IsAny<User>(), It.IsAny<List<PassengerData>>(), It.IsAny<float>()))
+        _mockBookingService.Setup(bookingServiceReturningEmptyAddOns => bookingServiceReturningEmptyAddOns.GetAvailableAddOnsAsync()).ReturnsAsync(new List<AddOn>());
+        _mockBookingService.Setup(bookingServiceReturningEmptyOccupiedSeats => bookingServiceReturningEmptyOccupiedSeats.GetOccupiedSeatsAsync(It.IsAny<int>())).ReturnsAsync(new List<string>());
+        _mockBookingService.Setup(bookingServiceReturningMaxPassengers => bookingServiceReturningMaxPassengers.CalculateMaxPassengers(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(MockedMaxPassengers);
+        _mockBookingService.Setup(bookingServiceReturningCreatedTickets => bookingServiceReturningCreatedTickets.CreateTickets(It.IsAny<Flight>(), It.IsAny<User>(), It.IsAny<List<PassengerData>>(), It.IsAny<float>()))
             .Returns(new List<Ticket> { new Ticket() });
-        _mockBookingService.Setup(s => s.SaveTicketsAsync(It.IsAny<List<Ticket>>())).ReturnsAsync(true);
-        _mockBookingService.Setup(s => s.ValidatePassengers(It.IsAny<List<PassengerData>>())).Returns("");
-        _mockPricingService.Setup(s => s.CalculatePriceBreakdown(It.IsAny<Flight>(), It.IsAny<User>(), It.IsAny<List<Ticket>>()))
-            .Returns(new PriceBreakdown { FinalTotal = 100 });
+        _mockBookingService.Setup(bookingServiceReturningSuccessfulSave => bookingServiceReturningSuccessfulSave.SaveTicketsAsync(It.IsAny<List<Ticket>>())).ReturnsAsync(true);
+        _mockBookingService.Setup(bookingServiceReturningValidPassengers => bookingServiceReturningValidPassengers.ValidatePassengers(It.IsAny<List<PassengerData>>())).Returns("");
+        _mockPricingService.Setup(pricingServiceReturningBreakdown => pricingServiceReturningBreakdown.CalculatePriceBreakdown(It.IsAny<Flight>(), It.IsAny<User>(), It.IsAny<List<Ticket>>()))
+            .Returns(new PriceBreakdown { FinalTotal = BaseTicketPrice });
 
-        await _viewModel.InitializeAsync(flight, user, 1);
+        await _viewModel.InitializeAsync(flight, user, DefaultRequestedPassengers);
 
         var passenger = _viewModel.Passengers[0];
         passenger.FirstName = "Andrei";
@@ -93,18 +103,18 @@ public class BookingViewModelTests
         passenger.SelectedSeat = "1A";
 
         var bookingConfirmedRaised = false;
-        _viewModel.BookingConfirmed += (s, e) => bookingConfirmedRaised = true;
+        _viewModel.BookingConfirmed += (sender, eventArgs) => bookingConfirmedRaised = true;
 
         _viewModel.ConfirmBookingCommand.Execute(null);
 
-        int retries = 10;
+        int retries = MaxEventWaitRetries;
         while (!bookingConfirmedRaised && retries > 0)
         {
-            await Task.Delay(50);
+            await Task.Delay(EventWaitDelayMs);
             retries--;
         }
 
-        _mockBookingService.Verify(s => s.SaveTicketsAsync(It.IsAny<List<Ticket>>()), Times.Once);
+        _mockBookingService.Verify(bookingServiceToVerifySave => bookingServiceToVerifySave.SaveTicketsAsync(It.IsAny<List<Ticket>>()), Times.Once);
         bookingConfirmedRaised.Should().BeTrue();
     }
 
@@ -112,18 +122,19 @@ public class BookingViewModelTests
     public async Task OnNavigatedToAsync_RedirectsToAuthWhenNotAuthenticated()
     {
         UserSession.CurrentUser = null;
-        var flight = new Flight { FlightId = 1, Route = new Route() };
+        var flight = new Flight { FlightId = TestFlightId, Route = new Route() };
 
         await _viewModel.OnNavigatedToAsync(new object[] { flight });
 
-        _mockNavigationService.Verify(n => n.NavigateTo(typeof(View.AuthPage), null), Times.Once);
+        _mockNavigationService.Verify(navServiceToVerifyAuthRedirect => navServiceToVerifyAuthRedirect.NavigateTo(typeof(View.AuthPage), null), Times.Once);
     }
 
     [Fact]
     public async Task OnNavigatedToAsync_ReturnsFalseWhenNoFlight()
     {
-        var result = await _viewModel.OnNavigatedToAsync(new object?[] { null });
+        var navigationResult = await _viewModel.OnNavigatedToAsync(new object?[] { null });
 
-        result.Should().BeFalse();
+        navigationResult.Should().BeFalse();
     }
 }
+

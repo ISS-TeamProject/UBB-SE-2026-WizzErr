@@ -7,17 +7,17 @@ namespace TicketManager.Repository
 {
     public class FlightRepository : IFlightRepository
     {
-        private readonly DatabaseConnectionFactory dbFactory;
+        private readonly IDatabaseConnectionFactory databaseConnectionFactory;
 
-        public FlightRepository(DatabaseConnectionFactory dbFactory)
+        public FlightRepository(IDatabaseConnectionFactory databaseConnectionFactory)
         {
-            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.databaseConnectionFactory = databaseConnectionFactory ?? throw new ArgumentNullException(nameof(databaseConnectionFactory));
         }
 
         public Flight? GetFlightById(int id)
         {
             Flight? flight = null;
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -33,10 +33,10 @@ namespace TicketManager.Repository
                     LEFT JOIN Gates g ON f.gate_id = g.id
                     WHERE f.id = @FlightId";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getFlightCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@FlightId", id);
-                    using (var reader = command.ExecuteReader())
+                    getFlightCommand.Parameters.AddWithValue("@FlightId", id);
+                    using (var reader = getFlightCommand.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -52,7 +52,7 @@ namespace TicketManager.Repository
         public IEnumerable<Flight> GetFlightsByRoute(string location, string routeType, DateTime? date)
         {
             var flights = new List<Flight>();
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -70,13 +70,13 @@ namespace TicketManager.Repository
                       AND r.route_type = @RouteType
                       AND (a.city = @Location OR a.code = @Location)";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getFlightsCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Location", location);
-                    command.Parameters.AddWithValue("@RouteType", routeType);
-                    command.Parameters.AddWithValue("@Date", (object?)date ?? DBNull.Value);
+                    getFlightsCommand.Parameters.AddWithValue("@Location", location);
+                    getFlightsCommand.Parameters.AddWithValue("@RouteType", routeType);
+                    getFlightsCommand.Parameters.AddWithValue("@Date", (object?)date ?? DBNull.Value);
 
-                    using (var reader = command.ExecuteReader())
+                    using (var reader = getFlightsCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -91,7 +91,7 @@ namespace TicketManager.Repository
 
         public int GetOccupiedSeatCount(int flightId)
         {
-            using (var connection = this.dbFactory.GetConnection())
+            using (var connection = this.databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = @"
@@ -100,10 +100,10 @@ namespace TicketManager.Repository
                     WHERE flight_id = @FlightId 
                       AND status <> 'Cancelled'";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getOccupiedSeatCountCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@FlightId", flightId);
-                    return (int)command.ExecuteScalar() !;
+                    getOccupiedSeatCountCommand.Parameters.AddWithValue("@FlightId", flightId);
+                    return (int)getOccupiedSeatCountCommand.ExecuteScalar() !;
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace TicketManager.Repository
                 Route = route,
                 Gate = gate,
                 Date = reader.GetDateTime(reader.GetOrdinal("date")),
-                FlightNr = reader.IsDBNull(reader.GetOrdinal("flight_number")) ? null : reader.GetString(reader.GetOrdinal("flight_number"))
+                FlightNumber = reader.IsDBNull(reader.GetOrdinal("flight_number")) ? null : reader.GetString(reader.GetOrdinal("flight_number"))
             };
         }
     }

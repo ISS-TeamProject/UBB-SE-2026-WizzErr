@@ -25,10 +25,5 @@ namespace TicketManager.Domain
             Name = name;
             FlightDiscountPercentage = flightDiscountPercentage;
         }
-
-        public float GetFlightDiscount()
-        {
-            return FlightDiscountPercentage;
-        }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using TicketManager.Domain;
@@ -8,6 +8,9 @@ namespace TicketManager.Service
 {
     public class FlightSearchService : IFlightSearchService
     {
+        private const string DepartureRouteType = "DEP";
+        private const string ArrivalRouteType = "ARR";
+
         private readonly IFlightRepository flightRepository;
 
         public FlightSearchService(IFlightRepository flightRepository)
@@ -15,13 +18,14 @@ namespace TicketManager.Service
             this.flightRepository = flightRepository ?? throw new ArgumentNullException(nameof(flightRepository));
         }
 
-        public IEnumerable<Flight> SearchFlights(string location, string flightType, DateTime? date, int? passengers)
+        public IEnumerable<Flight> SearchFlights(string location, bool isDeparture, DateTime? date, int? passengers)
         {
             if (string.IsNullOrWhiteSpace(location))
             {
                 return new List<Flight>();
             }
 
+            string flightType = isDeparture ? DepartureRouteType : ArrivalRouteType;
             var flights = this.flightRepository.GetFlightsByRoute(location, flightType, date);
 
             if (passengers.HasValue && passengers.Value > 0)

@@ -20,15 +20,15 @@ namespace TicketManager.View
             viewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs eventArgs)
         {
-            base.OnNavigatedTo(e);
+            base.OnNavigatedTo(eventArgs);
             viewModel.OnNavigatedTo();
         }
 
-        private async void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private async void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs eventArgs)
         {
-            if (e.PropertyName == nameof(viewModel.CancellationSucceeded) &&
+            if (eventArgs.PropertyName == nameof(viewModel.CancellationSucceeded) &&
                 viewModel.CancellationSucceeded == false)
             {
                 var errorDialog = new ContentDialog
@@ -41,7 +41,7 @@ namespace TicketManager.View
                 await errorDialog.ShowAsync();
             }
 
-            if (e.PropertyName == nameof(viewModel.CancellationSucceeded) &&
+            if (eventArgs.PropertyName == nameof(viewModel.CancellationSucceeded) &&
                 viewModel.CancellationSucceeded == true)
             {
                 var resultDialog = new ContentDialog
@@ -54,7 +54,7 @@ namespace TicketManager.View
                 await resultDialog.ShowAsync();
             }
 
-            if (e.PropertyName == nameof(viewModel.PendingCancelTicket) &&
+            if (eventArgs.PropertyName == nameof(viewModel.PendingCancelTicket) &&
                 viewModel.PendingCancelTicket != null)
             {
                 var dialog = new ContentDialog
@@ -66,8 +66,8 @@ namespace TicketManager.View
                     XamlRoot = this.XamlRoot
                 };
 
-                var result = await dialog.ShowAsync();
-                if (result == ContentDialogResult.Primary)
+                var dialogResult = await dialog.ShowAsync();
+                if (dialogResult == ContentDialogResult.Primary)
                 {
                     viewModel.ConfirmCancellation();
                 }
@@ -79,3 +79,8 @@ namespace TicketManager.View
         }
     }
 }
+
+
+
+
+

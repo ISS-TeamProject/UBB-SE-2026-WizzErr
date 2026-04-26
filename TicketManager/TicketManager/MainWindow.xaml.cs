@@ -32,11 +32,11 @@ namespace TicketManager
         {
             bool isAuthenticated = UserSession.CurrentUser != null;
 
-            foreach (var item in TopNav.MenuItems.OfType<NavigationViewItem>())
+            foreach (var navigationMenuItem in TopNav.MenuItems.OfType<NavigationViewItem>())
             {
-                string tag = item.Tag?.ToString() ?? string.Empty;
+                string tag = navigationMenuItem.Tag?.ToString() ?? string.Empty;
                 bool isSearchItem = tag.EndsWith("FlightSearchPage", StringComparison.OrdinalIgnoreCase);
-                item.IsEnabled = isAuthenticated || isSearchItem;
+                navigationMenuItem.IsEnabled = isAuthenticated || isSearchItem;
             }
 
             if (AccountMenuItem != null)
@@ -71,7 +71,7 @@ namespace TicketManager
         {
         }
 
-        private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
+        private void ContentFrame_Navigated(object sender, NavigationEventArgs eventArgs)
         {
             if (TopNav == null || TopNav.MenuItems == null)
             {
@@ -81,13 +81,13 @@ namespace TicketManager
             UpdateNavigationAvailability();
 
             bool itemFound = false;
-            string pageName = e.SourcePageType.Name;
+            string pageName = eventArgs.SourcePageType.Name;
 
-            foreach (NavigationViewItem item in TopNav.MenuItems)
+            foreach (NavigationViewItem navigationMenuItem in TopNav.MenuItems)
             {
-                if (item.Tag?.ToString()?.EndsWith(pageName, StringComparison.OrdinalIgnoreCase) == true)
+                if (navigationMenuItem.Tag?.ToString()?.EndsWith(pageName, StringComparison.OrdinalIgnoreCase) == true)
                 {
-                    TopNav.SelectedItem = item;
+                    TopNav.SelectedItem = navigationMenuItem;
                     itemFound = true;
                     break;
                 }
@@ -99,11 +99,11 @@ namespace TicketManager
             }
         }
 
-        private async void TopNav_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private async void TopNav_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs eventArgs)
         {
             UpdateNavigationAvailability();
 
-            var navItemTag = args.InvokedItemContainer?.Tag?.ToString();
+            var navItemTag = eventArgs.InvokedItemContainer?.Tag?.ToString();
             if (navItemTag == AccountNavTag)
             {
                 var currentUser = UserSession.CurrentUser;
@@ -126,8 +126,8 @@ namespace TicketManager
                     XamlRoot = ContentFrame.XamlRoot
                 };
 
-                var result = await dialog.ShowAsync();
-                if (result == ContentDialogResult.Primary)
+                var dialogResult = await dialog.ShowAsync();
+                if (dialogResult == ContentDialogResult.Primary)
                 {
                     authService.Logout();
                     UpdateNavigationAvailability();
@@ -153,7 +153,7 @@ namespace TicketManager
             }
         }
 
-        private void TopNav_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        private void TopNav_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs eventArgs)
         {
             if (ContentFrame.CanGoBack)
             {
@@ -162,3 +162,9 @@ namespace TicketManager
         }
     }
 }
+
+
+
+
+
+

@@ -13,6 +13,14 @@ namespace TicketManager.Service
     public class DashboardService : IDashboardService
     {
         private const string CancelledStatus = "Cancelled";
+        private const int PdfDefaultFontSize = 12;
+        private const int PdfHeaderFontSize = 28;
+        private const int PdfTicketIdFontSize = 14;
+        private const int PdfSectionHeaderFontSize = 16;
+        private const int PdfPageMarginCentimetres = 2;
+        private const int PdfColumnSpacing = 5;
+        private const int PdfSectionPaddingTop = 10;
+        private const int PdfTotalPricePaddingTop = 15;
 
         private readonly ITicketRepository ticketRepository;
 
@@ -43,23 +51,23 @@ namespace TicketManager.Service
                 container.Page(page =>
                 {
                     page.Size(PageSizes.A4);
-                    page.Margin(2, Unit.Centimetre);
+                    page.Margin(PdfPageMarginCentimetres, Unit.Centimetre);
                     page.PageColor(Colors.White);
-                    page.DefaultTextStyle(x => x.FontSize(12));
+                    page.DefaultTextStyle(textStyle => textStyle.FontSize(PdfDefaultFontSize));
 
                     page.Header()
                         .Text("WizzErr Boarding Pass")
-                        .SemiBold().FontSize(28).FontColor(Colors.Blue.Darken2);
+                        .SemiBold().FontSize(PdfHeaderFontSize).FontColor(Colors.Blue.Darken2);
 
                     page.Content().PaddingVertical(1, Unit.Centimetre).Column(col =>
                     {
-                        col.Spacing(5);
-                        col.Item().Text($"Ticket ID: {ticket.TicketId}").FontSize(14).SemiBold();
+                        col.Spacing(PdfColumnSpacing);
+                        col.Item().Text($"Ticket ID: {ticket.TicketId}").FontSize(PdfTicketIdFontSize).SemiBold();
                         col.Item().Text($"Status: {ticket.Status}").FontColor(ticket.Status == CancelledStatus ? Colors.Red.Medium : Colors.Green.Darken1);
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
-                        col.Item().PaddingTop(10).Text("Flight Details").FontSize(16).SemiBold();
-                        col.Item().Text($"Flight Number: {ticket.Flight?.FlightNr ?? "N/A"}");
+                        col.Item().PaddingTop(PdfSectionPaddingTop).Text("Flight Details").FontSize(PdfSectionHeaderFontSize).SemiBold();
+                        col.Item().Text($"Flight Number: {ticket.Flight?.FlightNumber ?? "N/A"}");
                         col.Item().Text($"Date: {ticket.Flight?.Date:dd MMM yyyy HH:mm}");
                         col.Item().Text($"Route: {ticket.Flight?.Route?.Airport?.City ?? "N/A"} ({ticket.Flight?.Route?.RouteType ?? "N/A"})");
                         col.Item().Text($"Departure: {ticket.Flight?.Route?.DepartureTime:HH:mm}");
@@ -69,19 +77,19 @@ namespace TicketManager.Service
 
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
-                        col.Item().PaddingTop(10).Text("Passenger Information").FontSize(16).SemiBold();
+                        col.Item().PaddingTop(PdfSectionPaddingTop).Text("Passenger Information").FontSize(PdfSectionHeaderFontSize).SemiBold();
                         col.Item().Text($"Name: {ticket.PassengerFirstName} {ticket.PassengerLastName}");
                         col.Item().Text($"Email: {ticket.PassengerEmail}");
                         col.Item().Text($"Phone: {ticket.PassengerPhone}");
 
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
-                        col.Item().PaddingTop(10).Text("Selected Add-Ons").FontSize(16).SemiBold();
+                        col.Item().PaddingTop(PdfSectionPaddingTop).Text("Selected Add-Ons").FontSize(PdfSectionHeaderFontSize).SemiBold();
                         if (ticket.SelectedAddOns != null && ticket.SelectedAddOns.Count > 0)
                         {
                             foreach (var addOn in ticket.SelectedAddOns)
                             {
-                                col.Item().Text($"• {addOn.Name}");
+                                col.Item().Text($"â€¢ {addOn.Name}");
                             }
                         }
                         else
@@ -89,15 +97,15 @@ namespace TicketManager.Service
                             col.Item().Text("No add-ons selected");
                         }
 
-                        col.Item().PaddingTop(15).Text($"Total Price: {ticket.Price} EUR").FontSize(16).SemiBold();
+                        col.Item().PaddingTop(PdfTotalPricePaddingTop).Text($"Total Price: {ticket.Price} EUR").FontSize(PdfSectionHeaderFontSize).SemiBold();
                     });
 
-                    page.Footer().AlignCenter().Text(x =>
+                    page.Footer().AlignCenter().Text(textDescriptor =>
                     {
-                        x.Span("Page ");
-                        x.CurrentPageNumber();
-                        x.Span(" of ");
-                        x.TotalPages();
+                        textDescriptor.Span("Page ");
+                        textDescriptor.CurrentPageNumber();
+                        textDescriptor.Span(" of ");
+                        textDescriptor.TotalPages();
                     });
                 });
             })

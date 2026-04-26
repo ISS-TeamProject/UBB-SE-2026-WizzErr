@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace TicketManager.Repository
 {
-    public class DatabaseConnectionFactory
+    public class DatabaseConnectionFactory : IDatabaseConnectionFactory
     {
         private readonly string connectionString;
 

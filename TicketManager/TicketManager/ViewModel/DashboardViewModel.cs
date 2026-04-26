@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TicketManager.Domain;
@@ -109,11 +109,6 @@ namespace TicketManager.ViewModel
             CancellationMessage = string.Empty;
 
             if (parameter is not Ticket ticket)
-            {
-                return;
-            }
-
-            if (string.Equals(ticket.Status, "Cancelled", StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }

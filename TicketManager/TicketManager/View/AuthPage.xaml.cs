@@ -19,9 +19,9 @@ namespace TicketManager.View
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         }
 
-        private async void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private async void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs eventArgs)
         {
-            if (e.PropertyName == nameof(ViewModel.ErrorMessage) &&
+            if (eventArgs.PropertyName == nameof(ViewModel.ErrorMessage) &&
                 !string.IsNullOrWhiteSpace(ViewModel.ErrorMessage))
             {
                 var dialog = new ContentDialog
@@ -33,7 +33,7 @@ namespace TicketManager.View
                 };
                 await dialog.ShowAsync();
             }
-            else if (e.PropertyName == nameof(ViewModel.SuccessMessage) &&
+            else if (eventArgs.PropertyName == nameof(ViewModel.SuccessMessage) &&
                      !string.IsNullOrWhiteSpace(ViewModel.SuccessMessage) &&
                      !ViewModel.IsAuthenticated)
             {
@@ -48,9 +48,13 @@ namespace TicketManager.View
             }
         }
 
-        private void Password_PasswordChanged(object? sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        private void Password_PasswordChanged(object? sender, Microsoft.UI.Xaml.RoutedEventArgs eventArgs)
         {
             ViewModel.PasswordText = passwordInput.Password;
         }
     }
 }
+
+
+
+

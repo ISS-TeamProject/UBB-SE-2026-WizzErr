@@ -14,7 +14,7 @@ namespace TicketManager
     {
         private Window window = null!;
 
-        private static DatabaseConnectionFactory dbFactory = null!;
+        private static IDatabaseConnectionFactory databaseConnectionFactory = null!;
 
         private static IFlightRepository flightRepository = null!;
         private static ITicketRepository ticketRepository = null!;
@@ -37,7 +37,7 @@ namespace TicketManager
             ConfigureServices();
         }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override void OnLaunched(LaunchActivatedEventArgs eventArgs)
         {
             window = new MainWindow();
             window.Activate();
@@ -49,13 +49,13 @@ namespace TicketManager
         /// </summary>
         private static void ConfigureServices()
         {
-            dbFactory = new DatabaseConnectionFactory();
+            databaseConnectionFactory = new DatabaseConnectionFactory();
 
-            flightRepository = new FlightRepository(dbFactory);
-            ticketRepository = new TicketRepository(dbFactory);
-            addOnRepository = new AddOnRepository(dbFactory);
-            membershipRepository = new MembershipRepository(dbFactory);
-            userRepository = new UserRepository(dbFactory, membershipRepository);
+            flightRepository = new FlightRepository(databaseConnectionFactory);
+            ticketRepository = new TicketRepository(databaseConnectionFactory);
+            addOnRepository = new AddOnRepository(databaseConnectionFactory);
+            membershipRepository = new MembershipRepository(databaseConnectionFactory);
+            userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
 
             AuthService = new AuthService(userRepository);
             FlightSearchService = new FlightSearchService(flightRepository);

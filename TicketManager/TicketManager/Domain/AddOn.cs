@@ -22,10 +22,5 @@ namespace TicketManager.Domain
             Name = name;
             BasePrice = basePrice;
         }
-
-        public float GetBasePrice()
-        {
-            return BasePrice;
-        }
     }
 }

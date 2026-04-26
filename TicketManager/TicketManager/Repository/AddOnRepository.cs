@@ -8,23 +8,23 @@ namespace TicketManager.Repository
 {
     public class AddOnRepository : IAddOnRepository
     {
-        private readonly DatabaseConnectionFactory dbFactory;
+        private readonly IDatabaseConnectionFactory databaseConnectionFactory;
 
-        public AddOnRepository(DatabaseConnectionFactory dbFactory)
+        public AddOnRepository(IDatabaseConnectionFactory databaseConnectionFactory)
         {
-            this.dbFactory = dbFactory ?? throw new ArgumentNullException(nameof(dbFactory));
+            this.databaseConnectionFactory = databaseConnectionFactory ?? throw new ArgumentNullException(nameof(databaseConnectionFactory));
         }
 
         public IEnumerable<AddOn> GetAllAddOns()
         {
             var addons = new List<AddOn>();
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT addon_id, name, base_price FROM AddOns";
 
-                using (var command = new SqlCommand(query, connection))
-                using (var reader = command.ExecuteReader())
+                using (var getAllAddOnsCommand = new SqlCommand(query, connection))
+                using (var reader = getAllAddOnsCommand.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -50,23 +50,23 @@ namespace TicketManager.Repository
                 return addons;
             }
 
-            using (var connection = dbFactory.GetConnection())
+            using (var connection = databaseConnectionFactory.GetConnection())
             {
                 connection.Open();
 
-                var parameters = ids.Select((id, index) => new { ParameterName = $"@Id{index}", Value = id }).ToList();
-                string inClause = string.Join(", ", parameters.Select(p => p.ParameterName));
+                var parameters = ids.Select((identifier, index) => new { ParameterName = $"@Id{index}", Value = identifier }).ToList();
+                string inClause = string.Join(", ", parameters.Select(parameter => parameter.ParameterName));
 
                 string query = $"SELECT addon_id, name, base_price FROM AddOns WHERE addon_id IN ({inClause})";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getAddOnsByIdsCommand = new SqlCommand(query, connection))
                 {
-                    foreach (var param in parameters)
+                    foreach (var parameter in parameters)
                     {
-                        command.Parameters.AddWithValue(param.ParameterName, param.Value);
+                        getAddOnsByIdsCommand.Parameters.AddWithValue(parameter.ParameterName, parameter.Value);
                     }
 
-                    using (var reader = command.ExecuteReader())
+                    using (var reader = getAddOnsByIdsCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -85,3 +85,4 @@ namespace TicketManager.Repository
         }
     }
 }
+

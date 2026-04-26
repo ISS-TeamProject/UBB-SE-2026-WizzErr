@@ -12,9 +12,9 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
 
     public AuthServiceIntegrationTests()
     {
-        var dbFactory = new DatabaseConnectionFactory(GetTestConnectionString());
-        var membershipRepo = new MembershipRepository(dbFactory);
-        _userRepository = new UserRepository(dbFactory, membershipRepo);
+        var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
+        var membershipRepository = new MembershipRepository(databaseConnectionFactory);
+        _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
         _authService = new AuthService(_userRepository);
     }
 
@@ -41,8 +41,8 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
         string email = $"claudia.radu_{code}@yahoo.ro";
         _authService.Register(email, "0744112233", $"ClaudiaR_{code}", "ParolaClaudia1");
 
-        Action act = () => _authService.Register(email, "0744112233", $"AltUtilizator_{code}", "AltaParola2");
-        act.Should().Throw<InvalidOperationException>();
+        Action registerAction = () => _authService.Register(email, "0744112233", $"AltUtilizator_{code}", "AltaParola2");
+        registerAction.Should().Throw<InvalidOperationException>();
     }
 
     [Fact]
@@ -58,3 +58,5 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
         user!.PasswordHash.Should().NotBe(password);
     }
 }
+
+
