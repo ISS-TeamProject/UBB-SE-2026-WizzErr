@@ -23,6 +23,8 @@ public class PricingServiceTests
     private const int ShortFlightDurationMinutes = 10;
     private const int LongFlightDurationMinutes = 100;
     private const float PercentageDivisor = 100.0f;
+    private const int BagageAddOnId = 1;
+    private const int PriorityAddOnId = 2;
 
     private readonly PricingService _pricingService = new PricingService();
 
@@ -128,8 +130,8 @@ public class PricingServiceTests
     [Fact]
     public void TestThatCalculateTotalPriceAppliesAddOnDiscountsCorrectly()
     {
-        var addon1 = new AddOn { AddOnId = 1, Name = "Bagaj", BasePrice = StandardAddOnPrice1 }; 
-        var addon2 = new AddOn { AddOnId = 2, Name = "Prioritate", BasePrice = StandardAddOnPrice3 }; 
+        var addon1 = new AddOn { AddOnId = BagageAddOnId, Name = "Bagaj", BasePrice = StandardAddOnPrice1 };
+        var addon2 = new AddOn { AddOnId = PriorityAddOnId, Name = "Prioritate", BasePrice = StandardAddOnPrice3 };
 
         var addonDiscount = new MembershipAddonDiscount { AddOn = addon1, DiscountPercentage = StandardAddOnDiscountPercentage };
         var membership = new Membership
@@ -244,7 +246,7 @@ public class PricingServiceTests
     public void TestThatCalculatePriceBreakdownWithComplexDiscountScenario()
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
-        var addon = new AddOn { AddOnId = 1, Name = "Bagaj", BasePrice = StandardAddOnPrice1 };
+        var addon = new AddOn { AddOnId = BagageAddOnId, Name = "Bagaj", BasePrice = StandardAddOnPrice1 };
         var addonDiscount = new MembershipAddonDiscount { AddOn = addon, DiscountPercentage = StandardAddOnDiscountPercentage };
         var membership = new Membership
         {

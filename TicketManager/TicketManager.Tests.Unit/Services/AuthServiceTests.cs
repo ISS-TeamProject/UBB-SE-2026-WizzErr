@@ -10,6 +10,17 @@ namespace TicketManager.Tests.Unit.Services;
 
 public class AuthServiceTests
 {
+    private const string ValidPassword = "ParolaAndrei2024!";
+    private const string ValidSecretPassword = "parola_secreta_99";
+    private const string InvalidPassword = "parola_incorecta_99";
+    private const string ValidPhoneNumber = "0722334455";
+    private const string ValidAlternatePhone = "0744112233";
+    private const string InvalidPhoneFormat = "072211-2233";
+    private const string ValidEmail = "test@gmail.com";
+    private const string ValidUsername = "user123";
+    private const int MinimumPasswordLength = 6;
+    private const int MinimumUsernameLength = 3;
+
     private readonly Mock<IUserRepository> _mockUserRepository;
     private readonly AuthService _authService;
     private readonly PasswordHasher<User> _passwordHasher = new PasswordHasher<User>();
@@ -23,13 +34,12 @@ public class AuthServiceTests
     [Fact]
     public void TestThatLoginWorksForValidRomanianUser()
     {
-        var pass = "ParolaAndrei2024!";
         var user = new User { Email = "andrei.ionescu@gmail.com" };
-        user.PasswordHash = _passwordHasher.HashPassword(user, pass);
+        user.PasswordHash = _passwordHasher.HashPassword(user, ValidPassword);
 
         _mockUserRepository.Setup(repoWithExistingUser => repoWithExistingUser.GetByEmail(user.Email)).Returns(user);
 
-        var loggedInUser = _authService.Login(user.Email, pass);
+        var loggedInUser = _authService.Login(user.Email, ValidPassword);
 
         loggedInUser.Should().NotBeNull();
         loggedInUser.Email.Should().Be(user.Email);
@@ -39,11 +49,11 @@ public class AuthServiceTests
     public void TestThatLoginFailsWithInvalidPassword()
     {
         var user = new User { Email = "george.popa@yahoo.ro" };
-        user.PasswordHash = _passwordHasher.HashPassword(user, "parola_secreta_99");
+        user.PasswordHash = _passwordHasher.HashPassword(user, ValidSecretPassword);
 
         _mockUserRepository.Setup(repoWithRegisteredUser => repoWithRegisteredUser.GetByEmail(user.Email)).Returns(user);
 
-        Action loginAction = () => _authService.Login(user.Email, "parola_incorecta_99");
+        Action loginAction = () => _authService.Login(user.Email, InvalidPassword);
         loginAction.Should().Throw<InvalidOperationException>().WithMessage("Invalid email or password.");
     }
 
@@ -53,7 +63,7 @@ public class AuthServiceTests
         string email = "bogdan.stefan@gmail.com";
         _mockUserRepository.Setup(repoWithDuplicateEmail => repoWithDuplicateEmail.GetByEmail(email)).Returns(new User { Email = email });
 
-        Action registerAction = () => _authService.Register(email, "0722334455", "bogdan_s", "ParolaBogdan!");
+        Action registerAction = () => _authService.Register(email, ValidPhoneNumber, "bogdan_s", "ParolaBogdan!");
         registerAction.Should().Throw<InvalidOperationException>().WithMessage("An account with this email already exists.");
     }
 
@@ -70,7 +80,7 @@ public class AuthServiceTests
         string email = "gabriela.stan@yahoo.ro";
         _mockUserRepository.Setup(repoWithAvailableEmail => repoWithAvailableEmail.GetByEmail(email)).Returns((User?)null);
 
-        _authService.Register(email, "0744112233", "gabriela_s", "ParolaGabriela123!");
+        _authService.Register(email, ValidAlternatePhone, "gabriela_s", "ParolaGabriela123!");
 
         _mockUserRepository.Verify(repoToVerifyAddUser => repoToVerifyAddUser.AddUser(It.Is<User>(userToRegister => userToRegister.Email == email)), Times.Once);
     }
@@ -92,14 +102,14 @@ public class AuthServiceTests
     [Fact]
     public void TestThatLoginThrowsExceptionWhenPasswordIsNull()
     {
-        Action loginAction = () => _authService.Login("test@gmail.com", null!);
+        Action loginAction = () => _authService.Login(ValidEmail, null!);
         loginAction.Should().Throw<ArgumentException>().WithMessage("Password is required.");
     }
 
     [Fact]
     public void TestThatLoginThrowsExceptionWhenPasswordIsEmpty()
     {
-        Action loginAction = () => _authService.Login("test@gmail.com", "");
+        Action loginAction = () => _authService.Login(ValidEmail, "");
         loginAction.Should().Throw<ArgumentException>().WithMessage("Password is required.");
     }
 
@@ -115,37 +125,39 @@ public class AuthServiceTests
     [Fact]
     public void TestThatRegisterThrowsExceptionWhenPasswordTooShort()
     {
-        Action registerAction = () => _authService.Register("test@gmail.com", "0722112233", "user123", "12345");
+        Action registerAction = () => _authService.Register(ValidEmail, ValidPhoneNumber, ValidUsername, "12345");
         registerAction.Should().Throw<ArgumentException>().WithMessage("Password must be at least 6 characters long.");
     }
 
     [Fact]
     public void TestThatRegisterThrowsExceptionWhenUsernameTooShort()
     {
-        Action registerAction = () => _authService.Register("test@gmail.com", "0722112233", "ab", "ValidPass1");
+        Action registerAction = () => _authService.Register(ValidEmail, ValidPhoneNumber, "ab", "ValidPass1");
         registerAction.Should().Throw<ArgumentException>().WithMessage("Username must have at least 3 characters.");
     }
 
     [Fact]
     public void TestThatRegisterThrowsExceptionWhenUsernameContainsInvalidCharacters()
     {
-        Action registerAction = () => _authService.Register("test@gmail.com", "0722112233", "user@#$", "ValidPass1");
+        Action registerAction = () => _authService.Register(ValidEmail, ValidPhoneNumber, "user@#$", "ValidPass1");
         registerAction.Should().Throw<ArgumentException>().WithMessage("Username contains invalid characters.");
     }
 
     [Fact]
     public void TestThatRegisterThrowsExceptionWhenPhoneIsNull()
     {
-        Action registerAction = () => _authService.Register("test@gmail.com", null!, "user123", "ValidPass1");
+        Action registerAction = () => _authService.Register(ValidEmail, null!, ValidUsername, "ValidPass1");
         registerAction.Should().Throw<ArgumentException>().WithMessage("Phone is required.");
     }
 
     [Fact]
     public void TestThatRegisterThrowsExceptionWhenPhoneIsInvalid()
     {
-        Action registerAction = () => _authService.Register("test@gmail.com", "072211-2233", "user123", "ValidPass1");
+        Action registerAction = () => _authService.Register(ValidEmail, InvalidPhoneFormat, ValidUsername, "ValidPass1");
         registerAction.Should().Throw<ArgumentException>().WithMessage("Phone number must contain only digits and have 10 to 15 digits.");
     }
 }
+
+
 
 

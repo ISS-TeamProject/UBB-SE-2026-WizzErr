@@ -1,285 +1,273 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\",
+  "WorkspaceRootPath": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\membershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\membershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\membershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\authviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\authviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\dashboardviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\viewmodel\\dashboardviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\bookingviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\viewmodel\\bookingviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\authviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\viewmodel\\authviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\pricingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\pricingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\membershipservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\membershipservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\flightsearchservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\flightsearchservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\cancellationservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\cancellationservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\bookingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\bookingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\userfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\fixtures\\userfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\bookingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\services\\bookingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\pricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\pricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\ipricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\ipricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\ipricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\bookingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\authviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\viewmodel\\authviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\authviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\authviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\dashboardviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\viewmodel\\dashboardviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\viewmodel\\bookingviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\viewmodel\\bookingviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\pricingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\pricingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\flightsearchservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\flightsearchservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\cancellationservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\cancellationservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\bookingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\bookingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\services\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\userfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\fixtures\\userfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\bookingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\services\\bookingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\pricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\pricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\bookingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\bookingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\pricingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\pricingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\services\\pricingserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\flightsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\flightsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\flightsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\cancellationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\cancellationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\cancellationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\imembershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\imembershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\imembershipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\membershipviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\membershipviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\membershipviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\baseintegrationtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\baseintegrationtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\baseintegrationtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\addonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\addonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\addonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\flightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\databaseconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\databaseconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\databaseconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\authpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\authpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\view\\authpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\airport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\airport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\airport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\ticketfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\ticketfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\fixtures\\ticketfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\passengerdatafixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\passengerdatafixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\fixtures\\passengerdatafixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\flightfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\flightfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\fixtures\\flightfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\addonfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.unit\\fixtures\\addonfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCBA5CFC-D0CF-A903-4870-4E746DE5FDF7}|TicketManager.Tests.Unit\\TicketManager.Tests.Unit.csproj|solutionrelative:ticketmanager.tests.unit\\fixtures\\addonfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\dummies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\workflows\\completebookingflowintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\workflows\\completebookingflowintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\workflows\\completebookingflowintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\workflows\\authandbookingviewmodelintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\workflows\\authandbookingviewmodelintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\workflows\\authandbookingviewmodelintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iaddonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iaddonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\iaddonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\authserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager.tests.integration\\services\\authserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D78A8242-6F9E-EE3C-B56A-B236E43E24A1}|TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj|solutionrelative:ticketmanager.tests.integration\\services\\authserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\passengerformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\passengerformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\passengerformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\flightsearchviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\flightsearchviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\flightsearchviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\flightdisplaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\viewmodel\\flightdisplaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\viewmodel\\flightdisplaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\ibookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\ibookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\ibookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\membershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\membershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\membershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\usersession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\pricebreakdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\pricebreakdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\pricebreakdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\passengerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\passengerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\passengerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\membershipaddondiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\membershipaddondiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\membershipaddondiscount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\membership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\membership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\membership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\gate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\addon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\domain\\addon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\domain\\addon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\flightsearchpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\view\\flightsearchpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\view\\flightsearchpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\ticketmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\ticketmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\ticketmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\imembershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\imembershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\imembershiprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iflightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\repository\\iflightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\repository\\iflightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\service\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\service\\inavigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|d:\\facultate\\an_ii\\sem4\\iss\\assignment3\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\ticketmanager.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|c:\\users\\alex\\documents\\github\\ubb-se-2026-wizzerr\\ticketmanager\\ticketmanager\\ticketmanager.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{4041EB61-A12C-CBBA-A13E-1509AA1FC736}|TicketManager\\TicketManager.csproj|solutionrelative:ticketmanager\\ticketmanager.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
@@ -290,257 +278,102 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DashboardViewModelTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\DashboardViewModelTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\ViewModel\\DashboardViewModelTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\DashboardViewModelTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\ViewModel\\DashboardViewModelTests.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-25T09:30:23.206Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\AuthViewModel.cs",
-              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\AuthViewModel.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\AuthViewModel.cs",
-              "RelativeToolTip": "TicketManager\\ViewModel\\AuthViewModel.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAUwEIBAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:36:52.448Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "MembershipService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\MembershipService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\MembershipService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\MembershipService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\MembershipService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\MembershipService.cs",
               "RelativeToolTip": "TicketManager\\Service\\MembershipService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-22T16:36:16.398Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NavigationService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\NavigationService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\NavigationService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\NavigationService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\NavigationService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:36:25.233Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Flight.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Flight.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Domain\\Flight.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Flight.cs",
-              "RelativeToolTip": "TicketManager\\Domain\\Flight.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:55:37.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\UserRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\UserRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\UserRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\UserRepository.cs",
               "ViewState": "AgIAAGEAAAAAAAAAAAAkwH8AAAB1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:32:30.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:32:30.955Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "BookingViewModelTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\ViewModel\\BookingViewModelTests.cs",
               "ViewState": "AgIAAHIAAAAAAAAAAAAcwHYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:47:39.322Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T17:47:39.322Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "AuthViewModelTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\ViewModel\\AuthViewModelTests.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAswC4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-22T17:38:51.94Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "DashboardService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\DashboardService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\DashboardService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\DashboardService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\DashboardService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\DashboardService.cs",
               "RelativeToolTip": "TicketManager\\Service\\DashboardService.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAkwCIAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-22T16:35:15.628Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PricingServiceTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\PricingServiceTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\PricingServiceTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\PricingServiceTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\PricingServiceTests.cs",
-              "ViewState": "AgIAAPMAAAAAAAAAAAAiwKsAAAA5AAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "DashboardViewModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\DashboardViewModelTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\ViewModel\\DashboardViewModelTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\ViewModel\\DashboardViewModelTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Unit\\ViewModel\\DashboardViewModelTests.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T09:37:37.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-25T09:30:23.206Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "MembershipServiceTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\MembershipServiceTests.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAwwHoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-25T09:36:50.423Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FlightSearchServiceTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\FlightSearchServiceTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\FlightSearchServiceTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\FlightSearchServiceTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\FlightSearchServiceTests.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAYwC8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T18:53:56.675Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CancellationServiceTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\CancellationServiceTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\CancellationServiceTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\CancellationServiceTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\CancellationServiceTests.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAkwEkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T09:37:01.05Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "BookingServiceTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\BookingServiceTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\BookingServiceTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\BookingServiceTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\BookingServiceTests.cs",
-              "ViewState": "AgIAAIgAAAAAAAAAAAAswIIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T09:36:11.192Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "AuthServiceTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAADwv2wAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:46:46.675Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "UserFixture.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\UserFixture.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Fixtures\\UserFixture.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\UserFixture.cs",
-              "RelativeToolTip": "TicketManager.Tests.Unit\\Fixtures\\UserFixture.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T16:37:27.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "BookingServiceIntegrationTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowCUAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:49:09.884Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BookingService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\BookingService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\BookingService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\BookingService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\BookingService.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-25T09:27:46.457Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 1,
               "Title": "IPricingService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IPricingService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IPricingService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\IPricingService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IPricingService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IPricingService.cs",
               "RelativeToolTip": "TicketManager\\Service\\IPricingService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -549,167 +382,263 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 5,
+              "Title": "AuthViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\AuthViewModel.cs",
+              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\AuthViewModel.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\AuthViewModel.cs",
+              "RelativeToolTip": "TicketManager\\ViewModel\\AuthViewModel.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAUwEIBAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T16:36:52.448Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PricingServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\PricingServiceTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\PricingServiceTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\PricingServiceTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\PricingServiceTests.cs",
+              "ViewState": "AgIAAPMAAAAAAAAAAAAiwKsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T09:37:37.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FlightSearchServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\FlightSearchServiceTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\FlightSearchServiceTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\FlightSearchServiceTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\FlightSearchServiceTests.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T18:53:56.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CancellationServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\CancellationServiceTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\CancellationServiceTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\CancellationServiceTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\CancellationServiceTests.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAkwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T09:37:01.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BookingServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\BookingServiceTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\BookingServiceTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\BookingServiceTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\BookingServiceTests.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAswIIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T09:36:11.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AuthServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Unit\\Services\\AuthServiceTests.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAADwv2wAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T17:46:46.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserFixture.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\UserFixture.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Fixtures\\UserFixture.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\UserFixture.cs",
+              "RelativeToolTip": "TicketManager.Tests.Unit\\Fixtures\\UserFixture.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T16:37:27.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BookingServiceIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Integration\\Services\\BookingServiceIntegrationTests.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowCUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T17:49:09.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BookingService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\BookingService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\BookingService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\BookingService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\BookingService.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-25T09:27:46.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "IAuthService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IAuthService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\IAuthService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IAuthService.cs",
               "RelativeToolTip": "TicketManager\\Service\\IAuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T11:21:19.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T11:21:19.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PricingService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\PricingService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\PricingService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\PricingService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\PricingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T11:21:41.805Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "PricingService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\PricingService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\PricingService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\PricingService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\PricingService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAoAAAAAAAAAA==",
+              "Title": "BookingViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\BookingViewModel.cs",
+              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\BookingViewModel.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\BookingViewModel.cs",
+              "RelativeToolTip": "TicketManager\\ViewModel\\BookingViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYBAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T11:21:41.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:42:17.464Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 20,
-              "Title": "BookingViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\BookingViewModel.cs",
-              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\BookingViewModel.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\BookingViewModel.cs",
-              "RelativeToolTip": "TicketManager\\ViewModel\\BookingViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:42:17.464Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
               "Title": "FlightSearchService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\FlightSearchService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\FlightSearchService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\FlightSearchService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\FlightSearchService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\FlightSearchService.cs",
               "RelativeToolTip": "TicketManager\\Service\\FlightSearchService.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAAwBsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:35:25.715Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:35:25.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PricingServiceIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\PricingServiceIntegrationTests.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Services\\PricingServiceIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\PricingServiceIntegrationTests.cs",
+              "RelativeToolTip": "TicketManager.Tests.Integration\\Services\\PricingServiceIntegrationTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T11:36:40.489Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "PricingServiceIntegrationTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\PricingServiceIntegrationTests.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Services\\PricingServiceIntegrationTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\PricingServiceIntegrationTests.cs",
-              "RelativeToolTip": "TicketManager.Tests.Integration\\Services\\PricingServiceIntegrationTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAATAAAAAAAAAA==",
+              "Title": "CancellationService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\CancellationService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\CancellationService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\CancellationService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\CancellationService.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA1wBcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T11:36:40.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:34:56.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IMembershipService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IMembershipService.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Service\\IMembershipService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IMembershipService.cs",
+              "RelativeToolTip": "TicketManager\\Service\\IMembershipService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T18:56:52.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "MembershipViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\MembershipViewModel.cs",
+              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\MembershipViewModel.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\MembershipViewModel.cs",
+              "RelativeToolTip": "TicketManager\\ViewModel\\MembershipViewModel.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA5wCcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T17:03:45.805Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 24,
-              "Title": "CancellationService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\CancellationService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\CancellationService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\CancellationService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\CancellationService.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA1wBcAAAANAAAAAAAAAA==",
+              "Title": "TicketRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\TicketRepository.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Repository\\TicketRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\TicketRepository.cs",
+              "RelativeToolTip": "TicketManager\\Repository\\TicketRepository.cs",
+              "ViewState": "AgIAABYBAAAAAAAAAAAIwA8BAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:34:56.803Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T16:32:19.372Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 25,
-              "Title": "IMembershipService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IMembershipService.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Service\\IMembershipService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IMembershipService.cs",
-              "RelativeToolTip": "TicketManager\\Service\\IMembershipService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Title": "Ticket.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Ticket.cs",
+              "RelativeDocumentMoniker": "TicketManager\\Domain\\Ticket.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Ticket.cs",
+              "RelativeToolTip": "TicketManager\\Domain\\Ticket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T18:56:52.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T17:12:13.732Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 26,
-              "Title": "MembershipViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\MembershipViewModel.cs",
-              "RelativeDocumentMoniker": "TicketManager\\ViewModel\\MembershipViewModel.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\MembershipViewModel.cs",
-              "RelativeToolTip": "TicketManager\\ViewModel\\MembershipViewModel.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wCcAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:03:45.805Z",
-              "EditorCaption": ""
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
+              "RelativeDocumentMoniker": "TicketManager\\appsettings.json",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
+              "RelativeToolTip": "TicketManager\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-21T12:19:31.538Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 27,
-              "Title": "TicketRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\TicketRepository.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Repository\\TicketRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\TicketRepository.cs",
-              "RelativeToolTip": "TicketManager\\Repository\\TicketRepository.cs",
-              "ViewState": "AgIAABYBAAAAAAAAAAAIwA8BAAA6AAAAAAAAAA==",
+              "Title": "BaseIntegrationTest.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\BaseIntegrationTest.cs",
+              "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\BaseIntegrationTest.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\BaseIntegrationTest.cs",
+              "RelativeToolTip": "TicketManager.Tests.Integration\\BaseIntegrationTest.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAApwAkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T16:32:19.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-23T18:09:13.55Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 28,
-              "Title": "Ticket.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Ticket.cs",
-              "RelativeDocumentMoniker": "TicketManager\\Domain\\Ticket.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Ticket.cs",
-              "RelativeToolTip": "TicketManager\\Domain\\Ticket.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T17:12:13.732Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
-              "RelativeDocumentMoniker": "TicketManager\\appsettings.json",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\appsettings.json",
-              "RelativeToolTip": "TicketManager\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-21T12:19:31.538Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "BaseIntegrationTest.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\BaseIntegrationTest.cs",
-              "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\BaseIntegrationTest.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\BaseIntegrationTest.cs",
-              "RelativeToolTip": "TicketManager.Tests.Integration\\BaseIntegrationTest.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAApwAkAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T18:09:13.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
               "Title": "AddOnRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\AddOnRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\AddOnRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\AddOnRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\AddOnRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\AddOnRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\AddOnRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -717,11 +646,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 29,
               "Title": "DashboardViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\DashboardViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\DashboardViewModel.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\DashboardViewModel.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\DashboardViewModel.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\DashboardViewModel.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\DashboardViewModel.cs",
               "ViewState": "AgIAAJkAAAAAAAAAAAAuwLIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -729,11 +658,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 30,
               "Title": "FlightRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\FlightRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\FlightRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\FlightRepository.cs",
               "ViewState": "AgIAAGoAAAAAAAAAAAAqwDgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -741,11 +670,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 31,
               "Title": "DatabaseConnectionFactory.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\DatabaseConnectionFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\DatabaseConnectionFactory.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\DatabaseConnectionFactory.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\DatabaseConnectionFactory.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\DatabaseConnectionFactory.cs",
               "RelativeToolTip": "TicketManager\\Repository\\DatabaseConnectionFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -753,11 +682,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 32,
               "Title": "AuthPage.xaml.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\AuthPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\AuthPage.xaml.cs",
               "RelativeDocumentMoniker": "TicketManager\\View\\AuthPage.xaml.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\AuthPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\AuthPage.xaml.cs",
               "RelativeToolTip": "TicketManager\\View\\AuthPage.xaml.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -765,11 +694,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 33,
               "Title": "Company.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Company.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Company.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Company.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Company.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Company.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Company.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -777,11 +706,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 34,
               "Title": "Airport.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Airport.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Airport.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Airport.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -789,11 +718,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 35,
               "Title": "TicketFixture.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\TicketFixture.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\TicketFixture.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Fixtures\\TicketFixture.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\TicketFixture.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\TicketFixture.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\Fixtures\\TicketFixture.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -801,11 +730,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 36,
               "Title": "PassengerDataFixture.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\PassengerDataFixture.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\PassengerDataFixture.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Fixtures\\PassengerDataFixture.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\PassengerDataFixture.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\PassengerDataFixture.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\Fixtures\\PassengerDataFixture.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -813,11 +742,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 37,
               "Title": "FlightFixture.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\FlightFixture.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\FlightFixture.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Fixtures\\FlightFixture.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\FlightFixture.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\FlightFixture.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\Fixtures\\FlightFixture.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -825,11 +754,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 38,
               "Title": "AddOnFixture.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\AddOnFixture.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\AddOnFixture.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Unit\\Fixtures\\AddOnFixture.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\AddOnFixture.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Unit\\Fixtures\\AddOnFixture.cs",
               "RelativeToolTip": "TicketManager.Tests.Unit\\Fixtures\\AddOnFixture.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -837,11 +766,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 40,
               "Title": "CompleteBookingFlowIntegrationTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Workflows\\CompleteBookingFlowIntegrationTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -849,11 +778,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 41,
               "Title": "AuthAndBookingViewModelIntegrationTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Workflows\\AuthAndBookingViewModelIntegrationTests.cs",
               "ViewState": "AgIAAIwAAAAAAAAAAAAswLQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -861,11 +790,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 39,
               "Title": "Dummies.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Dummies.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Dummies.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Dummies.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Dummies.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Dummies.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Dummies.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -873,11 +802,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 43,
               "Title": "AuthServiceIntegrationTests.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
               "RelativeDocumentMoniker": "TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
               "RelativeToolTip": "TicketManager.Tests.Integration\\Services\\AuthServiceIntegrationTests.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAYwDkAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -885,11 +814,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 42,
               "Title": "IAddOnRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IAddOnRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IAddOnRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\IAddOnRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IAddOnRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IAddOnRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\IAddOnRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -897,11 +826,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 44,
               "Title": "ViewModelBase.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\ViewModelBase.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\ViewModelBase.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\ViewModelBase.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\ViewModelBase.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\ViewModelBase.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\ViewModelBase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -909,11 +838,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 45,
               "Title": "RelayCommand.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\RelayCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\RelayCommand.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\RelayCommand.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\RelayCommand.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\RelayCommand.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\RelayCommand.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -921,11 +850,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 46,
               "Title": "PassengerFormViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\PassengerFormViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\PassengerFormViewModel.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\PassengerFormViewModel.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\PassengerFormViewModel.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\PassengerFormViewModel.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\PassengerFormViewModel.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAkwEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -933,11 +862,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 47,
               "Title": "FlightSearchViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightSearchViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightSearchViewModel.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\FlightSearchViewModel.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightSearchViewModel.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightSearchViewModel.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\FlightSearchViewModel.cs",
               "ViewState": "AgIAAI0AAAAAAAAAAAAiwKoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -945,11 +874,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 48,
               "Title": "FlightDisplayModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightDisplayModel.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightDisplayModel.cs",
               "RelativeDocumentMoniker": "TicketManager\\ViewModel\\FlightDisplayModel.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightDisplayModel.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\ViewModel\\FlightDisplayModel.cs",
               "RelativeToolTip": "TicketManager\\ViewModel\\FlightDisplayModel.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -957,11 +886,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 49,
               "Title": "IBookingService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IBookingService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IBookingService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\IBookingService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IBookingService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\IBookingService.cs",
               "RelativeToolTip": "TicketManager\\Service\\IBookingService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -969,11 +898,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 50,
               "Title": "MembershipRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\MembershipRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\MembershipRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\MembershipRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\MembershipRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\MembershipRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\MembershipRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAG8AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -981,11 +910,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 52,
               "Title": "User.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\User.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\User.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\User.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\User.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\User.cs",
               "RelativeToolTip": "TicketManager\\Domain\\User.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAswAwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -993,11 +922,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 53,
               "Title": "Route.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Route.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Route.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Route.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Route.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Route.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Route.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAIwC0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1005,11 +934,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 54,
               "Title": "PriceBreakdown.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PriceBreakdown.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PriceBreakdown.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\PriceBreakdown.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PriceBreakdown.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PriceBreakdown.cs",
               "RelativeToolTip": "TicketManager\\Domain\\PriceBreakdown.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1017,11 +946,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 56,
               "Title": "MembershipAddonDiscount.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\MembershipAddonDiscount.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\MembershipAddonDiscount.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\MembershipAddonDiscount.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\MembershipAddonDiscount.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\MembershipAddonDiscount.cs",
               "RelativeToolTip": "TicketManager\\Domain\\MembershipAddonDiscount.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1029,11 +958,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 57,
               "Title": "Membership.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Membership.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Membership.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Membership.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Membership.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Membership.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Membership.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1041,11 +970,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 51,
               "Title": "UserSession.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\UserSession.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\UserSession.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\UserSession.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\UserSession.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\UserSession.cs",
               "RelativeToolTip": "TicketManager\\Domain\\UserSession.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1053,11 +982,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 58,
               "Title": "Gate.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\Gate.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\Gate.cs",
               "RelativeToolTip": "TicketManager\\Domain\\Gate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1065,11 +994,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 55,
               "Title": "PassengerData.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PassengerData.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PassengerData.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\PassengerData.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PassengerData.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\PassengerData.cs",
               "RelativeToolTip": "TicketManager\\Domain\\PassengerData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1077,11 +1006,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 59,
               "Title": "AddOn.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\AddOn.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\AddOn.cs",
               "RelativeDocumentMoniker": "TicketManager\\Domain\\AddOn.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\AddOn.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Domain\\AddOn.cs",
               "RelativeToolTip": "TicketManager\\Domain\\AddOn.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAA7wBIAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1089,11 +1018,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 60,
               "Title": "FlightSearchPage.xaml.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\FlightSearchPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\FlightSearchPage.xaml.cs",
               "RelativeDocumentMoniker": "TicketManager\\View\\FlightSearchPage.xaml.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\FlightSearchPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\View\\FlightSearchPage.xaml.cs",
               "RelativeToolTip": "TicketManager\\View\\FlightSearchPage.xaml.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1101,11 +1030,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 61,
               "Title": "TicketManager.csproj",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeDocumentMoniker": "TicketManager\\TicketManager.csproj",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeToolTip": "TicketManager\\TicketManager.csproj",
               "ViewState": "AgIAAEQAAAAAAAAAAADwv2YAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -1113,11 +1042,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 62,
               "Title": "IUserRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IUserRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\IUserRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IUserRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\IUserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1125,11 +1054,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 63,
               "Title": "IMembershipRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IMembershipRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IMembershipRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\IMembershipRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IMembershipRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IMembershipRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\IMembershipRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1137,11 +1066,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 64,
               "Title": "IFlightRepository.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IFlightRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IFlightRepository.cs",
               "RelativeDocumentMoniker": "TicketManager\\Repository\\IFlightRepository.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IFlightRepository.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Repository\\IFlightRepository.cs",
               "RelativeToolTip": "TicketManager\\Repository\\IFlightRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1149,11 +1078,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 65,
               "Title": "INavigationService.cs",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\INavigationService.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\INavigationService.cs",
               "RelativeDocumentMoniker": "TicketManager\\Service\\INavigationService.cs",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\INavigationService.cs",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\Service\\INavigationService.cs",
               "RelativeToolTip": "TicketManager\\Service\\INavigationService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -1161,11 +1090,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 66,
               "Title": "TicketManager",
-              "DocumentMoniker": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeDocumentMoniker": "TicketManager\\TicketManager.csproj",
-              "ToolTip": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
               "RelativeToolTip": "TicketManager\\TicketManager.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2026-04-21T12:23:46.952Z"

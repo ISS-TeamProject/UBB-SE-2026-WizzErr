@@ -18,6 +18,13 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
     private const int UniqueCodeStartIndex = 0;
     private const int UniqueCodeLength = 4;
     private const int ExpectedTicketCount = 1;
+    private const string MirceaEmail = "mrc.popa";
+    private const string MirceaUsername = "MirceaP";
+    private const string MirceaPassword = "Mircea123!";
+    private const string MirceaPhone = "0722334455";
+    private const string MirceaFirstName = "Mircea";
+    private const string MirceaLastName = "Popa";
+    private const string SeatIdentifier = "_1A";
 
     private readonly ITicketRepository _ticketRepository;
     private readonly IAddOnRepository _addOnRepository;
@@ -39,17 +46,17 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
     {
         var flightId = GetFirstAvailableFlightId();
         var flight = new Flight { FlightId = flightId };
-        var code = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
-        var user = new User { Email = $"mrc.popa_{code}@gmail.com", Username = $"MirceaP_{code}", PasswordHash = "Mircea123!" };
+        var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
+        var user = new User { Email = $"{MirceaEmail}_{uniqueCode}@gmail.com", Username = $"{MirceaUsername}_{uniqueCode}", PasswordHash = MirceaPassword };
         _userRepository.AddUser(user);
-        var dbUser = _userRepository.GetByEmail(user.Email);
+        var databaseUser = _userRepository.GetByEmail(user.Email);
 
         var passengers = new List<PassengerData>
         {
-            new PassengerData { FirstName = "Mircea", LastName = "Popa", Email = user.Email, Phone = "0722334455", SelectedSeat = $"{code}_1A" }
+            new PassengerData { FirstName = MirceaFirstName, LastName = MirceaLastName, Email = user.Email, Phone = MirceaPhone, SelectedSeat = $"{uniqueCode}{SeatIdentifier}" }
         };
 
-        var tickets = _bookingService.CreateTickets(flight, dbUser!, passengers, DefaultBasePrice);
+        var tickets = _bookingService.CreateTickets(flight, databaseUser!, passengers, DefaultBasePrice);
         var saveResult = await _bookingService.SaveTicketsAsync(tickets);
 
         saveResult.Should().BeTrue();

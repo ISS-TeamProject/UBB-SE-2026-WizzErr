@@ -25,6 +25,12 @@ public class FlightSearchServiceTests
     private const int Flight1OccupiedSeats = 95;
     private const int Flight2OccupiedSeats = 99;
     private const int Flight3OccupiedSeats = 90;
+    private const string BucharestLocation = "Bucuresti";
+    private const string ClujNapovaLocation = "Cluj-Napoca";
+    private const string FlightNumber1 = "RO101";
+    private const string FlightNumber2 = "RO102";
+    private const string FlightNumber3 = "RO103";
+    private const string GenericLocation = "location";
 
     private readonly Mock<IFlightRepository> _mockFlightRepository;
     private readonly FlightSearchService _flightSearchService;
@@ -40,14 +46,14 @@ public class FlightSearchServiceTests
     {
         var flights = new List<Flight>
         {
-            new Flight { FlightId = FlightId1, FlightNumber = "RO101", Route = new Route { Capacity = DefaultCapacity } },
-            new Flight { FlightId = FlightId2, FlightNumber = "RO102", Route = new Route { Capacity = DefaultCapacity } }
+            new Flight { FlightId = FlightId1, FlightNumber = FlightNumber1, Route = new Route { Capacity = DefaultCapacity } },
+            new Flight { FlightId = FlightId2, FlightNumber = FlightNumber2, Route = new Route { Capacity = DefaultCapacity } }
         };
         _mockFlightRepository.Setup(repoWithMatchingFlights => repoWithMatchingFlights.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
             .Returns(flights);
         _mockFlightRepository.Setup(repoWithAvailableSeats => repoWithAvailableSeats.GetOccupiedSeatCount(It.IsAny<int>())).Returns(OccupiedSeatsLow);
 
-        var foundFlights = _flightSearchService.SearchFlights("Bucuresti", true, DateTime.Now.AddDays(DaysOffsetTarget), SinglePassenger);
+        var foundFlights = _flightSearchService.SearchFlights(BucharestLocation, true, DateTime.Now.AddDays(DaysOffsetTarget), SinglePassenger);
 
         foundFlights.Should().NotBeNull();
         foundFlights.Should().HaveCount(ExpectedFlightsCountMatching);
@@ -59,7 +65,7 @@ public class FlightSearchServiceTests
         _mockFlightRepository.Setup(repoWithNoMatchingFlights => repoWithNoMatchingFlights.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
             .Returns(new List<Flight>());
 
-        var foundFlights = _flightSearchService.SearchFlights("Cluj-Napoca", true, DateTime.Now.AddDays(DaysOffsetNoMatch), SinglePassenger);
+        var foundFlights = _flightSearchService.SearchFlights(ClujNapovaLocation, true, DateTime.Now.AddDays(DaysOffsetNoMatch), SinglePassenger);
 
         foundFlights.Should().NotBeNull();
         foundFlights.Should().BeEmpty();
@@ -68,9 +74,9 @@ public class FlightSearchServiceTests
     [Fact]
     public void TestThatSearchFlightsFiltersFlightsByCapacity()
     {
-        var flight1 = new Flight { FlightId = FlightId1, FlightNumber = "RO101", Route = new Route { Capacity = DefaultCapacity } };
-        var flight2 = new Flight { FlightId = FlightId2, FlightNumber = "RO102", Route = new Route { Capacity = DefaultCapacity } };
-        var flight3 = new Flight { FlightId = FlightId3, FlightNumber = "RO103", Route = new Route { Capacity = DefaultCapacity } };
+        var flight1 = new Flight { FlightId = FlightId1, FlightNumber = FlightNumber1, Route = new Route { Capacity = DefaultCapacity } };
+        var flight2 = new Flight { FlightId = FlightId2, FlightNumber = FlightNumber2, Route = new Route { Capacity = DefaultCapacity } };
+        var flight3 = new Flight { FlightId = FlightId3, FlightNumber = FlightNumber3, Route = new Route { Capacity = DefaultCapacity } };
         var flights = new List<Flight> { flight1, flight2, flight3 };
 
         _mockFlightRepository.Setup(repoWithMultipleFlights => repoWithMultipleFlights.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
@@ -79,7 +85,7 @@ public class FlightSearchServiceTests
         _mockFlightRepository.Setup(repoWithFlight2Seats => repoWithFlight2Seats.GetOccupiedSeatCount(FlightId2)).Returns(Flight2OccupiedSeats);
         _mockFlightRepository.Setup(repoWithFlight3Seats => repoWithFlight3Seats.GetOccupiedSeatCount(FlightId3)).Returns(Flight3OccupiedSeats);
 
-        var foundFlights = _flightSearchService.SearchFlights("location", true, null, GroupPassengers);
+        var foundFlights = _flightSearchService.SearchFlights(GenericLocation, true, null, GroupPassengers);
 
         foundFlights.Should().HaveCount(ExpectedFlightsCountFiltered);
         foundFlights.First().FlightId.Should().Be(FlightId3);
