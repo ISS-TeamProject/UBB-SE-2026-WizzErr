@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +12,7 @@ namespace TicketManager.Service
         IEnumerable<Membership> GetAllMemberships();
 
         Membership? UpgradeUserMembership(int userId, int newMembershipId);
+
+        MembershipPurchaseResult PurchaseMembership(int userId, int membershipId);
     }
 }

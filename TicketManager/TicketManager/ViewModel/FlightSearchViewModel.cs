@@ -102,20 +102,7 @@ namespace TicketManager.ViewModel
             }
 
             DateTime? date = FlightDate?.Date;
-
-            int? requestedPassengers = null;
-            if (!string.IsNullOrWhiteSpace(Passengers))
-            {
-                if (int.TryParse(Passengers, out var parsedPassengers) && parsedPassengers > 0)
-                {
-                    requestedPassengers = parsedPassengers;
-                }
-                else
-                {
-                    Passengers = "1";
-                    requestedPassengers = 1;
-                }
-            }
+            int? requestedPassengers = searchService.ParsePassengerCount(Passengers);
 
             var results = searchService.SearchFlights(Location, IsDeparture, date, requestedPassengers);
             bool hasResults = false;
@@ -139,7 +126,7 @@ namespace TicketManager.ViewModel
                 return;
             }
 
-            int passengerCount = ParsePassengerCount();
+            int passengerCount = searchService.ParsePassengerCount(Passengers) ?? 0;
             var bookingParameters = new object[] { selectedFlightDisplay.Flight, passengerCount };
 
             if (UserSession.CurrentUser == null)
@@ -151,21 +138,6 @@ namespace TicketManager.ViewModel
 
             navigationService.NavigateTo(typeof(View.BookingPage), bookingParameters);
         }
-
-        private int ParsePassengerCount()
-        {
-            if (string.IsNullOrWhiteSpace(Passengers))
-            {
-                return 0;
-            }
-
-            if (int.TryParse(Passengers, out var parsed) && parsed > 0)
-            {
-                return parsed;
-            }
-
-            Passengers = "1";
-            return 1;
-        }
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TicketManager.Domain;
@@ -40,6 +40,31 @@ namespace TicketManager.Service
             }
 
             return membership;
+        }
+        public MembershipPurchaseResult PurchaseMembership(int userId, int membershipId)
+        {
+            try
+            {
+                var updatedMembership = UpgradeUserMembership(userId, membershipId);
+                if (updatedMembership != null && UserSession.CurrentUser != null)
+                {
+                    UserSession.CurrentUser.Membership = updatedMembership;
+                }
+
+                return new MembershipPurchaseResult
+                {
+                    Succeeded = true,
+                    Message = "Your membership purchase was completed successfully."
+                };
+            }
+            catch
+            {
+                return new MembershipPurchaseResult
+                {
+                    Succeeded = false,
+                    Message = "Membership purchase could not be completed. Please try again."
+                };
+            }
         }
     }
 }

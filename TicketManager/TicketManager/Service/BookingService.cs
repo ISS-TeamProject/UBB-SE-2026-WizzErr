@@ -135,5 +135,51 @@ namespace TicketManager.Service
         {
             return await Task.FromResult(ticketRepository.GetOccupiedSeats(flightId).ToList());
         }
+
+        public BookingParametersResult ParseBookingParameters(object parameter)
+        {
+            Flight selectedFlight = null;
+            User user = null;
+            int requestedPassengers = 0;
+
+            if (parameter is object[] args && args.Length > 0)
+            {
+                selectedFlight = args[0] as Flight;
+
+                if (args.Length >= 3)
+                {
+                    user = args[1] as User;
+                    if (args[2] is int count)
+                    {
+                        requestedPassengers = count;
+                    }
+                }
+                else if (args.Length >= 2)
+                {
+                    if (args[1] is int count)
+                    {
+                        requestedPassengers = count;
+                    }
+                    else
+                    {
+                        user = args[1] as User;
+                    }
+                }
+            }
+
+            user ??= UserSession.CurrentUser;
+
+            return new BookingParametersResult
+            {
+                Flight = selectedFlight,
+                User = user,
+                RequestedPassengers = requestedPassengers
+            };
+        }
+
+        public void StorePendingBooking(Flight flight, int requestedPassengers)
+        {
+            UserSession.PendingBookingParameters = new object[] { flight, requestedPassengers };
+        }
     }
 }

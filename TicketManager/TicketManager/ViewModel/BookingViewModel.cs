@@ -13,11 +13,8 @@ namespace TicketManager.ViewModel
     public class BookingViewModel : ViewModelBase
     {
         private const int DefaultFlightCapacity = 180;
-        private const int FlightArgIndex = 0;
-        private const int UserArgIndex = 1;
-        private const int PassengerCountArgIndex = 2;
-        private const int MinNavigationArgsLengthWithUser = 2;
-        private const int NavigationArgsLengthWithPassengerCount = 3;
+        private const int SeatsPerRow = 6;
+        private const int AisleAfterColumn = 3;
         private readonly IBookingService bookingService;
         private readonly IPricingService pricingService;
         private readonly INavigationService navigationService;
@@ -191,52 +188,32 @@ namespace TicketManager.ViewModel
         public ICommand RemovePassengerCommand { get; }
         public ICommand ConfirmBookingCommand { get; }
 
+        public List<SeatDescriptor> SeatMapLayout { get; private set; } = new List<SeatDescriptor>();
+
+        public int SeatMapRowCount { get; private set; }
+
+        /// <summary>
+        /// Parses the navigation parameter via the service and initializes the booking.
+        /// Previously this method contained 45 lines of if/else parameter parsing;
+        /// that logic now lives in BookingService.ParseBookingParameters.
+        /// </summary>
         public async Task<bool> OnNavigatedToAsync(object parameter)
         {
-            Flight? selectedFlight = null;
-            User? localUser = null;
-            int requestedPassengers = 0;
+            var parsed = bookingService.ParseBookingParameters(parameter);
 
-            if (parameter is object[] navigationArguments && navigationArguments.Length > 0)
-            {
-                selectedFlight = navigationArguments[FlightArgIndex] as Flight;
-
-                if (navigationArguments.Length >= NavigationArgsLengthWithPassengerCount)
-                {
-                    localUser = navigationArguments[UserArgIndex] as User;
-                    if (navigationArguments[PassengerCountArgIndex] is int count)
-                    {
-                        requestedPassengers = count;
-                    }
-                }
-                else if (navigationArguments.Length >= MinNavigationArgsLengthWithUser)
-                {
-                    if (navigationArguments[UserArgIndex] is int count)
-                    {
-                        requestedPassengers = count;
-                    }
-                    else
-                    {
-                        localUser = navigationArguments[UserArgIndex] as User;
-                    }
-                }
-            }
-
-            localUser ??= UserSession.CurrentUser;
-
-            if (selectedFlight == null)
+            if (parsed.Flight == null)
             {
                 return false;
             }
 
-            if (localUser == null)
+            if (parsed.User == null)
             {
-                UserSession.PendingBookingParameters = new object[] { selectedFlight, requestedPassengers };
+                bookingService.StorePendingBooking(parsed.Flight, parsed.RequestedPassengers);
                 navigationService.NavigateTo(typeof(View.AuthPage));
                 return false;
             }
 
-            await InitializeAsync(selectedFlight, localUser, requestedPassengers);
+            await InitializeAsync(parsed.Flight, parsed.User, parsed.RequestedPassengers);
             return true;
         }
 
@@ -284,6 +261,41 @@ namespace TicketManager.ViewModel
             OnPropertyChanged(nameof(CanAddPassenger));
             OnPropertyChanged(nameof(CanRemovePassenger));
             RefreshBookingState();
+            BuildSeatMapLayout();
+        }
+
+        /// <summary>
+        /// Computes the seat map structure: how many rows, and for each seat its
+        /// row index, column index (with aisle gap), and label (e.g. "1A", "3F").
+        /// Previously this computation lived in BookingPage.xaml.cs GenerateSeatMap().
+        /// The View now just reads SeatMapLayout and creates a Button for each entry.
+        /// </summary>
+        public void BuildSeatMapLayout()
+        {
+            var layout = new List<SeatDescriptor>();
+            char[] seatLetters = { 'A', 'B', 'C', 'D', 'E', 'F' };
+            int[] seatColumns = { 0, 1, 2, 4, 5, 6 }; // column 3 is the aisle
+
+            int capacity = CurrentFlight?.Route?.Capacity ?? DefaultFlightCapacity;
+            int rowCount = (capacity + SeatsPerRow - 1) / SeatsPerRow;
+            SeatMapRowCount = rowCount;
+
+            for (int row = 0; row < rowCount; row++)
+            {
+                for (int i = 0; i < SeatsPerRow; i++)
+                {
+                    layout.Add(new SeatDescriptor
+                    {
+                        Row = row,
+                        Column = seatColumns[i],
+                        Label = $"{row + 1}{seatLetters[i]}"
+                    });
+                }
+            }
+
+            SeatMapLayout = layout;
+            OnPropertyChanged(nameof(SeatMapLayout));
+            OnPropertyChanged(nameof(SeatMapRowCount));
         }
 
         private void AddPassenger()
