@@ -7,8 +7,8 @@ namespace TicketManager.Domain
     /// </summary>
     public class BookingParametersResult
     {
-        public Flight Flight { get; set; }
-        public User User { get; set; }
+        public Flight? Flight { get; set; }
+        public User? User { get; set; }
         public int RequestedPassengers { get; set; }
     }
 }

@@ -115,7 +115,7 @@ namespace TicketManager.Service
             {
                 if (!string.IsNullOrWhiteSpace(ticket.Seat))
                 {
-                    bool seatAvailable = await ticketRepository.IsSeatAvailable(ticket.Flight?.FlightId ?? 0, ticket.Seat);
+                    bool seatAvailable = await this.ticketRepository.IsSeatAvailable(ticket.Flight?.FlightId ?? 0, ticket.Seat);
                     if (!seatAvailable)
                     {
                         return false;
@@ -123,23 +123,23 @@ namespace TicketManager.Service
                 }
             }
 
-            return await ticketRepository.SaveTicketsWithAddOnsAsync(tickets);
+            return await this.ticketRepository.SaveTicketsWithAddOnsAsync(tickets);
         }
 
         public async Task<List<AddOn>> GetAvailableAddOnsAsync()
         {
-            return await Task.FromResult(addOnRepository.GetAllAddOns().ToList());
+            return await Task.FromResult(this.addOnRepository.GetAllAddOns().ToList());
         }
 
         public async Task<List<string>> GetOccupiedSeatsAsync(int flightId)
         {
-            return await Task.FromResult(ticketRepository.GetOccupiedSeats(flightId).ToList());
+            return await Task.FromResult(this.ticketRepository.GetOccupiedSeats(flightId).ToList());
         }
 
         public BookingParametersResult ParseBookingParameters(object parameter)
         {
-            Flight selectedFlight = null;
-            User user = null;
+            Flight? selectedFlight = null;
+            User? user = null;
             int requestedPassengers = 0;
 
             if (parameter is object[] args && args.Length > 0)
@@ -171,8 +171,8 @@ namespace TicketManager.Service
 
             return new BookingParametersResult
             {
-                Flight = selectedFlight,
-                User = user,
+                Flight = selectedFlight!,
+                User = user!,
                 RequestedPassengers = requestedPassengers
             };
         }

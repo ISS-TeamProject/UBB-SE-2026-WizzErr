@@ -50,7 +50,7 @@ namespace TicketManager.View
             this.DataContext = ViewModel;
         }
 
-        private async void ViewModel_BookingConfirmed(object? sender, EventArgs eventArgs)
+        private async void ViewModel_BookingConfirmed(object? sender, EventArgs eventArguments)
         {
             var dialog = new ContentDialog
             {
@@ -64,11 +64,11 @@ namespace TicketManager.View
             App.NavigationService.NavigateTo(typeof(FlightSearchPage));
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs eventArgs)
+        protected override async void OnNavigatedTo(NavigationEventArgs eventArguments)
         {
-            base.OnNavigatedTo(eventArgs);
+            base.OnNavigatedTo(eventArguments);
 
-            bool initialized = await ViewModel.OnNavigatedToAsync(eventArgs.Parameter);
+            bool initialized = await ViewModel.OnNavigatedToAsync(eventArguments.Parameter);
 
             if (initialized)
             {
@@ -84,27 +84,27 @@ namespace TicketManager.View
             seatMapGrid.RowDefinitions.Clear();
             seatMapGrid.ColumnDefinitions.Clear();
 
-            for (int i = 0; i < SeatColumnsCount; i++)
+            for (int columnIndex = 0; columnIndex < SeatColumnsCount; columnIndex++)
             {
                 seatMapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(SeatColumnWidth) });
             }
 
             seatMapGrid.ColumnDefinitions.Insert(AisleColumnIndex, new ColumnDefinition() { Width = new GridLength(AisleColumnWidth) });
 
-            for (int r = 0; r < ViewModel.SeatMapRowCount; r++)
+            for (int rowIndex = 0; rowIndex < ViewModel.SeatMapRowCount; rowIndex++)
             {
                 seatMapGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(SeatRowHeight) });
             }
 
-            foreach (var seat in ViewModel.SeatMapLayout)
+            foreach (var seatDescriptor in ViewModel.SeatMapLayout)
             {
-                CreateSeatButton(seat.Row, seat.Column, seat.Label);
+                CreateSeatButton(seatDescriptor.Row, seatDescriptor.Column, seatDescriptor.Label);
             }
 
             RefreshSeatMapVisuals();
         }
 
-        private void CreateSeatButton(int row, int col, string seatNumber)
+        private void CreateSeatButton(int rowIndex, int columnIndex, string seatNumber)
         {
             Button seatButton = new Button
             {
@@ -117,8 +117,8 @@ namespace TicketManager.View
                 HorizontalContentAlignment = HorizontalAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center
             };
-            Grid.SetRow(seatButton, row);
-            Grid.SetColumn(seatButton, col);
+            Grid.SetRow(seatButton, rowIndex);
+            Grid.SetColumn(seatButton, columnIndex);
 
             if (ViewModel.OccupiedSeats.Contains(seatNumber))
             {
@@ -135,9 +135,9 @@ namespace TicketManager.View
             seatMapGrid.Children.Add(seatButton);
         }
 
-        private void Seat_Click(object? sender, RoutedEventArgs eventArgs)
+        private void Seat_Click(object? sender, RoutedEventArgs eventArguments)
         {
-            if (sender is Button seatButton && seatButton.Content is string seat)
+            if (sender is Button seatButton && seatButton.Content is string selectedSeat)
             {
                 EnsureSeatTargetPassenger();
                 if (seatTargetPassenger == null)
@@ -145,18 +145,18 @@ namespace TicketManager.View
                     return;
                 }
 
-                ViewModel.SelectSeat(seatTargetPassenger, seat);
+                ViewModel.SelectSeat(seatTargetPassenger, selectedSeat);
                 RefreshSeatMapVisuals();
             }
         }
 
-        private void Passengers_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs eventArgs)
+        private void Passengers_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs eventArguments)
         {
             EnsureSeatTargetPassenger();
             RefreshSeatMapVisuals();
         }
 
-        private void SeatPassengerSelector_SelectionChanged(object? sender, SelectionChangedEventArgs eventArgs)
+        private void SeatPassengerSelector_SelectionChanged(object? sender, SelectionChangedEventArgs eventArguments)
         {
             seatTargetPassenger = seatPassengerSelector.SelectedItem as PassengerFormViewModel;
             RefreshSeatMapVisuals();
@@ -200,19 +200,15 @@ namespace TicketManager.View
             }
         }
 
-        private void AddOnList_SelectionChanged(object? sender, SelectionChangedEventArgs eventArgs)
+        private void AddOnList_SelectionChanged(object? sender, SelectionChangedEventArgs eventArguments)
         {
             if (sender is ListView listView && listView.Tag is PassengerFormViewModel passenger)
             {
                 ViewModel.UpdatePassengerAddOns(
                     passenger,
-                    System.Linq.Enumerable.OfType<AddOn>(eventArgs.AddedItems),
-                    System.Linq.Enumerable.OfType<AddOn>(eventArgs.RemovedItems));
+                    System.Linq.Enumerable.OfType<AddOn>(eventArguments.AddedItems),
+                    System.Linq.Enumerable.OfType<AddOn>(eventArguments.RemovedItems));
             }
         }
     }
 }
-
-
-
-
