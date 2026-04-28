@@ -29,17 +29,17 @@
     <AppXManifest Include="D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\bin\x64\Debug\net8.0-windows10.0.19041.0\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2026-04-25T10:19:38.581</Modified>
+      <Modified>2026-04-28T09:32:10.323</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\bin\x64\Debug\net8.0-windows10.0.19041.0\TicketManager.runtimeconfig.json">
       <PackagePath>TicketManager.runtimeconfig.json</PackagePath>
-      <Modified>2026-04-25T08:35:07.315</Modified>
+      <Modified>2026-04-28T08:54:55.054</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\obj\x64\Debug\net8.0-windows10.0.19041.0\apphost.exe">
       <PackagePath>TicketManager.exe</PackagePath>
-      <Modified>2026-04-25T10:19:37.919</Modified>
+      <Modified>2026-04-28T09:32:10.156</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\appsettings.json">
       <PackagePath>appsettings.json</PackagePath>
@@ -123,7 +123,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\obj\x64\Debug\net8.0-windows10.0.19041.0\TicketManager.dll">
       <PackagePath>TicketManager.dll</PackagePath>
-      <Modified>2026-04-25T10:19:37.901</Modified>
+      <Modified>2026-04-28T09:32:10.153</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\alexi\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.57\lib\net8.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
@@ -659,7 +659,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\obj\x64\Debug\net8.0-windows10.0.19041.0\TicketManager.deps.json">
       <PackagePath>TicketManager.deps.json</PackagePath>
-      <Modified>2026-04-25T08:35:07.676</Modified>
+      <Modified>2026-04-28T08:54:55.718</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -695,7 +695,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Facultate\An_II\Sem4\ISS\Assignment3\UBB-SE-2026-WizzErr\TicketManager\TicketManager\bin\x64\Debug\net8.0-windows10.0.19041.0\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2026-04-25T08:35:07.586</Modified>
+      <Modified>2026-04-28T08:54:55.536</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

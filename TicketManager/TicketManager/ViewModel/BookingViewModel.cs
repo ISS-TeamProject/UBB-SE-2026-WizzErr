@@ -194,7 +194,43 @@ namespace TicketManager.ViewModel
         {
             var parsed = bookingService.ParseBookingParameters(parameter);
 
-            if (parsed.Flight == null)
+            if (parsed == null)
+            {
+                if (parameter is object[] arr && arr.Length > 0 && arr[0] is Flight fallbackFlight)
+                {
+                    User? fallbackUser = null;
+                    int requested = 0;
+                    foreach (var item in arr)
+                    {
+                        if (fallbackUser == null && item is User u)
+                        {
+                            fallbackUser = u;
+                        }
+                        else if (requested == 0 && item is int rp)
+                        {
+                            requested = rp;
+                        }
+                    }
+
+                    parsed = new BookingParametersResult
+                    {
+                        Flight = fallbackFlight,
+                        User = fallbackUser,
+                        RequestedPassengers = requested
+                    };
+                }
+                else if (parameter is Flight singleFlight)
+                {
+                    parsed = new BookingParametersResult
+                    {
+                        Flight = singleFlight,
+                        User = UserSession.CurrentUser,
+                        RequestedPassengers = 0
+                    };
+                }
+            }
+
+            if (parsed == null || parsed.Flight == null)
             {
                 return false;
             }
@@ -234,6 +270,12 @@ namespace TicketManager.ViewModel
 
             Passengers.Clear();
             int initialCount = bookingService.GetInitialPassengerCount(MaximumPassengers, requestedPassengerCount);
+
+            if (initialCount < 1)
+            {
+                initialCount = Math.Min(MaximumPassengers, Math.Max(1, requestedPassengerCount));
+            }
+
             for (int index = 0; index < initialCount; index++)
             {
                 var passenger = new PassengerFormViewModel();
@@ -299,6 +341,11 @@ namespace TicketManager.ViewModel
 
         private void RegisterPassenger(PassengerFormViewModel passenger)
         {
+            if (passenger.SelectedAddOns == null)
+            {
+                passenger.SelectedAddOns = new ObservableCollection<AddOn>();
+            }
+
             passenger.SelectedAddOns.CollectionChanged += (sender, eventArgs) => UpdatePrices();
             passenger.PropertyChanged += (sender, eventArgs) =>
             {
@@ -326,7 +373,7 @@ namespace TicketManager.ViewModel
                 Email = passenger.Email,
                 Phone = passenger.Phone,
                 SelectedSeat = passenger.SelectedSeat,
-                SelectedAddOns = passenger.SelectedAddOns.ToList()
+                SelectedAddOns = passenger.SelectedAddOns?.ToList() ?? new List<AddOn>()
             }).ToList();
         }
 

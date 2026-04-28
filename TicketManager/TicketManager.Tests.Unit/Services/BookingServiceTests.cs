@@ -23,7 +23,24 @@ public class BookingServiceTests
     private const int ExpectedMaxPassengers = 5;
     private const string ActiveStatus = "Active";
     private const string Seat1A = "1A";
+    private const string Seat1C = "1C";
+    private const string Seat1D = "1D";
+    private const string Seat1F = "1F";
     private const string Seat1B = "1B";
+    private const string Seat2B = "2B";
+    private const string invalidParameter = "NotAnArray";
+    private const int ExactMultipleCapacity = 180;
+    private const int PartialMultipleCapacity = 182;
+    private const int MinimumFlightCapacity = 6;
+    private const int ExpectedExactMultipleRows = 30;
+    private const int ExpectedPartialMultipleRows = 31;
+    private const int ExpectedMinimumCapacityRows = 1;
+    private const int Column0Index = 0;
+    private const int Column2Index = 2;
+    private const int Column4Index = 4;
+    private const int Column6Index = 6;
+    private const int ExpectedExactMultipleLayoutCount = 180;
+    private const int ExpectedPartialMultipleLayoutCount = 186;
 
     private readonly Mock<ITicketRepository> _mockTicketRepository;
     private readonly Mock<IAddOnRepository> _mockAddOnRepository;
@@ -129,7 +146,7 @@ public class BookingServiceTests
     {
         _mockTicketRepository.Setup(mockTicketRepository => mockTicketRepository.IsSeatAvailable(It.IsAny<int>(), It.IsAny<string>())).ReturnsAsync(true);
         _mockTicketRepository.Setup(mockTicketRepository => mockTicketRepository.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>())).ReturnsAsync(true);
-        
+
         var ticket1 = new Ticket { Seat = Seat1A, Price = StandardTicketPrice, Status = ActiveStatus };
         var ticket2 = new Ticket { Seat = Seat1B, Price = StandardTicketPrice, Status = ActiveStatus };
         var tickets = new List<Ticket> { ticket1, ticket2 };
@@ -155,5 +172,166 @@ public class BookingServiceTests
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
         validationErrorMessage.Should().Contain("email format is invalid");
     }
-}
 
+    [Fact]
+    public void TestThatParseBookingParametersReturnsParsedResultWithArguments()
+    {
+        var defaultFlight = new Flight { FlightId = DefaultFlightId };
+        var defaultTestUser = UserFixture.CreateValidTestUser();
+        object[] bookingArguments = { defaultFlight, defaultTestUser, NormalRequestedPassengers };
+
+        var parsedBookingParameters = _bookingService.ParseBookingParameters(bookingArguments);
+
+        parsedBookingParameters.Flight.Should().Be(defaultFlight);
+        parsedBookingParameters.User.Should().Be(defaultTestUser);
+        parsedBookingParameters.RequestedPassengers.Should().Be(NormalRequestedPassengers);
+    }
+
+    [Fact]
+    public void TestThatStorePendingBookingStoresPendingBooking()
+    {
+        var defaultFlight = new Flight { FlightId = DefaultFlightId };
+
+        _bookingService.StorePendingBooking(defaultFlight, NormalRequestedPassengers);
+
+        UserSession.PendingBookingParameters.Should().NotBeNull();
+        UserSession.PendingBookingParameters.Should().HaveCount(2);
+        UserSession.PendingBookingParameters[0].Should().Be(defaultFlight);
+        UserSession.PendingBookingParameters[1].Should().Be(NormalRequestedPassengers);
+    }
+
+    [Fact]
+    public void TestThatApplySeatSelectionRemovesSeatIfAlreadyAssigned()
+    {
+        var seats = new List<string> { Seat1A, Seat1B };
+
+        var updated = _bookingService.ApplySeatSelection(seats, 0, Seat1A);
+
+        updated[0].Should().BeEmpty();
+        updated[1].Should().Be(Seat1B);
+    }
+
+    [Fact]
+    public void TestThatApplySeatSelectionAssignsSeatAndClearsDuplicate()
+    {
+        var seats = new List<string> { Seat1A, Seat2B };
+
+        var updated = _bookingService.ApplySeatSelection(seats, 1, Seat1A);
+
+        updated[0].Should().BeEmpty();
+        updated[1].Should().Be(Seat1A);
+    }
+
+    [Fact]
+    public void TestThatApplyAddOnUpdatesCorrectlyAdjustsList()
+    {
+        var priorityBoarding = new AddOn { AddOnId = 1, Name = "Priority Boarding" };
+        var extraLuggage = new AddOn { AddOnId = 2, Name = "Extra Luggage" };
+
+        var currentAddOns = new List<AddOn> { priorityBoarding };
+        var toAdd = new List<AddOn> { extraLuggage };
+        var toRemove = new List<AddOn> { priorityBoarding };
+
+        _bookingService.ApplyAddOnUpdates(currentAddOns, toAdd, toRemove);
+
+        currentAddOns.Should().Contain(extraLuggage);
+        currentAddOns.Should().NotContain(priorityBoarding);
+    }
+
+    [Fact]
+    public void TestThatGetInitialPassengerCountReturnsMinValue()
+    {
+        var initialPassengerCountRequested = _bookingService.GetInitialPassengerCount(ExpectedMaxPassengers, NormalRequestedPassengers);
+        initialPassengerCountRequested.Should().Be(NormalRequestedPassengers);
+
+        var limitedCount = _bookingService.GetInitialPassengerCount(2, 5);
+        limitedCount.Should().Be(2);
+
+        var fallbackCount = _bookingService.GetInitialPassengerCount(5, 0);
+        fallbackCount.Should().Be(1);
+    }
+
+    [Fact]
+    public void TestThatParseBookingParametersHandlesNullOrInvalidObject()
+    {
+        var parsedBookingParameters = _bookingService.ParseBookingParameters(invalidParameter);
+
+        parsedBookingParameters.Flight.Should().BeNull();
+        parsedBookingParameters.RequestedPassengers.Should().Be(ZeroRequestedPassengers);
+    }
+
+    [Fact]
+    public void TestThatParseBookingParametersHandlesOnlyFlightArgument()
+    {
+        var defaultFlight = new Flight { FlightId = DefaultFlightId };
+        object[] bookingArguments = { defaultFlight };
+
+        var parsedBookingParameters = _bookingService.ParseBookingParameters(bookingArguments);
+
+        parsedBookingParameters.Flight.Should().Be(defaultFlight);
+        parsedBookingParameters.RequestedPassengers.Should().Be(ZeroRequestedPassengers);
+    }
+
+    [Fact]
+    public void TestThatParseBookingParametersHandlesFlightAndPassengerCountArgument()
+    {
+        var defaultFlight = new Flight { FlightId = DefaultFlightId };
+        object[] bookingArguments = { defaultFlight, NormalRequestedPassengers };
+
+        var parsedBookingParameters = _bookingService.ParseBookingParameters(bookingArguments);
+
+        parsedBookingParameters.Flight.Should().Be(defaultFlight);
+        parsedBookingParameters.RequestedPassengers.Should().Be(NormalRequestedPassengers);
+    }
+
+    [Fact]
+    public void TestThatParseBookingParametersFallsBackToUserSession()
+    {
+        var defaultSessionUser = UserFixture.CreateValidTestUser();
+        UserSession.CurrentUser = defaultSessionUser;
+        var defaultFlight = new Flight { FlightId = DefaultFlightId };
+        object[] bookingArguments = { defaultFlight };
+
+        var parsedBookingParameters = _bookingService.ParseBookingParameters(bookingArguments);
+
+        parsedBookingParameters.User.Should().Be(defaultSessionUser);
+
+        UserSession.CurrentUser = null;
+    }
+
+    [Fact]
+    public void TestThatBuildSeatMapLayoutCalculatesRowsCorrectlyForExactMultiple()
+    {
+        var (layout, rowCount) = _bookingService.BuildSeatMapLayout(ExactMultipleCapacity);
+
+        rowCount.Should().Be(ExpectedExactMultipleRows);
+        layout.Should().HaveCount(ExpectedExactMultipleLayoutCount);
+    }
+
+    [Fact]
+    public void TestThatBuildSeatMapLayoutCalculatesRowsCorrectlyForNonMultiple()
+    {
+        var (layout, rowCount) = _bookingService.BuildSeatMapLayout(PartialMultipleCapacity);
+
+        rowCount.Should().Be(ExpectedPartialMultipleRows);
+        layout.Should().HaveCount(ExpectedPartialMultipleLayoutCount);
+    }
+
+    [Fact]
+    public void TestThatBuildSeatMapLayoutAssignsCorrectLabelsAndColumns()
+    {
+        var (layout, rowCount) = _bookingService.BuildSeatMapLayout(MinimumFlightCapacity);
+
+        rowCount.Should().Be(ExpectedMinimumCapacityRows);
+
+        layout[0].Label.Should().Be(Seat1A);
+        layout[2].Label.Should().Be(Seat1C);
+        layout[3].Label.Should().Be(Seat1D);
+        layout[5].Label.Should().Be(Seat1F);
+
+        layout[0].Column.Should().Be(Column0Index);
+        layout[2].Column.Should().Be(Column2Index);
+        layout[3].Column.Should().Be(Column4Index);
+        layout[5].Column.Should().Be(Column6Index);
+    }
+}

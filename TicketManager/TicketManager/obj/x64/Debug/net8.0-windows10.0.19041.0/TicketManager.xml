@@ -38,6 +38,27 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:TicketManager.Domain.BookingParametersResult">
+            <summary>
+            Result of parsing booking navigation parameters.
+            Used by BookingService.ParseBookingParameters to return
+            a clean, typed result instead of raw object arrays.
+            </summary>
+        </member>
+        <member name="T:TicketManager.Domain.MembershipPurchaseResult">
+            <summary>
+            Result of attempting a membership purchase.
+            Used by MembershipService.PurchaseMembership to return
+            success/failure with a message, so the ViewModel doesn't
+            need try/catch or session management logic.
+            </summary>
+        </member>
+        <member name="T:TicketManager.Domain.SeatDescriptor">
+            <summary>
+            Describes a single seat in the seat map.
+            The ViewModel computes these, and the View just creates a Button for each one.
+            </summary>
+        </member>
         <member name="M:TicketManager.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()

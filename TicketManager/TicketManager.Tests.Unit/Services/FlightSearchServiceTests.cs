@@ -31,6 +31,14 @@ public class FlightSearchServiceTests
     private const string FlightNumber2 = "RO102";
     private const string FlightNumber3 = "RO103";
     private const string GenericLocation = "location";
+    private const string NullPassengerInput = null;
+    private const string EmptyPassengerInput = "   ";
+    private const string ValidPassengerInputStr = "3";
+    private const int ValidPassengerInputInt = 3;
+    private const string ZeroPassengerInput = "0";
+    private const string NegativePassengerInput = "-2";
+    private const string InvalidTextPassengerInput = "abc";
+    private const int DefaultPassengerFallback = 1;
 
     private readonly Mock<IFlightRepository> _mockFlightRepository;
     private readonly FlightSearchService _flightSearchService;
@@ -89,6 +97,36 @@ public class FlightSearchServiceTests
 
         foundFlights.Should().HaveCount(ExpectedFlightsCountFiltered);
         foundFlights.First().FlightId.Should().Be(FlightId3);
+    }
+
+    [Fact]
+    public void TestThatParsePassengerCountReturnsNullForEmptyInput()
+    {
+        var resultNull = _flightSearchService.ParsePassengerCount(NullPassengerInput);
+        resultNull.Should().BeNull();
+
+        var resultEmpty = _flightSearchService.ParsePassengerCount(EmptyPassengerInput);
+        resultEmpty.Should().BeNull();
+    }
+
+    [Fact]
+    public void TestThatParsePassengerCountReturnsParsedValueForValidPositiveNumber()
+    {
+        var parsedValue = _flightSearchService.ParsePassengerCount(ValidPassengerInputStr);
+        parsedValue.Should().Be(ValidPassengerInputInt);
+    }
+
+    [Fact]
+    public void TestThatParsePassengerCountReturnsDefaultForZeroOrNegativeOrInvalidNumber()
+    {
+        var resultZero = _flightSearchService.ParsePassengerCount(ZeroPassengerInput);
+        resultZero.Should().Be(DefaultPassengerFallback);
+
+        var resultNegative = _flightSearchService.ParsePassengerCount(NegativePassengerInput);
+        resultNegative.Should().Be(DefaultPassengerFallback);
+
+        var resultText = _flightSearchService.ParsePassengerCount(InvalidTextPassengerInput);
+        resultText.Should().Be(DefaultPassengerFallback);
     }
 }
 
