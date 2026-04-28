@@ -8305,23 +8305,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alex\\.nuget\\packages\\": {},
+    "C:\\Users\\alexi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+      "projectUniqueName": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
       "projectName": "TicketManager",
-      "projectPath": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
-      "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alex\\Documents\\GitHub\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\obj\\",
+      "projectPath": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\TicketManager.csproj",
+      "packagesPath": "C:\\Users\\alexi\\.nuget\\packages\\",
+      "outputPath": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Alex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alexi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8399,27 +8399,27 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-arm64",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           },
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           },
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-arm64",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x86",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           },
           {
             "name": "Microsoft.Windows.SDK.NET.Ref",
@@ -8427,15 +8427,15 @@
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-arm64",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-            "version": "[8.0.16, 8.0.16]"
+            "version": "[8.0.21, 8.0.21]"
           }
         ],
         "frameworkReferences": {
@@ -8446,7 +8446,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
