@@ -40,16 +40,18 @@ namespace TicketManager.Tests.Unit.ViewModel
             const string ValidLocation = "Cluj-Napoca";
             const int ExpectedPassengerCount = 2;
             const float DefaultBasePrice = 100.0f;
+            const int ExpectedFlightId = 1;
+            const int ExpectedCapacity = 150;
             
             var flightList = new List<Flight>
             {
                 new Flight 
                 { 
-                    FlightId = 1, 
+                    FlightId = ExpectedFlightId, 
                     Route = new Route 
                     { 
                         Airport = new Airport { City = ValidLocation },
-                        Capacity = 150
+                        Capacity = ExpectedCapacity
                     }
                 }
             };
@@ -100,7 +102,8 @@ namespace TicketManager.Tests.Unit.ViewModel
         {
             UserSession.CurrentUser = null;
             const float DefaultBasePrice = 100.0f;
-            var flightDisplayModel = new FlightDisplayModel(new Flight { FlightId = 1 }, DefaultBasePrice);
+            const int ExpectedFlightId = 1;
+            var flightDisplayModel = new FlightDisplayModel(new Flight { FlightId = ExpectedFlightId }, DefaultBasePrice);
             const string PassengerInput = "1";
             viewModel.Passengers = PassengerInput;
 
@@ -115,9 +118,13 @@ namespace TicketManager.Tests.Unit.ViewModel
         [Fact]
         public void BookFlightCommand_UserLoggedIn_NavigatesToBookingPage()
         {
-            UserSession.CurrentUser = new User { UserId = 1, Email = "test@test.com" };
+            const int ExpectedUserId = 1;
+            const string ExpectedEmailAddress = "test@test.com";
+            UserSession.CurrentUser = new User { UserId = ExpectedUserId, Email = ExpectedEmailAddress };
+            
             const float DefaultBasePrice = 100.0f;
-            var flightDisplayModel = new FlightDisplayModel(new Flight { FlightId = 1 }, DefaultBasePrice);
+            const int ExpectedFlightId = 1;
+            var flightDisplayModel = new FlightDisplayModel(new Flight { FlightId = ExpectedFlightId }, DefaultBasePrice);
             const string PassengerInput = "1";
             viewModel.Passengers = PassengerInput;
 
