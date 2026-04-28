@@ -42,14 +42,14 @@ namespace TicketManager.Tests.Unit.ViewModel
             const float DefaultBasePrice = 100.0f;
             const int ExpectedFlightId = 1;
             const int ExpectedCapacity = 150;
-            
+
             var flightList = new List<Flight>
             {
-                new Flight 
-                { 
-                    FlightId = ExpectedFlightId, 
-                    Route = new Route 
-                    { 
+                new Flight
+                {
+                    FlightId = ExpectedFlightId,
+                    Route = new Route
+                    {
                         Airport = new Airport { City = ValidLocation },
                         Capacity = ExpectedCapacity
                     }
@@ -59,7 +59,7 @@ namespace TicketManager.Tests.Unit.ViewModel
             viewModel.Location = ValidLocation;
             viewModel.Passengers = ExpectedPassengerCount.ToString();
             viewModel.IsDeparture = true;
-            
+
             mockFlightSearchService.Setup(service => service.ParsePassengerCount(ExpectedPassengerCount.ToString())).Returns(ExpectedPassengerCount);
             mockFlightSearchService.Setup(service => service.SearchFlights(ValidLocation, true, It.IsAny<DateTime?>(), ExpectedPassengerCount)).Returns(flightList);
             mockPricingService.Setup(service => service.CalculateBasePrice(It.IsAny<Flight>())).Returns(DefaultBasePrice);
@@ -121,7 +121,7 @@ namespace TicketManager.Tests.Unit.ViewModel
             const int ExpectedUserId = 1;
             const string ExpectedEmailAddress = "test@test.com";
             UserSession.CurrentUser = new User { UserId = ExpectedUserId, Email = ExpectedEmailAddress };
-            
+
             const float DefaultBasePrice = 100.0f;
             const int ExpectedFlightId = 1;
             var flightDisplayModel = new FlightDisplayModel(new Flight { FlightId = ExpectedFlightId }, DefaultBasePrice);

@@ -34,35 +34,35 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     private const string DomainGmail = "@gmail.com";
     private const string UpcomingFilter = "Upcoming";
 
-    private readonly IUserRepository _userRepository;
-    private readonly IFlightRepository _flightRepository;
-    private readonly ITicketRepository _ticketRepository;
-    private readonly IAddOnRepository _addOnRepository;
-    private readonly IMembershipRepository _membershipRepository;
-    private readonly AuthService _authentificationService;
-    private readonly BookingService _bookingService;
-    private readonly PricingService _pricingService;
-    private readonly NavigationService _navigationService;
+    private readonly IUserRepository userRepository;
+    private readonly IFlightRepository flightRepository;
+    private readonly ITicketRepository ticketRepository;
+    private readonly IAddOnRepository addOnRepository;
+    private readonly IMembershipRepository membershipRepository;
+    private readonly AuthService authentificationService;
+    private readonly BookingService bookingService;
+    private readonly PricingService pricingService;
+    private readonly NavigationService navigationService;
 
     public AuthAndBookingViewModelIntegrationTests()
     {
         var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
-        _membershipRepository = new MembershipRepository(databaseConnectionFactory);
-        _userRepository = new UserRepository(databaseConnectionFactory, _membershipRepository);
-        _flightRepository = new FlightRepository(databaseConnectionFactory);
-        _ticketRepository = new TicketRepository(databaseConnectionFactory);
-        _addOnRepository = new AddOnRepository(databaseConnectionFactory);
+        membershipRepository = new MembershipRepository(databaseConnectionFactory);
+        userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
+        flightRepository = new FlightRepository(databaseConnectionFactory);
+        ticketRepository = new TicketRepository(databaseConnectionFactory);
+        addOnRepository = new AddOnRepository(databaseConnectionFactory);
 
-        _authentificationService = new AuthService(_userRepository);
-        _bookingService = new BookingService(_ticketRepository, _addOnRepository);
-        _pricingService = new PricingService();
-        _navigationService = new NavigationService();
+        authentificationService = new AuthService(userRepository);
+        bookingService = new BookingService(ticketRepository, addOnRepository);
+        pricingService = new PricingService();
+        navigationService = new NavigationService();
     }
 
     [Fact]
     public void AuthenticationViewModel_RegisterAndLogin_Succeeds()
     {
-        var authViewModel = new AuthViewModel(_authentificationService, _navigationService);
+        var authViewModel = new AuthViewModel(authentificationService, navigationService);
         string uniqueCode = Guid.NewGuid().ToString().Substring(0, 4);
         string email = $"vasile.mihai_{uniqueCode}@gmail.com";
         string password = "Parola@Vasile123";
@@ -79,7 +79,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
         authViewModel.IsLoginMode = true;
         authViewModel.EmailText = email;
         authViewModel.PasswordText = password;
-        authViewModel.ErrorMessage = "";
+        authViewModel.ErrorMessage = string.Empty;
 
         authViewModel.ActionCommand.Execute(null);
         authViewModel.IsAuthenticated.Should().BeTrue();
@@ -90,12 +90,12 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     [Fact]
     public void AuthenticationViewModel_InvalidPassword_LoginFails()
     {
-        var authViewModel = new AuthViewModel(_authentificationService, _navigationService);
+        var authViewModel = new AuthViewModel(authentificationService, navigationService);
         string uniqueCode = Guid.NewGuid().ToString().Substring(0, 4);
         string email = $"georgeta.popescu_{uniqueCode}@gmail.com";
         string correctPassword = "Parola@Georgeta456";
 
-        _authentificationService.Register(email, "0722556677", $"GeorgetaP_{uniqueCode}", correctPassword);
+        authentificationService.Register(email, "0722556677", $"GeorgetaP_{uniqueCode}", correctPassword);
 
         authViewModel.IsLoginMode = true;
         authViewModel.EmailText = email;
@@ -109,7 +109,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     [Fact]
     public async Task BookingViewModel_Initialization_UpdatesPrices()
     {
-        var bookingViewModel = new BookingViewModel(_bookingService, _pricingService, _navigationService);
+        var bookingViewModel = new BookingViewModel(bookingService, pricingService, navigationService);
 
         var user = new User { UserId = 1, Email = "test@gmail.com", Username = "test" };
         var flight = new Flight
@@ -128,7 +128,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     [Fact]
     public async Task BookingViewModel_AddPassenger_UpdatesState()
     {
-        var bookingViewModel = new BookingViewModel(_bookingService, _pricingService, _navigationService);
+        var bookingViewModel = new BookingViewModel(bookingService, pricingService, navigationService);
 
         var user = new User { UserId = 1, Email = "rares.ionescu@gmail.com", Username = "rares" };
         var flight = new Flight
@@ -146,7 +146,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     [Fact]
     public async Task BookingViewModel_RemovePassenger_UpdatesCapacity()
     {
-        var bookingViewModel = new BookingViewModel(_bookingService, _pricingService, _navigationService);
+        var bookingViewModel = new BookingViewModel(bookingService, pricingService, navigationService);
 
         var user = new User { UserId = 1, Email = "adrian.stefan@gmail.com", Username = "adrian" };
         var flight = new Flight
@@ -172,15 +172,14 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
         string email = $"cosmin.tudor_{uniqueCode}@gmail.com";
         string password = "Parola@Cosmin789";
 
-        _authentificationService.Register(email, "0733667788", $"CosminT_{uniqueCode}", password);
-        var user = _authentificationService.Login(email, password);
+        authentificationService.Register(email, "0733667788", $"CosminT_{uniqueCode}", password);
+        var user = authentificationService.Login(email, password);
 
         UserSession.CurrentUser = user;
         var dashboardViewModel = new DashboardViewModel(
-            new DashboardService(_ticketRepository),
-            new CancellationService(_ticketRepository),
-            _navigationService
-        );
+            new DashboardService(ticketRepository),
+            new CancellationService(ticketRepository),
+            navigationService);
 
         dashboardViewModel.LoadUserTickets();
 
@@ -194,10 +193,9 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
         UserSession.CurrentUser = user;
 
         var dashboardViewModel = new DashboardViewModel(
-            new DashboardService(_ticketRepository),
-            new CancellationService(_ticketRepository),
-            _navigationService
-        );
+            new DashboardService(ticketRepository),
+            new CancellationService(ticketRepository),
+            navigationService);
 
         dashboardViewModel.SelectedTicketFilter = "Upcoming";
 

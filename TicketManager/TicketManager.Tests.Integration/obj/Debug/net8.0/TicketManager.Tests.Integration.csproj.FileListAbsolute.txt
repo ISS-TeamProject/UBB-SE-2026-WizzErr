@@ -834,3 +834,5 @@ C:\Users\Oricum\OneDrive\Desktop\PROIECT ISS\UBB-SE-2026-WizzErr\TicketManager\T
 C:\Users\Oricum\OneDrive\Desktop\PROIECT ISS\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Integration\obj\Debug\net8.0\TicketManager.Tests.Integration.pdb
 C:\Users\Oricum\OneDrive\Desktop\PROIECT ISS\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Integration\obj\Debug\net8.0\TicketManager.Tests.Integration.genruntimeconfig.cache
 C:\Users\Oricum\OneDrive\Desktop\PROIECT ISS\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Integration\obj\Debug\net8.0\ref\TicketManager.Tests.Integration.dll
+C:\Users\Gabi\Desktop\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Integration\obj\Debug\net8.0\TicketManager.Tests.Integration.xml
+C:\Users\Gabi\Desktop\UBB-SE-2026-WizzErr\TicketManager\TicketManager.Tests.Integration\bin\Debug\net8.0\TicketManager.Tests.Integration.xml

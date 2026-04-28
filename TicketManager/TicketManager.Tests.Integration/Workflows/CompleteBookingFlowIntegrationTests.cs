@@ -22,21 +22,21 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
     private const float TicketPrice = 100.0f;
     private const int SinglePassenger = 1;
     private const string DomainGmail = "@gmail.com";
-    private readonly IUserRepository _userRepository;
-    private readonly ITicketRepository _ticketRepository;
-    private readonly AuthService _authentificationService;
-    private readonly BookingService _bookingService;
-    private readonly PricingService _pricingService;
+    private readonly IUserRepository userRepository;
+    private readonly ITicketRepository ticketRepository;
+    private readonly AuthService authentificationService;
+    private readonly BookingService bookingService;
+    private readonly PricingService pricingService;
 
     public CompleteBookingFlowIntegrationTests()
     {
         var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
         var membershipRepository = new MembershipRepository(databaseConnectionFactory);
-        _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
-        _ticketRepository = new TicketRepository(databaseConnectionFactory);
-        _authentificationService = new AuthService(_userRepository);
-        _bookingService = new BookingService(_ticketRepository, new AddOnRepository(databaseConnectionFactory));
-        _pricingService = new PricingService();
+        userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
+        ticketRepository = new TicketRepository(databaseConnectionFactory);
+        authentificationService = new AuthService(userRepository);
+        bookingService = new BookingService(ticketRepository, new AddOnRepository(databaseConnectionFactory));
+        pricingService = new PricingService();
     }
 
     private Flight CreateFlightWithBasePrice(float targetPrice)
@@ -56,14 +56,14 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
         string uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         string email = $"{DanEmail}_{uniqueCode}{DomainGmail}";
         string password = DanPassword;
-        _authentificationService.Register(email, DefaultPhone, $"{DanUsername}_{uniqueCode}", password);
+        authentificationService.Register(email, DefaultPhone, $"{DanUsername}_{uniqueCode}", password);
 
-        var user = _authentificationService.Login(email, password);
+        var user = authentificationService.Login(email, password);
         var flight = CreateFlightWithBasePrice(TargetPrice);
         var passengers = PassengerDataFixture.CreateValidPassengerList(SinglePassenger);
 
-        var tickets = _bookingService.CreateTickets(flight, user, passengers, TargetPrice);
-        var saveResult = await _bookingService.SaveTicketsAsync(tickets);
+        var tickets = bookingService.CreateTickets(flight, user, passengers, TargetPrice);
+        var saveResult = await bookingService.SaveTicketsAsync(tickets);
 
         saveResult.Should().BeTrue();
     }
@@ -76,7 +76,7 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
         var flight = CreateFlightWithBasePrice(TicketPrice);
         var tickets = new List<Ticket> { new Ticket { Price = TicketPrice } };
 
-        var priceBreakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+        var priceBreakdown = pricingService.CalculatePriceBreakdown(flight, user, tickets);
 
         priceBreakdown.MembershipSavings.Should().BeGreaterThan(0);
         priceBreakdown.FinalTotal.Should().BeLessThan(TicketPrice);

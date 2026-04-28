@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using FluentAssertions;
 using TicketManager.Domain;
 using TicketManager.Service;
 using TicketManager.Tests.Unit.Fixtures;
@@ -28,7 +28,7 @@ public class PricingServiceTests
     private const int UnmatchedAddOnId = 99;
     private const float ExpectedDefaultBreakdownValue = 0f;
 
-    private readonly PricingService _pricingService = new PricingService();
+    private readonly PricingService pricingService = new PricingService();
 
     private Flight CreateFlightWithBasePrice(float targetPrice)
     {
@@ -49,9 +49,9 @@ public class PricingServiceTests
     public void CalculateBasePrice_FlightOrRouteNull_ReturnsZero()
     {
         var flightWithNoRoute = new Flight { Route = null };
-        
-        var resultForNullFlight = _pricingService.CalculateBasePrice(null!);
-        var resultForNullRoute = _pricingService.CalculateBasePrice(flightWithNoRoute);
+
+        var resultForNullFlight = pricingService.CalculateBasePrice(null!);
+        var resultForNullRoute = pricingService.CalculateBasePrice(flightWithNoRoute);
 
         resultForNullFlight.Should().Be(ZeroPrice);
         resultForNullRoute.Should().Be(ZeroPrice);
@@ -65,11 +65,11 @@ public class PricingServiceTests
             Route = new Route
             {
                 DepartureTime = DateTime.Now,
-                ArrivalTime = DateTime.Now.AddMinutes(ShortFlightDurationMinutes) 
+                ArrivalTime = DateTime.Now.AddMinutes(ShortFlightDurationMinutes)
             }
         };
 
-        var price = _pricingService.CalculateBasePrice(flight);
+        var price = pricingService.CalculateBasePrice(flight);
 
         price.Should().Be(MinimumFlightPrice);
     }
@@ -82,11 +82,11 @@ public class PricingServiceTests
             Route = new Route
             {
                 DepartureTime = DateTime.Now,
-                ArrivalTime = DateTime.Now.AddMinutes(LongFlightDurationMinutes) 
+                ArrivalTime = DateTime.Now.AddMinutes(LongFlightDurationMinutes)
             }
         };
 
-        var price = _pricingService.CalculateBasePrice(flight);
+        var price = pricingService.CalculateBasePrice(flight);
 
         price.Should().Be(LongFlightDurationMinutes * PricePerMinuteMultiplier);
     }
@@ -105,9 +105,9 @@ public class PricingServiceTests
             }
         };
 
-        var totalPrice = _pricingService.CalculateTotalPrice(ticket);
+        var totalPrice = pricingService.CalculateTotalPrice(ticket);
 
-        totalPrice.Should().Be(StandardFlightPrice + StandardAddOnPrice1 + StandardAddOnPrice2); 
+        totalPrice.Should().Be(StandardFlightPrice + StandardAddOnPrice1 + StandardAddOnPrice2);
     }
 
     [Fact]
@@ -123,10 +123,10 @@ public class PricingServiceTests
             SelectedAddOns = new List<AddOn>()
         };
 
-        var totalPrice = _pricingService.CalculateTotalPrice(ticket);
+        var totalPrice = pricingService.CalculateTotalPrice(ticket);
 
         float expectedPrice = StandardFlightPrice - (StandardFlightPrice * (StandardFlightDiscountPercentage / PercentageDivisor));
-        totalPrice.Should().Be(expectedPrice); 
+        totalPrice.Should().Be(expectedPrice);
     }
 
     [Fact]
@@ -143,17 +143,17 @@ public class PricingServiceTests
             FlightDiscountPercentage = StandardFlightDiscountPercentage,
             AddonDiscounts = new List<MembershipAddonDiscount> { addonDiscount }
         };
-        
+
         var user = UserFixture.CreateValidTestUser(membership: membership);
 
         var ticket = new Ticket
         {
-            Price = StandardFlightPrice, 
+            Price = StandardFlightPrice,
             User = user,
             SelectedAddOns = new List<AddOn> { addon1, addon2 }
         };
 
-        var totalPrice = _pricingService.CalculateTotalPrice(ticket);
+        var totalPrice = pricingService.CalculateTotalPrice(ticket);
 
         float expectedFlightPrice = StandardFlightPrice - (StandardFlightPrice * (StandardFlightDiscountPercentage / PercentageDivisor));
         float expectedAddon1Price = StandardAddOnPrice1 - (StandardAddOnPrice1 * (StandardAddOnDiscountPercentage / PercentageDivisor));
@@ -170,7 +170,7 @@ public class PricingServiceTests
         var ticket = new Ticket { Price = StandardFlightPrice };
         var tickets = new List<Ticket> { ticket };
 
-        var breakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+        var breakdown = pricingService.CalculatePriceBreakdown(flight, user, tickets);
 
         breakdown.FinalTotal.Should().Be(StandardFlightPrice);
         breakdown.MembershipSavings.Should().Be(ZeroPrice);
@@ -182,11 +182,11 @@ public class PricingServiceTests
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var membership = new Membership { MembershipId = 1, Name = "Premium", FlightDiscountPercentage = StandardFlightDiscountPercentage, AddonDiscounts = new List<MembershipAddonDiscount>() };
         var user = UserFixture.CreateValidTestUser(membership: membership);
-        
+
         var ticket = new Ticket { Price = StandardFlightPrice };
         var tickets = new List<Ticket> { ticket };
 
-        var breakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+        var breakdown = pricingService.CalculatePriceBreakdown(flight, user, tickets);
 
         float expectedDiscount = StandardFlightPrice * (StandardFlightDiscountPercentage / PercentageDivisor);
         breakdown.MembershipSavings.Should().Be(expectedDiscount);
@@ -202,7 +202,7 @@ public class PricingServiceTests
         ticket.SelectedAddOns.Add(new AddOn { Name = "Bagaj", BasePrice = StandardAddOnPrice1 });
         var tickets = new List<Ticket> { ticket };
 
-        var breakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+        var breakdown = pricingService.CalculatePriceBreakdown(flight, user, tickets);
 
         breakdown.AddOnsTotal.Should().Be(StandardAddOnPrice1);
         breakdown.FinalTotal.Should().Be(StandardFlightPrice + StandardAddOnPrice1);
@@ -213,13 +213,13 @@ public class PricingServiceTests
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var user = UserFixture.CreateBasicTestUser();
-        var tickets = new List<Ticket> 
-        { 
+        var tickets = new List<Ticket>
+        {
             new Ticket { Price = StandardFlightPrice },
             new Ticket { Price = StandardFlightPrice }
         };
 
-        var breakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+        var breakdown = pricingService.CalculatePriceBreakdown(flight, user, tickets);
 
         breakdown.BasePriceTotal.Should().Be(StandardFlightPrice * tickets.Count);
         breakdown.FinalTotal.Should().Be(StandardFlightPrice * tickets.Count);
@@ -237,7 +237,7 @@ public class PricingServiceTests
             new Ticket { Price = StandardFlightPrice }
         };
 
-        var breakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+        var breakdown = pricingService.CalculatePriceBreakdown(flight, user, tickets);
 
         float expectedSavings = (StandardFlightPrice * (StandardFlightDiscountPercentage / PercentageDivisor)) * tickets.Count;
         breakdown.MembershipSavings.Should().Be(expectedSavings);
@@ -262,7 +262,7 @@ public class PricingServiceTests
         var ticket2 = new Ticket { Price = StandardFlightPrice, SelectedAddOns = new List<AddOn> { addon } };
         var tickets = new List<Ticket> { ticket1, ticket2 };
 
-        var breakdown = _pricingService.CalculatePriceBreakdown(flight, user, tickets);
+        var breakdown = pricingService.CalculatePriceBreakdown(flight, user, tickets);
 
         breakdown.BasePriceTotal.Should().Be(StandardFlightPrice * tickets.Count);
         breakdown.AddOnsTotal.Should().Be(StandardAddOnPrice1 * tickets.Count);
@@ -276,9 +276,9 @@ public class PricingServiceTests
         var user = UserFixture.CreateBasicTestUser();
         var emptyTickets = new List<Ticket>();
 
-        var breakdownNullFlight = _pricingService.CalculatePriceBreakdown(null!, user, emptyTickets);
-        var breakdownNullTickets = _pricingService.CalculatePriceBreakdown(flight, user, null!);
-        var breakdownEmptyTickets = _pricingService.CalculatePriceBreakdown(flight, user, emptyTickets);
+        var breakdownNullFlight = pricingService.CalculatePriceBreakdown(null!, user, emptyTickets);
+        var breakdownNullTickets = pricingService.CalculatePriceBreakdown(flight, user, null!);
+        var breakdownEmptyTickets = pricingService.CalculatePriceBreakdown(flight, user, emptyTickets);
 
         breakdownNullFlight.FinalTotal.Should().Be(ExpectedDefaultBreakdownValue);
         breakdownNullTickets.FinalTotal.Should().Be(ExpectedDefaultBreakdownValue);
@@ -288,25 +288,25 @@ public class PricingServiceTests
     [Fact]
     public void CalculateTotalPrice_DiscountsListNull_AppliesNoAddonDiscount()
     {
-        var membership = new Membership 
-        { 
-            MembershipId = 1, 
-            Name = "Premium", 
-            FlightDiscountPercentage = StandardFlightDiscountPercentage, 
+        var membership = new Membership
+        {
+            MembershipId = 1,
+            Name = "Premium",
+            FlightDiscountPercentage = StandardFlightDiscountPercentage,
             AddonDiscounts = null!
         };
         var user = UserFixture.CreateValidTestUser(membership: membership);
 
         var addon = new AddOn { AddOnId = BagageAddOnId, Name = "Bagaj", BasePrice = StandardAddOnPrice1 };
-        
+
         var ticket = new Ticket
         {
-            Price = StandardFlightPrice, 
+            Price = StandardFlightPrice,
             User = user,
             SelectedAddOns = new List<AddOn> { addon }
         };
 
-        var totalPrice = _pricingService.CalculateTotalPrice(ticket);
+        var totalPrice = pricingService.CalculateTotalPrice(ticket);
 
         float expectedFlightPrice = StandardFlightPrice - (StandardFlightPrice * (StandardFlightDiscountPercentage / PercentageDivisor));
         float expectedPrice = expectedFlightPrice + StandardAddOnPrice1;
@@ -319,7 +319,7 @@ public class PricingServiceTests
     {
         var selectedAddon = new AddOn { AddOnId = BagageAddOnId, Name = "Bagaj", BasePrice = StandardAddOnPrice1 };
         var discountedAddon = new AddOn { AddOnId = UnmatchedAddOnId, Name = "Unrelated", BasePrice = StandardAddOnPrice2 };
-        
+
         var addonDiscount = new MembershipAddonDiscount { AddOn = discountedAddon, DiscountPercentage = StandardAddOnDiscountPercentage };
         var membership = new Membership
         {
@@ -332,15 +332,15 @@ public class PricingServiceTests
 
         var ticket = new Ticket
         {
-            Price = StandardFlightPrice, 
+            Price = StandardFlightPrice,
             User = user,
             SelectedAddOns = new List<AddOn> { selectedAddon }
         };
 
-        var totalPrice = _pricingService.CalculateTotalPrice(ticket);
+        var totalPrice = pricingService.CalculateTotalPrice(ticket);
 
         float expectedFlightPrice = StandardFlightPrice - (StandardFlightPrice * (StandardFlightDiscountPercentage / PercentageDivisor));
-        float expectedPrice = expectedFlightPrice + StandardAddOnPrice1; 
+        float expectedPrice = expectedFlightPrice + StandardAddOnPrice1;
 
         totalPrice.Should().Be(expectedPrice);
     }
