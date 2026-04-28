@@ -117,20 +117,9 @@ namespace TicketManager.ViewModel
                 return;
             }
 
-            try
-            {
-                var updatedMembership = this.membershipService.UpgradeUserMembership(
-                    UserSession.CurrentUser.UserId, membershipId);
-                UserSession.CurrentUser.Membership = updatedMembership;
-
-                this.PurchaseSucceeded = true;
-                this.PurchaseResultMessage = "Your membership purchase was completed successfully.";
-            }
-            catch
-            {
-                this.PurchaseSucceeded = false;
-                this.PurchaseResultMessage = "Membership purchase could not be completed. Please try again.";
-            }
+            var result = this.membershipService.PurchaseMembership(UserSession.CurrentUser.UserId, membershipId);
+            this.PurchaseSucceeded = result.Succeeded;
+            this.PurchaseResultMessage = result.Message;
         }
     }
 }

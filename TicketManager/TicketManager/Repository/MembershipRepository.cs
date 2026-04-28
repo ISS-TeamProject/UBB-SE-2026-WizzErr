@@ -22,11 +22,11 @@ namespace TicketManager.Repository
                 connection.Open();
                 string query = "SELECT membership_id, name, flight_discount_percentage FROM Memberships WHERE membership_id = @MembershipId";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getMembershipByIdCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@MembershipId", id);
+                    getMembershipByIdCommand.Parameters.AddWithValue("@MembershipId", id);
 
-                    using (var reader = command.ExecuteReader())
+                    using (var reader = getMembershipByIdCommand.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -52,8 +52,8 @@ namespace TicketManager.Repository
                 connection.Open();
                 string query = "SELECT membership_id, name, flight_discount_percentage FROM Memberships";
 
-                using (var command = new SqlCommand(query, connection))
-                using (var reader = command.ExecuteReader())
+                using (var getAllMembershipsCommand = new SqlCommand(query, connection))
+                using (var reader = getAllMembershipsCommand.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -84,11 +84,11 @@ namespace TicketManager.Repository
                     INNER JOIN AddOns a ON mad.addon_id = a.addon_id
                     WHERE mad.membership_id = @MembershipId";
 
-                using (var command = new SqlCommand(query, connection))
+                using (var getAddOnDiscountsCommand = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@MembershipId", membershipId);
+                    getAddOnDiscountsCommand.Parameters.AddWithValue("@MembershipId", membershipId);
 
-                    using (var reader = command.ExecuteReader())
+                    using (var reader = getAddOnDiscountsCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {

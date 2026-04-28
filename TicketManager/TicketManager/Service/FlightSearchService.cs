@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TicketManager.Domain;
@@ -39,6 +39,20 @@ namespace TicketManager.Service
             }
 
             return flights;
+        }
+        public int? ParsePassengerCount(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            if (int.TryParse(input, out var parsed) && parsed > 0)
+            {
+                return parsed;
+            }
+
+            return 1;
         }
     }
 }

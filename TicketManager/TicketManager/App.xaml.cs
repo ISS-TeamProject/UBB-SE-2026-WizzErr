@@ -37,7 +37,7 @@ namespace TicketManager
             ConfigureServices();
         }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override void OnLaunched(LaunchActivatedEventArgs eventArgs)
         {
             window = new MainWindow();
             window.Activate();

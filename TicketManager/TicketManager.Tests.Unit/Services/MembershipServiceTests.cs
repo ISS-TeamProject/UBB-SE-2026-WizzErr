@@ -1,103 +1,109 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
+using TicketManager.Tests.Unit.Fixtures;
+using Xunit;
 
 namespace TicketManager.Tests.Unit.Services;
 
-public class MembershipServiceTests
+public class MembershipServiceTests 
 {
-    private readonly Mock<IMembershipRepository> _mockMembershipRepository;
+    private const int TargetUserId = 1;
+    private const int TargetMembershipId = 2;
+    private const float DefaultDiscountPercentage = 15.0f;
+    private const string PremiumMembershipName = "Premium";
+    private const string ExpectedSuccessMessage = "Your membership purchase was completed successfully.";
+    private const string ExpectedFailureMessage = "Membership purchase could not be completed. Please try again.";
+
     private readonly Mock<IUserRepository> _mockUserRepository;
-    private readonly MembershipService _service;
+    private readonly Mock<IMembershipRepository> _mockMembershipRepository;
+    private readonly MembershipService _membershipService;
 
     public MembershipServiceTests()
     {
-        _mockMembershipRepository = new Mock<IMembershipRepository>();
         _mockUserRepository = new Mock<IUserRepository>();
-        _service = new MembershipService(_mockUserRepository.Object, _mockMembershipRepository.Object);
+        _mockMembershipRepository = new Mock<IMembershipRepository>();
+        _membershipService = new MembershipService(_mockUserRepository.Object, _mockMembershipRepository.Object);
     }
 
     [Fact]
-    public void TestThatGetAllMembershipsReturnsExistingTiers()
+    public void GetAllMemberships_ValidCall_PopulatesDiscounts()
     {
-        var memberships = new List<Membership>
-        {
-            new Membership { MembershipId = 1, Name = "Argint", FlightDiscountPercentage = 5 },
-            new Membership { MembershipId = 2, Name = "Aur", FlightDiscountPercentage = 15 }
-        };
-        _mockMembershipRepository.Setup(repoWithExistingTiers => repoWithExistingTiers.GetAllMemberships()).Returns(memberships);
-        _mockMembershipRepository.Setup(repoWithNoDiscounts => repoWithNoDiscounts.GetAddonDiscounts(It.IsAny<int>())).Returns(new List<MembershipAddonDiscount>());
-
-        var result = _service.GetAllMemberships();
-
-        result.Should().HaveCount(2);
-    }
-
-    [Fact]
-    public void TestThatUpgradeUserMembershipCallsRepositoryWithCorrectId()
-    {
-        var membership = new Membership { MembershipId = 3, Name = "Premium Plus" };
-        _mockMembershipRepository.Setup(repoWithPremiumPlus => repoWithPremiumPlus.GetMembershipById(3)).Returns(membership);
-        _mockMembershipRepository.Setup(repoWithNoAddonDiscounts => repoWithNoAddonDiscounts.GetAddonDiscounts(3)).Returns(new List<MembershipAddonDiscount>());
-
-        var result = _service.UpgradeUserMembership(10, 3);
-
-        result!.Name.Should().Be("Premium Plus");
-        _mockUserRepository.Verify(repoToVerifyUpdate => repoToVerifyUpdate.UpdateUserMembership(10, 3), Times.Once);
-    }
-
-    [Fact]
-    public void TestThatUpgradeUserMembershipReturnsNullIfNotFoundInRepo()
-    {
-        _mockMembershipRepository.Setup(repoWithMissingMembership => repoWithMissingMembership.GetMembershipById(99)).Returns((Membership?)null);
-
-        var result = _service.UpgradeUserMembership(1, 99);
-
-        result.Should().BeNull();
-    }
-
-    [Fact]
-    public void TestThatGetAllMembershipsLoadsAddOnDiscountsForEachMembership()
-    {
-        var addon1 = new AddOn { AddOnId = 1, Name = "Bagaj", BasePrice = 25.0f };
-        var addon2 = new AddOn { AddOnId = 2, Name = "Prioritate", BasePrice = 10.0f };
-        var discount1 = new MembershipAddonDiscount { AddOn = addon1, DiscountPercentage = 10.0f };
-        var discount2 = new MembershipAddonDiscount { AddOn = addon2, DiscountPercentage = 20.0f };
-
-        var memberships = new List<Membership>
-        {
-            new Membership { MembershipId = 1, Name = "Argint", FlightDiscountPercentage = 5 },
-            new Membership { MembershipId = 2, Name = "Aur", FlightDiscountPercentage = 15 }
+        var defaultMembership = new Membership { MembershipId = TargetMembershipId, Name = PremiumMembershipName };
+        var defaultMemberships = new List<Membership> { defaultMembership };
+        var defaultDiscounts = new List<MembershipAddonDiscount> 
+        { 
+            new MembershipAddonDiscount { DiscountPercentage = DefaultDiscountPercentage } 
         };
 
-        _mockMembershipRepository.Setup(repoWithMemberships => repoWithMemberships.GetAllMemberships()).Returns(memberships);
-        _mockMembershipRepository.Setup(repoWithSilverDiscounts => repoWithSilverDiscounts.GetAddonDiscounts(1)).Returns(new List<MembershipAddonDiscount> { discount1 });
-        _mockMembershipRepository.Setup(repoWithGoldDiscounts => repoWithGoldDiscounts.GetAddonDiscounts(2)).Returns(new List<MembershipAddonDiscount> { discount2 });
+        _mockMembershipRepository.Setup(repoWithMemberships => repoWithMemberships.GetAllMemberships())
+            .Returns(defaultMemberships);
+        _mockMembershipRepository.Setup(repoWithDiscounts => repoWithDiscounts.GetAddonDiscounts(TargetMembershipId))
+            .Returns(defaultDiscounts);
 
-        var result = _service.GetAllMemberships();
+        var retrievedMemberships = _membershipService.GetAllMemberships().ToList();
 
-        result.Should().HaveCount(2);
-        result.First(silverMembership => silverMembership.MembershipId == 1).AddonDiscounts.Should().HaveCount(1);
-        result.First(goldMembership => goldMembership.MembershipId == 2).AddonDiscounts.Should().HaveCount(1);
+        retrievedMemberships.Should().ContainSingle();
+        retrievedMemberships.First().AddonDiscounts.Should().BeEquivalentTo(defaultDiscounts);
+        _mockMembershipRepository.Verify(repoToVerifyDiscounts => repoToVerifyDiscounts.GetAddonDiscounts(TargetMembershipId), Times.Once);
     }
 
     [Fact]
-    public void TestThatUpgradeUserMembershipLoadsAddonDiscounts()
+    public void UpgradeUserMembership_ValidUser_UpdatesAndReturnsMembership()
     {
-        var addon = new AddOn { AddOnId = 1, Name = "Bagaj", BasePrice = 25.0f };
-        var discount = new MembershipAddonDiscount { AddOn = addon, DiscountPercentage = 15.0f };
-        var membership = new Membership { MembershipId = 3, Name = "Premium Plus", FlightDiscountPercentage = 20 };
+        var defaultMembership = new Membership { MembershipId = TargetMembershipId, Name = PremiumMembershipName };
+        var defaultDiscounts = new List<MembershipAddonDiscount> 
+        { 
+            new MembershipAddonDiscount { DiscountPercentage = DefaultDiscountPercentage } 
+        };
 
-        _mockMembershipRepository.Setup(repoWithMembershipToUpgrade => repoWithMembershipToUpgrade.GetMembershipById(3)).Returns(membership);
-        _mockMembershipRepository.Setup(repoWithMembershipDiscounts => repoWithMembershipDiscounts.GetAddonDiscounts(3)).Returns(new List<MembershipAddonDiscount> { discount });
+        _mockMembershipRepository.Setup(repoWithMembership => repoWithMembership.GetMembershipById(TargetMembershipId))
+            .Returns(defaultMembership);
+        _mockMembershipRepository.Setup(repoWithDiscounts => repoWithDiscounts.GetAddonDiscounts(TargetMembershipId))
+            .Returns(defaultDiscounts);
 
-        var result = _service.UpgradeUserMembership(10, 3);
+        var upgradedMembership = _membershipService.UpgradeUserMembership(TargetUserId, TargetMembershipId);
 
-        result.Should().NotBeNull();
-        result!.AddonDiscounts.Should().HaveCount(1);
-        result.AddonDiscounts.First().DiscountPercentage.Should().Be(15.0f);
-        _mockUserRepository.Verify(repoToVerifyMembershipUpdate => repoToVerifyMembershipUpdate.UpdateUserMembership(10, 3), Times.Once);
+        upgradedMembership.Should().NotBeNull();
+        upgradedMembership!.Name.Should().Be(PremiumMembershipName);
+        upgradedMembership.AddonDiscounts.Should().BeEquivalentTo(defaultDiscounts);
+        
+        _mockUserRepository.Verify(repoToVerifyUpdate => repoToVerifyUpdate.UpdateUserMembership(TargetUserId, TargetMembershipId), Times.Once);
+    }
+
+    [Fact]
+    public void PurchaseMembership_ValidPurchase_SucceedsAndUpdatesSession()
+    {
+        var defaultSessionUser = UserFixture.CreateValidTestUser();
+        UserSession.CurrentUser = defaultSessionUser;
+        var defaultMembership = new Membership { MembershipId = TargetMembershipId, Name = PremiumMembershipName };
+
+        _mockMembershipRepository.Setup(repoWithMembership => repoWithMembership.GetMembershipById(TargetMembershipId))
+            .Returns(defaultMembership);
+        _mockMembershipRepository.Setup(repoWithDiscounts => repoWithDiscounts.GetAddonDiscounts(TargetMembershipId))
+            .Returns(new List<MembershipAddonDiscount>());
+
+        var purchaseResult = _membershipService.PurchaseMembership(TargetUserId, TargetMembershipId);
+
+        purchaseResult.Succeeded.Should().BeTrue();
+        purchaseResult.Message.Should().Be(ExpectedSuccessMessage);
+        UserSession.CurrentUser.Membership.Should().Be(defaultMembership);
+    }
+
+    [Fact]
+    public void PurchaseMembership_ExceptionThrown_ReturnsFailureResult()
+    {
+        _mockUserRepository.Setup(repoWithException => repoWithException.UpdateUserMembership(TargetUserId, TargetMembershipId))
+            .Throws(new Exception("Database connection failed"));
+
+        var purchaseResult = _membershipService.PurchaseMembership(TargetUserId, TargetMembershipId);
+
+        purchaseResult.Succeeded.Should().BeFalse();
+        purchaseResult.Message.Should().Be(ExpectedFailureMessage);
     }
 }

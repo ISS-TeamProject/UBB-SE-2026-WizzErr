@@ -17,6 +17,7 @@ namespace TicketManager.Service
         private const int PdfHeaderFontSize = 28;
         private const int PdfTicketIdFontSize = 14;
         private const int PdfSectionHeaderFontSize = 16;
+        private const int PdfPageMarginCentimetres = 2;
         private const int PdfColumnSpacing = 5;
         private const int PdfSectionPaddingTop = 10;
         private const int PdfTotalPricePaddingTop = 15;
@@ -50,7 +51,7 @@ namespace TicketManager.Service
                 container.Page(page =>
                 {
                     page.Size(PageSizes.A4);
-                    page.Margin(2, Unit.Centimetre);
+                    page.Margin(PdfPageMarginCentimetres, Unit.Centimetre);
                     page.PageColor(Colors.White);
                     page.DefaultTextStyle(textStyle => textStyle.FontSize(PdfDefaultFontSize));
 

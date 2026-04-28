@@ -147,19 +147,19 @@ namespace TicketManager.ViewModel
             }
         }
 
-        private int maxPassengers;
-        public int MaxPassengers
+        private int maximumPassengers;
+        public int MaximumPassengers
         {
-            get => maxPassengers;
+            get => maximumPassengers;
             set
             {
-                maxPassengers = value;
+                maximumPassengers = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CanAddPassenger));
             }
         }
 
-        public bool CanAddPassenger => Passengers.Count < MaxPassengers;
+        public bool CanAddPassenger => Passengers.Count < MaximumPassengers;
         public bool CanRemovePassenger => Passengers.Count > 1;
         public bool CanConfirmBooking =>
             !isSaving &&
@@ -186,52 +186,63 @@ namespace TicketManager.ViewModel
         public ICommand RemovePassengerCommand { get; }
         public ICommand ConfirmBookingCommand { get; }
 
+        public List<SeatDescriptor> SeatMapLayout { get; private set; } = new List<SeatDescriptor>();
+
+        public int SeatMapRowCount { get; private set; }
+
         public async Task<bool> OnNavigatedToAsync(object parameter)
         {
-            Flight? selectedFlight = null;
-            User? localUser = null;
-            int requestedPassengers = 0;
+            var parsed = bookingService.ParseBookingParameters(parameter);
 
-            if (parameter is object[] args && args.Length > 0)
+            if (parsed == null)
             {
-                selectedFlight = args[0] as Flight;
+                if (parameter is object[] arr && arr.Length > 0 && arr[0] is Flight fallbackFlight)
+                {
+                    User? fallbackUser = null;
+                    int requested = 0;
+                    foreach (var item in arr)
+                    {
+                        if (fallbackUser == null && item is User u)
+                        {
+                            fallbackUser = u;
+                        }
+                        else if (requested == 0 && item is int rp)
+                        {
+                            requested = rp;
+                        }
+                    }
 
-                if (args.Length >= 3)
-                {
-                    localUser = args[1] as User;
-                    if (args[2] is int count)
+                    parsed = new BookingParametersResult
                     {
-                        requestedPassengers = count;
-                    }
+                        Flight = fallbackFlight,
+                        User = fallbackUser,
+                        RequestedPassengers = requested
+                    };
                 }
-                else if (args.Length >= 2)
+                else if (parameter is Flight singleFlight)
                 {
-                    if (args[1] is int count)
+                    parsed = new BookingParametersResult
                     {
-                        requestedPassengers = count;
-                    }
-                    else
-                    {
-                        localUser = args[1] as User;
-                    }
+                        Flight = singleFlight,
+                        User = UserSession.CurrentUser,
+                        RequestedPassengers = 0
+                    };
                 }
             }
 
-            localUser ??= UserSession.CurrentUser;
-
-            if (selectedFlight == null)
+            if (parsed == null || parsed.Flight == null)
             {
                 return false;
             }
 
-            if (localUser == null)
+            if (parsed.User == null)
             {
-                UserSession.PendingBookingParameters = new object[] { selectedFlight, requestedPassengers };
+                bookingService.StorePendingBooking(parsed.Flight, parsed.RequestedPassengers);
                 navigationService.NavigateTo(typeof(View.AuthPage));
                 return false;
             }
 
-            await InitializeAsync(selectedFlight, localUser, requestedPassengers);
+            await InitializeAsync(parsed.Flight, parsed.User, parsed.RequestedPassengers);
             return true;
         }
 
@@ -240,11 +251,11 @@ namespace TicketManager.ViewModel
             CurrentFlight = flight;
             CurrentUser = user;
 
-            var addons = await bookingService.GetAvailableAddOnsAsync();
+            var addOns = await bookingService.GetAvailableAddOnsAsync();
             AvailableAddOns.Clear();
-            foreach (var addon in addons)
+            foreach (var addOn in addOns)
             {
-                AvailableAddOns.Add(addon);
+                AvailableAddOns.Add(addOn);
             }
 
             var seats = await bookingService.GetOccupiedSeatsAsync(flight?.FlightId ?? 0);
@@ -255,23 +266,21 @@ namespace TicketManager.ViewModel
             }
 
             int capacity = flight?.Route?.Capacity ?? DefaultFlightCapacity;
-            MaxPassengers = bookingService.CalculateMaxPassengers(capacity, OccupiedSeats.Count, requestedPassengerCount);
+            MaximumPassengers = bookingService.CalculateMaxPassengers(capacity, OccupiedSeats.Count, requestedPassengerCount);
 
             Passengers.Clear();
-            int initialCount = requestedPassengerCount > 0 ? requestedPassengerCount : 1;
-            if (initialCount > MaxPassengers)
+            int initialCount = bookingService.GetInitialPassengerCount(MaximumPassengers, requestedPassengerCount);
+
+            if (initialCount < 1)
             {
-                initialCount = MaxPassengers;
+                initialCount = Math.Min(MaximumPassengers, Math.Max(1, requestedPassengerCount));
             }
 
-            for (int i = 0; i < initialCount; i++)
+            for (int index = 0; index < initialCount; index++)
             {
-                if (CanAddPassenger || Passengers.Count == 0)
-                {
-                    var passenger = new PassengerFormViewModel();
-                    RegisterPassenger(passenger);
-                    Passengers.Add(passenger);
-                }
+                var passenger = new PassengerFormViewModel();
+                RegisterPassenger(passenger);
+                Passengers.Add(passenger);
             }
 
             UpdatePassengerLabels();
@@ -279,6 +288,17 @@ namespace TicketManager.ViewModel
             OnPropertyChanged(nameof(CanAddPassenger));
             OnPropertyChanged(nameof(CanRemovePassenger));
             RefreshBookingState();
+            BuildSeatMapLayout();
+        }
+
+        public void BuildSeatMapLayout()
+        {
+            int capacity = CurrentFlight?.Route?.Capacity ?? DefaultFlightCapacity;
+            var (layout, rowCount) = bookingService.BuildSeatMapLayout(capacity);
+            SeatMapLayout = layout;
+            SeatMapRowCount = rowCount;
+            OnPropertyChanged(nameof(SeatMapLayout));
+            OnPropertyChanged(nameof(SeatMapRowCount));
         }
 
         private void AddPassenger()
@@ -313,14 +333,19 @@ namespace TicketManager.ViewModel
 
         private void UpdatePassengerLabels()
         {
-            for (int i = 0; i < Passengers.Count; i++)
+            for (int index = 0; index < Passengers.Count; index++)
             {
-                Passengers[i].PassengerLabel = $"Passenger {i + 1}";
+                Passengers[index].PassengerLabel = $"Passenger {index + 1}";
             }
         }
 
         private void RegisterPassenger(PassengerFormViewModel passenger)
         {
+            if (passenger.SelectedAddOns == null)
+            {
+                passenger.SelectedAddOns = new ObservableCollection<AddOn>();
+            }
+
             passenger.SelectedAddOns.CollectionChanged += (sender, eventArgs) => UpdatePrices();
             passenger.PropertyChanged += (sender, eventArgs) =>
             {
@@ -348,7 +373,7 @@ namespace TicketManager.ViewModel
                 Email = passenger.Email,
                 Phone = passenger.Phone,
                 SelectedSeat = passenger.SelectedSeat,
-                SelectedAddOns = passenger.SelectedAddOns.ToList()
+                SelectedAddOns = passenger.SelectedAddOns?.ToList() ?? new List<AddOn>()
             }).ToList();
         }
 
@@ -434,36 +459,18 @@ namespace TicketManager.ViewModel
 
         public void SelectSeat(PassengerFormViewModel targetPassenger, string seat)
         {
-            var currentHolder = Passengers.FirstOrDefault(passenger => passenger.SelectedSeat == seat);
-            if (currentHolder == targetPassenger)
+            var currentSeats = Passengers.Select(p => p.SelectedSeat ?? string.Empty).ToList();
+            int targetIndex = Passengers.IndexOf(targetPassenger);
+            var updatedSeats = bookingService.ApplySeatSelection(currentSeats, targetIndex, seat);
+            for (int index = 0; index < Passengers.Count; index++)
             {
-                targetPassenger.SelectedSeat = string.Empty;
-            }
-            else
-            {
-                if (currentHolder != null)
-                {
-                    currentHolder.SelectedSeat = string.Empty;
-                }
-
-                targetPassenger.SelectedSeat = seat;
+                Passengers[index].SelectedSeat = updatedSeats[index];
             }
         }
 
         public void UpdatePassengerAddOns(PassengerFormViewModel passenger, IEnumerable<AddOn> addedAddOns, IEnumerable<AddOn> removedAddOns)
         {
-            foreach (var addOn in addedAddOns)
-            {
-                if (!passenger.SelectedAddOns.Contains(addOn))
-                {
-                    passenger.SelectedAddOns.Add(addOn);
-                }
-            }
-
-            foreach (var addOn in removedAddOns)
-            {
-                passenger.SelectedAddOns.Remove(addOn);
-            }
+            bookingService.ApplyAddOnUpdates(passenger.SelectedAddOns, addedAddOns, removedAddOns);
         }
     }
 }

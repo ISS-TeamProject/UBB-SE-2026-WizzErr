@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using TicketManager.Domain;
 using TicketManager.Service;
@@ -8,7 +8,18 @@ namespace TicketManager.Tests.Unit.ViewModel;
 
 public class AuthViewModelTests
 {
-    private readonly Mock<IAuthService> _mockAuthService;
+    private const int PrimaryTestUserId = 1;
+    private const int SecondaryTestUserId = 2;
+    private const int TestFlightId = 1;
+    private const int RequestedPassengerCount = 2;
+    private const string PrimaryUserEmail = "mihai.ionescu@gmail.com";
+    private const string PrimaryUsername = "MihaiI";
+    private const string PrimaryPassword = "Parola@Mihai123";
+    private const string SecondaryUserEmail = "elena.popescu@gmail.com";
+    private const string SecondaryUsername = "ElenaP";
+    private const string SecondaryPassword = "Parola@Elena321";
+
+    private readonly Mock<IAuthService> _mockAuthentificationService;
     private readonly Mock<INavigationService> _mockNavigationService;
     private readonly AuthViewModel _viewModel;
 
@@ -16,19 +27,19 @@ public class AuthViewModelTests
     {
         UserSession.CurrentUser = null;
         UserSession.PendingBookingParameters = null;
-        _mockAuthService = new Mock<IAuthService>();
+        _mockAuthentificationService = new Mock<IAuthService>();
         _mockNavigationService = new Mock<INavigationService>();
-        _viewModel = new AuthViewModel(_mockAuthService.Object, _mockNavigationService.Object);
+        _viewModel = new AuthViewModel(_mockAuthentificationService.Object, _mockNavigationService.Object);
     }
 
     [Fact]
-    public void ActionCommand_LoginSuccess_NavigatesToFlightSearch()
+    public void ActionCommand_AuthenticationSuccess_NavigatesToFlightSearch()
     {
-        var user = new User { UserId = 1, Email = "mihai.ionescu@gmail.com", Username = "MihaiI" };
-        _mockAuthService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
+        var user = new User { UserId = PrimaryTestUserId, Email = PrimaryUserEmail, Username = PrimaryUsername };
+        _mockAuthentificationService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
         _viewModel.IsLoginMode = true;
-        _viewModel.EmailText = "mihai.ionescu@gmail.com";
-        _viewModel.PasswordText = "Parola@Mihai123";
+        _viewModel.EmailText = PrimaryUserEmail;
+        _viewModel.PasswordText = PrimaryPassword;
 
         _viewModel.ActionCommand.Execute(null);
 
@@ -37,9 +48,9 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_LoginFailure_DoesNotNavigate()
+    public void ActionCommand_AuthenticationFailure_DoesNotNavigate()
     {
-        _mockAuthService.Setup(authFailingLogin => authFailingLogin.Login(It.IsAny<string>(), It.IsAny<string>()))
+        _mockAuthentificationService.Setup(authFailingLogin => authFailingLogin.Login(It.IsAny<string>(), It.IsAny<string>()))
             .Throws(new InvalidOperationException("Invalid email or password."));
         _viewModel.IsLoginMode = true;
         _viewModel.EmailText = "andrei.popescu@yahoo.ro";
@@ -52,9 +63,9 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_RegisterSuccess_SwitchesToLoginMode()
+    public void ActionCommand_RegistrationSuccess_SwitchesToAuthenticationMode()
     {
-        _mockAuthService.Setup(authSucceedingRegistration => authSucceedingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
+        _mockAuthentificationService.Setup(authSucceedingRegistration => authSucceedingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
         _viewModel.IsLoginMode = false;
         _viewModel.EmailText = "cristina.radu@gmail.com";
         _viewModel.PhoneText = "0722334455";
@@ -67,9 +78,9 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_RegisterFailure_StaysInRegisterMode()
+    public void ActionCommand_RegistrationFailure_StaysInRegistrationMode()
     {
-        _mockAuthService.Setup(authFailingRegistration => authFailingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+        _mockAuthentificationService.Setup(authFailingRegistration => authFailingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
             .Throws(new InvalidOperationException("Email already exists"));
         _viewModel.IsLoginMode = false;
         _viewModel.EmailText = "sorin.mihai@yahoo.ro";
@@ -83,16 +94,16 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_LoginWithPendingBooking_NavigatesToBooking()
+    public void ActionCommand_AuthenticationWithPendingBooking_NavigatesToBooking()
     {
-        var user = new User { UserId = 2, Email = "elena.popescu@gmail.com", Username = "ElenaP" };
-        var pendingParams = new object[] { new Flight { FlightId = 1 }, 2 };
-        _mockAuthService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
+        var user = new User { UserId = SecondaryTestUserId, Email = SecondaryUserEmail, Username = SecondaryUsername };
+        var pendingParams = new object[] { new Flight { FlightId = TestFlightId }, RequestedPassengerCount };
+        _mockAuthentificationService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
 
         UserSession.PendingBookingParameters = pendingParams;
         _viewModel.IsLoginMode = true;
-        _viewModel.EmailText = "elena.popescu@gmail.com";
-        _viewModel.PasswordText = "Parola@Elena321";
+        _viewModel.EmailText = SecondaryUserEmail;
+        _viewModel.PasswordText = SecondaryPassword;
 
         _viewModel.ActionCommand.Execute(null);
 
@@ -101,7 +112,7 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ToggleModeCommand_SwitchesModesAndClearsErrors()
+    public void ToggleModeCommand_Invoked_SwitchesModesAndClearsErrors()
     {
         _viewModel.IsLoginMode = true;
         _viewModel.ErrorMessage = "Eroare anterior";

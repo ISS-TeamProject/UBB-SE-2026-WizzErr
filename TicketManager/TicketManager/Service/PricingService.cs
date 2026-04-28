@@ -10,12 +10,13 @@ namespace TicketManager.Service
         private const float PricePerMinuteMultiplier = 1.25f;
         private const float MinimumFlightPrice = 40f;
         private const float PercentageDivisor = 100.0f;
+        private const float ZeroPrice = 0f;
 
         public float CalculateBasePrice(Flight flight)
         {
             if (flight?.Route == null)
             {
-                return 0f;
+                return ZeroPrice;
             }
 
             TimeSpan duration = flight.Route.ArrivalTime - flight.Route.DepartureTime;
@@ -35,7 +36,7 @@ namespace TicketManager.Service
                 foreach (var addon in ticket.SelectedAddOns)
                 {
                     float addonPrice = addon.BasePrice;
-                    float specificAddonDiscount = 0f;
+                    float specificAddonDiscount = ZeroPrice;
 
                     if (ticket.User.Membership.AddonDiscounts != null)
                     {
@@ -76,7 +77,7 @@ namespace TicketManager.Service
             float addOnsWithoutMembership = tickets.Sum(ticket => ticket.SelectedAddOns.Sum(addOn => addOn.BasePrice));
             float totalWithoutMembership = basePriceTotal + addOnsWithoutMembership;
 
-            float finalTotal = 0f;
+            float finalTotal = ZeroPrice;
             foreach (var ticket in tickets)
             {
                 ticket.User = user;

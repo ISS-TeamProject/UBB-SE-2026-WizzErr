@@ -6,7 +6,7 @@ public static class FlightFixture
 {
     public static Flight CreateValidTestFlight(
         int flightId = 1,
-        string flightNr = "RO101",
+        string flightNumber = "RO101",
         DateTime? departureTime = null,
         DateTime? arrivalTime = null,
         int capacity = 180)
@@ -28,7 +28,7 @@ public static class FlightFixture
         return new Flight
         {
             FlightId = flightId,
-            FlightNumber = flightNr,
+            FlightNumber = flightNumber,
             Route = route,
             Gate = new Gate { GateId = 1, GateName = "A1" },
             Date = departure
