@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -54,7 +54,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatCreateTicketsAssignsPassengerDataCorrectly()
+    public void CreateTickets_ValidPassengers_AssignsDataCorrectly()
     {
         var flight = new Flight { FlightId = DefaultFlightId };
         var user = UserFixture.CreateValidTestUser();
@@ -71,14 +71,14 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatValidatePassengersReturnsErrorWhenListIsEmpty()
+    public void ValidatePassengers_EmptyList_ReturnsError()
     {
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData>());
         validationErrorMessage.Should().Be("At least one passenger is required.");
     }
 
     [Fact]
-    public void TestThatValidatePassengersFailsWhenFirstNameIsMissing()
+    public void ValidatePassengers_MissingFirstName_Fails()
     {
         var passenger = new PassengerData { LastName = "Pop", SelectedSeat = Seat1A };
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
@@ -86,7 +86,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatValidatePassengersFailsWhenLastNameIsMissing()
+    public void ValidatePassengers_MissingLastName_Fails()
     {
         var passenger = new PassengerData { FirstName = "Vasile", SelectedSeat = Seat1A };
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
@@ -94,7 +94,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatValidatePassengersFailsWhenSeatIsNotSelected()
+    public void ValidatePassengers_NoSeatSelected_Fails()
     {
         var passenger = new PassengerData { FirstName = "Vasile", LastName = "Pop", SelectedSeat = "" };
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
@@ -102,35 +102,35 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateMaxPassengersReturnsRemainingCapacity()
+    public void CalculateMaximumPassengers_ValidRequest_ReturnsRemainingCapacity()
     {
         var maxPassengers = _bookingService.CalculateMaxPassengers(LargeFlightCapacity, HighOccupiedSeats, ZeroRequestedPassengers);
         maxPassengers.Should().Be(ExpectedMaxPassengers);
     }
 
     [Fact]
-    public void TestThatCalculateMaxPassengersCapsAtRequestedCount()
+    public void CalculateMaximumPassengers_RequestedExceedsCapacity_CapsAtRequested()
     {
         var maxPassengers = _bookingService.CalculateMaxPassengers(LargeFlightCapacity, ModerateOccupiedSeats, NormalRequestedPassengers);
         maxPassengers.Should().Be(ExpectedMaxPassengers);
     }
 
     [Fact]
-    public async Task TestThatSaveTicketsAsyncReturnsFalseWhenTicketListIsNull()
+    public async Task SaveTicketsAsynchronous_NullTicketList_ReturnsFalse()
     {
         var saveTicketsSucceeded = await _bookingService.SaveTicketsAsync(null!);
         saveTicketsSucceeded.Should().BeFalse();
     }
 
     [Fact]
-    public async Task TestThatSaveTicketsAsyncReturnsFalseWhenTicketListIsEmpty()
+    public async Task SaveTicketsAsynchronous_EmptyTicketList_ReturnsFalse()
     {
         var saveTicketsSucceeded = await _bookingService.SaveTicketsAsync(new List<Ticket>());
         saveTicketsSucceeded.Should().BeFalse();
     }
 
     [Fact]
-    public async Task TestThatSaveTicketsAsyncReturnsFalseWhenDuplicateSeatsInRequest()
+    public async Task SaveTicketsAsynchronous_DuplicateSeats_ReturnsFalse()
     {
         var ticket1 = new Ticket { Seat = Seat1A, Price = StandardTicketPrice, Status = ActiveStatus };
         var ticket2 = new Ticket { Seat = Seat1A, Price = StandardTicketPrice, Status = ActiveStatus };
@@ -142,7 +142,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public async Task TestThatSaveTicketsAsyncReturnsTrueWhenAllTicketsValid()
+    public async Task SaveTicketsAsynchronous_ValidTickets_ReturnsTrue()
     {
         _mockTicketRepository.Setup(mockTicketRepository => mockTicketRepository.IsSeatAvailable(It.IsAny<int>(), It.IsAny<string>())).ReturnsAsync(true);
         _mockTicketRepository.Setup(mockTicketRepository => mockTicketRepository.SaveTicketsWithAddOnsAsync(It.IsAny<List<Ticket>>())).ReturnsAsync(true);
@@ -158,7 +158,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatValidatePassengersAcceptsValidEmailWhenProvided()
+    public void ValidatePassengers_ValidEmailAddress_Accepts()
     {
         var passenger = PassengerDataFixture.CreateValidPassengerData(email: "test@gmail.com");
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
@@ -166,7 +166,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatValidatePassengersRejectsInvalidEmailWhenProvided()
+    public void ValidatePassengers_InvalidEmailAddress_Rejects()
     {
         var passenger = new PassengerData { FirstName = "Ion", LastName = "Pop", SelectedSeat = Seat1A, Email = "not-an-email" };
         var validationErrorMessage = _bookingService.ValidatePassengers(new List<PassengerData> { passenger });
@@ -174,7 +174,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatParseBookingParametersReturnsParsedResultWithArguments()
+    public void ParseBookingParameters_WithArguments_ReturnsParsedResult()
     {
         var defaultFlight = new Flight { FlightId = DefaultFlightId };
         var defaultTestUser = UserFixture.CreateValidTestUser();
@@ -188,7 +188,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatStorePendingBookingStoresPendingBooking()
+    public void StorePendingBooking_ValidBooking_StoresBooking()
     {
         var defaultFlight = new Flight { FlightId = DefaultFlightId };
 
@@ -201,7 +201,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatApplySeatSelectionRemovesSeatIfAlreadyAssigned()
+    public void ApplySeatSelection_SeatAlreadyAssigned_RemovesSeat()
     {
         var seats = new List<string> { Seat1A, Seat1B };
 
@@ -212,7 +212,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatApplySeatSelectionAssignsSeatAndClearsDuplicate()
+    public void ApplySeatSelection_NewSeat_AssignsSeatAndClearsDuplicate()
     {
         var seats = new List<string> { Seat1A, Seat2B };
 
@@ -223,7 +223,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatApplyAddOnUpdatesCorrectlyAdjustsList()
+    public void ApplyAddOn_Updates_AdjustsListCorrectly()
     {
         var priorityBoarding = new AddOn { AddOnId = 1, Name = "Priority Boarding" };
         var extraLuggage = new AddOn { AddOnId = 2, Name = "Extra Luggage" };
@@ -239,7 +239,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatGetInitialPassengerCountReturnsMinValue()
+    public void GetInitialPassengerCount_Default_ReturnsMinimumValue()
     {
         var initialPassengerCountRequested = _bookingService.GetInitialPassengerCount(ExpectedMaxPassengers, NormalRequestedPassengers);
         initialPassengerCountRequested.Should().Be(NormalRequestedPassengers);
@@ -252,7 +252,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatParseBookingParametersHandlesNullOrInvalidObject()
+    public void ParseBookingParameters_NullOrInvalidObject_HandlesCorrectly()
     {
         var parsedBookingParameters = _bookingService.ParseBookingParameters(invalidParameter);
 
@@ -261,7 +261,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatParseBookingParametersHandlesOnlyFlightArgument()
+    public void ParseBookingParameters_OnlyFlightArgument_HandlesCorrectly()
     {
         var defaultFlight = new Flight { FlightId = DefaultFlightId };
         object[] bookingArguments = { defaultFlight };
@@ -273,7 +273,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatParseBookingParametersHandlesFlightAndPassengerCountArgument()
+    public void ParseBookingParameters_FlightAndPassengerCount_HandlesCorrectly()
     {
         var defaultFlight = new Flight { FlightId = DefaultFlightId };
         object[] bookingArguments = { defaultFlight, NormalRequestedPassengers };
@@ -285,7 +285,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatParseBookingParametersFallsBackToUserSession()
+    public void ParseBookingParameters_NoArguments_FallsBackToSession()
     {
         var defaultSessionUser = UserFixture.CreateValidTestUser();
         UserSession.CurrentUser = defaultSessionUser;
@@ -300,7 +300,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatBuildSeatMapLayoutCalculatesRowsCorrectlyForExactMultiple()
+    public void BuildSeatMapLayout_ExactMultiple_CalculatesRowsCorrectly()
     {
         var (layout, rowCount) = _bookingService.BuildSeatMapLayout(ExactMultipleCapacity);
 
@@ -309,7 +309,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatBuildSeatMapLayoutCalculatesRowsCorrectlyForNonMultiple()
+    public void BuildSeatMapLayout_NonMultiple_CalculatesRowsCorrectly()
     {
         var (layout, rowCount) = _bookingService.BuildSeatMapLayout(PartialMultipleCapacity);
 
@@ -318,7 +318,7 @@ public class BookingServiceTests
     }
 
     [Fact]
-    public void TestThatBuildSeatMapLayoutAssignsCorrectLabelsAndColumns()
+    public void BuildSeatMapLayout_ValidData_AssignsCorrectLabelsAndColumns()
     {
         var (layout, rowCount) = _bookingService.BuildSeatMapLayout(MinimumFlightCapacity);
 

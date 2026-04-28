@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using System.Collections.ObjectModel;
 using TicketManager.Domain;
@@ -38,7 +38,7 @@ public class BookingViewModelTests
     }
 
     [Fact]
-    public void AddPassengerCommand_AddsPassengerRespectingCapacity()
+    public void AddPassengerCommand_ValidCapacity_AddsPassenger()
     {
         _viewModel.MaximumPassengers = LimitedMaxPassengers;
         _viewModel.Passengers.Clear();
@@ -54,7 +54,7 @@ public class BookingViewModelTests
     }
 
     [Fact]
-    public void RemovePassengerCommand_RemovesPassengerWhenMultipleExist()
+    public void RemovePassengerCommand_MultipleExist_RemovesPassenger()
     {
         var passenger1 = new PassengerFormViewModel();
         var passenger2 = new PassengerFormViewModel();
@@ -69,7 +69,7 @@ public class BookingViewModelTests
     }
 
     [Fact]
-    public void RemovePassengerCommand_DoesNotRemoveWhenOnlyOnePassenger()
+    public void RemovePassengerCommand_OnlyOnePassenger_DoesNotRemove()
     {
         var passenger = new PassengerFormViewModel();
         _viewModel.Passengers.Clear();
@@ -81,7 +81,7 @@ public class BookingViewModelTests
     }
 
     [Fact]
-    public async Task ConfirmBookingCommand_CallsServiceAndRaisesEvent()
+    public async Task ConfirmBookingCommand_Invoked_CallsServiceAndRaisesEvent()
     {
         var flight = new Flight { FlightId = TestFlightId, Route = new Route { Capacity = DefaultFlightCapacity } };
         var user = new User { UserId = TestUserId, Email = TestEmail };
@@ -121,7 +121,7 @@ public class BookingViewModelTests
     }
 
     [Fact]
-    public async Task OnNavigatedToAsync_RedirectsToAuthWhenNotAuthenticated()
+    public async Task OnNavigatedToAsynchronous_NotAuthenticated_RedirectsToAuthentication()
     {
         UserSession.CurrentUser = null;
         var flight = new Flight
@@ -136,7 +136,7 @@ public class BookingViewModelTests
     }
 
     [Fact]
-    public async Task OnNavigatedToAsync_ReturnsFalseWhenNoFlight()
+    public async Task OnNavigatedToAsynchronous_NoFlight_ReturnsFalse()
     {
         var navigationResult = await _viewModel.OnNavigatedToAsync(new object?[] { null });
 

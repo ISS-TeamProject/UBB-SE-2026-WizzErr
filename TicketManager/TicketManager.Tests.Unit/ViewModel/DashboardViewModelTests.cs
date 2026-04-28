@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using TicketManager.Domain;
 using TicketManager.Service;
@@ -33,7 +33,7 @@ public class DashboardViewModelTests
     }
 
     [Fact]
-    public void CancelTicketCommand_SetsPendingWhenCancelable()
+    public void CancelTicketCommand_CancelableTicket_SetsPending()
     {
         var ticket = new Ticket { TicketId = ActiveTicketId, Status = ActiveStatus };
         _mockCancellationService.Setup(serviceAllowingCancel => serviceAllowingCancel.CanCancelTicket(ticket)).Returns((true, ""));
@@ -44,7 +44,7 @@ public class DashboardViewModelTests
     }
 
     [Fact]
-    public void CancelTicketCommand_SetsCancellationFailedWhenNotCancelable()
+    public void CancelTicketCommand_NotCancelableTicket_SetsCancellationFailed()
     {
         var ticket = new Ticket { TicketId = ActiveTicketId, Status = ActiveStatus };
         _mockCancellationService.Setup(serviceDenyingCancel => serviceDenyingCancel.CanCancelTicket(ticket))
@@ -57,7 +57,7 @@ public class DashboardViewModelTests
     }
 
     [Fact]
-    public void CancelTicketCommand_IgnoresCancelledTicket()
+    public void CancelTicketCommand_CancelledTicket_Ignores()
     {
         var ticket = new Ticket { TicketId = CancelledTicketId, Status = CancelledStatus };
 
@@ -67,7 +67,7 @@ public class DashboardViewModelTests
     }
 
     [Fact]
-    public void ConfirmCancellation_CallsServiceAndClearsState()
+    public void ConfirmCancellation_Invoked_CallsServiceAndClearsState()
     {
         UserSession.CurrentUser = new User { UserId = TestUserId, Email = TestEmail };
         var ticket = new Ticket { TicketId = TargetTicketIdToCancel, Status = ActiveStatus };
@@ -82,7 +82,7 @@ public class DashboardViewModelTests
     }
 
     [Fact]
-    public void DeclineCancellation_ClearsPendingTicket()
+    public void DeclineCancellation_Invoked_ClearsPendingTicket()
     {
         var ticket = new Ticket { TicketId = PendingTicketId, Status = ActiveStatus };
         _viewModel.PendingCancelTicket = ticket;
@@ -93,7 +93,7 @@ public class DashboardViewModelTests
     }
 
     [Fact]
-    public void OnNavigatedTo_RedirectsToAuthWhenNotAuthenticated()
+    public void OnNavigatedTo_NotAuthenticated_RedirectsToAuthentication()
     {
         UserSession.CurrentUser = null;
 

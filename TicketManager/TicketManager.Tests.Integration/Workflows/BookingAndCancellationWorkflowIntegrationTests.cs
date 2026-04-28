@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
@@ -57,7 +57,7 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     }
 
     [Fact]
-    public async Task TestThatCompleteBookingWorkflowWithValidationSucceeds()
+    public async Task CompleteBookingWorkflow_ValidData_Succeeds()
     {
         var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var email = $"{ReservationEmail}_{uniqueCode}{DomainGmail}";
@@ -84,7 +84,7 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     }
 
     [Fact]
-    public async Task TestThatUserCannotSaveTicketsWithDuplicateSeatsInSameRequest()
+    public async Task SaveTickets_DuplicateSeats_ThrowsException()
     {
         var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var email = $"{DuplicateSeatsEmail}_{uniqueCode}{DomainGmail}";
@@ -102,7 +102,7 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     }
 
     [Fact]
-    public void TestThatUserCanValidateCancellationBeforeCancellingTicket()
+    public void ValidateCancellation_BeforeCancelling_ReturnsTrue()
     {
         var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var email = $"{CancellationEmail}_{uniqueCode}{DomainGmail}";

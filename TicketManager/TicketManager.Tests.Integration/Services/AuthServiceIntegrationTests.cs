@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
@@ -36,7 +36,7 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatUserCanRegisterAndLoginSuccessfully()
+    public void RegisterAndLogin_ValidData_Succeeds()
     {
         string uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         string email = $"{AndreiEmail}_{uniqueCode}{DomainGmail}";
@@ -52,7 +52,7 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatDuplicateEmailRegistrationThrows()
+    public void Register_DuplicateEmailAddress_ThrowsException()
     {
         string uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         string email = $"{ClaudiaEmail}_{uniqueCode}{DomainYahoo}";
@@ -63,7 +63,7 @@ public class AuthServiceIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatPasswordIsHashedInDatabase()
+    public void Register_ValidUser_HashesPasswordInDatabase()
     {
         string uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         string email = $"{SorinEmail}_{uniqueCode}{DomainGmail}";

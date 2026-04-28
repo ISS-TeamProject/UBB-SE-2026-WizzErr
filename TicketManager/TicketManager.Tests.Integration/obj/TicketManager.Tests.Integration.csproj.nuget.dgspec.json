@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj": {}
+    "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj": {}
   },
   "projects": {
-    "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj": {
+    "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj",
+        "projectUniqueName": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj",
         "projectName": "TicketManager.Tests.Integration",
-        "projectPath": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj",
-        "packagesPath": "C:\\Users\\alexi\\.nuget\\packages\\",
-        "outputPath": "D:\\Facultate\\An_II\\Sem4\\ISS\\Assignment3\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\obj\\",
+        "projectPath": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\TicketManager.Tests.Integration.csproj",
+        "packagesPath": "C:\\Users\\Oricum\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Oricum\\OneDrive\\Desktop\\PROIECT ISS\\UBB-SE-2026-WizzErr\\TicketManager\\TicketManager.Tests.Integration\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\alexi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Oricum\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -107,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

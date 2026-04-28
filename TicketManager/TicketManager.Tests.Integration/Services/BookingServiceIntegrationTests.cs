@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -42,7 +42,7 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public async Task TestThatTicketsCanBeCreatedAndSaved()
+    public async Task CreateAndSaveTickets_ValidTickets_Succeeds()
     {
         var flightId = GetFirstAvailableFlightId();
         var flight = new Flight { FlightId = flightId };
@@ -64,7 +64,7 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatMaxPassengersIsCalculatedCorrectly()
+    public void CalculateMaximumPassengers_Integration_CalculatesCorrectly()
     {
         var maxPassengers = _bookingService.CalculateMaxPassengers(DefaultFlightCapacity, DefaultOccupiedSeats, DefaultRequestedPassengers);
         maxPassengers.Should().Be(DefaultRequestedPassengers);

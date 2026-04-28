@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
@@ -51,7 +51,7 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public async Task TestThatCompleteBookingFlowSucceeds()
+    public async Task CompleteBookingFlow_ValidData_Succeeds()
     {
         string uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         string email = $"{DanEmail}_{uniqueCode}{DomainGmail}";
@@ -69,7 +69,7 @@ public class CompleteBookingFlowIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatPremiumUserGetsMembershipDiscount()
+    public void CompleteBookingFlow_PremiumUser_GetsMembershipDiscount()
     {
         var membership = new Membership { MembershipId = MembershipId, Name = MembershipName, FlightDiscountPercentage = MembershipDiscount };
         var user = UserFixture.CreateValidTestUser(membership: membership);
