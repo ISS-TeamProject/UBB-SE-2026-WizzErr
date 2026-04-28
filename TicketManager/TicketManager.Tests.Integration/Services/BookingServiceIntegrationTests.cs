@@ -1,11 +1,7 @@
 ﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
-using TicketManager.Tests.Unit.Fixtures;
 
 namespace TicketManager.Tests.Integration.Services;
 
@@ -26,19 +22,19 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
     private const string MirceaLastName = "Popa";
     private const string SeatIdentifier = "_1A";
 
-    private readonly ITicketRepository _ticketRepository;
-    private readonly IAddOnRepository _addOnRepository;
-    private readonly IUserRepository _userRepository;
-    private readonly BookingService _bookingService;
+    private readonly ITicketRepository ticketRepository;
+    private readonly IAddOnRepository addOnRepository;
+    private readonly IUserRepository userRepository;
+    private readonly BookingService bookingService;
 
     public BookingServiceIntegrationTests()
     {
         var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
-        _ticketRepository = new TicketRepository(databaseConnectionFactory);
-        _addOnRepository = new AddOnRepository(databaseConnectionFactory);
+        ticketRepository = new TicketRepository(databaseConnectionFactory);
+        addOnRepository = new AddOnRepository(databaseConnectionFactory);
         var membershipRepository = new MembershipRepository(databaseConnectionFactory);
-        _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
-        _bookingService = new BookingService(_ticketRepository, _addOnRepository);
+        userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
+        bookingService = new BookingService(ticketRepository, addOnRepository);
     }
 
     [Fact]
@@ -48,16 +44,16 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
         var flight = new Flight { FlightId = flightId };
         var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var user = new User { Email = $"{MirceaEmail}_{uniqueCode}@gmail.com", Username = $"{MirceaUsername}_{uniqueCode}", PasswordHash = MirceaPassword };
-        _userRepository.AddUser(user);
-        var databaseUser = _userRepository.GetByEmail(user.Email);
+        userRepository.AddUser(user);
+        var databaseUser = userRepository.GetByEmail(user.Email);
 
         var passengers = new List<PassengerData>
         {
             new PassengerData { FirstName = MirceaFirstName, LastName = MirceaLastName, Email = user.Email, Phone = MirceaPhone, SelectedSeat = $"{uniqueCode}{SeatIdentifier}" }
         };
 
-        var tickets = _bookingService.CreateTickets(flight, databaseUser!, passengers, DefaultBasePrice);
-        var saveResult = await _bookingService.SaveTicketsAsync(tickets);
+        var tickets = bookingService.CreateTickets(flight, databaseUser!, passengers, DefaultBasePrice);
+        var saveResult = await bookingService.SaveTicketsAsync(tickets);
 
         saveResult.Should().BeTrue();
         tickets.Should().HaveCount(ExpectedTicketCount);
@@ -66,7 +62,7 @@ public class BookingServiceIntegrationTests : BaseIntegrationTest
     [Fact]
     public void CalculateMaximumPassengers_Integration_CalculatesCorrectly()
     {
-        var maxPassengers = _bookingService.CalculateMaxPassengers(DefaultFlightCapacity, DefaultOccupiedSeats, DefaultRequestedPassengers);
+        var maxPassengers = bookingService.CalculateMaxPassengers(DefaultFlightCapacity, DefaultOccupiedSeats, DefaultRequestedPassengers);
         maxPassengers.Should().Be(DefaultRequestedPassengers);
     }
 }

@@ -17,7 +17,7 @@ namespace TicketManager.Tests.Unit.ViewModel
             Assert.Equal(string.Empty, viewModel.Phone);
             Assert.Equal(string.Empty, viewModel.SelectedSeat);
             Assert.NotNull(viewModel.SelectedAddOns);
-            Assert.Equal(0, viewModel.SelectedAddOns.Count);
+            Assert.Empty(viewModel.SelectedAddOns);
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace TicketManager.Tests.Unit.ViewModel
         {
             const string ExpectedPropertyName = "FirstName";
             const string NewFirstNameValue = "John";
-            
+
             var viewModel = new PassengerFormViewModel();
             bool eventFired = false;
 

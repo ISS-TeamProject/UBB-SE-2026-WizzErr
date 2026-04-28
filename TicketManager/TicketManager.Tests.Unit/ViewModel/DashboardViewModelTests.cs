@@ -19,41 +19,41 @@ public class DashboardViewModelTests
     private const string CancelledStatus = "Cancelled";
     private const string CancellationReasonMessage = "Cannot cancel within 24 hours of departure";
 
-    private readonly Mock<IDashboardService> _mockDashboardService;
-    private readonly Mock<ICancellationService> _mockCancellationService;
-    private readonly Mock<INavigationService> _mockNavigationService;
-    private readonly DashboardViewModel _viewModel;
+    private readonly Mock<IDashboardService> mockDashboardService;
+    private readonly Mock<ICancellationService> mockCancellationService;
+    private readonly Mock<INavigationService> mockNavigationService;
+    private readonly DashboardViewModel viewModel;
 
     public DashboardViewModelTests()
     {
-        _mockDashboardService = new Mock<IDashboardService>();
-        _mockCancellationService = new Mock<ICancellationService>();
-        _mockNavigationService = new Mock<INavigationService>();
-        _viewModel = new DashboardViewModel(_mockDashboardService.Object, _mockCancellationService.Object, _mockNavigationService.Object);
+        mockDashboardService = new Mock<IDashboardService>();
+        mockCancellationService = new Mock<ICancellationService>();
+        mockNavigationService = new Mock<INavigationService>();
+        viewModel = new DashboardViewModel(mockDashboardService.Object, mockCancellationService.Object, mockNavigationService.Object);
     }
 
     [Fact]
     public void CancelTicketCommand_CancelableTicket_SetsPending()
     {
         var ticket = new Ticket { TicketId = ActiveTicketId, Status = ActiveStatus };
-        _mockCancellationService.Setup(serviceAllowingCancel => serviceAllowingCancel.CanCancelTicket(ticket)).Returns((true, ""));
+        mockCancellationService.Setup(serviceAllowingCancel => serviceAllowingCancel.CanCancelTicket(ticket)).Returns((true, string.Empty));
 
-        _viewModel.CancelTicketCommand.Execute(ticket);
+        viewModel.CancelTicketCommand.Execute(ticket);
 
-        _viewModel.PendingCancelTicket.Should().Be(ticket);
+        viewModel.PendingCancelTicket.Should().Be(ticket);
     }
 
     [Fact]
     public void CancelTicketCommand_NotCancelableTicket_SetsCancellationFailed()
     {
         var ticket = new Ticket { TicketId = ActiveTicketId, Status = ActiveStatus };
-        _mockCancellationService.Setup(serviceDenyingCancel => serviceDenyingCancel.CanCancelTicket(ticket))
+        mockCancellationService.Setup(serviceDenyingCancel => serviceDenyingCancel.CanCancelTicket(ticket))
             .Returns((false, CancellationReasonMessage));
 
-        _viewModel.CancelTicketCommand.Execute(ticket);
+        viewModel.CancelTicketCommand.Execute(ticket);
 
-        _viewModel.CancellationSucceeded.Should().BeFalse();
-        _viewModel.PendingCancelTicket.Should().BeNull();
+        viewModel.CancellationSucceeded.Should().BeFalse();
+        viewModel.PendingCancelTicket.Should().BeNull();
     }
 
     [Fact]
@@ -61,9 +61,9 @@ public class DashboardViewModelTests
     {
         var ticket = new Ticket { TicketId = CancelledTicketId, Status = CancelledStatus };
 
-        _viewModel.CancelTicketCommand.Execute(ticket);
+        viewModel.CancelTicketCommand.Execute(ticket);
 
-        _viewModel.PendingCancelTicket.Should().BeNull();
+        viewModel.PendingCancelTicket.Should().BeNull();
     }
 
     [Fact]
@@ -71,25 +71,25 @@ public class DashboardViewModelTests
     {
         UserSession.CurrentUser = new User { UserId = TestUserId, Email = TestEmail };
         var ticket = new Ticket { TicketId = TargetTicketIdToCancel, Status = ActiveStatus };
-        _viewModel.PendingCancelTicket = ticket;
-        _mockDashboardService.Setup(dashboardServiceReturningNoTickets => dashboardServiceReturningNoTickets.GetUserTickets(It.IsAny<int>(), It.IsAny<string>())).Returns(new List<Ticket>());
+        viewModel.PendingCancelTicket = ticket;
+        mockDashboardService.Setup(dashboardServiceReturningNoTickets => dashboardServiceReturningNoTickets.GetUserTickets(It.IsAny<int>(), It.IsAny<string>())).Returns(new List<Ticket>());
 
-        _viewModel.ConfirmCancellation();
+        viewModel.ConfirmCancellation();
 
-        _mockCancellationService.Verify(cancellationServiceToVerifyCancel => cancellationServiceToVerifyCancel.CancelTicket(TargetTicketIdToCancel), Times.Once);
-        _viewModel.PendingCancelTicket.Should().BeNull();
-        _viewModel.CancellationSucceeded.Should().BeTrue();
+        mockCancellationService.Verify(cancellationServiceToVerifyCancel => cancellationServiceToVerifyCancel.CancelTicket(TargetTicketIdToCancel), Times.Once);
+        viewModel.PendingCancelTicket.Should().BeNull();
+        viewModel.CancellationSucceeded.Should().BeTrue();
     }
 
     [Fact]
     public void DeclineCancellation_Invoked_ClearsPendingTicket()
     {
         var ticket = new Ticket { TicketId = PendingTicketId, Status = ActiveStatus };
-        _viewModel.PendingCancelTicket = ticket;
+        viewModel.PendingCancelTicket = ticket;
 
-        _viewModel.DeclineCancellation();
+        viewModel.DeclineCancellation();
 
-        _viewModel.PendingCancelTicket.Should().BeNull();
+        viewModel.PendingCancelTicket.Should().BeNull();
     }
 
     [Fact]
@@ -97,10 +97,10 @@ public class DashboardViewModelTests
     {
         UserSession.CurrentUser = null;
 
-        var navigationResult = _viewModel.OnNavigatedTo();
+        var navigationResult = viewModel.OnNavigatedTo();
 
         navigationResult.Should().BeFalse();
-        _mockNavigationService.Verify(navServiceToVerifyAuthRedirect => navServiceToVerifyAuthRedirect.NavigateTo(typeof(View.AuthPage), null), Times.Once);
+        mockNavigationService.Verify(navServiceToVerifyAuthRedirect => navServiceToVerifyAuthRedirect.NavigateTo(typeof(View.AuthPage), null), Times.Once);
     }
 }
 

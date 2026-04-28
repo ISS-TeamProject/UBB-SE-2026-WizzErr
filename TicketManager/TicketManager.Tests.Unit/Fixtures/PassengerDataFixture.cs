@@ -28,7 +28,7 @@ public static class PassengerDataFixture
         var passengers = new List<PassengerData>();
         var firstNames = new[] { "Mihai", "Simona", "Bogdan", "Raluca", "Cristian", "Adina", "Florin" };
         var lastNames = new[] { "Popa", "Stan", "Diaconu", "Ungureanu", "Vasile", "Lupu", "Nistor" };
-        
+
         for (int i = 0; i < count; i++)
         {
             var firstName = firstNames[i % firstNames.Length];

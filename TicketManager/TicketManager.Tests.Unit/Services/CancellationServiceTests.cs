@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Moq;
-using System;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
@@ -19,13 +19,13 @@ public class CancellationServiceTests
     private const string AlreadyCancelledMessage = "already cancelled";
     private const string PastFlightMessage = "in the past";
 
-    private readonly Mock<ITicketRepository> _mockTicketRepository;
-    private readonly CancellationService _cancellationService;
+    private readonly Mock<ITicketRepository> mockTicketRepository;
+    private readonly CancellationService cancellationService;
 
     public CancellationServiceTests()
     {
-        _mockTicketRepository = new Mock<ITicketRepository>();
-        _cancellationService = new CancellationService(_mockTicketRepository.Object);
+        mockTicketRepository = new Mock<ITicketRepository>();
+        cancellationService = new CancellationService(mockTicketRepository.Object);
     }
 
     [Fact]
@@ -35,7 +35,7 @@ public class CancellationServiceTests
         var flight = FlightFixture.CreateValidTestFlight(departureTime: futureDate);
         var ticket = new Ticket { TicketId = DefaultTicketId, Status = ActiveStatus, Flight = flight };
 
-        var (canCancelResult, cancelReason) = _cancellationService.CanCancelTicket(ticket);
+        var (canCancelResult, cancelReason) = cancellationService.CanCancelTicket(ticket);
 
         canCancelResult.Should().BeTrue();
         cancelReason.Should().BeEmpty();
@@ -47,7 +47,7 @@ public class CancellationServiceTests
         var flight = FlightFixture.CreateValidTestFlight();
         var ticket = new Ticket { TicketId = DefaultTicketId, Status = CancelledStatus, Flight = flight };
 
-        var (canCancelResult, cancelReason) = _cancellationService.CanCancelTicket(ticket);
+        var (canCancelResult, cancelReason) = cancellationService.CanCancelTicket(ticket);
 
         canCancelResult.Should().BeFalse();
         cancelReason.Should().Contain(AlreadyCancelledMessage);
@@ -60,7 +60,7 @@ public class CancellationServiceTests
         var flight = FlightFixture.CreateValidTestFlight(departureTime: pastDate);
         var ticket = new Ticket { TicketId = DefaultTicketId, Status = ActiveStatus, Flight = flight };
 
-        var (canCancelResult, cancelReason) = _cancellationService.CanCancelTicket(ticket);
+        var (canCancelResult, cancelReason) = cancellationService.CanCancelTicket(ticket);
 
         canCancelResult.Should().BeFalse();
         cancelReason.Should().Contain(PastFlightMessage);
@@ -69,7 +69,7 @@ public class CancellationServiceTests
     [Fact]
     public void CanCancelTicket_NullTicket_ReturnsFalse()
     {
-        var (canCancelResult, cancelReason) = _cancellationService.CanCancelTicket(null!);
+        var (canCancelResult, cancelReason) = cancellationService.CanCancelTicket(null!);
 
         canCancelResult.Should().BeFalse();
         cancelReason.Should().Be("Ticket not found.");

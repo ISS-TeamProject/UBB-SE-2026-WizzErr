@@ -75,13 +75,11 @@ public static class FlightFixture
 
     public static Flight CreateFlightWithShortDuration()
     {
-
         return CreateFlightWithDurationMinutes(10);
     }
 
     public static Flight CreateFlightWithLongDuration()
     {
-
         return CreateFlightWithDurationMinutes(480);
     }
 }

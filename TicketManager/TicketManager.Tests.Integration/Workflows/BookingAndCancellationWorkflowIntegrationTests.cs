@@ -35,25 +35,25 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     private const string CancelledStatus = "Cancelled";
     private const string DomainGmail = "@gmail.com";
     private const string AlreadyCancelledMessage = "already cancelled";
-    private readonly IUserRepository _userRepository;
-    private readonly ITicketRepository _ticketRepository;
-    private readonly IAddOnRepository _addOnRepository;
-    private readonly AuthService _authentificationService;
-    private readonly BookingService _bookingService;
-    private readonly PricingService _pricingService;
-    private readonly CancellationService _cancellationService;
+    private readonly IUserRepository userRepository;
+    private readonly ITicketRepository ticketRepository;
+    private readonly IAddOnRepository addOnRepository;
+    private readonly AuthService authentificationService;
+    private readonly BookingService bookingService;
+    private readonly PricingService pricingService;
+    private readonly CancellationService cancellationService;
 
     public BookingAndCancellationWorkflowIntegrationTests()
     {
         var databaseConnectionFactory = new DatabaseConnectionFactory(GetTestConnectionString());
         var membershipRepository = new MembershipRepository(databaseConnectionFactory);
-        _userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
-        _ticketRepository = new TicketRepository(databaseConnectionFactory);
-        _addOnRepository = new AddOnRepository(databaseConnectionFactory);
-        _authentificationService = new AuthService(_userRepository);
-        _bookingService = new BookingService(_ticketRepository, _addOnRepository);
-        _pricingService = new PricingService();
-        _cancellationService = new CancellationService(_ticketRepository);
+        userRepository = new UserRepository(databaseConnectionFactory, membershipRepository);
+        ticketRepository = new TicketRepository(databaseConnectionFactory);
+        addOnRepository = new AddOnRepository(databaseConnectionFactory);
+        authentificationService = new AuthService(userRepository);
+        bookingService = new BookingService(ticketRepository, addOnRepository);
+        pricingService = new PricingService();
+        cancellationService = new CancellationService(ticketRepository);
     }
 
     [Fact]
@@ -63,23 +63,23 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
         var email = $"{ReservationEmail}_{uniqueCode}{DomainGmail}";
         var password = ReservationPassword;
 
-        _authentificationService.Register(email, ReservationPhone, $"{ReservationUsername}_{uniqueCode}", password);
-        var user = _authentificationService.Login(email, password);
+        authentificationService.Register(email, ReservationPhone, $"{ReservationUsername}_{uniqueCode}", password);
+        var user = authentificationService.Login(email, password);
 
         var flightId = GetFirstAvailableFlightId();
         var flight = FlightFixture.CreateValidTestFlight(flightId: flightId);
         var passengers = PassengerDataFixture.CreateValidPassengerList(TwoPassengers);
 
-        var validationResult = _bookingService.ValidatePassengers(passengers);
+        var validationResult = bookingService.ValidatePassengers(passengers);
         validationResult.Should().BeEmpty();
 
-        var tickets = _bookingService.CreateTickets(flight, user, passengers, BasePrice);
+        var tickets = bookingService.CreateTickets(flight, user, passengers, BasePrice);
         tickets.Should().HaveCount(TwoPassengers);
 
-        var saveResult = await _bookingService.SaveTicketsAsync(tickets);
+        var saveResult = await bookingService.SaveTicketsAsync(tickets);
         saveResult.Should().BeTrue();
 
-        var userTickets = _ticketRepository.GetTicketsByUserId(user.UserId);
+        var userTickets = ticketRepository.GetTicketsByUserId(user.UserId);
         userTickets.Should().HaveCount(TwoPassengers);
     }
 
@@ -88,15 +88,15 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     {
         var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var email = $"{DuplicateSeatsEmail}_{uniqueCode}{DomainGmail}";
-        _authentificationService.Register(email, ReservationPhone, $"{GigelUsername}_{uniqueCode}", GigelPassword);
-        var user = _authentificationService.Login(email, GigelPassword);
+        authentificationService.Register(email, ReservationPhone, $"{GigelUsername}_{uniqueCode}", GigelPassword);
+        var user = authentificationService.Login(email, GigelPassword);
 
         var flightId = GetFirstAvailableFlightId();
         var flight = FlightFixture.CreateValidTestFlight(flightId: flightId);
         var ticket1 = new Ticket { Flight = flight, User = user, Seat = Seat1A, Price = BasePrice, Status = ActiveStatus, PassengerFirstName = GigelFirstName, PassengerLastName = GigelLastName };
         var ticket2 = new Ticket { Flight = flight, User = user, Seat = Seat1A, Price = BasePrice, Status = ActiveStatus, PassengerFirstName = VasileFirstName, PassengerLastName = VasileLastName };
 
-        var saveTicketsResult = await _bookingService.SaveTicketsAsync(new List<Ticket> { ticket1, ticket2 });
+        var saveTicketsResult = await bookingService.SaveTicketsAsync(new List<Ticket> { ticket1, ticket2 });
 
         saveTicketsResult.Should().BeFalse();
     }
@@ -106,8 +106,8 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
     {
         var uniqueCode = Guid.NewGuid().ToString().Substring(UniqueCodeStartIndex, UniqueCodeLength);
         var email = $"{CancellationEmail}_{uniqueCode}{DomainGmail}";
-        _authentificationService.Register(email, ReservationPhone, $"{CancellationUsername}_{uniqueCode}", CancellationPassword);
-        var user = _authentificationService.Login(email, CancellationPassword);
+        authentificationService.Register(email, ReservationPhone, $"{CancellationUsername}_{uniqueCode}", CancellationPassword);
+        var user = authentificationService.Login(email, CancellationPassword);
 
         var flightId = GetFirstAvailableFlightId();
         var flight = FlightFixture.CreateValidTestFlight(flightId: flightId);
@@ -122,20 +122,20 @@ public class BookingAndCancellationWorkflowIntegrationTests : BaseIntegrationTes
             PassengerLastName = MariusLastName,
             PassengerEmail = email
         };
-        _ticketRepository.AddTicket(ticket);
+        ticketRepository.AddTicket(ticket);
 
-        var createdTicket = _ticketRepository.GetTicketsByUserId(user.UserId).First();
+        var createdTicket = ticketRepository.GetTicketsByUserId(user.UserId).First();
 
-        var (canCancel, reason) = _cancellationService.CanCancelTicket(createdTicket);
+        var (canCancel, reason) = cancellationService.CanCancelTicket(createdTicket);
         canCancel.Should().BeTrue();
         reason.Should().BeEmpty();
 
-        _cancellationService.CancelTicket(createdTicket.TicketId);
+        cancellationService.CancelTicket(createdTicket.TicketId);
 
-        var cancelledTicket = _ticketRepository.GetTicketsByUserId(user.UserId).First();
+        var cancelledTicket = ticketRepository.GetTicketsByUserId(user.UserId).First();
         cancelledTicket.Status.Should().Be(CancelledStatus);
 
-        var (canCancelAgain, reasonAgain) = _cancellationService.CanCancelTicket(cancelledTicket);
+        var (canCancelAgain, reasonAgain) = cancellationService.CanCancelTicket(cancelledTicket);
         canCancelAgain.Should().BeFalse();
         reasonAgain.Should().Contain(AlreadyCancelledMessage);
     }

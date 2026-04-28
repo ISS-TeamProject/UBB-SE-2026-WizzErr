@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
+using Moq;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
@@ -18,13 +18,13 @@ public class DashboardServiceTests
     private const int PastDaysOffset = -5;
     private const int UpcomingDaysOffset = 5;
 
-    private readonly Mock<ITicketRepository> _mockTicketRepository;
-    private readonly DashboardService _dashboardService;
+    private readonly Mock<ITicketRepository> mockTicketRepository;
+    private readonly DashboardService dashboardService;
 
     public DashboardServiceTests()
     {
-        _mockTicketRepository = new Mock<ITicketRepository>();
-        _dashboardService = new DashboardService(_mockTicketRepository.Object);
+        mockTicketRepository = new Mock<ITicketRepository>();
+        dashboardService = new DashboardService(mockTicketRepository.Object);
     }
 
     [Fact]
@@ -33,10 +33,10 @@ public class DashboardServiceTests
         var ticketWithFlight = new Ticket { Flight = new Flight { Date = DateTime.Now.AddDays(UpcomingDaysOffset) } };
         var ticketWithoutFlight = new Ticket { Flight = null };
 
-        _mockTicketRepository.Setup(repo => repo.GetTicketsByUserId(TargetUserId))
+        mockTicketRepository.Setup(repo => repo.GetTicketsByUserId(TargetUserId))
             .Returns(new List<Ticket> { ticketWithFlight, ticketWithoutFlight });
 
-        var results = _dashboardService.GetUserTickets(TargetUserId, UpcomingFilter).ToList();
+        var results = dashboardService.GetUserTickets(TargetUserId, UpcomingFilter).ToList();
 
         results.Should().ContainSingle();
         results.First().Should().Be(ticketWithFlight);
@@ -53,10 +53,10 @@ public class DashboardServiceTests
         var ticketRecentPast = new Ticket { Flight = recentPastFlight };
         var ticketFuture = new Ticket { Flight = futureFlight };
 
-        _mockTicketRepository.Setup(repo => repo.GetTicketsByUserId(TargetUserId))
+        mockTicketRepository.Setup(repo => repo.GetTicketsByUserId(TargetUserId))
             .Returns(new List<Ticket> { ticketOlder, ticketFuture, ticketRecentPast });
 
-        var results = _dashboardService.GetUserTickets(TargetUserId, PastFilter).ToList();
+        var results = dashboardService.GetUserTickets(TargetUserId, PastFilter).ToList();
 
         results.Should().HaveCount(2);
         results.First().Should().Be(ticketRecentPast);
@@ -74,13 +74,13 @@ public class DashboardServiceTests
         var ticketNearFuture = new Ticket { Flight = nearFutureFlight };
         var ticketFarFuture = new Ticket { Flight = farFutureFlight };
 
-        _mockTicketRepository.Setup(repo => repo.GetTicketsByUserId(TargetUserId))
+        mockTicketRepository.Setup(repo => repo.GetTicketsByUserId(TargetUserId))
             .Returns(new List<Ticket> { ticketFarFuture, ticketOlder, ticketNearFuture });
 
-        var results = _dashboardService.GetUserTickets(TargetUserId, UpcomingFilter).ToList();
+        var results = dashboardService.GetUserTickets(TargetUserId, UpcomingFilter).ToList();
 
         results.Should().HaveCount(2);
-        results.First().Should().Be(ticketNearFuture); 
+        results.First().Should().Be(ticketNearFuture);
         results.Last().Should().Be(ticketFarFuture);
     }
 }
