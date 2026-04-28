@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using TicketManager.Domain;
 using TicketManager.Service;
@@ -33,7 +33,7 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_LoginSuccess_NavigatesToFlightSearch()
+    public void ActionCommand_AuthenticationSuccess_NavigatesToFlightSearch()
     {
         var user = new User { UserId = PrimaryTestUserId, Email = PrimaryUserEmail, Username = PrimaryUsername };
         _mockAuthentificationService.Setup(authReturningValidUser => authReturningValidUser.Login(It.IsAny<string>(), It.IsAny<string>())).Returns(user);
@@ -48,7 +48,7 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_LoginFailure_DoesNotNavigate()
+    public void ActionCommand_AuthenticationFailure_DoesNotNavigate()
     {
         _mockAuthentificationService.Setup(authFailingLogin => authFailingLogin.Login(It.IsAny<string>(), It.IsAny<string>()))
             .Throws(new InvalidOperationException("Invalid email or password."));
@@ -63,7 +63,7 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_RegisterSuccess_SwitchesToLoginMode()
+    public void ActionCommand_RegistrationSuccess_SwitchesToAuthenticationMode()
     {
         _mockAuthentificationService.Setup(authSucceedingRegistration => authSucceedingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
         _viewModel.IsLoginMode = false;
@@ -78,7 +78,7 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_RegisterFailure_StaysInRegisterMode()
+    public void ActionCommand_RegistrationFailure_StaysInRegistrationMode()
     {
         _mockAuthentificationService.Setup(authFailingRegistration => authFailingRegistration.Register(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
             .Throws(new InvalidOperationException("Email already exists"));
@@ -94,7 +94,7 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ActionCommand_LoginWithPendingBooking_NavigatesToBooking()
+    public void ActionCommand_AuthenticationWithPendingBooking_NavigatesToBooking()
     {
         var user = new User { UserId = SecondaryTestUserId, Email = SecondaryUserEmail, Username = SecondaryUsername };
         var pendingParams = new object[] { new Flight { FlightId = TestFlightId }, RequestedPassengerCount };
@@ -112,7 +112,7 @@ public class AuthViewModelTests
     }
 
     [Fact]
-    public void ToggleModeCommand_SwitchesModesAndClearsErrors()
+    public void ToggleModeCommand_Invoked_SwitchesModesAndClearsErrors()
     {
         _viewModel.IsLoginMode = true;
         _viewModel.ErrorMessage = "Eroare anterior";

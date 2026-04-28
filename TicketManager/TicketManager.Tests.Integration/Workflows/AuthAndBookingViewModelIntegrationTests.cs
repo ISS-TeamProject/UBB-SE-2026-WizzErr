@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
@@ -60,7 +60,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatAuthViewModelRegistersAndLogsInSuccessfully()
+    public void AuthenticationViewModel_RegisterAndLogin_Succeeds()
     {
         var authViewModel = new AuthViewModel(_authentificationService, _navigationService);
         string uniqueCode = Guid.NewGuid().ToString().Substring(0, 4);
@@ -88,7 +88,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatAuthViewModelLoginFailsWithInvalidPassword()
+    public void AuthenticationViewModel_InvalidPassword_LoginFails()
     {
         var authViewModel = new AuthViewModel(_authentificationService, _navigationService);
         string uniqueCode = Guid.NewGuid().ToString().Substring(0, 4);
@@ -107,7 +107,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public async Task TestThatBookingViewModelInitializesAndUpdatesPrices()
+    public async Task BookingViewModel_Initialization_UpdatesPrices()
     {
         var bookingViewModel = new BookingViewModel(_bookingService, _pricingService, _navigationService);
 
@@ -126,7 +126,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public async Task TestThatBookingViewModelAddsPassengersAndUpdatesState()
+    public async Task BookingViewModel_AddPassenger_UpdatesState()
     {
         var bookingViewModel = new BookingViewModel(_bookingService, _pricingService, _navigationService);
 
@@ -144,7 +144,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public async Task TestThatBookingViewModelRemovesPassengerAndUpdatesCapacity()
+    public async Task BookingViewModel_RemovePassenger_UpdatesCapacity()
     {
         var bookingViewModel = new BookingViewModel(_bookingService, _pricingService, _navigationService);
 
@@ -166,7 +166,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatDashboardViewModelLoadsTicketsAfterBooking()
+    public void DashboardViewModel_AfterBooking_LoadsTickets()
     {
         string uniqueCode = Guid.NewGuid().ToString().Substring(0, 4);
         string email = $"cosmin.tudor_{uniqueCode}@gmail.com";
@@ -188,7 +188,7 @@ public class AuthAndBookingViewModelIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatDashboardViewModelFiltersTicketsByUpcoming()
+    public void DashboardViewModel_FilterByUpcoming_ReturnsUpcomingTickets()
     {
         var user = new User { UserId = 1, Email = "test@gmail.com", Username = "test" };
         UserSession.CurrentUser = user;

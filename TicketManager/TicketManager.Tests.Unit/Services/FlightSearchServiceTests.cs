@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ public class FlightSearchServiceTests
     }
 
     [Fact]
-    public void TestThatSearchFlightsReturnsFlightsMatchingCriteria()
+    public void SearchFlights_MatchingCriteria_ReturnsFlights()
     {
         var flights = new List<Flight>
         {
@@ -68,7 +68,7 @@ public class FlightSearchServiceTests
     }
 
     [Fact]
-    public void TestThatSearchFlightsReturnsEmptyListWhenNoMatches()
+    public void SearchFlights_NoMatches_ReturnsEmptyList()
     {
         _mockFlightRepository.Setup(repoWithNoMatchingFlights => repoWithNoMatchingFlights.GetFlightsByRoute(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
             .Returns(new List<Flight>());
@@ -80,7 +80,7 @@ public class FlightSearchServiceTests
     }
 
     [Fact]
-    public void TestThatSearchFlightsFiltersFlightsByCapacity()
+    public void SearchFlights_CapacityFilter_FiltersFlights()
     {
         var flight1 = new Flight { FlightId = FlightId1, FlightNumber = FlightNumber1, Route = new Route { Capacity = DefaultCapacity } };
         var flight2 = new Flight { FlightId = FlightId2, FlightNumber = FlightNumber2, Route = new Route { Capacity = DefaultCapacity } };
@@ -100,7 +100,7 @@ public class FlightSearchServiceTests
     }
 
     [Fact]
-    public void TestThatParsePassengerCountReturnsNullForEmptyInput()
+    public void ParsePassengerCount_EmptyInput_ReturnsNull()
     {
         var resultNull = _flightSearchService.ParsePassengerCount(NullPassengerInput);
         resultNull.Should().BeNull();
@@ -110,14 +110,14 @@ public class FlightSearchServiceTests
     }
 
     [Fact]
-    public void TestThatParsePassengerCountReturnsParsedValueForValidPositiveNumber()
+    public void ParsePassengerCount_ValidPositiveNumber_ReturnsParsedValue()
     {
         var parsedValue = _flightSearchService.ParsePassengerCount(ValidPassengerInputStr);
         parsedValue.Should().Be(ValidPassengerInputInt);
     }
 
     [Fact]
-    public void TestThatParsePassengerCountReturnsDefaultForZeroOrNegativeOrInvalidNumber()
+    public void ParsePassengerCount_InvalidNumber_ReturnsDefault()
     {
         var resultZero = _flightSearchService.ParsePassengerCount(ZeroPassengerInput);
         resultZero.Should().Be(DefaultPassengerFallback);

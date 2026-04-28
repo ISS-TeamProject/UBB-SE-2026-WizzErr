@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using TicketManager.Domain;
 using TicketManager.Repository;
 using TicketManager.Service;
@@ -31,7 +31,7 @@ public class PricingServiceIntegrationTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void TestThatPricingCalculationWithMembershipDiscountsWorksEndToEnd()
+    public void PricingCalculation_WithMembership_WorksEndToEnd()
     {
         var membership = _membershipRepository.GetAllMemberships().First();
         membership.AddonDiscounts = _membershipRepository.GetAddonDiscounts(membership.MembershipId).ToList();

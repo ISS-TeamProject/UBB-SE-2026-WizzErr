@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using System;
 using TicketManager.Domain;
@@ -29,7 +29,7 @@ public class CancellationServiceTests
     }
 
     [Fact]
-    public void TestThatCanCancelTicketReturnsTrueForValidActiveTicket()
+    public void CanCancelTicket_ValidActiveTicket_ReturnsTrue()
     {
         var futureDate = DateTime.Now.AddDays(FutureFlightDaysOffset);
         var flight = FlightFixture.CreateValidTestFlight(departureTime: futureDate);
@@ -42,7 +42,7 @@ public class CancellationServiceTests
     }
 
     [Fact]
-    public void TestThatCanCancelTicketReturnsFalseWhenTicketAlreadyCancelled()
+    public void CanCancelTicket_AlreadyCancelledTicket_ReturnsFalse()
     {
         var flight = FlightFixture.CreateValidTestFlight();
         var ticket = new Ticket { TicketId = DefaultTicketId, Status = CancelledStatus, Flight = flight };
@@ -54,7 +54,7 @@ public class CancellationServiceTests
     }
 
     [Fact]
-    public void TestThatCanCancelTicketReturnsFalseWhenFlightDateIsInPast()
+    public void CanCancelTicket_PastFlightDate_ReturnsFalse()
     {
         var pastDate = DateTime.Now.AddDays(PastFlightDaysOffset);
         var flight = FlightFixture.CreateValidTestFlight(departureTime: pastDate);
@@ -67,7 +67,7 @@ public class CancellationServiceTests
     }
 
     [Fact]
-    public void TestThatCanCancelTicketReturnsFalseWhenTicketIsNull()
+    public void CanCancelTicket_NullTicket_ReturnsFalse()
     {
         var (canCancelResult, cancelReason) = _cancellationService.CanCancelTicket(null!);
 

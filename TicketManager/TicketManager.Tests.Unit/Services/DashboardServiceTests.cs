@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ public class DashboardServiceTests
     }
 
     [Fact]
-    public void TestThatGetUserTicketsExcludesTicketsWithNoFlight()
+    public void GetUserTickets_TicketsWithNoFlight_ExcludesThem()
     {
         var ticketWithFlight = new Ticket { Flight = new Flight { Date = DateTime.Now.AddDays(UpcomingDaysOffset) } };
         var ticketWithoutFlight = new Ticket { Flight = null };
@@ -43,7 +43,7 @@ public class DashboardServiceTests
     }
 
     [Fact]
-    public void TestThatGetUserTicketsFiltersPastFlightsAndSortsDescending()
+    public void GetUserTickets_PastFlights_FiltersAndSortsDescending()
     {
         var olderFlight = new Flight { Date = DateTime.Now.AddDays(PastDaysOffset - 2) };
         var recentPastFlight = new Flight { Date = DateTime.Now.AddDays(PastDaysOffset) };
@@ -64,7 +64,7 @@ public class DashboardServiceTests
     }
 
     [Fact]
-    public void TestThatGetUserTicketsFiltersUpcomingFlightsAndSortsAscending()
+    public void GetUserTickets_UpcomingFlights_FiltersAndSortsAscending()
     {
         var olderFlight = new Flight { Date = DateTime.Now.AddDays(PastDaysOffset) };
         var nearFutureFlight = new Flight { Date = DateTime.Now.AddDays(UpcomingDaysOffset) };

@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using TicketManager.Domain;
@@ -46,7 +46,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateBasePriceReturnsZeroWhenFlightOrRouteIsNull()
+    public void CalculateBasePrice_FlightOrRouteNull_ReturnsZero()
     {
         var flightWithNoRoute = new Flight { Route = null };
         
@@ -58,7 +58,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateBasePriceReturnsMinimumPriceForShortFlights()
+    public void CalculateBasePrice_ShortFlight_ReturnsMinimumPrice()
     {
         var flight = new Flight
         {
@@ -75,7 +75,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateBasePriceReturnsCalculatedPriceForLongFlights()
+    public void CalculateBasePrice_LongFlight_ReturnsCalculatedPrice()
     {
         var flight = new Flight
         {
@@ -92,7 +92,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateTotalPriceReturnsBasePricePlusAddOnsWhenNoMembership()
+    public void CalculateTotalPrice_NoMembership_ReturnsBasePricePlusAddOns()
     {
         var ticket = new Ticket
         {
@@ -111,7 +111,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateTotalPriceAppliesFlightDiscountWhenMembershipExists()
+    public void CalculateTotalPrice_MembershipExists_AppliesFlightDiscount()
     {
         var membership = new Membership { MembershipId = 1, Name = "Premium", FlightDiscountPercentage = StandardFlightDiscountPercentage, AddonDiscounts = new List<MembershipAddonDiscount>() };
         var user = UserFixture.CreateValidTestUser(membership: membership);
@@ -130,7 +130,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateTotalPriceAppliesAddOnDiscountsCorrectly()
+    public void CalculateTotalPrice_MembershipExists_AppliesAddOnDiscounts()
     {
         var addon1 = new AddOn { AddOnId = BagageAddOnId, Name = "Bagaj", BasePrice = StandardAddOnPrice1 };
         var addon2 = new AddOn { AddOnId = PriorityAddOnId, Name = "Prioritate", BasePrice = StandardAddOnPrice3 };
@@ -163,7 +163,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculatePriceBreakdownWorksForBasicUser()
+    public void CalculatePriceBreakdown_BasicUser_WorksCorrectly()
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var user = UserFixture.CreateBasicTestUser();
@@ -177,7 +177,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculatePriceBreakdownAppliesMembershipDiscount()
+    public void CalculatePriceBreakdown_MembershipUser_AppliesDiscount()
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var membership = new Membership { MembershipId = 1, Name = "Premium", FlightDiscountPercentage = StandardFlightDiscountPercentage, AddonDiscounts = new List<MembershipAddonDiscount>() };
@@ -194,7 +194,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculatePriceBreakdownIncludesAddOns()
+    public void CalculatePriceBreakdown_WithAddOns_IncludesAddOns()
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var user = UserFixture.CreateBasicTestUser();
@@ -209,7 +209,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculatePriceBreakdownHandlesMultiplePassengersCorrectly()
+    public void CalculatePriceBreakdown_MultiplePassengers_HandlesCorrectly()
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var user = UserFixture.CreateBasicTestUser();
@@ -226,7 +226,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculatePriceBreakdownCalculatesMembershipSavingsCorrectly()
+    public void CalculatePriceBreakdown_MembershipUser_CalculatesSavingsCorrectly()
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var membership = new Membership { MembershipId = 1, Name = "Premium", FlightDiscountPercentage = StandardFlightDiscountPercentage, AddonDiscounts = new List<MembershipAddonDiscount>() };
@@ -245,7 +245,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculatePriceBreakdownWithComplexDiscountScenario()
+    public void CalculatePriceBreakdown_ComplexDiscountScenario_CalculatesCorrectly()
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var addon = new AddOn { AddOnId = BagageAddOnId, Name = "Bagaj", BasePrice = StandardAddOnPrice1 };
@@ -270,7 +270,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculatePriceBreakdownReturnsDefaultWhenArgumentsAreNullOrEmpty()
+    public void CalculatePriceBreakdown_NullOrEmptyArguments_ReturnsDefault()
     {
         var flight = CreateFlightWithBasePrice(StandardFlightPrice);
         var user = UserFixture.CreateBasicTestUser();
@@ -286,7 +286,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateTotalPriceAppliesNoAddonDiscountWhenDiscountsListIsNull()
+    public void CalculateTotalPrice_DiscountsListNull_AppliesNoAddonDiscount()
     {
         var membership = new Membership 
         { 
@@ -315,7 +315,7 @@ public class PricingServiceTests
     }
 
     [Fact]
-    public void TestThatCalculateTotalPriceAppliesNoAddonDiscountWhenAddonIdDoesNotMatch()
+    public void CalculateTotalPrice_AddonIdMismatch_AppliesNoAddonDiscount()
     {
         var selectedAddon = new AddOn { AddOnId = BagageAddOnId, Name = "Bagaj", BasePrice = StandardAddOnPrice1 };
         var discountedAddon = new AddOn { AddOnId = UnmatchedAddOnId, Name = "Unrelated", BasePrice = StandardAddOnPrice2 };

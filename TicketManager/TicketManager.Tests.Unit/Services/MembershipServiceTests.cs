@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -32,7 +32,7 @@ public class MembershipServiceTests
     }
 
     [Fact]
-    public void TestThatGetAllMembershipsPopulatesDiscounts()
+    public void GetAllMemberships_ValidCall_PopulatesDiscounts()
     {
         var defaultMembership = new Membership { MembershipId = TargetMembershipId, Name = PremiumMembershipName };
         var defaultMemberships = new List<Membership> { defaultMembership };
@@ -54,7 +54,7 @@ public class MembershipServiceTests
     }
 
     [Fact]
-    public void TestThatUpgradeUserMembershipUpdatesAndReturnsPopulatedMembership()
+    public void UpgradeUserMembership_ValidUser_UpdatesAndReturnsMembership()
     {
         var defaultMembership = new Membership { MembershipId = TargetMembershipId, Name = PremiumMembershipName };
         var defaultDiscounts = new List<MembershipAddonDiscount> 
@@ -77,7 +77,7 @@ public class MembershipServiceTests
     }
 
     [Fact]
-    public void TestThatPurchaseMembershipSucceedsAndUpdatesUserSession()
+    public void PurchaseMembership_ValidPurchase_SucceedsAndUpdatesSession()
     {
         var defaultSessionUser = UserFixture.CreateValidTestUser();
         UserSession.CurrentUser = defaultSessionUser;
@@ -96,7 +96,7 @@ public class MembershipServiceTests
     }
 
     [Fact]
-    public void TestThatPurchaseMembershipReturnsFailureResultOnException()
+    public void PurchaseMembership_ExceptionThrown_ReturnsFailureResult()
     {
         _mockUserRepository.Setup(repoWithException => repoWithException.UpdateUserMembership(TargetUserId, TargetMembershipId))
             .Throws(new Exception("Database connection failed"));
